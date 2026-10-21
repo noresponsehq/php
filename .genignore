@@ -6,3 +6,4 @@
 /src/Hooks/HookRegistration.php
 /src/Hooks/IdempotencyKeyHook.php
 /README.md
+/src/Auth.php
