@@ -23,7 +23,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -50,7 +50,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -79,7 +79,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )

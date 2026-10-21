@@ -7,11 +7,11 @@ namespace NoResponse;
 
 
 /**
- * NoResponse - NoResponse API: Server-side signup and gateway risk assessment: a recommendation, polling and signed webhooks.
+ * NoResponseClient - NoResponse API: Server-side signup and gateway risk assessment: a recommendation, polling and signed webhooks.
  *
  * Assess a signup or gateway event, poll a pending assessment, page through an account's history, record what you later learned, and rotate your API key. Every response carries X-Request-ID; every error is an RFC 9457 problem document. Keep the API key on your server.
  */
-class NoResponse
+class NoResponseClient
 {
     public const SERVERS = [
         /** Production */
@@ -35,11 +35,21 @@ class NoResponse
     /**
      * Returns a new instance of the SDK builder used to configure and create the SDK instance.
      *
-     * @return NoResponseBuilder
+     * @return NoResponseClientBuilder
      */
-    public static function builder(): NoResponseBuilder
+    public static function builder(): NoResponseClientBuilder
     {
-        return new NoResponseBuilder();
+        return new NoResponseClientBuilder();
+    }
+    /**
+     * Returns an SDK instance that authenticates with the given API key and uses the default server.
+     *
+     * @param  string  $apiKey
+     * @return NoResponseClient
+     */
+    public static function create(string $apiKey): NoResponseClient
+    {
+        return self::builder()->setSecurity($apiKey)->build();
     }
 
     /**

@@ -94,12 +94,12 @@ class ConflictError
         $this->invalidParams = $invalidParams;
     }
 
-    public function toException(): ConflictErrorThrowable
+    public function toException(): ConflictException
     {
         $serializer = Utils\JSON::createSerializer();
         $message = $serializer->serialize($this, 'json');
         $code = $this->status;
 
-        return new ConflictErrorThrowable($message, (int) $code, $this);
+        return new ConflictException($message, (int) $code, $this);
     }
 }

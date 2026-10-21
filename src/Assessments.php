@@ -46,14 +46,14 @@ class Assessments
     /**
      * Assess identifiers for a signup or gateway decision.
      *
-     * Returns within the deadline (500 ms at most) with a complete, partial or pending assessment: 200 carries complete or partial, 202 carries pending with Location and Retry-After. A pending answer has no recommendation; apply your own fallback for pending, 429, 503 or a timeout. Requires the assess scope. Idempotency-Key is required and is bound to the body for 24 hours: the same key with the same body replays the latest assessment with Idempotent-Replayed: true and starts no new work; the same key with a different body answers 409 idempotency_key_reused. response_mode defaults to standard; detailed needs the detailed scope.
+     * Returns within the deadline (500 ms at most) with a complete, partial or pending assessment: 200 carries complete or partial, 202 carries pending with Location and Retry-After. A pending answer has no recommendation; apply your own fallback for pending, 429, 503 or a timeout. Requires the assess scope. Idempotency-Key is optional in the SDK and is bound to the body for 24 hours: the same key with the same body replays the latest assessment with Idempotent-Replayed: true and starts no new work; the same key with a different body answers 409 idempotency_key_reused. response_mode defaults to standard; detailed needs the detailed scope.
      *
      * @param  \NoResponse\Models\Shared\AssessmentRequest  $body
-     * @param  string  $idempotencyKey
+     * @param  ?string  $idempotencyKey
      * @return \NoResponse\Models\Operations\CreateAssessmentResponse
      * @throws \NoResponse\Models\Errors\APIStatusException
      */
-    public function create(Shared\AssessmentRequest $body, string $idempotencyKey, ?Options $options = null): Operations\CreateAssessmentResponse
+    public function create(Shared\AssessmentRequest $body, ?string $idempotencyKey = null, ?Options $options = null): Operations\CreateAssessmentResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -61,7 +61,8 @@ class Assessments
         }
         if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
             $retryConfig = $this->sdkConfiguration->retryConfig;
-        } else {
+        }
+        if ($retryConfig === null) {
             $retryConfig = new Retry\RetryConfigBackoff(
                 initialIntervalMs: 500,
                 maxIntervalMs: 8000,
@@ -82,8 +83,8 @@ class Assessments
             ];
         }
         $request = new Operations\CreateAssessmentRequest(
-            idempotencyKey: $idempotencyKey,
             body: $body,
+            idempotencyKey: $idempotencyKey,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/assessments');
@@ -100,7 +101,7 @@ class Assessments
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url, $httpOptions['headers']);
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'createAssessment', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -229,7 +230,8 @@ class Assessments
         }
         if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
             $retryConfig = $this->sdkConfiguration->retryConfig;
-        } else {
+        }
+        if ($retryConfig === null) {
             $retryConfig = new Retry\RetryConfigBackoff(
                 initialIntervalMs: 500,
                 maxIntervalMs: 8000,
@@ -261,7 +263,7 @@ class Assessments
         $qp = Utils\Utils::getQueryParams(Operations\GetAssessmentRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url, $httpOptions['headers']);
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'getAssessment', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
@@ -390,7 +392,8 @@ class Assessments
         }
         if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
             $retryConfig = $this->sdkConfiguration->retryConfig;
-        } else {
+        }
+        if ($retryConfig === null) {
             $retryConfig = new Retry\RetryConfigBackoff(
                 initialIntervalMs: 500,
                 maxIntervalMs: 8000,
@@ -421,7 +424,7 @@ class Assessments
         $httpOptions = array_merge_recursive($httpOptions, $body);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url, $httpOptions['headers']);
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'queryAccountAssessments', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -576,15 +579,15 @@ class Assessments
     /**
      * Report what was later learned about an assessed account.
      *
-     * Records what you later learned about an assessed account: confirmed_abuse, account_takeover and chargeback report abuse; false_positive and legitimate withdraw your earlier report; unknown is recorded only. Outcomes are append-only and the latest one wins. Requires the assess scope. Idempotency-Key is required and handled as on POST /v1/assessments: a retry with the same key and body answers the same record with Idempotent-Replayed: true; a different body answers 409. An unknown, expired or foreign assessment answers 404 not_found.
+     * Records what you later learned about an assessed account: confirmed_abuse, account_takeover and chargeback report abuse; false_positive and legitimate withdraw your earlier report; unknown is recorded only. Outcomes are append-only and the latest one wins. Requires the assess scope. Idempotency-Key is optional in the SDK and handled as on POST /v1/assessments: a retry with the same key and body answers the same record with Idempotent-Replayed: true; a different body answers 409. An unknown, expired or foreign assessment answers 404 not_found.
      *
      * @param  \NoResponse\Models\Shared\AssessmentOutcomeRequest  $body
      * @param  string  $assessmentId
-     * @param  string  $idempotencyKey
+     * @param  ?string  $idempotencyKey
      * @return \NoResponse\Models\Operations\RecordAssessmentOutcomeResponse
      * @throws \NoResponse\Models\Errors\APIStatusException
      */
-    public function recordOutcome(Shared\AssessmentOutcomeRequest $body, string $assessmentId, string $idempotencyKey, ?Options $options = null): Operations\RecordAssessmentOutcomeResponse
+    public function recordOutcome(Shared\AssessmentOutcomeRequest $body, string $assessmentId, ?string $idempotencyKey = null, ?Options $options = null): Operations\RecordAssessmentOutcomeResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -592,7 +595,8 @@ class Assessments
         }
         if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
             $retryConfig = $this->sdkConfiguration->retryConfig;
-        } else {
+        }
+        if ($retryConfig === null) {
             $retryConfig = new Retry\RetryConfigBackoff(
                 initialIntervalMs: 500,
                 maxIntervalMs: 8000,
@@ -614,8 +618,8 @@ class Assessments
         }
         $request = new Operations\RecordAssessmentOutcomeRequest(
             assessmentId: $assessmentId,
-            idempotencyKey: $idempotencyKey,
             body: $body,
+            idempotencyKey: $idempotencyKey,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/assessments/{assessment_id}/outcomes', Operations\RecordAssessmentOutcomeRequest::class, $request);
@@ -632,7 +636,7 @@ class Assessments
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url, $httpOptions['headers']);
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'recordAssessmentOutcome', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);

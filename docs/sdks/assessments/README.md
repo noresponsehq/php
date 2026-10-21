@@ -13,7 +13,7 @@ Signup and gateway assessments.
 
 ## create
 
-Returns within the deadline (500 ms at most) with a complete, partial or pending assessment: 200 carries complete or partial, 202 carries pending with Location and Retry-After. A pending answer has no recommendation; apply your own fallback for pending, 429, 503 or a timeout. Requires the assess scope. Idempotency-Key is required and is bound to the body for 24 hours: the same key with the same body replays the latest assessment with Idempotent-Replayed: true and starts no new work; the same key with a different body answers 409 idempotency_key_reused. response_mode defaults to standard; detailed needs the detailed scope.
+Returns within the deadline (500 ms at most) with a complete, partial or pending assessment: 200 carries complete or partial, 202 carries pending with Location and Retry-After. A pending answer has no recommendation; apply your own fallback for pending, 429, 503 or a timeout. Requires the assess scope. Idempotency-Key is optional in the SDK and is bound to the body for 24 hours: the same key with the same body replays the latest assessment with Idempotent-Replayed: true and starts no new work; the same key with a different body answers 409 idempotency_key_reused. response_mode defaults to standard; detailed needs the detailed scope.
 
 ### Example Usage: complete
 
@@ -26,7 +26,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -38,8 +38,8 @@ $body = new Shared\AssessmentRequest(
 );
 
 $response = $sdk->assessments->create(
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -58,7 +58,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -70,8 +70,8 @@ $body = new Shared\AssessmentRequest(
 );
 
 $response = $sdk->assessments->create(
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -90,7 +90,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -112,8 +112,8 @@ $body = new Shared\AssessmentRequest(
 );
 
 $response = $sdk->assessments->create(
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -132,7 +132,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -146,8 +146,8 @@ $body = new Shared\AssessmentRequest(
 );
 
 $response = $sdk->assessments->create(
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -166,7 +166,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -191,8 +191,8 @@ $body = new Shared\AssessmentRequest(
 );
 
 $response = $sdk->assessments->create(
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -211,7 +211,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -223,8 +223,8 @@ $body = new Shared\AssessmentRequest(
 );
 
 $response = $sdk->assessments->create(
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -243,7 +243,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -255,8 +255,8 @@ $body = new Shared\AssessmentRequest(
 );
 
 $response = $sdk->assessments->create(
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -267,10 +267,10 @@ if ($response->assessment !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                      | Type                                                                                                                                                           | Required                                                                                                                                                       | Description                                                                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `idempotencyKey`                                                                                                                                               | *string*                                                                                                                                                       | :heavy_check_mark:                                                                                                                                             | Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours. |
-| `body`                                                                                                                                                         | [Shared\AssessmentRequest](../../Models/Shared/AssessmentRequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                             | N/A                                                                                                                                                            |
+| Parameter                                                                                                                                                                                                                                                             | Type                                                                                                                                                                                                                                                                  | Required                                                                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `body`                                                                                                                                                                                                                                                                | [Shared\AssessmentRequest](../../Models/Shared/AssessmentRequest.md)                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                    | N/A                                                                                                                                                                                                                                                                   |
+| `idempotencyKey`                                                                                                                                                                                                                                                      | *?string*                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                    | Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours. Optional: the SDK generates a UUID when you omit it and sends the same key on every retry of the call. |
 
 ### Response
 
@@ -302,7 +302,7 @@ require 'vendor/autoload.php';
 
 use NoResponse;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -328,7 +328,7 @@ require 'vendor/autoload.php';
 
 use NoResponse;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -354,7 +354,7 @@ require 'vendor/autoload.php';
 
 use NoResponse;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -380,7 +380,7 @@ require 'vendor/autoload.php';
 
 use NoResponse;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -406,7 +406,7 @@ require 'vendor/autoload.php';
 
 use NoResponse;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -448,7 +448,7 @@ if ($response->assessment !== null) {
 
 ## recordOutcome
 
-Records what you later learned about an assessed account: confirmed_abuse, account_takeover and chargeback report abuse; false_positive and legitimate withdraw your earlier report; unknown is recorded only. Outcomes are append-only and the latest one wins. Requires the assess scope. Idempotency-Key is required and handled as on POST /v1/assessments: a retry with the same key and body answers the same record with Idempotent-Replayed: true; a different body answers 409. An unknown, expired or foreign assessment answers 404 not_found.
+Records what you later learned about an assessed account: confirmed_abuse, account_takeover and chargeback report abuse; false_positive and legitimate withdraw your earlier report; unknown is recorded only. Outcomes are append-only and the latest one wins. Requires the assess scope. Idempotency-Key is optional in the SDK and handled as on POST /v1/assessments: a retry with the same key and body answers the same record with Idempotent-Replayed: true; a different body answers 409. An unknown, expired or foreign assessment answers 404 not_found.
 
 ### Example Usage: abuse
 
@@ -461,7 +461,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -476,8 +476,8 @@ $body = new Shared\AssessmentOutcomeRequest(
 
 $response = $sdk->assessments->recordOutcome(
     assessmentId: '<id>',
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -496,7 +496,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -508,8 +508,8 @@ $body = new Shared\AssessmentOutcomeRequest(
 
 $response = $sdk->assessments->recordOutcome(
     assessmentId: '<id>',
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -528,7 +528,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -540,8 +540,8 @@ $body = new Shared\AssessmentOutcomeRequest(
 
 $response = $sdk->assessments->recordOutcome(
     assessmentId: '<id>',
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 
@@ -552,11 +552,11 @@ if ($response->assessmentOutcome !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                      | Type                                                                                                                                                           | Required                                                                                                                                                       | Description                                                                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `assessmentId`                                                                                                                                                 | *string*                                                                                                                                                       | :heavy_check_mark:                                                                                                                                             | Path segment, matched case-sensitively. A value that does not match the assessment_id shape answers 404, not 400.                                              |
-| `idempotencyKey`                                                                                                                                               | *string*                                                                                                                                                       | :heavy_check_mark:                                                                                                                                             | Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours. |
-| `body`                                                                                                                                                         | [Shared\AssessmentOutcomeRequest](../../Models/Shared/AssessmentOutcomeRequest.md)                                                                             | :heavy_check_mark:                                                                                                                                             | N/A                                                                                                                                                            |
+| Parameter                                                                                                                                                                                                                                                             | Type                                                                                                                                                                                                                                                                  | Required                                                                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `assessmentId`                                                                                                                                                                                                                                                        | *string*                                                                                                                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                                                                                    | Path segment, matched case-sensitively. A value that does not match the assessment_id shape answers 404, not 400.                                                                                                                                                     |
+| `body`                                                                                                                                                                                                                                                                | [Shared\AssessmentOutcomeRequest](../../Models/Shared/AssessmentOutcomeRequest.md)                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                                    | N/A                                                                                                                                                                                                                                                                   |
+| `idempotencyKey`                                                                                                                                                                                                                                                      | *?string*                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                    | Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours. Optional: the SDK generates a UUID when you omit it and sends the same key on every retry of the call. |
 
 ### Response
 
@@ -589,7 +589,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -621,7 +621,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )

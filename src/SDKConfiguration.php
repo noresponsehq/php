@@ -22,11 +22,11 @@ class SDKConfiguration
 
     public string $openapiDocVersion = '1';
 
-    public string $sdkVersion = '2.0.1';
+    public string $sdkVersion = '2.0.2';
 
     public string $genVersion = 'internal';
 
-    public string $userAgent = 'noresponse-sdk/php 2.0.1 internal 1 noresponse/noresponse-php';
+    public string $userAgent = 'noresponse-sdk/php 2.0.2 internal 1 noresponse/noresponse-php';
 
     public ?RetryConfig $retryConfig = null;
 
@@ -42,8 +42,8 @@ class SDKConfiguration
             return $this->serverUrl;
         }
 
-        if (isset(NoResponse::SERVERS[$this->serverIndex])) {
-            return NoResponse::SERVERS[$this->serverIndex];
+        if (isset(NoResponseClient::SERVERS[$this->serverIndex])) {
+            return NoResponseClient::SERVERS[$this->serverIndex];
         } else {
             throw new \OutOfBoundsException('Server index '.$this->serverIndex.' is out of bounds');
         }
@@ -70,7 +70,7 @@ class SDKConfiguration
             $this->serverIndex = 0;
         }
 
-        return new Utils\ServerDetails(NoResponse::SERVERS[$this->serverIndex], []);
+        return new Utils\ServerDetails(NoResponseClient::SERVERS[$this->serverIndex], []);
 
     }
 

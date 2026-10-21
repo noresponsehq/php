@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NoResponse\Models\Errors;
 
-class PermissionDeniedErrorThrowable extends \RuntimeException
+class PermissionDeniedException extends \NoResponse\Models\Errors\NoResponseException
 {
     public PermissionDeniedError $container;
 
@@ -12,5 +12,13 @@ class PermissionDeniedErrorThrowable extends \RuntimeException
     {
         parent::__construct($message, $statusCode);
         $this->container = $container;
+    }
+    public function getStatusCode(): int
+    {
+        return $this->container->status;
+    }
+    public function getRequestId(): string
+    {
+        return $this->container->requestId;
     }
 }

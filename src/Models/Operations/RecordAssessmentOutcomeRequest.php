@@ -17,14 +17,6 @@ class RecordAssessmentOutcomeRequest
     public string $assessmentId;
 
     /**
-     * Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours.
-     *
-     * @var string $idempotencyKey
-     */
-    #[NoResponseMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
-    public string $idempotencyKey;
-
-    /**
      *
      * @var \NoResponse\Models\Shared\AssessmentOutcomeRequest $body
      */
@@ -32,15 +24,23 @@ class RecordAssessmentOutcomeRequest
     public Shared\AssessmentOutcomeRequest $body;
 
     /**
+     * Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours. Optional: the SDK generates a UUID when you omit it and sends the same key on every retry of the call.
+     *
+     * @var ?string $idempotencyKey
+     */
+    #[NoResponseMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    public ?string $idempotencyKey = null;
+
+    /**
      * @param  string  $assessmentId
-     * @param  string  $idempotencyKey
      * @param  \NoResponse\Models\Shared\AssessmentOutcomeRequest  $body
+     * @param  ?string  $idempotencyKey
      * @phpstan-pure
      */
-    public function __construct(string $assessmentId, string $idempotencyKey, Shared\AssessmentOutcomeRequest $body)
+    public function __construct(string $assessmentId, Shared\AssessmentOutcomeRequest $body, ?string $idempotencyKey = null)
     {
         $this->assessmentId = $assessmentId;
-        $this->idempotencyKey = $idempotencyKey;
         $this->body = $body;
+        $this->idempotencyKey = $idempotencyKey;
     }
 }

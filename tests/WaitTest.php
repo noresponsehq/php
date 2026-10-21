@@ -10,7 +10,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use NoResponse\Models\Shared\Status;
-use NoResponse\NoResponse;
+use NoResponse\NoResponseClient;
 use NoResponse\Wait;
 use NoResponse\WaitTimeoutException;
 use PHPUnit\Framework\TestCase;
@@ -26,12 +26,12 @@ final class WaitTest extends TestCase
      * @param  list<Response>  $responses
      * @param  array<mixed>  $history
      */
-    private static function client(array $responses, array &$history): NoResponse
+    private static function client(array $responses, array &$history): NoResponseClient
     {
         $stack = HandlerStack::create(new MockHandler($responses));
         $stack->push(Middleware::history($history));
 
-        return NoResponse::builder()
+        return NoResponseClient::builder()
             ->setClient(new Client(['handler' => $stack]))
             ->setSecurity('nrk_test_'.str_repeat('k', 20))
             ->setServerUrl('https://api.example.test')

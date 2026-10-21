@@ -94,12 +94,12 @@ class PermissionDeniedError
         $this->invalidParams = $invalidParams;
     }
 
-    public function toException(): PermissionDeniedErrorThrowable
+    public function toException(): PermissionDeniedException
     {
         $serializer = Utils\JSON::createSerializer();
         $message = $serializer->serialize($this, 'json');
         $code = $this->status;
 
-        return new PermissionDeniedErrorThrowable($message, (int) $code, $this);
+        return new PermissionDeniedException($message, (int) $code, $this);
     }
 }

@@ -105,7 +105,7 @@ class RetryUtils
 
         $final = false;
         foreach ($statusCodes as $code) {
-            if (! preg_match('/^[0-9]xx$/', $code)) {
+            if (! preg_match('/^[0-9]xx$/i', $code)) {
                 $final = $code === $actual;
                 if ($final) {
                     break;

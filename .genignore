@@ -3,3 +3,6 @@
 /src/Wait.php
 /src/WaitTimeoutException.php
 /tests/*Test.php
+/src/Hooks/HookRegistration.php
+/src/Hooks/IdempotencyKeyHook.php
+/README.md

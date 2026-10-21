@@ -7,9 +7,9 @@ namespace NoResponse;
 use NoResponse\Utils\Retry;
 
 /**
- * NoResponseBuilder is used to configure and build an instance of the SDK.
+ * NoResponseClientBuilder is used to configure and build an instance of the SDK.
  */
-class NoResponseBuilder
+class NoResponseClientBuilder
 {
     public function __construct(
         private SDKConfiguration $sdkConfig = new SDKConfiguration(),
@@ -20,9 +20,9 @@ class NoResponseBuilder
      * setClient allows setting a custom Guzzle client for the SDK to make requests with.
      *
      * @param  \GuzzleHttp\ClientInterface  $client
-     * @return NoResponseBuilder
+     * @return NoResponseClientBuilder
      */
-    public function setClient(\GuzzleHttp\ClientInterface $client): NoResponseBuilder
+    public function setClient(\GuzzleHttp\ClientInterface $client): NoResponseClientBuilder
     {
         $this->sdkConfig->client = $client;
 
@@ -33,9 +33,9 @@ class NoResponseBuilder
      * setSecurity is used to configure the security required for the SDK.
      *
      * @param  string  $apiKey
-     * @return NoResponseBuilder
+     * @return NoResponseClientBuilder
      */
-    public function setSecurity(string $apiKey): NoResponseBuilder
+    public function setSecurity(string $apiKey): NoResponseClientBuilder
     {
         $security = new Models\Shared\Security(
             apiKey: $apiKey
@@ -50,9 +50,9 @@ class NoResponseBuilder
      * unlike setSecurity, setSecuritySource accepts a closure that will be called to retrieve the security information.
      *
      * @param  pure-Closure(): string  $securitySource
-     * @return NoResponseBuilder
+     * @return NoResponseClientBuilder
      */
-    public function setSecuritySource(\Closure $securitySource): NoResponseBuilder
+    public function setSecuritySource(\Closure $securitySource): NoResponseClientBuilder
     {
         $this->sdkConfig->securitySource = fn () => new Models\Shared\Security(apiKey: $securitySource());
 
@@ -64,9 +64,9 @@ class NoResponseBuilder
      *
      * @param  string  $serverUrl
      * @param  array<string, string>  $params
-     * @return NoResponseBuilder
+     * @return NoResponseClientBuilder
      */
-    public function setServerUrl(string $serverUrl, ?array $params = null): NoResponseBuilder
+    public function setServerUrl(string $serverUrl, ?array $params = null): NoResponseClientBuilder
     {
         $this->sdkConfig->serverUrl = Utils\Utils::templateUrl($serverUrl, $params);
 
@@ -77,16 +77,16 @@ class NoResponseBuilder
      * setServer is used to configure the server for the SDK
      *
      * @param  int  $serverIdx
-     * @return NoResponseBuilder
+     * @return NoResponseClientBuilder
      */
-    public function setServerIndex(int $serverIdx): NoResponseBuilder
+    public function setServerIndex(int $serverIdx): NoResponseClientBuilder
     {
         $this->sdkConfig->serverIndex = $serverIdx;
 
         return $this;
     }
 
-    public function setRetryConfig(Retry\RetryConfig $config): NoResponseBuilder
+    public function setRetryConfig(Retry\RetryConfig $config): NoResponseClientBuilder
     {
         $this->sdkConfig->retryConfig = $config;
 
@@ -96,9 +96,9 @@ class NoResponseBuilder
     /**
      * build is used to build the SDK with any of the configured options.
      *
-     * @return NoResponse
+     * @return NoResponseClient
      */
-    public function build(): NoResponse
+    public function build(): NoResponseClient
     {
         if ($this->sdkConfig->client === null) {
             $this->sdkConfig->client = new \GuzzleHttp\Client([
@@ -111,6 +111,6 @@ class NoResponseBuilder
             $this->sdkConfig->client = Utils\Utils::configureSecurityClient($this->sdkConfig->client, $this->sdkConfig->getSecurity());
         }
 
-        return new NoResponse($this->sdkConfig);
+        return new NoResponseClient($this->sdkConfig);
     }
 }

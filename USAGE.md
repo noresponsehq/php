@@ -7,7 +7,7 @@ require 'vendor/autoload.php';
 use NoResponse;
 use NoResponse\Models\Shared;
 
-$sdk = NoResponse\NoResponse::builder()
+$sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
         '<YOUR_BEARER_TOKEN_HERE>'
     )
@@ -21,8 +21,8 @@ $body = new Shared\AssessmentRequest(
 );
 
 $response = $sdk->assessments->create(
-    idempotencyKey: '<value>',
-    body: $body
+    body: $body,
+    idempotencyKey: '<value>'
 
 );
 

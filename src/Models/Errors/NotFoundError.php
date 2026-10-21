@@ -94,12 +94,12 @@ class NotFoundError
         $this->invalidParams = $invalidParams;
     }
 
-    public function toException(): NotFoundErrorThrowable
+    public function toException(): NotFoundException
     {
         $serializer = Utils\JSON::createSerializer();
         $message = $serializer->serialize($this, 'json');
         $code = $this->status;
 
-        return new NotFoundErrorThrowable($message, (int) $code, $this);
+        return new NotFoundException($message, (int) $code, $this);
     }
 }

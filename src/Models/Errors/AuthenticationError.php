@@ -94,12 +94,12 @@ class AuthenticationError
         $this->invalidParams = $invalidParams;
     }
 
-    public function toException(): AuthenticationErrorThrowable
+    public function toException(): AuthenticationException
     {
         $serializer = Utils\JSON::createSerializer();
         $message = $serializer->serialize($this, 'json');
         $code = $this->status;
 
-        return new AuthenticationErrorThrowable($message, (int) $code, $this);
+        return new AuthenticationException($message, (int) $code, $this);
     }
 }

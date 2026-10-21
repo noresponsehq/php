@@ -94,12 +94,12 @@ class RateLimitError
         $this->invalidParams = $invalidParams;
     }
 
-    public function toException(): RateLimitErrorThrowable
+    public function toException(): RateLimitException
     {
         $serializer = Utils\JSON::createSerializer();
         $message = $serializer->serialize($this, 'json');
         $code = $this->status;
 
-        return new RateLimitErrorThrowable($message, (int) $code, $this);
+        return new RateLimitException($message, (int) $code, $this);
     }
 }

@@ -94,12 +94,12 @@ class BadRequestError
         $this->invalidParams = $invalidParams;
     }
 
-    public function toException(): BadRequestErrorThrowable
+    public function toException(): BadRequestException
     {
         $serializer = Utils\JSON::createSerializer();
         $message = $serializer->serialize($this, 'json');
         $code = $this->status;
 
-        return new BadRequestErrorThrowable($message, (int) $code, $this);
+        return new BadRequestException($message, (int) $code, $this);
     }
 }

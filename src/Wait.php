@@ -22,7 +22,7 @@ final class Wait
      * @throws WaitTimeoutException once $timeoutSeconds have passed
      */
     public static function wait(
-        NoResponse $client,
+        NoResponseClient $client,
         string $assessmentId,
         float $timeoutSeconds = self::DEFAULT_TIMEOUT_SECONDS,
         ?callable $sleep = null,
