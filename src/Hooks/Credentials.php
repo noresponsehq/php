@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace NoResponse\Hooks;
+
+class Credentials
+{
+    public string $clientID;
+    public string $clientSecret;
+    public string $tokenURL;
+    /** @var array<string>|null */
+    public ?array $scopes;
+
+    /**
+     * @param  string  $clientID
+     * @param  string  $clientSecret
+     * @param  string  $tokenURL
+     * @param  array<string>|null  $scopes
+     */
+    public function __construct(string $clientID, string $clientSecret, string $tokenURL, ?array $scopes)
+    {
+        $this->clientID = $clientID;
+        $this->clientSecret = $clientSecret;
+        $this->tokenURL = $tokenURL;
+        $this->scopes = $scopes;
+    }
+}

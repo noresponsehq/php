@@ -1,0 +1,5 @@
+# Hand-written files beside the generated client.
+/src/Webhooks/
+/src/Wait.php
+/src/WaitTimeoutException.php
+/tests/*Test.php

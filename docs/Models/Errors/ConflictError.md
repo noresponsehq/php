@@ -1,0 +1,17 @@
+# ConflictError
+
+HTTP 409 problem document.
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `type`                                                                          | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
+| `title`                                                                         | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
+| `status`                                                                        | *int*                                                                           | :heavy_check_mark:                                                              | N/A                                                                             |
+| `detail`                                                                        | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
+| `instance`                                                                      | *?string*                                                                       | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `code`                                                                          | [Shared\ConflictErrorCode](../../Models/Shared/ConflictErrorCode.md)            | :heavy_check_mark:                                                              | Machine codes an HTTP 409 answer can carry.                                     |
+| `requestId`                                                                     | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
+| `invalidParams`                                                                 | array<[Shared\ProblemInvalidParam](../../Models/Shared/ProblemInvalidParam.md)> | :heavy_minus_sign:                                                              | N/A                                                                             |

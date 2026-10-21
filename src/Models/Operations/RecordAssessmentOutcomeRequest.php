@@ -1,0 +1,46 @@
+<?php
+
+declare(strict_types=1);
+
+namespace NoResponse\Models\Operations;
+
+use NoResponse\Models\Shared;
+use NoResponse\Utils\NoResponseMetadata;
+class RecordAssessmentOutcomeRequest
+{
+    /**
+     * Path segment, matched case-sensitively. A value that does not match the assessment_id shape answers 404, not 400.
+     *
+     * @var string $assessmentId
+     */
+    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=assessment_id')]
+    public string $assessmentId;
+
+    /**
+     * Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours.
+     *
+     * @var string $idempotencyKey
+     */
+    #[NoResponseMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    public string $idempotencyKey;
+
+    /**
+     *
+     * @var \NoResponse\Models\Shared\AssessmentOutcomeRequest $body
+     */
+    #[NoResponseMetadata('request:mediaType=application/json')]
+    public Shared\AssessmentOutcomeRequest $body;
+
+    /**
+     * @param  string  $assessmentId
+     * @param  string  $idempotencyKey
+     * @param  \NoResponse\Models\Shared\AssessmentOutcomeRequest  $body
+     * @phpstan-pure
+     */
+    public function __construct(string $assessmentId, string $idempotencyKey, Shared\AssessmentOutcomeRequest $body)
+    {
+        $this->assessmentId = $assessmentId;
+        $this->idempotencyKey = $idempotencyKey;
+        $this->body = $body;
+    }
+}
