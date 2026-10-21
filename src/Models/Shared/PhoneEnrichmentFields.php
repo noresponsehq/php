@@ -11,144 +11,144 @@ class PhoneEnrichmentFields
      *
      * @var ?string $phone
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('phone')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('phone')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $phone = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('name')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
      * @var ?string $carrier
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('carrier')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('carrier')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $carrier = null;
 
     /**
      *
      * @var ?string $lineType
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('line_type')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('line_type')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $lineType = null;
 
     /**
      *
      * @var ?string $entityType
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('entity_type')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('entity_type')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $entityType = null;
 
     /**
      *
      * @var ?string $countryCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('country_code')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $countryCode = null;
 
     /**
      *
      * @var ?string $country
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('country')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $country = null;
 
     /**
      *
      * @var ?string $state
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('state')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('state')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $state = null;
 
     /**
      *
      * @var ?string $city
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('city')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('city')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $city = null;
 
     /**
      *
      * @var ?string $location
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('location')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('location')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $location = null;
 
     /**
      *
      * @var ?string $nationalFormat
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('national_format')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('national_format')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $nationalFormat = null;
 
     /**
      *
      * @var ?string $jobTitle
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('job_title')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('job_title')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $jobTitle = null;
 
     /**
      *
      * @var ?string $companyName
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('company_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('company_name')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $companyName = null;
 
     /**
      *
      * @var ?string $email
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('email')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('email')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $email = null;
 
     /**
      *
      * @var ?string $website
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('website')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('website')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $website = null;
 
     /**
      *
      * @var ?string $firstCallAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('first_call_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('first_call_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $firstCallAt = null;
 
     /**
      *
      * @var ?string $lastCallAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_call_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('last_call_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $lastCallAt = null;
 
     /**
      *
      * @var ?string $matchedName
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('matched_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('matched_name')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $matchedName = null;
 
     /**
@@ -156,9 +156,9 @@ class PhoneEnrichmentFields
      *
      * @var ?array<string|float|bool|\NoResponse\Models\Shared\AlternateName|array<mixed>> $alternateNames
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('alternate_names')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\AlternateName|array<mixed>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('alternate_names')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\AlternateName|array<mixed>>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $alternateNames = null;
 
     /**
@@ -166,9 +166,9 @@ class PhoneEnrichmentFields
      *
      * @var ?array<string|float|bool|\NoResponse\Models\Shared\NameCandidate|array<mixed>> $nameCandidates
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name_candidates')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\NameCandidate|array<mixed>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('name_candidates')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\NameCandidate|array<mixed>>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $nameCandidates = null;
 
     /**
@@ -176,9 +176,9 @@ class PhoneEnrichmentFields
      *
      * @var ?array<string|float|bool|\NoResponse\Models\Shared\Timezone|array<mixed>> $timezones
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timezones')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Timezone|array<mixed>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('timezones')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Timezone|array<mixed>>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $timezones = null;
 
     /**
@@ -186,9 +186,9 @@ class PhoneEnrichmentFields
      *
      * @var ?array<string|float|bool|\NoResponse\Models\Shared\Email|array<mixed>> $emails
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('emails')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Email|array<mixed>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('emails')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Email|array<mixed>>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $emails = null;
 
     /**
@@ -196,9 +196,9 @@ class PhoneEnrichmentFields
      *
      * @var ?array<string|float|bool|\NoResponse\Models\Shared\Website|array<mixed>> $websites
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('websites')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Website|array<mixed>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('websites')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Website|array<mixed>>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $websites = null;
 
     /**
@@ -206,9 +206,9 @@ class PhoneEnrichmentFields
      *
      * @var ?array<string|float|bool|\NoResponse\Models\Shared\Location|array<mixed>> $locations
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('locations')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Location|array<mixed>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('locations')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Location|array<mixed>>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $locations = null;
 
     /**
@@ -216,81 +216,81 @@ class PhoneEnrichmentFields
      *
      * @var ?array<string|float|bool|\NoResponse\Models\Shared\SocialProfile|array<mixed>> $socialProfiles
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('social_profiles')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\SocialProfile|array<mixed>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('social_profiles')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\SocialProfile|array<mixed>>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $socialProfiles = null;
 
     /**
      *
      * @var ?int $reportCount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('report_count')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('report_count')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $reportCount = null;
 
     /**
      *
      * @var ?int $tagCount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tag_count')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('tag_count')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $tagCount = null;
 
     /**
      *
      * @var ?int $totalCalls
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_calls')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('total_calls')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $totalCalls = null;
 
     /**
      *
      * @var ?int $calls60Days
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('calls_60_days')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('calls_60_days')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $calls60Days = null;
 
     /**
      *
      * @var ?int $reports60Days
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reports_60_days')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('reports_60_days')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $reports60Days = null;
 
     /**
      *
      * @var ?int $searches60Days
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('searches_60_days')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('searches_60_days')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $searches60Days = null;
 
     /**
      *
      * @var ?int $commentCount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('comment_count')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('comment_count')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $commentCount = null;
 
     /**
      *
      * @var ?int $namesCount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('names_count')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('names_count')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $namesCount = null;
 
     /**
      *
      * @var ?int $spamReportCount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('spam_report_count')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('spam_report_count')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $spamReportCount = null;
 
     /**

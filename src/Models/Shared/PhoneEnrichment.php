@@ -12,8 +12,8 @@ class PhoneEnrichment
      *
      * @var \NoResponse\Models\Shared\PhoneEnrichmentFields $fields
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('fields')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\PhoneEnrichmentFields')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('fields')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\PhoneEnrichmentFields')]
     public PhoneEnrichmentFields $fields;
 
     /**

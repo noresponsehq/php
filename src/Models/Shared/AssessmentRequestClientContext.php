@@ -13,8 +13,8 @@ class AssessmentRequestClientContext
      *
      * @var ?string $timezone
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timezone')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('timezone')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $timezone = null;
 
     /**
@@ -22,8 +22,8 @@ class AssessmentRequestClientContext
      *
      * @var ?string $locale
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('locale')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('locale')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $locale = null;
 
     /**
@@ -31,9 +31,9 @@ class AssessmentRequestClientContext
      *
      * @var ?\NoResponse\Models\Shared\Platform $platform
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('platform')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Platform|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('platform')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Platform|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?Platform $platform = null;
 
     /**
@@ -41,8 +41,8 @@ class AssessmentRequestClientContext
      *
      * @var ?string $appVersion
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('app_version')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('app_version')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $appVersion = null;
 
     /**
@@ -50,8 +50,8 @@ class AssessmentRequestClientContext
      *
      * @var ?string $userAgent
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('user_agent')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('user_agent')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $userAgent = null;
 
     /**
@@ -59,8 +59,8 @@ class AssessmentRequestClientContext
      *
      * @var ?string $deviceId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('device_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('device_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $deviceId = null;
 
     /**
@@ -68,8 +68,8 @@ class AssessmentRequestClientContext
      *
      * @var ?string $sessionId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('session_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('session_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $sessionId = null;
 
     /**
@@ -77,8 +77,8 @@ class AssessmentRequestClientContext
      *
      * @var ?int $formDurationMs
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('form_duration_ms')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('form_duration_ms')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $formDurationMs = null;
 
     /**
@@ -86,8 +86,8 @@ class AssessmentRequestClientContext
      *
      * @var ?string $clientObservedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('client_observed_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('client_observed_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $clientObservedAt = null;
 
     /**

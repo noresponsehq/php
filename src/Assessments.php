@@ -7,10 +7,10 @@ namespace NoResponse;
 use NoResponse\Hooks\HookContext;
 use NoResponse\Models\Operations;
 use NoResponse\Models\Shared;
+use NoResponse\Serializer\DeserializationContext;
 use NoResponse\Utils\Options;
 use NoResponse\Utils\Retry;
 use NoResponse\Utils\Retry\RetryUtils;
-use Speakeasy\Serializer\DeserializationContext;
 
 class Assessments
 {

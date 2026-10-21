@@ -13,9 +13,9 @@ class Consistency
      *
      * @var ?\NoResponse\Models\Shared\ConsistencyValue $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('name')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?ConsistencyValue $name = null;
 
     /**
@@ -23,9 +23,9 @@ class Consistency
      *
      * @var ?\NoResponse\Models\Shared\ConsistencyValue $phone
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('phone')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('phone')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?ConsistencyValue $phone = null;
 
     /**
@@ -33,9 +33,9 @@ class Consistency
      *
      * @var ?\NoResponse\Models\Shared\ConsistencyValue $ip
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ip')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('ip')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?ConsistencyValue $ip = null;
 
     /**
@@ -43,9 +43,9 @@ class Consistency
      *
      * @var ?\NoResponse\Models\Shared\Country $country
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Country|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('country')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Country|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?Country $country = null;
 
     /**

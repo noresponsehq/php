@@ -13,8 +13,8 @@ class AssessmentOutcomeRequest
      *
      * @var \NoResponse\Models\Shared\Outcome $outcome
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('outcome')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Outcome')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('outcome')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Outcome')]
     public Outcome $outcome;
 
     /**
@@ -22,8 +22,8 @@ class AssessmentOutcomeRequest
      *
      * @var ?string $observedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('observed_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('observed_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $observedAt = null;
 
     /**
@@ -31,8 +31,8 @@ class AssessmentOutcomeRequest
      *
      * @var ?string $externalRef
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_ref')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('external_ref')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $externalRef = null;
 
     /**
@@ -40,8 +40,8 @@ class AssessmentOutcomeRequest
      *
      * @var ?string $notes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('notes')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('notes')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $notes = null;
 
     /**

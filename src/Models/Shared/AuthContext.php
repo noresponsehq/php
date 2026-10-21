@@ -13,7 +13,7 @@ class AuthContext
      *
      * @var string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('provider')]
     public string $provider;
 
     /**
@@ -21,7 +21,7 @@ class AuthContext
      *
      * @var string $issuer
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('issuer')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('issuer')]
     public string $issuer;
 
     /**
@@ -29,7 +29,7 @@ class AuthContext
      *
      * @var string $subject
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('subject')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('subject')]
     public string $subject;
 
     /**
@@ -37,7 +37,7 @@ class AuthContext
      *
      * @var bool $verified
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verified')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('verified')]
     public bool $verified;
 
     /**
@@ -45,8 +45,8 @@ class AuthContext
      *
      * @var ?string $audience
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('audience')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('audience')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $audience = null;
 
     /**
@@ -54,9 +54,9 @@ class AuthContext
      *
      * @var ?array<string> $audiences
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('audiences')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('audiences')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $audiences = null;
 
     /**
@@ -64,8 +64,8 @@ class AuthContext
      *
      * @var ?string $sessionId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('session_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('session_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $sessionId = null;
 
     /**
@@ -73,8 +73,8 @@ class AuthContext
      *
      * @var ?string $organizationId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('organization_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $organizationId = null;
 
     /**
@@ -82,8 +82,8 @@ class AuthContext
      *
      * @var ?string $tenantId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tenant_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('tenant_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $tenantId = null;
 
     /**
@@ -91,8 +91,8 @@ class AuthContext
      *
      * @var ?string $tokenId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('token_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('token_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $tokenId = null;
 
     /**
@@ -100,8 +100,8 @@ class AuthContext
      *
      * @var ?string $issuedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('issued_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('issued_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $issuedAt = null;
 
     /**
@@ -109,8 +109,8 @@ class AuthContext
      *
      * @var ?string $expiresAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('expires_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $expiresAt = null;
 
     /**
@@ -118,8 +118,8 @@ class AuthContext
      *
      * @var ?string $sessionCreatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('session_created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('session_created_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $sessionCreatedAt = null;
 
     /**
@@ -127,8 +127,8 @@ class AuthContext
      *
      * @var ?string $authTime
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('auth_time')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('auth_time')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $authTime = null;
 
     /**
@@ -136,8 +136,8 @@ class AuthContext
      *
      * @var ?string $accountCreatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account_created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('account_created_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $accountCreatedAt = null;
 
     /**
@@ -145,8 +145,8 @@ class AuthContext
      *
      * @var ?bool $emailVerified
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('email_verified')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('email_verified')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?bool $emailVerified = null;
 
     /**
@@ -154,8 +154,8 @@ class AuthContext
      *
      * @var ?bool $phoneVerified
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('phone_verified')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('phone_verified')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?bool $phoneVerified = null;
 
     /**
@@ -163,9 +163,9 @@ class AuthContext
      *
      * @var ?\NoResponse\Models\Shared\AssuranceLevel $assuranceLevel
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('assurance_level')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssuranceLevel|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('assurance_level')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssuranceLevel|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?AssuranceLevel $assuranceLevel = null;
 
     /**
@@ -173,8 +173,8 @@ class AuthContext
      *
      * @var ?bool $impersonated
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('impersonated')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('impersonated')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?bool $impersonated = null;
 
     /**
@@ -182,9 +182,9 @@ class AuthContext
      *
      * @var ?\NoResponse\Models\Shared\Transport $transport
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transport')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Transport|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('transport')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Transport|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?Transport $transport = null;
 
     /**
@@ -192,9 +192,9 @@ class AuthContext
      *
      * @var ?\NoResponse\Models\Shared\AuthContextMfa $mfa
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('mfa')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\AuthContextMfa|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('mfa')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AuthContextMfa|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?AuthContextMfa $mfa = null;
 
     /**
@@ -202,9 +202,9 @@ class AuthContext
      *
      * @var ?array<string> $roles
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('roles')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('roles')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $roles = null;
 
     /**
@@ -212,9 +212,9 @@ class AuthContext
      *
      * @var ?array<string> $scopes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scopes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('scopes')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $scopes = null;
 
     /**

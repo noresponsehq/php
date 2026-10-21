@@ -13,8 +13,8 @@ class AssessmentRequestIdentifiers
      *
      * @var ?string $email
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('email')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('email')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $email = null;
 
     /**
@@ -22,8 +22,8 @@ class AssessmentRequestIdentifiers
      *
      * @var ?string $username
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('username')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $username = null;
 
     /**
@@ -31,8 +31,8 @@ class AssessmentRequestIdentifiers
      *
      * @var ?string $phone
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('phone')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('phone')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $phone = null;
 
     /**
@@ -40,8 +40,8 @@ class AssessmentRequestIdentifiers
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('name')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
@@ -49,8 +49,8 @@ class AssessmentRequestIdentifiers
      *
      * @var ?string $ip
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ip')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('ip')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $ip = null;
 
     /**

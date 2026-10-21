@@ -6,7 +6,7 @@ namespace NoResponse\Webhooks;
 
 use NoResponse\Models\Shared\Assessment;
 use NoResponse\Utils\JSON;
-use Speakeasy\Serializer\DeserializationContext;
+use NoResponse\Serializer\DeserializationContext;
 
 /**
  * Webhook verification. Hand-written beside the generated client.

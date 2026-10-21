@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace NoResponse\Utils;
 
-use Speakeasy\Serializer\Context;
-use Speakeasy\Serializer\Exception\NotAcceptableException;
-use Speakeasy\Serializer\GraphNavigator;
-use Speakeasy\Serializer\Handler\SubscribingHandlerInterface;
-use Speakeasy\Serializer\JsonDeserializationVisitor;
-use Speakeasy\Serializer\JsonSerializationVisitor;
+use NoResponse\Serializer\Context;
+use NoResponse\Serializer\Exception\NotAcceptableException;
+use NoResponse\Serializer\GraphNavigator;
+use NoResponse\Serializer\Handler\SubscribingHandlerInterface;
+use NoResponse\Serializer\JsonDeserializationVisitor;
+use NoResponse\Serializer\JsonSerializationVisitor;
 
 class EnumHandler implements SubscribingHandlerInterface
 {

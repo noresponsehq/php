@@ -13,36 +13,36 @@ class RateLimitError
      *
      * @var string $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('type')]
     public string $type;
 
     /**
      *
      * @var string $title
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('title')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('title')]
     public string $title;
 
     /**
      *
      * @var int $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('status')]
     public int $status;
 
     /**
      *
      * @var string $detail
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('detail')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('detail')]
     public string $detail;
 
     /**
      *
      * @var ?string $instance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('instance')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('instance')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $instance = null;
 
     /**
@@ -50,15 +50,15 @@ class RateLimitError
      *
      * @var \NoResponse\Models\Shared\RateLimitErrorCode $code
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('code')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\RateLimitErrorCode')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('code')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RateLimitErrorCode')]
     public Shared\RateLimitErrorCode $code;
 
     /**
      *
      * @var string $requestId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('request_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('request_id')]
     public string $requestId;
 
     /**
@@ -66,9 +66,9 @@ class RateLimitError
      *
      * @var ?array<\NoResponse\Models\Shared\ProblemInvalidParam> $invalidParams
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('invalid_params')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\ProblemInvalidParam>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('invalid_params')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\ProblemInvalidParam>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $invalidParams = null;
 
     /**

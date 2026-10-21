@@ -12,27 +12,27 @@ class RiskSummary
      *
      * @var ?\NoResponse\Models\Shared\RiskSummaryPhone $phone
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('phone')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskSummaryPhone|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('phone')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskSummaryPhone|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?RiskSummaryPhone $phone = null;
 
     /**
      *
      * @var ?\NoResponse\Models\Shared\RiskSummaryEmail $email
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('email')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskSummaryEmail|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('email')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskSummaryEmail|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?RiskSummaryEmail $email = null;
 
     /**
      *
      * @var ?\NoResponse\Models\Shared\RiskSummaryUsername $username
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskSummaryUsername|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('username')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskSummaryUsername|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?RiskSummaryUsername $username = null;
 
     /**
@@ -40,9 +40,9 @@ class RiskSummary
      *
      * @var ?\NoResponse\Models\Shared\IpSummary $ip
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ip')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\IpSummary|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('ip')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IpSummary|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?IpSummary $ip = null;
 
     /**
@@ -50,9 +50,9 @@ class RiskSummary
      *
      * @var ?\NoResponse\Models\Shared\Consistency $consistency
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('consistency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Consistency|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('consistency')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Consistency|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?Consistency $consistency = null;
 
     /**

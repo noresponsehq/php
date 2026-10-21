@@ -12,7 +12,7 @@ class Risk
      *
      * @var int $score
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('score')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('score')]
     public int $score;
 
     /**
@@ -20,8 +20,8 @@ class Risk
      *
      * @var \NoResponse\Models\Shared\Band $band
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('band')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Band')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('band')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Band')]
     public Band $band;
 
     /**
@@ -29,8 +29,8 @@ class Risk
      *
      * @var \NoResponse\Models\Shared\Recommendation $recommendation
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('recommendation')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Recommendation')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('recommendation')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Recommendation')]
     public Recommendation $recommendation;
 
     /**
@@ -38,8 +38,8 @@ class Risk
      *
      * @var \NoResponse\Models\Shared\RiskConfidence $confidence
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('confidence')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskConfidence')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('confidence')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskConfidence')]
     public RiskConfidence $confidence;
 
     /**
@@ -47,7 +47,7 @@ class Risk
      *
      * @var string $policyVersion
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('policy_version')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('policy_version')]
     public string $policyVersion;
 
     /**
@@ -55,8 +55,8 @@ class Risk
      *
      * @var array<\NoResponse\Models\Shared\RiskReason> $reasons
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reasons')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RiskReason>')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('reasons')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RiskReason>')]
     public array $reasons;
 
     /**
@@ -64,8 +64,8 @@ class Risk
      *
      * @var \NoResponse\Models\Shared\RiskCoverage $coverage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('coverage')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskCoverage')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('coverage')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskCoverage')]
     public RiskCoverage $coverage;
 
     /**
@@ -73,9 +73,9 @@ class Risk
      *
      * @var ?\NoResponse\Models\Shared\RiskSummary $summary
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('summary')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskSummary|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('summary')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskSummary|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?RiskSummary $summary = null;
 
     /**
@@ -83,9 +83,9 @@ class Risk
      *
      * @var ?\NoResponse\Models\Shared\RiskDetails $details
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskDetails|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('details')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskDetails|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?RiskDetails $details = null;
 
     /**
@@ -93,7 +93,7 @@ class Risk
      *
      * @var string $policyBasis
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('policy_basis')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('policy_basis')]
     public string $policyBasis;
 
     /**

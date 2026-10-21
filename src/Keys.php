@@ -7,8 +7,8 @@ namespace NoResponse;
 use NoResponse\Hooks\HookContext;
 use NoResponse\Models\Operations;
 use NoResponse\Models\Shared;
+use NoResponse\Serializer\DeserializationContext;
 use NoResponse\Utils\Options;
-use Speakeasy\Serializer\DeserializationContext;
 
 class Keys
 {

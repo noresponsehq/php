@@ -12,8 +12,8 @@ class RiskSummaryUsername
      *
      * @var ?int $accountsFound
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accounts_found')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('accounts_found')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $accountsFound = null;
 
     /**
@@ -21,9 +21,9 @@ class RiskSummaryUsername
      *
      * @var ?\NoResponse\Models\Shared\BreachSummary $breach
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('breach')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachSummary|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('breach')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachSummary|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?BreachSummary $breach = null;
 
     /**

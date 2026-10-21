@@ -11,22 +11,22 @@ class ProblemInvalidParam
      *
      * @var string $field
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('field')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('field')]
     public string $field;
 
     /**
      *
      * @var string $reason
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reason')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('reason')]
     public string $reason;
 
     /**
      *
      * @var ?string $example
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('example')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('example')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $example = null;
 
     /**

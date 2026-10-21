@@ -11,14 +11,14 @@ class RiskDetailsBreachName
      *
      * @var string $value
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('value')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('value')]
     public string $value;
 
     /**
      *
      * @var int $seenIn
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('seen_in')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('seen_in')]
     public int $seenIn;
 
     /**

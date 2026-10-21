@@ -12,7 +12,7 @@ class Breach
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
@@ -20,8 +20,8 @@ class Breach
      *
      * @var \NoResponse\Models\Shared\BreachKind $kind
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('kind')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachKind')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('kind')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachKind')]
     public BreachKind $kind;
 
     /**
@@ -29,8 +29,8 @@ class Breach
      *
      * @var \NoResponse\Models\Shared\BreachSelector $matchedOn
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('matched_on')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachSelector')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('matched_on')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachSelector')]
     public BreachSelector $matchedOn;
 
     /**
@@ -38,8 +38,8 @@ class Breach
      *
      * @var ?string $domain
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('domain')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('domain')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $domain = null;
 
     /**
@@ -47,8 +47,8 @@ class Breach
      *
      * @var ?string $category
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('category')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('category')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $category = null;
 
     /**
@@ -56,8 +56,8 @@ class Breach
      *
      * @var ?int $year
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('year')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('year')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $year = null;
 
     /**
@@ -65,8 +65,8 @@ class Breach
      *
      * @var ?int $month
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('month')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('month')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $month = null;
 
     /**
@@ -74,9 +74,9 @@ class Breach
      *
      * @var ?array<\NoResponse\Models\Shared\BreachExposed> $exposed
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('exposed')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\BreachExposed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('exposed')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\BreachExposed>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $exposed = null;
 
     /**

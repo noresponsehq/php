@@ -13,7 +13,7 @@ class AssessmentOutcome
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
@@ -21,7 +21,7 @@ class AssessmentOutcome
      *
      * @var string $assessmentId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('assessment_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('assessment_id')]
     public string $assessmentId;
 
     /**
@@ -29,8 +29,8 @@ class AssessmentOutcome
      *
      * @var \NoResponse\Models\Shared\Outcome $outcome
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('outcome')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Outcome')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('outcome')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Outcome')]
     public Outcome $outcome;
 
     /**
@@ -38,7 +38,7 @@ class AssessmentOutcome
      *
      * @var string $receivedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('received_at')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('received_at')]
     public string $receivedAt;
 
     /**

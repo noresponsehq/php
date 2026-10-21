@@ -13,7 +13,7 @@ class AssessmentQuery
      *
      * @var string $accountId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('account_id')]
     public string $accountId;
 
     /**
@@ -21,8 +21,8 @@ class AssessmentQuery
      *
      * @var ?string $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('cursor')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $cursor = null;
 
     /**
@@ -30,17 +30,17 @@ class AssessmentQuery
      *
      * @var ?\NoResponse\Models\Shared\ResponseMode $responseMode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('response_mode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('response_mode')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?ResponseMode $responseMode = null;
 
     /**
      *
      * @var ?int $limit
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('limit')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('limit')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $limit = null;
 
     /**

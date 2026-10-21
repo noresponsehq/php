@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace NoResponse\Utils;
 
 
-use Speakeasy\Serializer\Handler\ArrayCollectionHandler;
-use Speakeasy\Serializer\Handler\HandlerRegistry;
-use Speakeasy\Serializer\Handler\IteratorHandler;
-use Speakeasy\Serializer\Handler\StdClassHandler;
-use Speakeasy\Serializer\SerializationContext;
-use Speakeasy\Serializer\SerializerBuilder;
-use Speakeasy\Serializer\Visitor\Factory\JsonDeserializationVisitorFactory;
+use NoResponse\Serializer\Handler\ArrayCollectionHandler;
+use NoResponse\Serializer\Handler\HandlerRegistry;
+use NoResponse\Serializer\Handler\IteratorHandler;
+use NoResponse\Serializer\Handler\StdClassHandler;
+use NoResponse\Serializer\SerializationContext;
+use NoResponse\Serializer\SerializerBuilder;
+use NoResponse\Serializer\Visitor\Factory\JsonDeserializationVisitorFactory;
 
 
 class JSON
 {
-    public static function createSerializer(): \Speakeasy\Serializer\Serializer
+    public static function createSerializer(): \NoResponse\Serializer\Serializer
     {
         return SerializerBuilder::create()->configureHandlers(
             static function (HandlerRegistry $registry): void {

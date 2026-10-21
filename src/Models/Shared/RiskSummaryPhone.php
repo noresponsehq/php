@@ -11,17 +11,17 @@ class RiskSummaryPhone
      *
      * @var ?\NoResponse\Models\Shared\LineType $lineType
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('line_type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\LineType|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('line_type')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\LineType|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?LineType $lineType = null;
 
     /**
      *
      * @var ?string $country
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('country')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $country = null;
 
     /**
@@ -29,8 +29,8 @@ class RiskSummaryPhone
      *
      * @var ?int $reportCount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('report_count')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('report_count')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $reportCount = null;
 
     /**
@@ -38,8 +38,8 @@ class RiskSummaryPhone
      *
      * @var ?string $carrier
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('carrier')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('carrier')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $carrier = null;
 
     /**

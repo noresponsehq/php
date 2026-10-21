@@ -13,7 +13,7 @@ class AssessmentRequest
      *
      * @var string $accountId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('account_id')]
     public string $accountId;
 
     /**
@@ -21,17 +21,17 @@ class AssessmentRequest
      *
      * @var \NoResponse\Models\Shared\AssessmentRequestIdentifiers $identifiers
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('identifiers')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentRequestIdentifiers')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('identifiers')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentRequestIdentifiers')]
     public AssessmentRequestIdentifiers $identifiers;
 
     /**
      *
      * @var ?\NoResponse\Models\Shared\AssessmentRequestPolicyContext $policyContext
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('policy_context')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentRequestPolicyContext|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('policy_context')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentRequestPolicyContext|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?AssessmentRequestPolicyContext $policyContext = null;
 
     /**
@@ -39,8 +39,8 @@ class AssessmentRequest
      *
      * @var ?string $requestId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('request_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('request_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $requestId = null;
 
     /**
@@ -48,8 +48,8 @@ class AssessmentRequest
      *
      * @var ?int $deadlineMs
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('deadline_ms')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('deadline_ms')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $deadlineMs = null;
 
     /**
@@ -57,9 +57,9 @@ class AssessmentRequest
      *
      * @var ?\NoResponse\Models\Shared\ResponseMode $responseMode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('response_mode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('response_mode')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?ResponseMode $responseMode = null;
 
     /**
@@ -67,9 +67,9 @@ class AssessmentRequest
      *
      * @var ?\NoResponse\Models\Shared\AssessmentRequestClientContext $clientContext
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('client_context')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentRequestClientContext|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('client_context')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentRequestClientContext|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?AssessmentRequestClientContext $clientContext = null;
 
     /**
@@ -77,9 +77,9 @@ class AssessmentRequest
      *
      * @var ?\NoResponse\Models\Shared\AuthContext $authContext
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('auth_context')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\AuthContext|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('auth_context')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AuthContext|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?AuthContext $authContext = null;
 
     /**

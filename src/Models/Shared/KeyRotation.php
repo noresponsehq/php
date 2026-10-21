@@ -13,7 +13,7 @@ class KeyRotation
      *
      * @var string $key
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('key')]
     public string $key;
 
     /**
@@ -21,7 +21,7 @@ class KeyRotation
      *
      * @var string $keyId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('key_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('key_id')]
     public string $keyId;
 
     /**
@@ -29,15 +29,15 @@ class KeyRotation
      *
      * @var array<\NoResponse\Models\Shared\Scope> $scopes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scopes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Scope>')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('scopes')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Scope>')]
     public array $scopes;
 
     /**
      *
      * @var string $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('created_at')]
     public string $createdAt;
 
     /**
@@ -45,7 +45,7 @@ class KeyRotation
      *
      * @var string $previousKeyId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('previous_key_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('previous_key_id')]
     public string $previousKeyId;
 
     /**
@@ -53,7 +53,7 @@ class KeyRotation
      *
      * @var string $previousKeyExpiresAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('previous_key_expires_at')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('previous_key_expires_at')]
     public string $previousKeyExpiresAt;
 
     /**

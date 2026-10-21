@@ -12,7 +12,7 @@ class AssessmentTiming
      *
      * @var int $deadlineMs
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('deadline_ms')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('deadline_ms')]
     public int $deadlineMs;
 
     /**
@@ -20,7 +20,7 @@ class AssessmentTiming
      *
      * @var int $elapsedMs
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('elapsed_ms')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('elapsed_ms')]
     public int $elapsedMs;
 
     /**

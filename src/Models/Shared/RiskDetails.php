@@ -13,9 +13,9 @@ class RiskDetails
      *
      * @var ?array<\NoResponse\Models\Shared\RiskDetailsPhoneName> $phoneNames
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('phone_names')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RiskDetailsPhoneName>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('phone_names')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RiskDetailsPhoneName>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $phoneNames = null;
 
     /**
@@ -23,9 +23,9 @@ class RiskDetails
      *
      * @var ?array<\NoResponse\Models\Shared\Breach> $breaches
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('breaches')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Breach>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('breaches')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Breach>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $breaches = null;
 
     /**
@@ -33,9 +33,9 @@ class RiskDetails
      *
      * @var ?array<\NoResponse\Models\Shared\RiskDetailsBreachName> $breachNames
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('breach_names')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RiskDetailsBreachName>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('breach_names')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RiskDetailsBreachName>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $breachNames = null;
 
     /**

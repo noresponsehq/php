@@ -13,7 +13,7 @@ class Assessment
      *
      * @var string $assessmentId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('assessment_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('assessment_id')]
     public string $assessmentId;
 
     /**
@@ -21,7 +21,7 @@ class Assessment
      *
      * @var string $accountId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('account_id')]
     public string $accountId;
 
     /**
@@ -29,8 +29,8 @@ class Assessment
      *
      * @var \NoResponse\Models\Shared\Status $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Status')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('status')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Status')]
     public Status $status;
 
     /**
@@ -38,8 +38,8 @@ class Assessment
      *
      * @var \NoResponse\Models\Shared\Confidence $confidence
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('confidence')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Confidence')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('confidence')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Confidence')]
     public Confidence $confidence;
 
     /**
@@ -47,8 +47,8 @@ class Assessment
      *
      * @var array<\NoResponse\Models\Shared\IncompleteSource> $incompleteSources
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('incomplete_sources')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\IncompleteSource>')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('incomplete_sources')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\IncompleteSource>')]
     public array $incompleteSources;
 
     /**
@@ -56,7 +56,7 @@ class Assessment
      *
      * @var string $policyVersion
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('policy_version')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('policy_version')]
     public string $policyVersion;
 
     /**
@@ -64,7 +64,7 @@ class Assessment
      *
      * @var int $assessmentVersion
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('assessment_version')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('assessment_version')]
     public int $assessmentVersion;
 
     /**
@@ -72,14 +72,14 @@ class Assessment
      *
      * @var string $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('created_at')]
     public string $createdAt;
 
     /**
      *
      * @var string $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('updated_at')]
     public string $updatedAt;
 
     /**
@@ -87,15 +87,15 @@ class Assessment
      *
      * @var string $expiresAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_at')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('expires_at')]
     public string $expiresAt;
 
     /**
      *
      * @var \NoResponse\Models\Shared\AssessmentTiming $timing
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timing')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentTiming')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('timing')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentTiming')]
     public AssessmentTiming $timing;
 
     /**
@@ -103,8 +103,8 @@ class Assessment
      *
      * @var ?string $requestId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('request_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('request_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $requestId = null;
 
     /**
@@ -112,9 +112,9 @@ class Assessment
      *
      * @var ?\NoResponse\Models\Shared\Recommendation $recommendation
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('recommendation')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Recommendation|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('recommendation')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Recommendation|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?Recommendation $recommendation = null;
 
     /**
@@ -122,9 +122,9 @@ class Assessment
      *
      * @var ?\NoResponse\Models\Shared\Risk $risk
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('risk')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Risk|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('risk')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Risk|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?Risk $risk = null;
 
     /**
@@ -132,9 +132,9 @@ class Assessment
      *
      * @var ?array<\NoResponse\Models\Shared\Signal> $signals
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('signals')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Signal>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('signals')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Signal>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $signals = null;
 
     /**
@@ -142,8 +142,8 @@ class Assessment
      *
      * @var ?string $assessmentUrl
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('assessment_url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('assessment_url')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $assessmentUrl = null;
 
     /**
@@ -151,7 +151,7 @@ class Assessment
      *
      * @var string $schemaVersion
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('schema_version')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('schema_version')]
     public string $schemaVersion;
 
     /**
@@ -159,7 +159,7 @@ class Assessment
      *
      * @var string $policyBasis
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('policy_basis')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('policy_basis')]
     public string $policyBasis;
 
     /**

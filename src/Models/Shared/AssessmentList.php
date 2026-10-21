@@ -13,7 +13,7 @@ class AssessmentList
      *
      * @var string $accountId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('account_id')]
     public string $accountId;
 
     /**
@@ -21,8 +21,8 @@ class AssessmentList
      *
      * @var array<\NoResponse\Models\Shared\Assessment> $items
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Assessment>')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('items')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Assessment>')]
     public array $items;
 
     /**
@@ -30,8 +30,8 @@ class AssessmentList
      *
      * @var ?string $nextCursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('next_cursor')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('next_cursor')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $nextCursor = null;
 
     /**
@@ -39,7 +39,7 @@ class AssessmentList
      *
      * @var string $schemaVersion
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('schema_version')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('schema_version')]
     public string $schemaVersion;
 
     /**
@@ -47,8 +47,8 @@ class AssessmentList
      *
      * @var ?int $retentionDays
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('retention_days')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('retention_days')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $retentionDays = null;
 
     /**

@@ -11,14 +11,14 @@ class RiskDetailsPhoneName
      *
      * @var string $value
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('value')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('value')]
     public string $value;
 
     /**
      *
      * @var int $seenBy
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('seen_by')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('seen_by')]
     public int $seenBy;
 
     /**

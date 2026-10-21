@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Utils;
 
 use phpDocumentor\Reflection\Type;
-use Speakeasy\Serializer\Type\ParserInterface;
+use NoResponse\Serializer\Type\ParserInterface;
 
 /**
  * Class PhpDocTypeParser

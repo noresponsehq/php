@@ -12,8 +12,8 @@ class AuthContextMfa
      *
      * @var ?bool $present
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('present')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('present')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?bool $present = null;
 
     /**
@@ -21,17 +21,17 @@ class AuthContextMfa
      *
      * @var ?array<string> $methods
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('methods')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('methods')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $methods = null;
 
     /**
      *
      * @var ?int $ageSeconds
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('age_seconds')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('age_seconds')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $ageSeconds = null;
 
     /**

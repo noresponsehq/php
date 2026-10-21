@@ -12,9 +12,9 @@ class AssessmentRequestPolicyContext
      *
      * @var ?\NoResponse\Models\Shared\Flow $flow
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('flow')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Flow|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('flow')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Flow|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?Flow $flow = null;
 
     /**
@@ -22,8 +22,8 @@ class AssessmentRequestPolicyContext
      *
      * @var ?string $region
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('region')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('region')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $region = null;
 
     /**

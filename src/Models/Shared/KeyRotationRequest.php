@@ -13,8 +13,8 @@ class KeyRotationRequest
      *
      * @var ?int $overlapSeconds
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('overlap_seconds')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('overlap_seconds')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $overlapSeconds = null;
 
     /**

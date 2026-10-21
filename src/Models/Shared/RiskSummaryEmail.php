@@ -11,8 +11,8 @@ class RiskSummaryEmail
      *
      * @var ?bool $disposable
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('disposable')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('disposable')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?bool $disposable = null;
 
     /**
@@ -20,8 +20,8 @@ class RiskSummaryEmail
      *
      * @var ?int $accountsFound
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accounts_found')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('accounts_found')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $accountsFound = null;
 
     /**
@@ -29,9 +29,9 @@ class RiskSummaryEmail
      *
      * @var ?\NoResponse\Models\Shared\BreachSummary $breach
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('breach')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachSummary|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('breach')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachSummary|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?BreachSummary $breach = null;
 
     /**

@@ -13,7 +13,7 @@ class RiskCoverage
      *
      * @var int $answered
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('answered')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('answered')]
     public int $answered;
 
     /**
@@ -21,7 +21,7 @@ class RiskCoverage
      *
      * @var int $failed
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('failed')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('failed')]
     public int $failed;
 
     /**
@@ -29,7 +29,7 @@ class RiskCoverage
      *
      * @var int $pending
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pending')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('pending')]
     public int $pending;
 
     /**

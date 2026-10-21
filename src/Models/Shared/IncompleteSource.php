@@ -13,8 +13,8 @@ class IncompleteSource
      *
      * @var \NoResponse\Models\Shared\Lane $lane
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('lane')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Lane')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('lane')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Lane')]
     public Lane $lane;
 
     /**
@@ -22,8 +22,8 @@ class IncompleteSource
      *
      * @var \NoResponse\Models\Shared\IncompleteReason $reason
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reason')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\IncompleteReason')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('reason')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IncompleteReason')]
     public IncompleteReason $reason;
 
     /**

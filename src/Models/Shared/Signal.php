@@ -12,7 +12,7 @@ class Signal
      *
      * @var string $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('type')]
     public string $type;
 
     /**
@@ -20,8 +20,8 @@ class Signal
      *
      * @var \NoResponse\Models\Shared\IdentifierKind $identifier
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('identifier')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\IdentifierKind')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('identifier')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IdentifierKind')]
     public IdentifierKind $identifier;
 
     /**
@@ -29,8 +29,8 @@ class Signal
      *
      * @var \NoResponse\Models\Shared\SignalOutcome $outcome
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('outcome')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\SignalOutcome')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('outcome')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\SignalOutcome')]
     public SignalOutcome $outcome;
 
     /**
@@ -38,7 +38,7 @@ class Signal
      *
      * @var string $sourceId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('source_id')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('source_id')]
     public string $sourceId;
 
     /**
@@ -46,8 +46,8 @@ class Signal
      *
      * @var \NoResponse\Models\Shared\Freshness $freshness
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('freshness')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\Freshness')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('freshness')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Freshness')]
     public Freshness $freshness;
 
     /**
@@ -55,9 +55,9 @@ class Signal
      *
      * @var ?\NoResponse\Models\Shared\FailureReason $reason
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reason')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\FailureReason|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('reason')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\FailureReason|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?FailureReason $reason = null;
 
     /**
@@ -65,8 +65,8 @@ class Signal
      *
      * @var ?string $evidenceRef
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('evidence_ref')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('evidence_ref')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $evidenceRef = null;
 
     /**
@@ -74,8 +74,8 @@ class Signal
      *
      * @var ?string $observedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('observed_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('observed_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $observedAt = null;
 
     /**
@@ -83,8 +83,8 @@ class Signal
      *
      * @var ?string $lastCheckedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_checked_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('last_checked_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $lastCheckedAt = null;
 
     /**
@@ -92,9 +92,9 @@ class Signal
      *
      * @var ?\NoResponse\Models\Shared\PhoneEnrichment $enrichment
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('enrichment')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\PhoneEnrichment|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('enrichment')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\PhoneEnrichment|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?PhoneEnrichment $enrichment = null;
 
     /**

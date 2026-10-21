@@ -12,15 +12,15 @@ class RiskReason
      *
      * @var \NoResponse\Models\Shared\ReasonCode $code
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('code')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\ReasonCode')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('code')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ReasonCode')]
     public ReasonCode $code;
 
     /**
      *
      * @var int $weight
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('weight')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('weight')]
     public int $weight;
 
     /**
@@ -28,9 +28,9 @@ class RiskReason
      *
      * @var ?\NoResponse\Models\Shared\ReasonIdentifier $identifier
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('identifier')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\ReasonIdentifier|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('identifier')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ReasonIdentifier|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?ReasonIdentifier $identifier = null;
 
     /**

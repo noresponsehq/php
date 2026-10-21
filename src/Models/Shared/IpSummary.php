@@ -13,8 +13,8 @@ class IpSummary
      *
      * @var ?string $country
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('country')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $country = null;
 
     /**
@@ -22,9 +22,9 @@ class IpSummary
      *
      * @var ?\NoResponse\Models\Shared\IpSummaryType $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\NoResponse\Models\Shared\IpSummaryType|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('type')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IpSummaryType|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?IpSummaryType $type = null;
 
     /**
@@ -32,8 +32,8 @@ class IpSummary
      *
      * @var ?int $seenInTenant
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('seen_in_tenant')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('seen_in_tenant')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $seenInTenant = null;
 
     /**

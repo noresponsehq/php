@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace NoResponse\Utils;
 
-use Speakeasy\Serializer\Context;
-use Speakeasy\Serializer\DeserializationContext;
-use Speakeasy\Serializer\Exception\NonVisitableTypeException;
-use Speakeasy\Serializer\Exception\PropertyMissingException;
-use Speakeasy\Serializer\Exception\RuntimeException;
-use Speakeasy\Serializer\GraphNavigatorInterface;
-use Speakeasy\Serializer\Handler\SubscribingHandlerInterface;
-use Speakeasy\Serializer\SerializationContext;
-use Speakeasy\Serializer\Visitor\DeserializationVisitorInterface;
-use Speakeasy\Serializer\Visitor\SerializationVisitorInterface;
+use NoResponse\Serializer\Context;
+use NoResponse\Serializer\DeserializationContext;
+use NoResponse\Serializer\Exception\NonVisitableTypeException;
+use NoResponse\Serializer\Exception\PropertyMissingException;
+use NoResponse\Serializer\Exception\RuntimeException;
+use NoResponse\Serializer\GraphNavigatorInterface;
+use NoResponse\Serializer\Handler\SubscribingHandlerInterface;
+use NoResponse\Serializer\SerializationContext;
+use NoResponse\Serializer\Visitor\DeserializationVisitorInterface;
+use NoResponse\Serializer\Visitor\SerializationVisitorInterface;
 
 final class UnionHandler implements SubscribingHandlerInterface
 {

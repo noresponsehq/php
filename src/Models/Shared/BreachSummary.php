@@ -12,7 +12,7 @@ class BreachSummary
      *
      * @var bool $found
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('found')]
+    #[\NoResponse\Serializer\Annotation\SerializedName('found')]
     public bool $found;
 
     /**
@@ -20,8 +20,8 @@ class BreachSummary
      *
      * @var ?int $breachCount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('breach_count')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('breach_count')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $breachCount = null;
 
     /**
@@ -29,8 +29,8 @@ class BreachSummary
      *
      * @var ?int $firstYear
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('first_year')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('first_year')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $firstYear = null;
 
     /**
@@ -38,8 +38,8 @@ class BreachSummary
      *
      * @var ?int $lastYear
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_year')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('last_year')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?int $lastYear = null;
 
     /**
@@ -47,9 +47,9 @@ class BreachSummary
      *
      * @var ?array<\NoResponse\Models\Shared\BreachExposed> $exposed
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('exposed')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\BreachExposed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('exposed')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\BreachExposed>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $exposed = null;
 
     /**
@@ -57,8 +57,8 @@ class BreachSummary
      *
      * @var ?bool $inCredentialLists
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('in_credential_lists')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('in_credential_lists')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?bool $inCredentialLists = null;
 
     /**
@@ -66,16 +66,16 @@ class BreachSummary
      *
      * @var ?bool $recentPasswordExposure
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('recent_password_exposure')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('recent_password_exposure')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?bool $recentPasswordExposure = null;
 
     /**
      *
      * @var ?bool $truncated
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('truncated')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[\NoResponse\Serializer\Annotation\SerializedName('truncated')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?bool $truncated = null;
 
     /**

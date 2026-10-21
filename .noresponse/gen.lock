@@ -5,8 +5,8 @@ management:
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 2.0.6
-  configChecksum: f0129cb41e380387cf42d0de13998ad6
+  releaseVersion: 2.0.7
+  configChecksum: 7679a002f98d99b525fc89b46d12aa1e
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -28,7 +28,7 @@ trackedFiles:
   USAGE.md:
     last_write_checksum: sha1:a1137375c903a87d9366efafe4135c3a09d85bd5
   composer.json:
-    last_write_checksum: sha1:26d0e2d7c9758b81c1f44397748151c0a2af0226
+    last_write_checksum: sha1:a53818cb2ac02a8c15c4baabb2a0e2de814e7b41
   docs/Models/Errors/AuthenticationError.md:
     last_write_checksum: sha1:bf09272eedb62c3dfa51ece1b301fb53626bd684
   docs/Models/Errors/BadRequestError.md:
@@ -224,15 +224,15 @@ trackedFiles:
   docs/sdks/keys/README.md:
     last_write_checksum: sha1:79388efbf4755007c991c644004cce176efc1919
   phpstan.neon:
-    last_write_checksum: sha1:c76cf3ac20b114f85cd6c3b569a6e297d00b4612
+    last_write_checksum: sha1:9f8575452e3255273fc38b211a73f845302b8af2
   phpunit.xml:
     last_write_checksum: sha1:1a2f73f76c0929634baf4e48f5718b9a2449be79
   pint.json:
-    last_write_checksum: sha1:2359db512d27012e65e376b39996d3b78f87a95a
+    last_write_checksum: sha1:7c1743909404d6273738721583c7d76a26ed8554
   rector.php:
     last_write_checksum: sha1:7864a4ae8ebfea6329d1a0eb047c070bf01a2ada
   src/Assessments.php:
-    last_write_checksum: sha1:b73c17d76864850df02d218626054f2503def301
+    last_write_checksum: sha1:87eaa14903b1916e51c1eb87281f4e35567147a1
   src/Hooks/AfterErrorContext.php:
     last_write_checksum: sha1:f1bfa05a3faedf129d634b9b23fdd301357cb306
   src/Hooks/AfterErrorHook.php:
@@ -264,33 +264,33 @@ trackedFiles:
   src/Hooks/TokenResponse.php:
     last_write_checksum: sha1:7af8bda7f1e195e59cef6013020405abbd579658
   src/Keys.php:
-    last_write_checksum: sha1:12bb0fdf70f49ac453fa244398908cebd402e541
+    last_write_checksum: sha1:a6214897381245aca0251f7bca285b82fcdb2948
   src/Models/Errors/APIStatusException.php:
     last_write_checksum: sha1:1bea9c341c24658ec411524aedb72052e77de2bc
   src/Models/Errors/AuthenticationError.php:
-    last_write_checksum: sha1:791b163d222e621d0ebbfa2f3865eb6d6044ebf2
+    last_write_checksum: sha1:20efc241b254c15e4ba21730be4529ccaff2d27c
   src/Models/Errors/AuthenticationException.php:
     last_write_checksum: sha1:447be5535d8efabe9deb95288331d693a0ecf8c5
   src/Models/Errors/BadRequestError.php:
-    last_write_checksum: sha1:62d9f3d7e63ec628c79258a97381c39c9fb2add8
+    last_write_checksum: sha1:e7672a7b83e54aca4652550b0b770cadc995078e
   src/Models/Errors/BadRequestException.php:
     last_write_checksum: sha1:71c79c94a967986ec14a36fad339a52b58629c49
   src/Models/Errors/ConflictError.php:
-    last_write_checksum: sha1:75ebb46b43598f3266ac1063530697083477d502
+    last_write_checksum: sha1:ad98f41fb5ae6b169227d588c55d98a0f1066324
   src/Models/Errors/ConflictException.php:
     last_write_checksum: sha1:eeabb7618a2ac4c288264678ab9a1d085a1fd282
   src/Models/Errors/NoResponseException.php:
     last_write_checksum: sha1:aa1fac60cf0dae9d4b23a273cdd0ba1b686e571f
   src/Models/Errors/NotFoundError.php:
-    last_write_checksum: sha1:6d85073e0b579c14b72b8ea250318eb1b5c874c4
+    last_write_checksum: sha1:55b69684b58693b935c3e780f2c6c5e7674631c3
   src/Models/Errors/NotFoundException.php:
     last_write_checksum: sha1:5652a622ae413146dc58485c9cb303cc618fc315
   src/Models/Errors/PermissionDeniedError.php:
-    last_write_checksum: sha1:0287726072261ed5e4f3e77d603f2621c200f948
+    last_write_checksum: sha1:27cf808383b48ac3528c5b533695454dbee068f6
   src/Models/Errors/PermissionDeniedException.php:
     last_write_checksum: sha1:7895dc2d5eb0c626d736f004cc9950b9515ceb52
   src/Models/Errors/RateLimitError.php:
-    last_write_checksum: sha1:bf8feb2c43f7d9df8fe9279257ed001367c25aa6
+    last_write_checksum: sha1:431e8b19ba51704cf584d92166f2653f3f000700
   src/Models/Errors/RateLimitException.php:
     last_write_checksum: sha1:212f75de8841bcc52033d749a83ce3d1084590cf
   src/Models/Operations/CreateAssessmentRequest.php:
@@ -312,31 +312,31 @@ trackedFiles:
   src/Models/Shared/AlternateName.php:
     last_write_checksum: sha1:429d42e3ab27dafc061516811dee1ed6379b6426
   src/Models/Shared/Assessment.php:
-    last_write_checksum: sha1:9b72fe6ce81290505406a5ffa59f16e13918d17a
+    last_write_checksum: sha1:dcef921ab5d93681224bc33bf679cc4533664ec1
   src/Models/Shared/AssessmentList.php:
-    last_write_checksum: sha1:f4e5c18f9cde4613afe501e780651120df2afe43
+    last_write_checksum: sha1:7fa9e1c9bf65983ea605dc509043c50a9b420da7
   src/Models/Shared/AssessmentOutcome.php:
-    last_write_checksum: sha1:9dc62809533b10392b303360401e0088dc39c4b1
+    last_write_checksum: sha1:fffa7f14cbc6205aec2ca864a111ff3804dcf79b
   src/Models/Shared/AssessmentOutcomeRequest.php:
-    last_write_checksum: sha1:0895a34c992883feddd34eca9ad631bc968c56fe
+    last_write_checksum: sha1:417c65b04cd722a9f3cd6f35eb8401a6ab6a3de3
   src/Models/Shared/AssessmentQuery.php:
-    last_write_checksum: sha1:96d20e058aabff66e4788a93b3c404eb4910506e
+    last_write_checksum: sha1:8daf459fb171fcae6c2c334aa2ecca0123106c79
   src/Models/Shared/AssessmentRequest.php:
-    last_write_checksum: sha1:1a49edd451f55073b22e97415c3f79d5220fcdea
+    last_write_checksum: sha1:7ef1e51d322c09dc86da12a8ba5cd0b99934639a
   src/Models/Shared/AssessmentRequestClientContext.php:
-    last_write_checksum: sha1:92deb8413bb2ebf41349f173f1ad38701d3e3a6c
+    last_write_checksum: sha1:a7fbedf4231a2a07b4d6c224d9f465a5a579305b
   src/Models/Shared/AssessmentRequestIdentifiers.php:
-    last_write_checksum: sha1:e9e318b6df38277c59994ea6f3e96b76a9350ac0
+    last_write_checksum: sha1:44b42b68c2e5ff3222ef6d0df0bee52601b2575e
   src/Models/Shared/AssessmentRequestPolicyContext.php:
-    last_write_checksum: sha1:213916000934a56730511c9975d5d6c5e4f100a7
+    last_write_checksum: sha1:e73cd3b4bbd0096f7b14bc92a3b7bcdf767ea0db
   src/Models/Shared/AssessmentTiming.php:
-    last_write_checksum: sha1:afe29a31a62bb2b553729618b00ad70793203e4d
+    last_write_checksum: sha1:4ee79238e1b3c1eb2fc1b16d2840047f14701926
   src/Models/Shared/AssuranceLevel.php:
     last_write_checksum: sha1:9d3ad75a71ad0b6e1cb7ba45de8f272095d0bf3f
   src/Models/Shared/AuthContext.php:
-    last_write_checksum: sha1:c23f4759c39b5dbc87b6ef46ce6c8f913561f465
+    last_write_checksum: sha1:a7506711749377a31e45072c977f8bf0ad78bbf4
   src/Models/Shared/AuthContextMfa.php:
-    last_write_checksum: sha1:da1837fbb0d73e19b809e1a7838f56e444c7f1c4
+    last_write_checksum: sha1:2be4f11bb2498fa0e05212cd6ecbe0b3beb4b148
   src/Models/Shared/AuthenticationErrorCode.php:
     last_write_checksum: sha1:5d4975504a59605cc7afb15f7c1fc48c149c675e
   src/Models/Shared/BadRequestErrorCode.php:
@@ -344,7 +344,7 @@ trackedFiles:
   src/Models/Shared/Band.php:
     last_write_checksum: sha1:18c6ea2fb03ebdfb3ed1e1055dbaa3ae9774bbf1
   src/Models/Shared/Breach.php:
-    last_write_checksum: sha1:2c9ba4e830723f8691b0ab8e573d1c9739db77eb
+    last_write_checksum: sha1:59c9d629695edcd56e02e91164f69bb6f5881312
   src/Models/Shared/BreachExposed.php:
     last_write_checksum: sha1:53c4236f4aff6bc2b1ceb01350717e03da7b091b
   src/Models/Shared/BreachKind.php:
@@ -352,13 +352,13 @@ trackedFiles:
   src/Models/Shared/BreachSelector.php:
     last_write_checksum: sha1:bd34700760515e78c09e629e49af040f600b8b17
   src/Models/Shared/BreachSummary.php:
-    last_write_checksum: sha1:5955f6857e1ab47e98b1341640a02ccafd7a7096
+    last_write_checksum: sha1:5bf049563b9749562717c3741bc915616c1fe23f
   src/Models/Shared/Confidence.php:
     last_write_checksum: sha1:d58b6c8ea1ca718b49d6f5698a3477ce7f180d82
   src/Models/Shared/ConflictErrorCode.php:
     last_write_checksum: sha1:8097eb14824150dc39a3cdbf871e07856b9b9ed1
   src/Models/Shared/Consistency.php:
-    last_write_checksum: sha1:d6bbced86bd1aaec64a1c371be43528f6fb9ed21
+    last_write_checksum: sha1:2aa2212a04d3248b6e764ad524ee3402cd070bf6
   src/Models/Shared/ConsistencyValue.php:
     last_write_checksum: sha1:f5262f7573ed593242db24ce727151ed94252d61
   src/Models/Shared/Country.php:
@@ -376,15 +376,15 @@ trackedFiles:
   src/Models/Shared/IncompleteReason.php:
     last_write_checksum: sha1:b3175285991f94881538930eb5097806a9490d91
   src/Models/Shared/IncompleteSource.php:
-    last_write_checksum: sha1:61f5b5e0fcebb23677d1707150ee937ae4e33555
+    last_write_checksum: sha1:e558826608c619f39b604f45f2b0b477a006d111
   src/Models/Shared/IpSummary.php:
-    last_write_checksum: sha1:0ada3f6ce3f84f4b11b280ff3e98f1fd2c8d1bdf
+    last_write_checksum: sha1:d89bf0903d8ac89dac11423174775d4e43a35bcb
   src/Models/Shared/IpSummaryType.php:
     last_write_checksum: sha1:03cae0010ef871a96530e5019ddad30bd1c25b77
   src/Models/Shared/KeyRotation.php:
-    last_write_checksum: sha1:3abda66e50726cf34b80aecd1122509ec0b34714
+    last_write_checksum: sha1:80ae85a66bdae26a960b97608d843b119a12585e
   src/Models/Shared/KeyRotationRequest.php:
-    last_write_checksum: sha1:11828f808c249c77de5d115c2a650eda0130f91c
+    last_write_checksum: sha1:9215605784885562b76eadf0a61ba9c983055451
   src/Models/Shared/Lane.php:
     last_write_checksum: sha1:721546ae4c4cf9ab2910e3d92256c71bdd6a8f6e
   src/Models/Shared/LineType.php:
@@ -400,13 +400,13 @@ trackedFiles:
   src/Models/Shared/PermissionDeniedErrorCode.php:
     last_write_checksum: sha1:b4875d54412372811585db568dd3c6226f8a4ca1
   src/Models/Shared/PhoneEnrichment.php:
-    last_write_checksum: sha1:86cf21200cf0691646973136c8cc3567c838293b
+    last_write_checksum: sha1:76b06f47f09fa9b4d199681a768d99af3f863e3c
   src/Models/Shared/PhoneEnrichmentFields.php:
-    last_write_checksum: sha1:71088f5db4dcf781fc98246ce1fa9288ab97744b
+    last_write_checksum: sha1:61c0b769c370b163303627bc3635416bffd7d3b5
   src/Models/Shared/Platform.php:
     last_write_checksum: sha1:d77909ffe14e60738a3e74be5cec13bebf71e223
   src/Models/Shared/ProblemInvalidParam.php:
-    last_write_checksum: sha1:2307d288b608e722dc893ab5870861c737aaee4d
+    last_write_checksum: sha1:359f90152ee4650756c8e773f46b33c773b6ddf0
   src/Models/Shared/RateLimitErrorCode.php:
     last_write_checksum: sha1:fdd4f6d71b364fc902b95fcfa8c598675d02bce5
   src/Models/Shared/ReasonCode.php:
@@ -418,33 +418,33 @@ trackedFiles:
   src/Models/Shared/ResponseMode.php:
     last_write_checksum: sha1:28bb455b62659c7c24bd30506a70e47364ab4c44
   src/Models/Shared/Risk.php:
-    last_write_checksum: sha1:1c74a5e119219e5d225e3df590d98d00d7e29d80
+    last_write_checksum: sha1:8cf344fba3173dbb2615b5579f855963b76813d4
   src/Models/Shared/RiskConfidence.php:
     last_write_checksum: sha1:1350c6d1a775c8c244cfef02c557f11b84903290
   src/Models/Shared/RiskCoverage.php:
-    last_write_checksum: sha1:f950af4ce5e6cc4ac5e2548d8b990a6a879fd56e
+    last_write_checksum: sha1:f45534386f6087dae5d7bfae8b92317c5571b15f
   src/Models/Shared/RiskDetails.php:
-    last_write_checksum: sha1:42395346be3cd525d69916e9e3c8df20395f5e7e
+    last_write_checksum: sha1:c3f1683bb3f21f80c9d19263731bc6fc6e6773a9
   src/Models/Shared/RiskDetailsBreachName.php:
-    last_write_checksum: sha1:d32554edb907e40051d20471523ad34ebfa235b1
+    last_write_checksum: sha1:9e22780c3acda896d859dfb670e3e005ad5cc452
   src/Models/Shared/RiskDetailsPhoneName.php:
-    last_write_checksum: sha1:1ad8d504c5337b89217cb51cb7c1ad377ac5c543
+    last_write_checksum: sha1:5a5858d0613948b120f9675f84dc5a70732bba4e
   src/Models/Shared/RiskReason.php:
-    last_write_checksum: sha1:f93daa99b58deb3f4991a81a93d2e4d9b540b5d4
+    last_write_checksum: sha1:c94b7b8e2c4078d08e959434e432ba06bcabfc82
   src/Models/Shared/RiskSummary.php:
-    last_write_checksum: sha1:0b2a808b0b64e23800decd8b9575d2e3462df691
+    last_write_checksum: sha1:747a745cc6f540f6443e7dc528a65aab5c9abe9b
   src/Models/Shared/RiskSummaryEmail.php:
-    last_write_checksum: sha1:d0378f507bbc9ff107ede3ecd810ae7b0d1fad74
+    last_write_checksum: sha1:6a532cea7ac45a1c1bb125297514488b1141a19a
   src/Models/Shared/RiskSummaryPhone.php:
-    last_write_checksum: sha1:cd63b55512902ff42cc6bb6aed22d2578e9e3d18
+    last_write_checksum: sha1:ded9ce98202009fc9b19a18489da5923ca374958
   src/Models/Shared/RiskSummaryUsername.php:
-    last_write_checksum: sha1:873a73ef8122e3ae86b9cfdcc6b143e0c2fade84
+    last_write_checksum: sha1:0ae7db11e15dc6c59b56487f9da95daad991800d
   src/Models/Shared/Scope.php:
     last_write_checksum: sha1:e51b682bea25b4f6e02608d0e8f99da4733168bb
   src/Models/Shared/Security.php:
     last_write_checksum: sha1:9816b5af85b58df3b76c243474464c441546a4f5
   src/Models/Shared/Signal.php:
-    last_write_checksum: sha1:a7b978770f0df003dd0d2e32c902a77664b2243c
+    last_write_checksum: sha1:97f3ce8e4085c67141ec08137efa92ef2fa6336a
   src/Models/Shared/SignalOutcome.php:
     last_write_checksum: sha1:7d6e629d0977803bd24a6c2b00584dfe7b64ab89
   src/Models/Shared/SocialProfile.php:
@@ -457,20 +457,382 @@ trackedFiles:
     last_write_checksum: sha1:a17841928301a0f56b2989a6305c47a2bdd5b8ed
   src/Models/Shared/Website.php:
     last_write_checksum: sha1:d95fbb7d7e877a054dbe835cba3c1c680bca1a9c
+  src/NoResponse/Serializer/AbstractVisitor.php:
+    last_write_checksum: sha1:efe6953014df0c78652a445a92275704061fb823
+  src/NoResponse/Serializer/Accessor/AccessorStrategyInterface.php:
+    last_write_checksum: sha1:00c277db77f18f4d00c6e869ddc483a5d03b2d33
+  src/NoResponse/Serializer/Accessor/DefaultAccessorStrategy.php:
+    last_write_checksum: sha1:094e754eee7fec42d1ef134bb5c34ea4c5b4d399
+  src/NoResponse/Serializer/Annotation/AccessType.php:
+    last_write_checksum: sha1:d3a5eb3bfc96f5c2a55f2fe7c179d6a8a2cf1b24
+  src/NoResponse/Serializer/Annotation/Accessor.php:
+    last_write_checksum: sha1:55ded7496df9a65b97389ad3909a55581df78d86
+  src/NoResponse/Serializer/Annotation/AccessorOrder.php:
+    last_write_checksum: sha1:3b8423b2a981e5b1123aefab021999ddbfdd29e5
+  src/NoResponse/Serializer/Annotation/AnnotationUtilsTrait.php:
+    last_write_checksum: sha1:a527832ea3a645f0b445142dd6cbdfdd4b92cca0
+  src/NoResponse/Serializer/Annotation/DeprecatedReadOnly.php:
+    last_write_checksum: sha1:99d0b9d63227910de5bc4e311d4f212bf1a10e72
+  src/NoResponse/Serializer/Annotation/Discriminator.php:
+    last_write_checksum: sha1:1a4ff587973f3168ba4c0b21c79a31cf376a5f38
+  src/NoResponse/Serializer/Annotation/Exclude.php:
+    last_write_checksum: sha1:32e6a993330943ae58e6008bc76548724c248ebb
+  src/NoResponse/Serializer/Annotation/ExclusionPolicy.php:
+    last_write_checksum: sha1:5eef9ed541abc583b752c9fd2b72eb9d0a8b0aaa
+  src/NoResponse/Serializer/Annotation/Expose.php:
+    last_write_checksum: sha1:a002e90f26871fe3cccf88925308ff699f45fb6a
+  src/NoResponse/Serializer/Annotation/Groups.php:
+    last_write_checksum: sha1:9ea578ab3a7bf425c17464f04064d21ff7054318
+  src/NoResponse/Serializer/Annotation/Inline.php:
+    last_write_checksum: sha1:9694b5939769d600c3807f919a01f83248e956a1
+  src/NoResponse/Serializer/Annotation/MaxDepth.php:
+    last_write_checksum: sha1:55d47fdc42e6cb698cbd385d4f945c907298bb58
+  src/NoResponse/Serializer/Annotation/PostDeserialize.php:
+    last_write_checksum: sha1:659b4cb4a616ef61c92f7988eb0642418f191154
+  src/NoResponse/Serializer/Annotation/PostSerialize.php:
+    last_write_checksum: sha1:2a3a71ca5c9614a32bd1afbd42f216011aa80c97
+  src/NoResponse/Serializer/Annotation/PreSerialize.php:
+    last_write_checksum: sha1:e63b97fc30bae1917607e315ba999c94fb312b8e
+  src/NoResponse/Serializer/Annotation/ReadOnly.php:
+    last_write_checksum: sha1:6ee2d7170ffc919fa8b73231e9c7ba7bdae528ed
+  src/NoResponse/Serializer/Annotation/ReadOnlyProperty.php:
+    last_write_checksum: sha1:5a6b38f3b81628a7b255fab2d5e094a435a80815
+  src/NoResponse/Serializer/Annotation/SerializedName.php:
+    last_write_checksum: sha1:d41f59d60f9b01eb6ca58944434f0ae7cc45f765
+  src/NoResponse/Serializer/Annotation/SerializerAttribute.php:
+    last_write_checksum: sha1:b5c38c2e1f5f42cbbfb43329cdbffd25e539030f
+  src/NoResponse/Serializer/Annotation/Since.php:
+    last_write_checksum: sha1:07d9ddd03b4dea61defba9b548b19b3afbc8bc3a
+  src/NoResponse/Serializer/Annotation/SkipWhenEmpty.php:
+    last_write_checksum: sha1:1edf6a4fec50e8edca6885eb9ca316814d1d148c
+  src/NoResponse/Serializer/Annotation/SkipWhenNull.php:
+    last_write_checksum: sha1:fc89b7ad6a8986b69a9125afe15a715083512c27
+  src/NoResponse/Serializer/Annotation/Type.php:
+    last_write_checksum: sha1:ca5da67abe069c403f0e5130112f63c2c6b86ef1
+  src/NoResponse/Serializer/Annotation/UnionDiscriminator.php:
+    last_write_checksum: sha1:dc12e03dce0770b5dc56b8b6de6592d688ffaeda
+  src/NoResponse/Serializer/Annotation/Until.php:
+    last_write_checksum: sha1:520d9bbf798513d278f97812eb274b150ec282d0
+  src/NoResponse/Serializer/Annotation/Version.php:
+    last_write_checksum: sha1:3c4eaf9d4cc095088531f5a0bdfdf3040cac4300
+  src/NoResponse/Serializer/Annotation/VirtualProperty.php:
+    last_write_checksum: sha1:9cb19e9e7433af73ba56061d2b8c83fc84456bc2
+  src/NoResponse/Serializer/Annotation/XmlAttribute.php:
+    last_write_checksum: sha1:25ae9ae9d3cb31b6524139126385c9005377b661
+  src/NoResponse/Serializer/Annotation/XmlAttributeMap.php:
+    last_write_checksum: sha1:d0531f32db66006e7d48eb0c23f0c3fccc460c57
+  src/NoResponse/Serializer/Annotation/XmlCollection.php:
+    last_write_checksum: sha1:20bb2ff7f5cb0d11a0dfbf9746cb6d8bdfe6b4c9
+  src/NoResponse/Serializer/Annotation/XmlDiscriminator.php:
+    last_write_checksum: sha1:3ce5149eca75c9d64882eaefe775ddf717960660
+  src/NoResponse/Serializer/Annotation/XmlElement.php:
+    last_write_checksum: sha1:e0ac9222f6e812276bc579d411db25dc74c79676
+  src/NoResponse/Serializer/Annotation/XmlKeyValuePairs.php:
+    last_write_checksum: sha1:bb64c8f24252fd97a1d23c127e54f9f7edbc2b8d
+  src/NoResponse/Serializer/Annotation/XmlList.php:
+    last_write_checksum: sha1:710a35e3eef205307065945e470135e6a7cf85f0
+  src/NoResponse/Serializer/Annotation/XmlMap.php:
+    last_write_checksum: sha1:4aebbba2153011f9bb9094b52a863a7ea8ac6895
+  src/NoResponse/Serializer/Annotation/XmlNamespace.php:
+    last_write_checksum: sha1:aebf8edd472d3dd2c752ed91e187809062a93031
+  src/NoResponse/Serializer/Annotation/XmlRoot.php:
+    last_write_checksum: sha1:1416cfbb46536fcc2696b6d3f48be4be2e192032
+  src/NoResponse/Serializer/Annotation/XmlValue.php:
+    last_write_checksum: sha1:e1d31a9fa3e23a7fd2894818e559f6ef75bf85c3
+  src/NoResponse/Serializer/ArrayTransformerInterface.php:
+    last_write_checksum: sha1:e93455ec26680364d68eb6fc6609661c885c6a53
+  src/NoResponse/Serializer/Builder/CallbackDriverFactory.php:
+    last_write_checksum: sha1:8404916646717e1527d61f8c15e9ebeff06c689f
+  src/NoResponse/Serializer/Builder/DefaultDriverFactory.php:
+    last_write_checksum: sha1:638b2d28743cf1f5ac15e1910083fc1b39bd5202
+  src/NoResponse/Serializer/Builder/DocBlockDriverFactory.php:
+    last_write_checksum: sha1:9c75ac8d40bbe9e0a18a34c44bab18e8bb313847
+  src/NoResponse/Serializer/Builder/DriverFactoryInterface.php:
+    last_write_checksum: sha1:5e93caad027bc9a76db93c59bad7bbbaf5948e80
+  src/NoResponse/Serializer/Construction/DoctrineObjectConstructor.php:
+    last_write_checksum: sha1:8d54fffb7b4c1aa7c4d67c165ff453c1562f05c6
+  src/NoResponse/Serializer/Construction/ObjectConstructorInterface.php:
+    last_write_checksum: sha1:672f69d3f0311857772e399bd102028f2b90e8e7
+  src/NoResponse/Serializer/Construction/UnserializeObjectConstructor.php:
+    last_write_checksum: sha1:05759975e4cac91221b72b46afa0724ede7a14e5
+  src/NoResponse/Serializer/Context.php:
+    last_write_checksum: sha1:f71ce1a57b87fa41f324f4f7d235796cf94e6d05
+  src/NoResponse/Serializer/ContextFactory/CallableContextFactory.php:
+    last_write_checksum: sha1:a7a5a3849e583542fcb7954a13dc790823fb6d4c
+  src/NoResponse/Serializer/ContextFactory/CallableDeserializationContextFactory.php:
+    last_write_checksum: sha1:57192c7abc35771b3df229a8c13a1171a4d5e902
+  src/NoResponse/Serializer/ContextFactory/CallableSerializationContextFactory.php:
+    last_write_checksum: sha1:31b003ad140dbf6910a2a7b9f87004d1243c065c
+  src/NoResponse/Serializer/ContextFactory/DefaultDeserializationContextFactory.php:
+    last_write_checksum: sha1:6804760fb3eb63ee9fb22871fe43eb4d50bcf7e9
+  src/NoResponse/Serializer/ContextFactory/DefaultSerializationContextFactory.php:
+    last_write_checksum: sha1:9e821803f039cb8da72c378639c7f7f80bb7aae6
+  src/NoResponse/Serializer/ContextFactory/DeserializationContextFactoryInterface.php:
+    last_write_checksum: sha1:07a73dc0ae71fdffe8c8e5e6d746a73362b3c8e4
+  src/NoResponse/Serializer/ContextFactory/SerializationContextFactoryInterface.php:
+    last_write_checksum: sha1:3936e0a38d9f129cba19972f376603b41dbf8adc
+  src/NoResponse/Serializer/DeserializationContext.php:
+    last_write_checksum: sha1:570e692c35ab172b317f85eb09f6fcac192e2fea
+  src/NoResponse/Serializer/EventDispatcher/Event.php:
+    last_write_checksum: sha1:a1909c4d811d72ab3fbfede3f907b974968c4b50
+  src/NoResponse/Serializer/EventDispatcher/EventDispatcher.php:
+    last_write_checksum: sha1:a17a5c54959f9bf0bd0b5faea9004e163abc9f01
+  src/NoResponse/Serializer/EventDispatcher/EventDispatcherInterface.php:
+    last_write_checksum: sha1:08749f26f25dfc7e2bf299d11b2e2977fc6ceecc
+  src/NoResponse/Serializer/EventDispatcher/EventSubscriberInterface.php:
+    last_write_checksum: sha1:6b28a2dc4732a8bd93f89c4dda34693f25b02d0b
+  src/NoResponse/Serializer/EventDispatcher/Events.php:
+    last_write_checksum: sha1:13d8233622b7ac75815a18e4eee1aeb4026c2501
+  src/NoResponse/Serializer/EventDispatcher/LazyEventDispatcher.php:
+    last_write_checksum: sha1:d192b996a196d5885144fcee566c972eaecb73ce
+  src/NoResponse/Serializer/EventDispatcher/ObjectEvent.php:
+    last_write_checksum: sha1:89220eabeb7a30d4f5ac7334cb0120569872a257
+  src/NoResponse/Serializer/EventDispatcher/PreDeserializeEvent.php:
+    last_write_checksum: sha1:5caef9d2cf42c098f52df96c8245562edc80eae5
+  src/NoResponse/Serializer/EventDispatcher/PreSerializeEvent.php:
+    last_write_checksum: sha1:0efa9736b2ce80511fec374e9de41ad06b013af2
+  src/NoResponse/Serializer/EventDispatcher/Subscriber/DoctrineProxySubscriber.php:
+    last_write_checksum: sha1:7d6dfb48fc669fa484d0fd54c7acef567d3aefd2
+  src/NoResponse/Serializer/EventDispatcher/Subscriber/EnumSubscriber.php:
+    last_write_checksum: sha1:d411a76a3789387e6697e869977598e7149225d4
+  src/NoResponse/Serializer/EventDispatcher/Subscriber/SymfonyValidatorValidatorSubscriber.php:
+    last_write_checksum: sha1:4cf3554f487ed5bd01de6646bcf678e24fe4dc36
+  src/NoResponse/Serializer/Exception/CircularReferenceDetectedException.php:
+    last_write_checksum: sha1:b249dc6f90875bf7d502ebf00db3830ef5c65d6a
+  src/NoResponse/Serializer/Exception/Exception.php:
+    last_write_checksum: sha1:11175a340eb7e09425b634d00c1c176729bf090a
+  src/NoResponse/Serializer/Exception/ExcludedClassException.php:
+    last_write_checksum: sha1:eb07d97bf2ab308953a6e32e090d37d563a6d6c6
+  src/NoResponse/Serializer/Exception/ExpressionLanguageRequiredException.php:
+    last_write_checksum: sha1:be99e24f1cff8f66eb51aa50c21704d2bfb6a0f6
+  src/NoResponse/Serializer/Exception/InvalidArgumentException.php:
+    last_write_checksum: sha1:c6aa9f582bac59b94639a42238924c1985b236ad
+  src/NoResponse/Serializer/Exception/InvalidMetadataException.php:
+    last_write_checksum: sha1:94fefe0b1374f9191be291cae2835c0256f01dd7
+  src/NoResponse/Serializer/Exception/LogicException.php:
+    last_write_checksum: sha1:1c9caec15e38be88ef1514a35bcaf51293fc2bb4
+  src/NoResponse/Serializer/Exception/NonCastableTypeException.php:
+    last_write_checksum: sha1:cfc9c87fe2517f7e64bf67d43580cb8fd2a2c782
+  src/NoResponse/Serializer/Exception/NonFloatCastableTypeException.php:
+    last_write_checksum: sha1:5f2dcfb196f905083e25c5430b9def248eafa934
+  src/NoResponse/Serializer/Exception/NonIntCastableTypeException.php:
+    last_write_checksum: sha1:6bad5193ae68a9f8cc0d9fa88466df7cc6bd9a51
+  src/NoResponse/Serializer/Exception/NonStringCastableTypeException.php:
+    last_write_checksum: sha1:7aa6de5f59f49df0655006cd4f3c70a052b5c1c4
+  src/NoResponse/Serializer/Exception/NonVisitableTypeException.php:
+    last_write_checksum: sha1:58cf7818a06a4d47b22350856aa87cc08d9fa5ef
+  src/NoResponse/Serializer/Exception/NotAcceptableException.php:
+    last_write_checksum: sha1:578847b40db7c04b80f59a2013be25acd8be315e
+  src/NoResponse/Serializer/Exception/ObjectConstructionException.php:
+    last_write_checksum: sha1:8aa0d11bcdc271542c22ca47946fe413a2152e84
+  src/NoResponse/Serializer/Exception/PropertyMissingException.php:
+    last_write_checksum: sha1:e53488cf31bfc9f4ff5fc3b8179d94db47696a66
+  src/NoResponse/Serializer/Exception/RuntimeException.php:
+    last_write_checksum: sha1:315e33003fc8a689d7710d80eb64e0afdebdc5fd
+  src/NoResponse/Serializer/Exception/SkipHandlerException.php:
+    last_write_checksum: sha1:41cc276c615ffc83908e72ab817031bcb59490fc
+  src/NoResponse/Serializer/Exception/UninitializedPropertyException.php:
+    last_write_checksum: sha1:b30d08eb630181acca0afdeac7e05bdc380370ee
+  src/NoResponse/Serializer/Exception/UnsupportedFormatException.php:
+    last_write_checksum: sha1:30d34732099a5e39081cacd07e4f80057b73d358
+  src/NoResponse/Serializer/Exception/ValidationFailedException.php:
+    last_write_checksum: sha1:75696170e0ef6f7ca4d52bdd04d4ab2ca1fd0447
+  src/NoResponse/Serializer/Exception/XmlErrorException.php:
+    last_write_checksum: sha1:eb4a960ce13680410fa19d8a94299fade09a4ca3
+  src/NoResponse/Serializer/Exclusion/DepthExclusionStrategy.php:
+    last_write_checksum: sha1:df4d95d637146b9c5797de25148c296fb224b1b2
+  src/NoResponse/Serializer/Exclusion/DisjunctExclusionStrategy.php:
+    last_write_checksum: sha1:1a26910c254bc779d44076bc3b3539d5c10b8711
+  src/NoResponse/Serializer/Exclusion/ExclusionStrategyInterface.php:
+    last_write_checksum: sha1:b5107f5bce8585ef7f9ea00261d229cba5379ee0
+  src/NoResponse/Serializer/Exclusion/ExpressionLanguageExclusionStrategy.php:
+    last_write_checksum: sha1:05b12b79da1a226d018f6397575b1824e48074a5
+  src/NoResponse/Serializer/Exclusion/GroupsExclusionStrategy.php:
+    last_write_checksum: sha1:7eee1c0901036b059a54ef0e81fb086a69730867
+  src/NoResponse/Serializer/Exclusion/VersionExclusionStrategy.php:
+    last_write_checksum: sha1:3dc4de40c344d06c36e474a89f62bf9f6f220fc5
+  src/NoResponse/Serializer/Expression/CompilableExpressionEvaluatorInterface.php:
+    last_write_checksum: sha1:dc3413030734efcc0c721857894674af088f713e
+  src/NoResponse/Serializer/Expression/Expression.php:
+    last_write_checksum: sha1:0e987550bcad0ca091b01d6e92753172c609f9dd
+  src/NoResponse/Serializer/Expression/ExpressionEvaluator.php:
+    last_write_checksum: sha1:0c5756aff550310ac8ef6d11192da15b23f46f90
+  src/NoResponse/Serializer/Expression/ExpressionEvaluatorInterface.php:
+    last_write_checksum: sha1:e7a010c9d1155e0303b222213e4ebc5823a4bf2d
+  src/NoResponse/Serializer/Functions.php:
+    last_write_checksum: sha1:078248b3412005a807059506349fce7cd733f971
+  src/NoResponse/Serializer/GraphNavigator.php:
+    last_write_checksum: sha1:1ebab5d15d1777122b66fbcb8e8ee9778ffb6ef2
+  src/NoResponse/Serializer/GraphNavigator/DeserializationGraphNavigator.php:
+    last_write_checksum: sha1:63e6fcee4f61800319b8ac370a7afee9710d4fa2
+  src/NoResponse/Serializer/GraphNavigator/Factory/DeserializationGraphNavigatorFactory.php:
+    last_write_checksum: sha1:db6adc337066018dbd2989fbf6ad0a48b2f5a116
+  src/NoResponse/Serializer/GraphNavigator/Factory/GraphNavigatorFactoryInterface.php:
+    last_write_checksum: sha1:c446f4fcdcea2ea7401025aaef797232f07a735b
+  src/NoResponse/Serializer/GraphNavigator/Factory/SerializationGraphNavigatorFactory.php:
+    last_write_checksum: sha1:ee22a7ff6cb0eb7824f1b08aa9d57ca648e07cf7
+  src/NoResponse/Serializer/GraphNavigator/SerializationGraphNavigator.php:
+    last_write_checksum: sha1:9a8ae40e8c944ad74eddef80f0e80f12f237794c
+  src/NoResponse/Serializer/GraphNavigatorInterface.php:
+    last_write_checksum: sha1:04e0ec0567adb66e336dc2a3bfe09e210fde0547
+  src/NoResponse/Serializer/Handler/ArrayCollectionHandler.php:
+    last_write_checksum: sha1:089941677c6d61dbeb58fc173a984b78bc8982b8
+  src/NoResponse/Serializer/Handler/ConstraintViolationHandler.php:
+    last_write_checksum: sha1:8cfa07f19faf9e7707f3ab35df3559502635f46f
+  src/NoResponse/Serializer/Handler/DateHandler.php:
+    last_write_checksum: sha1:1b14d9827bbfa95cb7dea76d9b4816ef18091ca7
+  src/NoResponse/Serializer/Handler/EnumHandler.php:
+    last_write_checksum: sha1:df319e4edf05bc21b15ea48289444e4a77dcf9ce
+  src/NoResponse/Serializer/Handler/FormErrorHandler.php:
+    last_write_checksum: sha1:893a8e21290a93d6b00055790f1995aca19fc8a4
+  src/NoResponse/Serializer/Handler/HandlerRegistry.php:
+    last_write_checksum: sha1:10103439f074a79ea211b03b609e2fbd9fa4972e
+  src/NoResponse/Serializer/Handler/HandlerRegistryInterface.php:
+    last_write_checksum: sha1:29948e999f87feb8b80ff5ecc3baa263a47c5a72
+  src/NoResponse/Serializer/Handler/IteratorHandler.php:
+    last_write_checksum: sha1:b0ecf37153a259bc4f5d3367d1b86d1e133593ef
+  src/NoResponse/Serializer/Handler/LazyHandlerRegistry.php:
+    last_write_checksum: sha1:5f87a05c221b88d2e2cf67f41a4d66d1f5c72487
+  src/NoResponse/Serializer/Handler/StdClassHandler.php:
+    last_write_checksum: sha1:4f343013025f2b0bf40c149813a3d29310409ec6
+  src/NoResponse/Serializer/Handler/SubscribingHandlerInterface.php:
+    last_write_checksum: sha1:2790d386e7cc743f6bfd1a3f8a44910af8dab61b
+  src/NoResponse/Serializer/Handler/SymfonyUidHandler.php:
+    last_write_checksum: sha1:cf133dbbb62b72f9a0058a3ed566ef2514875ad0
+  src/NoResponse/Serializer/Handler/UnionHandler.php:
+    last_write_checksum: sha1:86bca91a912f006e56cc1f6012693ec735e345ae
+  src/NoResponse/Serializer/JsonDeserializationStrictVisitor.php:
+    last_write_checksum: sha1:5adbe86e3918518d64df6d0c45275c07d35e8366
+  src/NoResponse/Serializer/JsonDeserializationVisitor.php:
+    last_write_checksum: sha1:3ad638fe00be0f164c2876fc6cbe47e561ca2ea4
+  src/NoResponse/Serializer/JsonSerializationVisitor.php:
+    last_write_checksum: sha1:7d0d527465e0d9ada8b6450a449f89980a65cb45
+  src/NoResponse/Serializer/LICENSE:
+    last_write_checksum: sha1:d3e37c5733225fd7bd7041f29e358a4feab12f3a
+  src/NoResponse/Serializer/Metadata/ClassMetadata.php:
+    last_write_checksum: sha1:2dd23d9fedd587f526d6d27059034d53c2301a42
+  src/NoResponse/Serializer/Metadata/Driver/AbstractDoctrineTypeDriver.php:
+    last_write_checksum: sha1:c03018899e0e574d589ee3783e21b07d8ee424af
+  src/NoResponse/Serializer/Metadata/Driver/AnnotationDriver.php:
+    last_write_checksum: sha1:7f3f0def17b6d8f5d414cb525028ae00af86519d
+  src/NoResponse/Serializer/Metadata/Driver/AnnotationOrAttributeDriver.php:
+    last_write_checksum: sha1:4877f91be02c8a061a1d798eb287abe8617a8d40
+  src/NoResponse/Serializer/Metadata/Driver/AttributeDriver.php:
+    last_write_checksum: sha1:5c0fdee39433e991bcdf519742371df26fb84a9b
+  src/NoResponse/Serializer/Metadata/Driver/AttributeDriver/AttributeReader.php:
+    last_write_checksum: sha1:505455f26322febc7074cecca1e0505fab71ba37
+  src/NoResponse/Serializer/Metadata/Driver/DefaultValuePropertyDriver.php:
+    last_write_checksum: sha1:f1e53f1c68ccf28e5a419ef0344fc0634b38a135
+  src/NoResponse/Serializer/Metadata/Driver/DocBlockDriver.php:
+    last_write_checksum: sha1:7b6880beb91ef562f2480d01aa4f671330ade2fe
+  src/NoResponse/Serializer/Metadata/Driver/DocBlockDriver/DocBlockTypeResolver.php:
+    last_write_checksum: sha1:0c67081a0f95ee757eca46e216fc614ba7fa0895
+  src/NoResponse/Serializer/Metadata/Driver/DoctrinePHPCRTypeDriver.php:
+    last_write_checksum: sha1:4753be350bea200569e17dbc640338d5a20e2a98
+  src/NoResponse/Serializer/Metadata/Driver/DoctrineTypeDriver.php:
+    last_write_checksum: sha1:b0a84fb4130787af8507175c4e1152958059aada
+  src/NoResponse/Serializer/Metadata/Driver/EnumPropertiesDriver.php:
+    last_write_checksum: sha1:a7315f162ac4d3b62d43cef9b306b9673ad88734
+  src/NoResponse/Serializer/Metadata/Driver/ExpressionMetadataTrait.php:
+    last_write_checksum: sha1:4c914d55bbb5408a7e8f422113a170a03bf3d721
+  src/NoResponse/Serializer/Metadata/Driver/NullDriver.php:
+    last_write_checksum: sha1:4b36db99b4d9b3a5455d9abee7b0cea231ad1471
+  src/NoResponse/Serializer/Metadata/Driver/TypedPropertiesDriver.php:
+    last_write_checksum: sha1:1411d86c952853e16569258b32dff4db1e42e76c
+  src/NoResponse/Serializer/Metadata/Driver/XmlDriver.php:
+    last_write_checksum: sha1:2ae1b46a0509208c230f1688ea29f32c0a1f3580
+  src/NoResponse/Serializer/Metadata/Driver/YamlDriver.php:
+    last_write_checksum: sha1:cb1056f6252f2c0712c750d5247091c228ca4a7d
+  src/NoResponse/Serializer/Metadata/ExpressionPropertyMetadata.php:
+    last_write_checksum: sha1:e7ae11892661a44519630bdf45aab36a5bcc5257
+  src/NoResponse/Serializer/Metadata/PropertyMetadata.php:
+    last_write_checksum: sha1:cf50a509e1b0774b466a8fd344bf5dc087606ae9
+  src/NoResponse/Serializer/Metadata/StaticPropertyMetadata.php:
+    last_write_checksum: sha1:107ed3ab9dde4733ae9612f72c34361a205234c8
+  src/NoResponse/Serializer/Metadata/VirtualPropertyMetadata.php:
+    last_write_checksum: sha1:0b550f234a61abc614934d7f79714aaa580dc7fc
+  src/NoResponse/Serializer/Naming/CamelCaseNamingStrategy.php:
+    last_write_checksum: sha1:3d5da0db131b71356b3492008556cb3ddcad5dae
+  src/NoResponse/Serializer/Naming/IdenticalPropertyNamingStrategy.php:
+    last_write_checksum: sha1:4e52a07225c60dfdb9c11018facd374797674a38
+  src/NoResponse/Serializer/Naming/PropertyNamingStrategyInterface.php:
+    last_write_checksum: sha1:1278a0051f25aed64aa2d0346714ac601bf87d07
+  src/NoResponse/Serializer/Naming/SerializedNameAnnotationStrategy.php:
+    last_write_checksum: sha1:bd84c76340d997ca8089361e7541c5615acfd089
+  src/NoResponse/Serializer/NullAwareVisitorInterface.php:
+    last_write_checksum: sha1:f0e8d4ed1b712187bb18335d4d982b292303626d
+  src/NoResponse/Serializer/Ordering/AlphabeticalPropertyOrderingStrategy.php:
+    last_write_checksum: sha1:e515f35573b9b43df4887f5fde060d5c5f97dcaf
+  src/NoResponse/Serializer/Ordering/CustomPropertyOrderingStrategy.php:
+    last_write_checksum: sha1:cc2c5635b903f065d7c2e7bafceaf12873dc74f1
+  src/NoResponse/Serializer/Ordering/IdenticalPropertyOrderingStrategy.php:
+    last_write_checksum: sha1:9f1d2667b4c2ebec488eeefec96ebf94e4a56f70
+  src/NoResponse/Serializer/Ordering/PropertyOrderingInterface.php:
+    last_write_checksum: sha1:d6894ccc9f4c72e9d29096b9e9e758dfbfbb62bb
+  src/NoResponse/Serializer/SerializationContext.php:
+    last_write_checksum: sha1:38827c44a87ac9d3f748b8ed25f6b2d412db9d7b
+  src/NoResponse/Serializer/Serializer.php:
+    last_write_checksum: sha1:655f7c356d7f75f8b0acdbda5567e230421031b0
+  src/NoResponse/Serializer/SerializerBuilder.php:
+    last_write_checksum: sha1:1d533521dda6c248110d56ea776c7bb414e276b2
+  src/NoResponse/Serializer/SerializerInterface.php:
+    last_write_checksum: sha1:ec1e07414fc0dcfff97672ba4e9a0b71554f2ac6
+  src/NoResponse/Serializer/Twig/SerializerBaseExtension.php:
+    last_write_checksum: sha1:dcd7f7be4c74e4889a55c7de73ef16bbdf62e764
+  src/NoResponse/Serializer/Twig/SerializerExtension.php:
+    last_write_checksum: sha1:9da6ed3d888403d326a25753e38db361e1895ae0
+  src/NoResponse/Serializer/Twig/SerializerRuntimeExtension.php:
+    last_write_checksum: sha1:b389a9f31e2e79c3984a8dbc8aad51d9d9aae9cc
+  src/NoResponse/Serializer/Twig/SerializerRuntimeHelper.php:
+    last_write_checksum: sha1:95a8a4cf78e76061317c612769aa1abdba0192bf
+  src/NoResponse/Serializer/Type/Exception/Exception.php:
+    last_write_checksum: sha1:6e5a952d76178f4f72e27b3509232feacf256d85
+  src/NoResponse/Serializer/Type/Exception/InvalidNode.php:
+    last_write_checksum: sha1:59ae7e822a96ddd28f555025a9d3b332a35014f8
+  src/NoResponse/Serializer/Type/Exception/SyntaxError.php:
+    last_write_checksum: sha1:031b04f61b793ed12768971d733dc260347d586b
+  src/NoResponse/Serializer/Type/Lexer.php:
+    last_write_checksum: sha1:2868fdd1d299d71a027614c492a879ab8911565b
+  src/NoResponse/Serializer/Type/Parser.php:
+    last_write_checksum: sha1:6a15fad9090baf2f25ba47a0612a7289b4fe862d
+  src/NoResponse/Serializer/Type/ParserInterface.php:
+    last_write_checksum: sha1:c9cffb74fa28cef027848bdae22a849559827657
+  src/NoResponse/Serializer/Visitor/DeserializationVisitorInterface.php:
+    last_write_checksum: sha1:0f8d135f9103a97bd8a10473ca0236944938d4f5
+  src/NoResponse/Serializer/Visitor/Factory/DeserializationVisitorFactory.php:
+    last_write_checksum: sha1:a21f1682805b71c62ab716c8c7f814ee5c6a02f7
+  src/NoResponse/Serializer/Visitor/Factory/JsonDeserializationVisitorFactory.php:
+    last_write_checksum: sha1:b7ab2d6709cfd0f6fb6c0246894897ac2883635b
+  src/NoResponse/Serializer/Visitor/Factory/JsonSerializationVisitorFactory.php:
+    last_write_checksum: sha1:f82608e440b834455140a12335d34e9af3db66dc
+  src/NoResponse/Serializer/Visitor/Factory/SerializationVisitorFactory.php:
+    last_write_checksum: sha1:daecc7fbef21fe506c1356687aef40635fa0bf60
+  src/NoResponse/Serializer/Visitor/Factory/XmlDeserializationVisitorFactory.php:
+    last_write_checksum: sha1:3e88926f6dc498d3417b119beadf34697a2d60bf
+  src/NoResponse/Serializer/Visitor/Factory/XmlSerializationVisitorFactory.php:
+    last_write_checksum: sha1:4bfbd9d6f6c663033b419815bca2c5e7c44116cf
+  src/NoResponse/Serializer/Visitor/SerializationVisitorInterface.php:
+    last_write_checksum: sha1:dab472c38fd7b6c4bda38da2532365ff3377bc71
+  src/NoResponse/Serializer/VisitorInterface.php:
+    last_write_checksum: sha1:76b2d2f94052bf3bfc7dbbaecfa0eed420a3ed2a
+  src/NoResponse/Serializer/XmlDeserializationVisitor.php:
+    last_write_checksum: sha1:059cf6842a5822186a42109f3fa0125f8484dec3
+  src/NoResponse/Serializer/XmlSerializationVisitor.php:
+    last_write_checksum: sha1:d0629d021bd25ac2756ca7bbc43d1da5f2c0094e
   src/NoResponseClient.php:
     last_write_checksum: sha1:6c5cfa4990999021181c494b77ccee5f528d7b9a
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:43d7c6a5c2c1612f31b46e26f82d8bbb2885b1a8
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:4f088e6274bef270511f910721f0c4fe2551f1b8
+    last_write_checksum: sha1:4ce19163d37651bcb3e9edb1043ba71f4b0f6793
   src/Utils/BigDecimalHandler.php:
-    last_write_checksum: sha1:0e668d54469c64d836c22417628592bb1459a869
+    last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
-    last_write_checksum: sha1:31a5376d8b20da1471191063661b2a4e2b0d7cfe
+    last_write_checksum: sha1:0dbe32c9e332a49246ad88d0daad1e9bf8d7e9c6
   src/Utils/DateHandler.php:
-    last_write_checksum: sha1:94b2693ae24aa8fbae20a36d15282e0e0f3bf88f
+    last_write_checksum: sha1:04c9eb1b79c8e4ce2bc1a53cc03d8946873dafcf
   src/Utils/DateTimeHandler.php:
-    last_write_checksum: sha1:7a70a714352b3e9575ff35ab54fecdd5e0436a98
+    last_write_checksum: sha1:24ee8983b240d7d1f86cca3eb7e61a5ac6091480
   src/Utils/DefaultRequest.php:
     last_write_checksum: sha1:e769250124c6d4a9cfdb04930db9d8a524f464be
   src/Utils/DefaultResponse.php:
@@ -480,15 +842,15 @@ trackedFiles:
   src/Utils/DefaultUri.php:
     last_write_checksum: sha1:a9114d28dbb4b2f99fc2cf7e43551f14523f3c14
   src/Utils/EnumHandler.php:
-    last_write_checksum: sha1:968b7a8231fc32250616812000f7cd516c0df31d
+    last_write_checksum: sha1:a68af80e3a42d94b150aaee61c9ec769ab61d60a
   src/Utils/FormMetadata.php:
     last_write_checksum: sha1:d10e9f350f2032ead98b736608b5150c1332d96c
   src/Utils/Headers.php:
     last_write_checksum: sha1:db4f97a0064b1c864148d3758c94478c5f3e4acb
   src/Utils/JSON.php:
-    last_write_checksum: sha1:f6c14168634ebf4074e5bdeae3f44ba07ef836dd
+    last_write_checksum: sha1:1e04d2667eb373a02457605ed9ea24c8619cbe62
   src/Utils/MixedJSONHandler.php:
-    last_write_checksum: sha1:49017b5fc6d8a6ecab7ecfa396883487a9fd2eb5
+    last_write_checksum: sha1:c366830a8d6986677fb8a8f73c37d183b5008cb2
   src/Utils/MultipartMetadata.php:
     last_write_checksum: sha1:af22ef9adce7d19725b782c2eca7982d0a665f43
   src/Utils/NoResponseMetadata.php:
@@ -500,7 +862,7 @@ trackedFiles:
   src/Utils/PathParameters.php:
     last_write_checksum: sha1:5db5ad8c40a5e96447e436bdbb3917d2e914c520
   src/Utils/PhpDocTypeParser.php:
-    last_write_checksum: sha1:e4248d36116e8092c3b91679bc36983302ab2a5c
+    last_write_checksum: sha1:595849e82a4387ce41b76801466773323dca6612
   src/Utils/QueryParameters.php:
     last_write_checksum: sha1:d78a50db4c7f615dca3039d0bbf1f1e6330d4ce3
   src/Utils/RequestBodies.php:
@@ -530,7 +892,7 @@ trackedFiles:
   src/Utils/ServerDetails.php:
     last_write_checksum: sha1:75d9cfb685166eb2bffed9d9a71fbea589043558
   src/Utils/UnionHandler.php:
-    last_write_checksum: sha1:1f3d64e766707a02d438bbec1dcc96969cfec7f5
+    last_write_checksum: sha1:3759bda814188a23dde6c1175303c5dceedf31e8
   src/Utils/Utils.php:
     last_write_checksum: sha1:9a37c75aabd97be994c8b85ab1841b190032c8d3
 examples:

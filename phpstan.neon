@@ -3,6 +3,11 @@ parameters:
     paths:
         - src/
 
+    # The vendored serializer is third-party source. It is covered by its own
+    # upstream checks and is excluded from the generated SDK lint surface.
+    excludePaths:
+        - src/NoResponse/Serializer
+
     reportUnmatchedIgnoredErrors: false
     
     ignoreErrors:
