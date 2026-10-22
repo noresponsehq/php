@@ -56,6 +56,11 @@ final class AuthTest extends TestCase
             'auth0' => Auth::fromAuth0($claims, $overrides),
             'supabase' => Auth::fromSupabase($claims, $overrides),
             'firebase' => Auth::fromFirebase($claims, $overrides),
+            'cognito' => Auth::fromCognito($claims, $overrides),
+            'entra' => Auth::fromEntra($claims, $overrides),
+            'keycloak' => Auth::fromKeycloak($claims, $overrides),
+            'ory' => Auth::fromOry($claims, $overrides),
+            'ory_oauth2' => Auth::fromOryOAuth2($claims, $overrides),
             default => Auth::fromOIDC($vector['provider'], $claims, $overrides),
         };
     }
