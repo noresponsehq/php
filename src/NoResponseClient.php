@@ -9,7 +9,7 @@ namespace NoResponse;
 /**
  * NoResponseClient - NoResponse API: Server-side signup and gateway risk assessment: a recommendation, polling and signed webhooks.
  *
- * Assess a signup or gateway event, poll a pending assessment, page through an account's history, record what you later learned, rotate your API key, and register hosted endpoints that answer your WorkOS or Auth0 sign-up and sign-in hooks. Every response carries X-Request-ID; every error is an RFC 9457 problem document. Keep the API key on your server.
+ * Assess a signup or gateway event, poll a pending assessment, page through an account's history, record what you later learned, rotate your API key, manage your webhook endpoints, and register hosted endpoints that answer your WorkOS or Auth0 sign-up and sign-in hooks. Every response carries X-Request-ID; every error is an RFC 9457 problem document. Keep the API key on your server.
  */
 class NoResponseClient
 {
@@ -40,6 +40,13 @@ class NoResponseClient
     public Integrations $integrations;
 
     /**
+     * Your webhook endpoints: register, list, rotate signing keys, send test events and delete.
+     *
+     * @var WebhookEndpoints $$webhookEndpoints
+     */
+    public WebhookEndpoints $webhookEndpoints;
+
+    /**
      * Returns a new instance of the SDK builder used to configure and create the SDK instance.
      *
      * @return NoResponseClientBuilder
@@ -68,6 +75,7 @@ class NoResponseClient
         $this->assessments = new Assessments($this->sdkConfiguration);
         $this->keys = new Keys($this->sdkConfiguration);
         $this->integrations = new Integrations($this->sdkConfiguration);
+        $this->webhookEndpoints = new WebhookEndpoints($this->sdkConfiguration);
         $this->initHooks();
 
     }

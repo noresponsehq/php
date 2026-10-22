@@ -11,4 +11,5 @@ enum BadRequestErrorCode: string
     case InvalidRequest = 'invalid_request';
     case InvalidIdempotencyKey = 'invalid_idempotency_key';
     case InvalidCursor = 'invalid_cursor';
+    case WebhookUrlRefused = 'webhook_url_refused';
 }

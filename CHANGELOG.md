@@ -1,5 +1,22 @@
 # Changelog
 
+## 4.0.0
+
+* `sdk->keys->rotate()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->integrations->create()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->integrations->rotate()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->recordOutcome()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->integrations->list()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->create()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->query()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->integrations->delete()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->get()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->webhookendpoints->list()`: **Added**
+* `sdk->webhookendpoints->create()`: **Added**
+* `sdk->webhookendpoints->sendTestEvent()`: **Added**
+* `sdk->webhookendpoints->rotateSigningKey()`: **Added**
+* `sdk->webhookendpoints->delete()`: **Added**
+
 ## 3.0.0
 
 * `sdk->assessments->create()`:  `error.code->enum(tooManyIntegrations)` **Added** (Breaking ⚠️)

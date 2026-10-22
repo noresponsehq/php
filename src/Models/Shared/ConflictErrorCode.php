@@ -10,5 +10,7 @@ enum ConflictErrorCode: string
 {
     case IdempotencyKeyReused = 'idempotency_key_reused';
     case KeyRotationInProgress = 'key_rotation_in_progress';
+    case WebhookEndpointLimitReached = 'webhook_endpoint_limit_reached';
+    case WebhookEndpointUnverified = 'webhook_endpoint_unverified';
     case TooManyIntegrations = 'too_many_integrations';
 }
