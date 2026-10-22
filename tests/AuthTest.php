@@ -54,6 +54,8 @@ final class AuthTest extends TestCase
             'workos' => Auth::fromWorkOS($claims, $overrides),
             'clerk' => Auth::fromClerk($claims, $overrides),
             'auth0' => Auth::fromAuth0($claims, $overrides),
+            'supabase' => Auth::fromSupabase($claims, $overrides),
+            'firebase' => Auth::fromFirebase($claims, $overrides),
             default => Auth::fromOIDC($vector['provider'], $claims, $overrides),
         };
     }

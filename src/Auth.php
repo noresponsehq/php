@@ -27,7 +27,7 @@ use NoResponse\Utils\JSON;
 final class Auth
 {
     private const CLAIM_MAP_JSON = <<<'JSON'
-{"version":1,"kinds":{"id":{"pattern":"[A-Za-z0-9._:@/|+=~-]+","maxLength":256},"audience":{"pattern":"[A-Za-z0-9._:/-]+","maxLength":256},"role":{"pattern":"[A-Za-z0-9._:@/-]+","maxLength":64},"method":{"pattern":"[A-Za-z0-9._:-]+","maxLength":32},"issuer":{"pattern":"https://[\\x21-\\x7e]+","maxLength":256},"time":{"pattern":"[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])","maxLength":64}},"slug":"[a-z0-9][a-z0-9._-]{1,31}","constants":{"verified":true,"transport":"backend"},"base":{"issuer":{"op":"id","kind":"issuer","claims":["iss"],"required":true},"subject":{"op":"id","kind":"id","claims":["sub"],"required":true},"audiences":{"op":"list","kind":"audience","claims":["aud"],"split":"whitespace","max":8},"issued_at":{"op":"time","claims":["iat"]},"expires_at":{"op":"time","claims":["exp"]},"auth_time":{"op":"time","claims":["auth_time"]},"session_id":{"op":"id","kind":"id","claims":["sid"]},"token_id":{"op":"id","kind":"id","claims":["jti"]}},"providers":{"workos":{"fields":{"organization_id":{"op":"id","kind":"id","claims":["org_id"]},"roles":{"op":"list","kind":"role","claims":["roles","role"],"split":"whitespace","max":32},"scopes":{"op":"list","kind":"role","claims":["permissions"],"split":"whitespace","max":32},"impersonated":{"op":"actor","claims":["act"]}}},"clerk":{"disable":["issued_at"],"fields":{"organization_id":{"op":"id","kind":"id","claims":["o.id","org_id"]},"roles":{"op":"list","kind":"role","claims":["o.rol","org_role"],"split":"none","max":32},"scopes":{"op":"list","kind":"role","claims":["o.per","org_permissions"],"split":"comma_whitespace","max":32},"impersonated":{"op":"actor","claims":["act"]},"mfa":{"op":"mfa_factor_age","claim":"fva","index":1,"unitSeconds":60,"maxSeconds":315360000}}},"auth0":{"fields":{"organization_id":{"op":"id","kind":"id","claims":["org_id"]},"scopes":{"op":"list","kind":"role","claims":["scope","permissions"],"split":"whitespace","max":32},"email_verified":{"op":"bool","claims":["email_verified"]},"phone_verified":{"op":"bool","claims":["phone_number_verified"]},"impersonated":{"op":"actor","claims":["act"]},"mfa":{"op":"mfa_methods","kind":"method","claim":"amr","max":8,"mfaValue":"mfa","ignore":["pwd"]}}},"oidc":{"slugArgument":true,"fields":{}}}}
+{"version":1,"kinds":{"id":{"pattern":"[A-Za-z0-9._:@/|+=~-]+","maxLength":256},"audience":{"pattern":"[A-Za-z0-9._:/-]+","maxLength":256},"role":{"pattern":"[A-Za-z0-9._:@/-]+","maxLength":64},"method":{"pattern":"[A-Za-z0-9._:-]+","maxLength":32},"issuer":{"pattern":"https://[\\x21-\\x7e]+","maxLength":256},"time":{"pattern":"[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])","maxLength":64}},"slug":"[a-z0-9][a-z0-9._-]{1,31}","constants":{"verified":true,"transport":"backend"},"base":{"issuer":{"op":"id","kind":"issuer","claims":["iss"],"required":true},"subject":{"op":"id","kind":"id","claims":["sub"],"required":true},"audiences":{"op":"list","kind":"audience","claims":["aud"],"split":"whitespace","max":8},"issued_at":{"op":"time","claims":["iat"]},"expires_at":{"op":"time","claims":["exp"]},"auth_time":{"op":"time","claims":["auth_time"]},"session_id":{"op":"id","kind":"id","claims":["sid"]},"token_id":{"op":"id","kind":"id","claims":["jti"]}},"providers":{"workos":{"fields":{"organization_id":{"op":"id","kind":"id","claims":["org_id"]},"roles":{"op":"list","kind":"role","claims":["roles","role"],"split":"whitespace","max":32},"scopes":{"op":"list","kind":"role","claims":["permissions"],"split":"whitespace","max":32},"impersonated":{"op":"actor","claims":["act"]}}},"clerk":{"disable":["issued_at"],"fields":{"organization_id":{"op":"id","kind":"id","claims":["o.id","org_id"]},"roles":{"op":"list","kind":"role","claims":["o.rol","org_role"],"split":"none","max":32},"scopes":{"op":"list","kind":"role","claims":["o.per","org_permissions"],"split":"comma_whitespace","max":32},"impersonated":{"op":"actor","claims":["act"]},"mfa":{"op":"mfa_factor_age","claim":"fva","index":1,"unitSeconds":60,"maxSeconds":315360000}}},"auth0":{"fields":{"organization_id":{"op":"id","kind":"id","claims":["org_id"]},"scopes":{"op":"list","kind":"role","claims":["scope","permissions"],"split":"whitespace","max":32},"email_verified":{"op":"bool","claims":["email_verified"]},"phone_verified":{"op":"bool","claims":["phone_number_verified"]},"impersonated":{"op":"actor","claims":["act"]},"mfa":{"op":"mfa_methods","kind":"method","claim":"amr","max":8,"mfaValue":"mfa","ignore":["pwd"]}}},"supabase":{"disable":["auth_time"],"fields":{"session_id":{"op":"id","kind":"id","claims":["session_id"]},"roles":{"op":"list","kind":"role","claims":["role"],"split":"none","max":1},"mfa":{"op":"mfa_aal","claim":"aal","present":["aal2"],"absent":["aal1"],"amr":"amr","methodKey":"method","factors":{"totp":"totp","mfa/phone":"mfa:phone","mfa/webauthn":"mfa:webauthn","mfa/recovery_code":"mfa:recovery_code"}},"assurance_level":{"op":"marker","value":"low","when":[{"claim":"is_anonymous","equals":true},{"claim":"app_metadata.provider","equals":"anonymous"}]}}},"firebase":{"disable":["session_id","token_id"],"fields":{"tenant_id":{"op":"id","kind":"id","claims":["firebase.tenant"]},"mfa":{"op":"mfa_factor","kind":"method","claim":"firebase.sign_in_second_factor"},"assurance_level":{"op":"marker","value":"low","when":[{"claim":"firebase.sign_in_provider","equals":"anonymous"}]}}},"oidc":{"slugArgument":true,"fields":{}}}}
 JSON;
 
     private const MAX_TIME = 253402300799;
@@ -72,6 +72,28 @@ JSON;
     public static function fromAuth0(array $claims, ?array $overrides = null): AuthContext
     {
         return self::build('auth0', 'auth0', $claims, $overrides);
+    }
+
+    /**
+     * Map verified Supabase Auth access token claims (legacy HS256 secret or JWKS). Pass the user record's contact verification as overrides.
+     *
+     * @param  array<string, mixed>  $claims
+     * @param  array<string, mixed>|null  $overrides
+     */
+    public static function fromSupabase(array $claims, ?array $overrides = null): AuthContext
+    {
+        return self::build('supabase', 'supabase', $claims, $overrides);
+    }
+
+    /**
+     * Map verified Firebase ID token claims from the Admin SDK verifyIdToken. Custom claims never change the mapping.
+     *
+     * @param  array<string, mixed>  $claims
+     * @param  array<string, mixed>|null  $overrides
+     */
+    public static function fromFirebase(array $claims, ?array $overrides = null): AuthContext
+    {
+        return self::build('firebase', 'firebase', $claims, $overrides);
     }
 
     /**
@@ -219,6 +241,40 @@ JSON;
                 }
 
                 return ['present' => true, 'age_seconds' => (int) $seconds];
+            case 'mfa_aal':
+                $level = self::lookup($claims, $rule['claim']);
+                if (! is_string($level)) {
+                    return null;
+                }
+                if (in_array($level, $rule['absent'], true)) {
+                    return ['present' => false];
+                }
+                if (! in_array($level, $rule['present'], true)) {
+                    return null;
+                }
+                $entries = self::lookup($claims, $rule['amr']);
+                $methods = [];
+                foreach (self::isList($entries) ? $entries : [] as $entry) {
+                    $name = self::isObject($entry) ? ($entry[$rule['methodKey']] ?? null) : $entry;
+                    $mapped = is_string($name) ? ($rule['factors'][$name] ?? null) : null;
+                    if ($mapped !== null && ! in_array($mapped, $methods, true)) {
+                        $methods[] = $mapped;
+                    }
+                }
+
+                return $methods === [] ? ['present' => true] : ['present' => true, 'methods' => $methods];
+            case 'mfa_factor':
+                $value = self::lookup($claims, $rule['claim']);
+
+                return self::matches($rule['kind'], $value) ? ['present' => true, 'methods' => [$value]] : null;
+            case 'marker':
+                foreach ($rule['when'] as $test) {
+                    if (self::lookup($claims, $test['claim']) === $test['equals']) {
+                        return $rule['value'];
+                    }
+                }
+
+                return null;
             case 'mfa_methods':
                 $value = self::lookup($claims, $rule['claim']);
                 if (! self::isList($value)) {
