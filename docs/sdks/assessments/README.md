@@ -34,7 +34,56 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: '<id>',
-    identifiers: new Shared\AssessmentRequestIdentifiers(),
+    identifiers: new Shared\AssessmentRequestIdentifiers(
+        email: 'new.user@example.com',
+        username: 'new.user',
+        phone: '+61412345678',
+        name: 'Alex Example',
+        ip: '203.0.113.45',
+    ),
+    policyContext: new Shared\AssessmentRequestPolicyContext(
+        region: 'AU',
+    ),
+    requestId: 'req-2026-10-14-0001',
+    clientContext: new Shared\AssessmentRequestClientContext(
+        timezone: 'Australia/Sydney',
+        locale: 'en-AU',
+        appVersion: '4.12.0',
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
+        deviceId: 'dev_5c1e8a',
+        sessionId: 'sess_9b2d41',
+        clientObservedAt: '2026-10-14T08:59:58.000Z',
+    ),
+    authContext: new Shared\AuthContext(
+        provider: 'clerk',
+        issuer: 'https://example-app.clerk.accounts.dev',
+        audience: 'https://app.example.com',
+        audiences: [
+            'https://app.example.com',
+        ],
+        subject: 'user_2EXAMPLE',
+        sessionId: 'sess_2EXAMPLE',
+        organizationId: 'org_2EXAMPLE',
+        tenantId: 'tenant_2EXAMPLE',
+        tokenId: '2EXAMPLEJTI',
+        issuedAt: '2026-10-14T08:59:40.000Z',
+        expiresAt: '2026-10-14T09:00:40.000Z',
+        sessionCreatedAt: '2026-10-14T08:57:00.000Z',
+        authTime: '2026-10-14T08:55:00.000Z',
+        accountCreatedAt: '2026-10-14T08:56:00.000Z',
+        verified: false,
+        mfa: new Shared\AuthContextMfa(
+            methods: [
+                'totp',
+            ],
+        ),
+        roles: [
+            'admin',
+        ],
+        scopes: [
+            'org:sys_profile:manage',
+        ],
+    ),
 );
 
 $response = $sdk->assessments->create(
@@ -66,7 +115,56 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: '<id>',
-    identifiers: new Shared\AssessmentRequestIdentifiers(),
+    identifiers: new Shared\AssessmentRequestIdentifiers(
+        email: 'new.user@example.com',
+        username: 'new.user',
+        phone: '+61412345678',
+        name: 'Alex Example',
+        ip: '203.0.113.45',
+    ),
+    policyContext: new Shared\AssessmentRequestPolicyContext(
+        region: 'AU',
+    ),
+    requestId: 'req-2026-10-14-0001',
+    clientContext: new Shared\AssessmentRequestClientContext(
+        timezone: 'Australia/Sydney',
+        locale: 'en-AU',
+        appVersion: '4.12.0',
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
+        deviceId: 'dev_5c1e8a',
+        sessionId: 'sess_9b2d41',
+        clientObservedAt: '2026-10-14T08:59:58.000Z',
+    ),
+    authContext: new Shared\AuthContext(
+        provider: 'clerk',
+        issuer: 'https://example-app.clerk.accounts.dev',
+        audience: 'https://app.example.com',
+        audiences: [
+            'https://app.example.com',
+        ],
+        subject: 'user_2EXAMPLE',
+        sessionId: 'sess_2EXAMPLE',
+        organizationId: 'org_2EXAMPLE',
+        tenantId: 'tenant_2EXAMPLE',
+        tokenId: '2EXAMPLEJTI',
+        issuedAt: '2026-10-14T08:59:40.000Z',
+        expiresAt: '2026-10-14T09:00:40.000Z',
+        sessionCreatedAt: '2026-10-14T08:57:00.000Z',
+        authTime: '2026-10-14T08:55:00.000Z',
+        accountCreatedAt: '2026-10-14T08:56:00.000Z',
+        verified: false,
+        mfa: new Shared\AuthContextMfa(
+            methods: [
+                'totp',
+            ],
+        ),
+        roles: [
+            'admin',
+        ],
+        scopes: [
+            'org:sys_profile:manage',
+        ],
+    ),
 );
 
 $response = $sdk->assessments->create(
@@ -219,7 +317,56 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: '<id>',
-    identifiers: new Shared\AssessmentRequestIdentifiers(),
+    identifiers: new Shared\AssessmentRequestIdentifiers(
+        email: 'new.user@example.com',
+        username: 'new.user',
+        phone: '+61412345678',
+        name: 'Alex Example',
+        ip: '203.0.113.45',
+    ),
+    policyContext: new Shared\AssessmentRequestPolicyContext(
+        region: 'AU',
+    ),
+    requestId: 'req-2026-10-14-0001',
+    clientContext: new Shared\AssessmentRequestClientContext(
+        timezone: 'Australia/Sydney',
+        locale: 'en-AU',
+        appVersion: '4.12.0',
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
+        deviceId: 'dev_5c1e8a',
+        sessionId: 'sess_9b2d41',
+        clientObservedAt: '2026-10-14T08:59:58.000Z',
+    ),
+    authContext: new Shared\AuthContext(
+        provider: 'clerk',
+        issuer: 'https://example-app.clerk.accounts.dev',
+        audience: 'https://app.example.com',
+        audiences: [
+            'https://app.example.com',
+        ],
+        subject: 'user_2EXAMPLE',
+        sessionId: 'sess_2EXAMPLE',
+        organizationId: 'org_2EXAMPLE',
+        tenantId: 'tenant_2EXAMPLE',
+        tokenId: '2EXAMPLEJTI',
+        issuedAt: '2026-10-14T08:59:40.000Z',
+        expiresAt: '2026-10-14T09:00:40.000Z',
+        sessionCreatedAt: '2026-10-14T08:57:00.000Z',
+        authTime: '2026-10-14T08:55:00.000Z',
+        accountCreatedAt: '2026-10-14T08:56:00.000Z',
+        verified: false,
+        mfa: new Shared\AuthContextMfa(
+            methods: [
+                'totp',
+            ],
+        ),
+        roles: [
+            'admin',
+        ],
+        scopes: [
+            'org:sys_profile:manage',
+        ],
+    ),
 );
 
 $response = $sdk->assessments->create(
@@ -251,7 +398,56 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: '<id>',
-    identifiers: new Shared\AssessmentRequestIdentifiers(),
+    identifiers: new Shared\AssessmentRequestIdentifiers(
+        email: 'new.user@example.com',
+        username: 'new.user',
+        phone: '+61412345678',
+        name: 'Alex Example',
+        ip: '203.0.113.45',
+    ),
+    policyContext: new Shared\AssessmentRequestPolicyContext(
+        region: 'AU',
+    ),
+    requestId: 'req-2026-10-14-0001',
+    clientContext: new Shared\AssessmentRequestClientContext(
+        timezone: 'Australia/Sydney',
+        locale: 'en-AU',
+        appVersion: '4.12.0',
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
+        deviceId: 'dev_5c1e8a',
+        sessionId: 'sess_9b2d41',
+        clientObservedAt: '2026-10-14T08:59:58.000Z',
+    ),
+    authContext: new Shared\AuthContext(
+        provider: 'clerk',
+        issuer: 'https://example-app.clerk.accounts.dev',
+        audience: 'https://app.example.com',
+        audiences: [
+            'https://app.example.com',
+        ],
+        subject: 'user_2EXAMPLE',
+        sessionId: 'sess_2EXAMPLE',
+        organizationId: 'org_2EXAMPLE',
+        tenantId: 'tenant_2EXAMPLE',
+        tokenId: '2EXAMPLEJTI',
+        issuedAt: '2026-10-14T08:59:40.000Z',
+        expiresAt: '2026-10-14T09:00:40.000Z',
+        sessionCreatedAt: '2026-10-14T08:57:00.000Z',
+        authTime: '2026-10-14T08:55:00.000Z',
+        accountCreatedAt: '2026-10-14T08:56:00.000Z',
+        verified: false,
+        mfa: new Shared\AuthContextMfa(
+            methods: [
+                'totp',
+            ],
+        ),
+        roles: [
+            'admin',
+        ],
+        scopes: [
+            'org:sys_profile:manage',
+        ],
+    ),
 );
 
 $response = $sdk->assessments->create(
@@ -267,10 +463,10 @@ if ($response->assessment !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                             | Type                                                                                                                                                                                                                                                                  | Required                                                                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `body`                                                                                                                                                                                                                                                                | [Shared\AssessmentRequest](../../Models/Shared/AssessmentRequest.md)                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                    | N/A                                                                                                                                                                                                                                                                   |
-| `idempotencyKey`                                                                                                                                                                                                                                                      | *?string*                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                    | Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours. Optional: the SDK generates a UUID when you omit it and sends the same key on every retry of the call. |
+| Parameter                                                                                                                                                                                                                                                             | Type                                                                                                                                                                                                                                                                  | Required                                                                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                           | Example                                                                                                                                                                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `body`                                                                                                                                                                                                                                                                | [Shared\AssessmentRequest](../../Models/Shared/AssessmentRequest.md)                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                    | N/A                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                       |
+| `idempotencyKey`                                                                                                                                                                                                                                                      | *?string*                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                    | Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours. Optional: the SDK generates a UUID when you omit it and sends the same key on every retry of the call. | signup-7f3a9c-0001                                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -425,10 +621,10 @@ if ($response->assessment !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `assessmentId`                                                                                                    | *string*                                                                                                          | :heavy_check_mark:                                                                                                | Path segment, matched case-sensitively. A value that does not match the assessment_id shape answers 404, not 400. |
-| `responseMode`                                                                                                    | [?Shared\ResponseMode](../../Models/Shared/ResponseMode.md)                                                       | :heavy_minus_sign:                                                                                                | Optional standard or separately authorised detailed customer view; raw is rejected.                               |
+| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       | Example                                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `assessmentId`                                                                                                    | *string*                                                                                                          | :heavy_check_mark:                                                                                                | Path segment, matched case-sensitively. A value that does not match the assessment_id shape answers 404, not 400. | asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                    |
+| `responseMode`                                                                                                    | [?Shared\ResponseMode](../../Models/Shared/ResponseMode.md)                                                       | :heavy_minus_sign:                                                                                                | Optional standard or separately authorised detailed customer view; raw is rejected.                               |                                                                                                                   |
 
 ### Response
 
@@ -504,6 +700,9 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentOutcomeRequest(
     outcome: Shared\Outcome::Legitimate,
+    observedAt: '2026-10-14T09:04:30.000Z',
+    externalRef: 'case-48213',
+    notes: 'Chargeback filed two days after signup.',
 );
 
 $response = $sdk->assessments->recordOutcome(
@@ -552,11 +751,11 @@ if ($response->assessmentOutcome !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                             | Type                                                                                                                                                                                                                                                                  | Required                                                                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `assessmentId`                                                                                                                                                                                                                                                        | *string*                                                                                                                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                                                                                    | Path segment, matched case-sensitively. A value that does not match the assessment_id shape answers 404, not 400.                                                                                                                                                     |
-| `body`                                                                                                                                                                                                                                                                | [Shared\AssessmentOutcomeRequest](../../Models/Shared/AssessmentOutcomeRequest.md)                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                                    | N/A                                                                                                                                                                                                                                                                   |
-| `idempotencyKey`                                                                                                                                                                                                                                                      | *?string*                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                    | Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours. Optional: the SDK generates a UUID when you omit it and sends the same key on every retry of the call. |
+| Parameter                                                                                                                                                                                                                                                             | Type                                                                                                                                                                                                                                                                  | Required                                                                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                           | Example                                                                                                                                                                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `assessmentId`                                                                                                                                                                                                                                                        | *string*                                                                                                                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                                                                                    | Path segment, matched case-sensitively. A value that does not match the assessment_id shape answers 404, not 400.                                                                                                                                                     | asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                                                                                                                                                        |
+| `body`                                                                                                                                                                                                                                                                | [Shared\AssessmentOutcomeRequest](../../Models/Shared/AssessmentOutcomeRequest.md)                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                                    | N/A                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                       |
+| `idempotencyKey`                                                                                                                                                                                                                                                      | *?string*                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                    | Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the tenant principal and bound to the canonical body for 24 hours. Optional: the SDK generates a UUID when you omit it and sends the same key on every retry of the call. | signup-7f3a9c-0001                                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -629,6 +828,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $request = new Shared\AssessmentQuery(
     accountId: '<id>',
+    cursor: 'eyJvIjoyMH0',
 );
 
 $responses = $sdk->assessments->query(
