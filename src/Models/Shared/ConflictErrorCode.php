@@ -10,4 +10,5 @@ enum ConflictErrorCode: string
 {
     case IdempotencyKeyReused = 'idempotency_key_reused';
     case KeyRotationInProgress = 'key_rotation_in_progress';
+    case TooManyIntegrations = 'too_many_integrations';
 }

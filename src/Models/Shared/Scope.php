@@ -11,4 +11,5 @@ enum Scope: string
     case History = 'history';
     case Webhooks = 'webhooks';
     case Detailed = 'detailed';
+    case Integrations = 'integrations';
 }
