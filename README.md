@@ -203,6 +203,14 @@ http_response_code(204);
 
 `constructEvent` refuses a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id or a bad signature. Deliveries are at least once: deduplicate on `$event->id`.
 
+### Late results
+
+When a slow source settles and the recommendation rises after you allowed the signup, `LateResults::handleLateResult` verifies the delivery, applies your policy and acts through your auth provider. The default policy revokes sessions on `review`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
+
+```php
+$result = LateResults::handleLateResult($payload, getallheaders(), [$keyId => $secret], new ClerkProvider($clerkSecretKey));
+```
+
 ## Changes since 2.0.0
 
 Names that changed:
