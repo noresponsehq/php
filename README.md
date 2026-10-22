@@ -171,6 +171,14 @@ use NoResponse\Utils\Retry\RetryConfigNone;
 $client->assessments->create($request, options: Options::builder()->setRetryConfig(new RetryConfigNone())->build());
 ```
 
+## Issued keys
+
+When your signup gate issues an API key to the new account, send only its hash, as `issued_credential.sha256`; the key itself never leaves your backend.
+
+```php
+$sha256 = \NoResponse\IssuedCredential::sha256($issuedKey);
+```
+
 ## Webhooks
 
 Verify the exact bytes you received, then act on the typed event. `$secrets` maps each `whk_` key id we give you to its secret; hold both during a rotation.

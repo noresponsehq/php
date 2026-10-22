@@ -69,6 +69,24 @@ class Risk
     public RiskCoverage $coverage;
 
     /**
+     * true when the tenant's block threshold is set and score reached it. A provider hook can deny the signup on it; the provider decides and enforces. It does not change recommendation. It is false while blocking is off, the default, and a body from before the flag existed omits it: read absent as false.
+     *
+     * @var ?bool $block
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('block')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $block = null;
+
+    /**
+     * The block threshold this answer used: block is true exactly when score is at least this value. Absent while blocking is off. NoResponse sets it per tenant on request, at or above the review threshold.
+     *
+     * @var ?int $blockThreshold
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('block_threshold')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $blockThreshold = null;
+
+    /**
      * A few typed facts per identifier. Every fact is optional: absent means the evidence did not answer and makes no claim, while false or 0 is a definite answer. Lanes that do not exist yet leave their members absent.
      *
      * @var ?\NoResponse\Models\Shared\RiskSummary $summary
@@ -105,11 +123,13 @@ class Risk
      * @param  string  $policyBasis
      * @param  array<\NoResponse\Models\Shared\RiskReason>  $reasons
      * @param  \NoResponse\Models\Shared\RiskCoverage  $coverage
+     * @param  ?bool  $block
+     * @param  ?int  $blockThreshold
      * @param  ?\NoResponse\Models\Shared\RiskSummary  $summary
      * @param  ?\NoResponse\Models\Shared\RiskDetails  $details
      * @phpstan-pure
      */
-    public function __construct(int $score, Band $band, Recommendation $recommendation, RiskConfidence $confidence, string $policyVersion, array $reasons, RiskCoverage $coverage, ?RiskSummary $summary = null, ?RiskDetails $details = null, string $policyBasis = 'heuristic_unvalidated')
+    public function __construct(int $score, Band $band, Recommendation $recommendation, RiskConfidence $confidence, string $policyVersion, array $reasons, RiskCoverage $coverage, ?bool $block = null, ?int $blockThreshold = null, ?RiskSummary $summary = null, ?RiskDetails $details = null, string $policyBasis = 'heuristic_unvalidated')
     {
         $this->score = $score;
         $this->band = $band;
@@ -118,6 +138,8 @@ class Risk
         $this->policyVersion = $policyVersion;
         $this->reasons = $reasons;
         $this->coverage = $coverage;
+        $this->block = $block;
+        $this->blockThreshold = $blockThreshold;
         $this->summary = $summary;
         $this->details = $details;
         $this->policyBasis = $policyBasis;

@@ -8,4 +8,5 @@
 /README.md
 /LICENSE
 /src/Auth.php
+/src/IssuedCredential.php
 /src/LateResults/

@@ -83,6 +83,16 @@ class AssessmentRequest
     public ?AuthContext $authContext = null;
 
     /**
+     * Optional. When the signup gate issues an API key to the new account, send SHA-256 of that key, so later usage of the key, or a leaked copy, ties back to this assessment. Each SDK has a helper that computes it. Send only the hash: customer keys are high-entropy, so the hash reveals nothing about them. The assessment stores it, and no response, webhook or log carries it.
+     *
+     * @var ?\NoResponse\Models\Shared\AssessmentRequestIssuedCredential $issuedCredential
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('issued_credential')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentRequestIssuedCredential|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?AssessmentRequestIssuedCredential $issuedCredential = null;
+
+    /**
      * @param  string  $accountId
      * @param  \NoResponse\Models\Shared\AssessmentRequestIdentifiers  $identifiers
      * @param  ?\NoResponse\Models\Shared\AssessmentRequestPolicyContext  $policyContext
@@ -91,9 +101,10 @@ class AssessmentRequest
      * @param  ?\NoResponse\Models\Shared\ResponseMode  $responseMode
      * @param  ?\NoResponse\Models\Shared\AssessmentRequestClientContext  $clientContext
      * @param  ?\NoResponse\Models\Shared\AuthContext  $authContext
+     * @param  ?\NoResponse\Models\Shared\AssessmentRequestIssuedCredential  $issuedCredential
      * @phpstan-pure
      */
-    public function __construct(string $accountId, AssessmentRequestIdentifiers $identifiers, ?AssessmentRequestPolicyContext $policyContext = null, ?string $requestId = null, ?int $deadlineMs = null, ?ResponseMode $responseMode = null, ?AssessmentRequestClientContext $clientContext = null, ?AuthContext $authContext = null)
+    public function __construct(string $accountId, AssessmentRequestIdentifiers $identifiers, ?AssessmentRequestPolicyContext $policyContext = null, ?string $requestId = null, ?int $deadlineMs = null, ?ResponseMode $responseMode = null, ?AssessmentRequestClientContext $clientContext = null, ?AuthContext $authContext = null, ?AssessmentRequestIssuedCredential $issuedCredential = null)
     {
         $this->accountId = $accountId;
         $this->identifiers = $identifiers;
@@ -103,5 +114,6 @@ class AssessmentRequest
         $this->responseMode = $responseMode;
         $this->clientContext = $clientContext;
         $this->authContext = $authContext;
+        $this->issuedCredential = $issuedCredential;
     }
 }
