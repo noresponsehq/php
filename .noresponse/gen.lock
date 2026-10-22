@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 48e476464b1386097199f2316465efcd
+  docChecksum: 8f72120647313274c4c54e049ecea030
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 2.0.16
-  configChecksum: c387fa2828daa1785e848abd0d32687f
+  releaseVersion: 2.0.17
+  configChecksum: 728e8fc6e8b0b1898df91c1a2fb34d94
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -62,17 +62,17 @@ trackedFiles:
   docs/Models/Shared/AlternateNameUnion.md:
     last_write_checksum: sha1:3f68c320e76262017431e96c1d1e472e827e5558
   docs/Models/Shared/Assessment.md:
-    last_write_checksum: sha1:b4b57ef7e66aae81aa22212c50345d0826b8c18b
+    last_write_checksum: sha1:93b2073edc5b6e24a6067916784074955ba5e55f
   docs/Models/Shared/AssessmentList.md:
-    last_write_checksum: sha1:8010566027b2a26cf1308ec9bdd5ef3edb990374
+    last_write_checksum: sha1:1db7f2a0053c09fc0be0bb09365a4c3d768b1ac5
   docs/Models/Shared/AssessmentOutcome.md:
     last_write_checksum: sha1:b284fb635c0d7d94a7e8ab9a5dcc7d06fb198e3d
   docs/Models/Shared/AssessmentOutcomeRequest.md:
     last_write_checksum: sha1:c5bc5abc68ccc181a499daf679efe7aecbebc0ee
   docs/Models/Shared/AssessmentQuery.md:
-    last_write_checksum: sha1:53afdf1e36e8de87780abf7c3cf6094fb92498d9
+    last_write_checksum: sha1:de7e70fc1bafce2e257cc4228782601620de7a82
   docs/Models/Shared/AssessmentRequest.md:
-    last_write_checksum: sha1:68825572dc5a0866b4169ff3188d6fd9728fc922
+    last_write_checksum: sha1:da931c6a700e14cc008178e2c14477e447e19600
   docs/Models/Shared/AssessmentRequestClientContext.md:
     last_write_checksum: sha1:a127511269f1fd0929feb2f468e0f978e7c86753
   docs/Models/Shared/AssessmentRequestIdentifiers.md:
@@ -84,7 +84,7 @@ trackedFiles:
   docs/Models/Shared/AssuranceLevel.md:
     last_write_checksum: sha1:7e20555ddd7c123498de1c88fa33e126d43304da
   docs/Models/Shared/AuthContext.md:
-    last_write_checksum: sha1:a4f8d393c4e292b8a2a23f4b4296c3e3cd1522c2
+    last_write_checksum: sha1:b89cac64f60048a493075d4a924c98575769be02
   docs/Models/Shared/AuthContextMfa.md:
     last_write_checksum: sha1:b746eb970cb53e7e28e6f8af528f0c1db76fdfb7
   docs/Models/Shared/AuthenticationErrorCode.md:
@@ -123,6 +123,8 @@ trackedFiles:
     last_write_checksum: sha1:ff49aa3d9edde1913594c9dab8e9fce33f1622a2
   docs/Models/Shared/Freshness.md:
     last_write_checksum: sha1:106a5c45ed4bf0772b9596ce515c5734635883fb
+  docs/Models/Shared/HookPoint.md:
+    last_write_checksum: sha1:c3bf4b1cbe145a1179ddb295760fe75de7cb859c
   docs/Models/Shared/IdentifierKind.md:
     last_write_checksum: sha1:4d362fd96188dd901ece04a5639fd513bc811c9b
   docs/Models/Shared/IncompleteReason.md:
@@ -214,7 +216,7 @@ trackedFiles:
   docs/Models/Shared/TimezoneUnion.md:
     last_write_checksum: sha1:a5d097f708265b39173085e14f16933dc905013e
   docs/Models/Shared/Transport.md:
-    last_write_checksum: sha1:1dd694a16daa27374367d720e663828cb446c736
+    last_write_checksum: sha1:738982f800c8c2119478ea9d8dc4092301009b4f
   docs/Models/Shared/Website.md:
     last_write_checksum: sha1:0c51cc841fa8bca9e86405df9cb958841a5a4134
   docs/Models/Shared/WebsiteUnion.md:
@@ -312,17 +314,17 @@ trackedFiles:
   src/Models/Shared/AlternateName.php:
     last_write_checksum: sha1:429d42e3ab27dafc061516811dee1ed6379b6426
   src/Models/Shared/Assessment.php:
-    last_write_checksum: sha1:dcef921ab5d93681224bc33bf679cc4533664ec1
+    last_write_checksum: sha1:39477bbc36fc35db5417ffc4b345d905dbcf5112
   src/Models/Shared/AssessmentList.php:
-    last_write_checksum: sha1:7fa9e1c9bf65983ea605dc509043c50a9b420da7
+    last_write_checksum: sha1:0bf52dc89571aefffb4acee88765f9ef219917e7
   src/Models/Shared/AssessmentOutcome.php:
     last_write_checksum: sha1:fffa7f14cbc6205aec2ca864a111ff3804dcf79b
   src/Models/Shared/AssessmentOutcomeRequest.php:
     last_write_checksum: sha1:417c65b04cd722a9f3cd6f35eb8401a6ab6a3de3
   src/Models/Shared/AssessmentQuery.php:
-    last_write_checksum: sha1:8daf459fb171fcae6c2c334aa2ecca0123106c79
+    last_write_checksum: sha1:970f4163a1e07685f7369dc3fd46dc7a23097418
   src/Models/Shared/AssessmentRequest.php:
-    last_write_checksum: sha1:7ef1e51d322c09dc86da12a8ba5cd0b99934639a
+    last_write_checksum: sha1:327c5524b9e297b1ad5b6526f2246dc181505ce3
   src/Models/Shared/AssessmentRequestClientContext.php:
     last_write_checksum: sha1:a7fbedf4231a2a07b4d6c224d9f465a5a579305b
   src/Models/Shared/AssessmentRequestIdentifiers.php:
@@ -334,7 +336,7 @@ trackedFiles:
   src/Models/Shared/AssuranceLevel.php:
     last_write_checksum: sha1:9d3ad75a71ad0b6e1cb7ba45de8f272095d0bf3f
   src/Models/Shared/AuthContext.php:
-    last_write_checksum: sha1:a7506711749377a31e45072c977f8bf0ad78bbf4
+    last_write_checksum: sha1:93372d5561c99a54eada4782af356a4c808a273d
   src/Models/Shared/AuthContextMfa.php:
     last_write_checksum: sha1:2be4f11bb2498fa0e05212cd6ecbe0b3beb4b148
   src/Models/Shared/AuthenticationErrorCode.php:
@@ -371,6 +373,8 @@ trackedFiles:
     last_write_checksum: sha1:3aa121234865836f38f0c3710ee72ba54afe0784
   src/Models/Shared/Freshness.php:
     last_write_checksum: sha1:dc3f7e0977d7c6f93a42d5c95eb89c28a03e3e8d
+  src/Models/Shared/HookPoint.php:
+    last_write_checksum: sha1:bc1925fe3a1ab1294456814c3ab94a01cc3e6183
   src/Models/Shared/IdentifierKind.php:
     last_write_checksum: sha1:c68cdd4d032008c32c311bebe893754a6c059eb2
   src/Models/Shared/IncompleteReason.php:
@@ -454,7 +458,7 @@ trackedFiles:
   src/Models/Shared/Timezone.php:
     last_write_checksum: sha1:0476de832fe230b769f548b83663e3bbca7e6ee7
   src/Models/Shared/Transport.php:
-    last_write_checksum: sha1:a17841928301a0f56b2989a6305c47a2bdd5b8ed
+    last_write_checksum: sha1:a3a69695af13e713c5741a6f7cc9ae0c3496c57a
   src/Models/Shared/Website.php:
     last_write_checksum: sha1:d95fbb7d7e877a054dbe835cba3c1c680bca1a9c
   src/NoResponse/Serializer/AbstractVisitor.php:
@@ -824,7 +828,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:43d7c6a5c2c1612f31b46e26f82d8bbb2885b1a8
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:884cce0661c6029709c41c99316027f6762904eb
+    last_write_checksum: sha1:78fdea659a0bcad84bd35298b99958c510fec3f1
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:

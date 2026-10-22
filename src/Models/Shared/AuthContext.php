@@ -25,7 +25,7 @@ class AuthContext
     public string $issuer;
 
     /**
-     * The verified stable subject identifier (`sub`), opaque to NoResponse.
+     * The verified stable subject identifier (`sub`), opaque to NoResponse. Required, except from a provider hook at pre_registration, where no user exists yet.
      *
      * @var string $subject
      */
@@ -178,7 +178,7 @@ class AuthContext
     public ?bool $impersonated = null;
 
     /**
-     * Where the customer derived this context. Backend is the trusted integration path; browser values are treated as weak hints.
+     * Where this context was derived. Backend is the trusted integration path; browser values are treated as weak hints. provider_hook is a hosted provider hook (an Auth0 or WorkOS Action) calling at hook_point; it needs hook_point and verified false, and its authentication facts are not scored.
      *
      * @var ?\NoResponse\Models\Shared\Transport $transport
      */
@@ -186,6 +186,16 @@ class AuthContext
     #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Transport|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?Transport $transport = null;
+
+    /**
+     * The provider event a provider_hook context was sent for. pre_registration runs before the user exists, so subject and the request's account_id may be absent there. Sent only with transport provider_hook.
+     *
+     * @var ?\NoResponse\Models\Shared\HookPoint $hookPoint
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('hook_point')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HookPoint|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?HookPoint $hookPoint = null;
 
     /**
      * Normalized multi-factor evidence from a verified provider session.
@@ -238,12 +248,13 @@ class AuthContext
      * @param  ?\NoResponse\Models\Shared\AssuranceLevel  $assuranceLevel
      * @param  ?bool  $impersonated
      * @param  ?\NoResponse\Models\Shared\Transport  $transport
+     * @param  ?\NoResponse\Models\Shared\HookPoint  $hookPoint
      * @param  ?\NoResponse\Models\Shared\AuthContextMfa  $mfa
      * @param  ?array<string>  $roles
      * @param  ?array<string>  $scopes
      * @phpstan-pure
      */
-    public function __construct(string $provider, string $issuer, string $subject, bool $verified, ?string $audience = null, ?array $audiences = null, ?string $sessionId = null, ?string $organizationId = null, ?string $tenantId = null, ?string $tokenId = null, ?string $issuedAt = null, ?string $expiresAt = null, ?string $sessionCreatedAt = null, ?string $authTime = null, ?string $accountCreatedAt = null, ?bool $emailVerified = null, ?bool $phoneVerified = null, ?AssuranceLevel $assuranceLevel = null, ?bool $impersonated = null, ?Transport $transport = null, ?AuthContextMfa $mfa = null, ?array $roles = null, ?array $scopes = null)
+    public function __construct(string $provider, string $issuer, string $subject, bool $verified, ?string $audience = null, ?array $audiences = null, ?string $sessionId = null, ?string $organizationId = null, ?string $tenantId = null, ?string $tokenId = null, ?string $issuedAt = null, ?string $expiresAt = null, ?string $sessionCreatedAt = null, ?string $authTime = null, ?string $accountCreatedAt = null, ?bool $emailVerified = null, ?bool $phoneVerified = null, ?AssuranceLevel $assuranceLevel = null, ?bool $impersonated = null, ?Transport $transport = null, ?HookPoint $hookPoint = null, ?AuthContextMfa $mfa = null, ?array $roles = null, ?array $scopes = null)
     {
         $this->provider = $provider;
         $this->issuer = $issuer;
@@ -265,6 +276,7 @@ class AuthContext
         $this->assuranceLevel = $assuranceLevel;
         $this->impersonated = $impersonated;
         $this->transport = $transport;
+        $this->hookPoint = $hookPoint;
         $this->mfa = $mfa;
         $this->roles = $roles;
         $this->scopes = $scopes;
