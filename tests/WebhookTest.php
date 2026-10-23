@@ -8,7 +8,9 @@ use NoResponse\Models\Shared\Assessment;
 use NoResponse\Models\Shared\AccountDecision;
 use NoResponse\Webhooks\AccountDeleted;
 use NoResponse\Webhooks\AssessmentExpired;
+use NoResponse\Webhooks\EndpointDisabled;
 use NoResponse\Webhooks\EndpointVerification;
+use NoResponse\Webhooks\TenantDeleted;
 use NoResponse\Webhooks\VerificationException;
 use NoResponse\Webhooks\Webhook;
 use PHPUnit\Framework\TestCase;
@@ -131,6 +133,92 @@ final class WebhookTest extends TestCase
             $this->assertEquals(new EndpointVerification($ping['data']['endpoint_id'], $ping['data']['challenge']), $verification->data);
             $this->assertSame(['challenge' => $ping['data']['challenge']], Webhook::verificationResponse($verification));
         }
+    }
+
+    private const TENANT_DELETED = [
+        'id' => 'evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2',
+        'type' => 'tenant.deleted',
+        'created_at' => '2026-10-23T10:00:00.000Z',
+        'data' => [
+            'workspace_id' => 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+            'environment' => 'live',
+            'deleted_at' => '2026-10-23T10:00:00.000Z',
+        ],
+    ];
+
+    private const ENDPOINT_DISABLED = [
+        'id' => 'evt_01JA2ZD3K4M5N6P7Q8R9S0T1V3',
+        'type' => 'webhook_endpoint.disabled',
+        'created_at' => '2026-10-23T10:00:00.000Z',
+        'data' => [
+            'endpoint_id' => 'whe_01JA2ZD0E1F2G3H4J5K6M7N8P9',
+            'failing_since' => '2026-10-20T10:00:00.000Z',
+            'disabled_at' => '2026-10-23T10:00:00.000Z',
+        ],
+    ];
+
+    /**
+     * @param  array<string, mixed>  $original
+     * @param  list<array<string, mixed>>  $changes
+     * @param  list<string>  $removals
+     */
+    private function refusesChangedData(array $original, array $changes, array $removals): void
+    {
+        $bodies = [];
+        foreach ($changes as $change) {
+            $bad = $original;
+            $bad['data'] = $change + $original['data'];
+            $bodies[] = $bad;
+        }
+        foreach ($removals as $key) {
+            $bad = $original;
+            unset($bad['data'][$key]);
+            $bodies[] = $bad;
+        }
+        foreach ($bodies as $bad) {
+            [$raw, $headers] = self::signed($bad, 'secret', $bad['id']);
+            $this->refused('invalid_payload', $raw, $headers, ['whk_sdktest01' => 'secret']);
+        }
+    }
+
+    public function test_tenant_deleted_event(): void
+    {
+        [$raw, $headers] = self::signed(self::TENANT_DELETED, 'secret', self::TENANT_DELETED['id']);
+        $event = Webhook::constructEvent($raw, $headers, ['whk_sdktest01' => 'secret'], now: self::NOW);
+        $this->assertSame('tenant.deleted', $event->type);
+        $this->assertSame('evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2', $event->id);
+        $this->assertSame('2026-10-23T10:00:00.000Z', $event->createdAt);
+        $this->assertFalse($event->isExpired());
+        $this->assertFalse($event->test);
+        $this->assertEquals(new TenantDeleted('tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM', 'live', '2026-10-23T10:00:00.000Z'), $event->data);
+        $this->refusesChangedData(self::TENANT_DELETED, [
+            ['workspace_id' => '-tnt'],
+            ['workspace_id' => 'tnt/01'],
+            ['environment' => 'staging'],
+            ['deleted_at' => 'tomorrow'],
+        ], ['workspace_id', 'environment', 'deleted_at']);
+        $this->expectException(VerificationException::class);
+        Webhook::verificationResponse($event);
+    }
+
+    public function test_endpoint_disabled_event(): void
+    {
+        [$raw, $headers] = self::signed(self::ENDPOINT_DISABLED, 'secret', self::ENDPOINT_DISABLED['id']);
+        $event = Webhook::constructEvent($raw, $headers, ['whk_sdktest01' => 'secret'], now: self::NOW);
+        $this->assertSame('webhook_endpoint.disabled', $event->type);
+        $this->assertFalse($event->isExpired());
+        $this->assertFalse($event->test);
+        $this->assertEquals(
+            new EndpointDisabled('whe_01JA2ZD0E1F2G3H4J5K6M7N8P9', '2026-10-20T10:00:00.000Z', '2026-10-23T10:00:00.000Z'),
+            $event->data,
+        );
+        $this->refusesChangedData(self::ENDPOINT_DISABLED, [
+            ['endpoint_id' => 'whk_01JA2ZD0E1F2G3H4J5K6M7N8P9'],
+            ['failing_since' => 'three days ago'],
+            ['disabled_at' => 'now'],
+        ], ['endpoint_id', 'failing_since', 'disabled_at']);
+        $this->expectException(VerificationException::class);
+        Webhook::verificationResponse($event);
     }
 
     public function test_account_deleted_event(): void

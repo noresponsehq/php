@@ -23,6 +23,7 @@ final class Webhook
     private const ASSESSMENT_ID = '/\Aasm_[0-9A-HJKMNP-TV-Z]{26}\z/';
     private const ACCOUNT_ID = '/\A[A-Za-z0-9][A-Za-z0-9._:|-]{0,127}\z/';
     private const ENDPOINT_ID = '/\Awhe_[0-9A-HJKMNP-TV-Z]{26}\z/';
+    private const WORKSPACE_ID = '/\A[A-Za-z0-9][A-Za-z0-9_.-]{0,122}\z/';
     private const DATETIME = '/\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})\z/';
 
     /**
@@ -143,7 +144,7 @@ final class Webhook
     /**
      * @param  array<mixed>  $data
      */
-    private static function data(string $type, array $data): Assessment|AssessmentExpired|EndpointVerification|AccountDeleted
+    private static function data(string $type, array $data): Assessment|AssessmentExpired|EndpointVerification|AccountDeleted|TenantDeleted|EndpointDisabled
     {
         if ($type === 'endpoint.verification') {
             $endpointId = $data['endpoint_id'] ?? null;
@@ -167,6 +168,30 @@ final class Webhook
             }
 
             return new AccountDeleted($accountId, $deleted, $deletedAt);
+        }
+        if ($type === 'tenant.deleted') {
+            $workspaceId = $data['workspace_id'] ?? null;
+            $environment = $data['environment'] ?? null;
+            $deletedAt = $data['deleted_at'] ?? null;
+            if (! is_string($workspaceId) || preg_match(self::WORKSPACE_ID, $workspaceId) !== 1
+                || ($environment !== 'live' && $environment !== 'test')
+                || ! is_string($deletedAt) || preg_match(self::DATETIME, $deletedAt) !== 1) {
+                throw new VerificationException('invalid_payload', 'Tenant deleted event is malformed');
+            }
+
+            return new TenantDeleted($workspaceId, $environment, $deletedAt);
+        }
+        if ($type === 'webhook_endpoint.disabled') {
+            $endpointId = $data['endpoint_id'] ?? null;
+            $failingSince = $data['failing_since'] ?? null;
+            $disabledAt = $data['disabled_at'] ?? null;
+            if (! is_string($endpointId) || preg_match(self::ENDPOINT_ID, $endpointId) !== 1
+                || ! is_string($failingSince) || preg_match(self::DATETIME, $failingSince) !== 1
+                || ! is_string($disabledAt) || preg_match(self::DATETIME, $disabledAt) !== 1) {
+                throw new VerificationException('invalid_payload', 'Endpoint disabled event is malformed');
+            }
+
+            return new EndpointDisabled($endpointId, $failingSince, $disabledAt);
         }
         if ($type !== 'assessment.updated') {
             throw new VerificationException('invalid_payload', 'Unknown webhook event type');

@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.1
+
+No changes detected.
+
 ## 7.0.0
 
 * `sdk->assessments->create()`:  `response.account->risk->reasons[]->code->enum(sharedApiKey)` **Added** (Breaking ⚠️)

@@ -301,6 +301,8 @@ PHP;
         $this->assertSame('none', LateResults::lateResultAction(self::event(self::data('partial', 'allow'))));
         $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'endpoint.verification', 'x', new \NoResponse\Webhooks\EndpointVerification('whe_x', 'y'))));
         $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'account.deleted', 'x', new \NoResponse\Webhooks\AccountDeleted('acct_1', 1, 'x'))));
+        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'tenant.deleted', 'x', new \NoResponse\Webhooks\TenantDeleted('tnt_1', 'live', 'x'))));
+        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'webhook_endpoint.disabled', 'x', new \NoResponse\Webhooks\EndpointDisabled('whe_1', 'x', 'x'))));
         $this->assertSame('ban', LateResults::lateResultAction($stepUp, ['step_up' => 'ban']));
         $this->assertSame('none', LateResults::lateResultAction($review, ['step_up' => 'ban']));
         try {

@@ -9,8 +9,9 @@ use NoResponse\Models\Shared\Assessment;
 /**
  * A verified delivery. data is an Assessment (exactly as assessments->get
  * returns it) or an AssessmentExpired for type "assessment.updated", an
- * EndpointVerification for "endpoint.verification" and an AccountDeleted for
- * "account.deleted". Deliveries are at least
+ * EndpointVerification for "endpoint.verification", an AccountDeleted for
+ * "account.deleted", a TenantDeleted for "tenant.deleted" and an
+ * EndpointDisabled for "webhook_endpoint.disabled". Deliveries are at least
  * once and unordered: deduplicate on id and keep the highest
  * assessmentVersion per assessment.
  *
@@ -24,7 +25,7 @@ final class Event
         public readonly string $id,
         public readonly string $type,
         public readonly string $createdAt,
-        public readonly Assessment|AssessmentExpired|EndpointVerification|AccountDeleted $data,
+        public readonly Assessment|AssessmentExpired|EndpointVerification|AccountDeleted|TenantDeleted|EndpointDisabled $data,
         /**
          * True on an event sent by the send-test-event call: data is a fixed
          * example assessment, not one of yours. Acknowledge it and apply nothing.
