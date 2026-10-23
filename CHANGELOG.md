@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.0.4
+
+* `sdk->webhookendpoints->listDeliveries()`: **Added**
+* `sdk->webhookendpoints->replayDelivery()`: **Added**
+
 ## 5.0.3
 
 No changes detected.
