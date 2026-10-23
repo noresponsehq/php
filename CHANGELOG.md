@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.0.0
+
+* `sdk->webhookendpoints->listDeliveries()`:  `response.items[]->eventType` **Changed** (Breaking ⚠️)
+* `sdk->webhookendpoints->replayDelivery()`:  `response.eventType` **Changed** (Breaking ⚠️)
+
 ## 7.0.5
 
 No changes detected.

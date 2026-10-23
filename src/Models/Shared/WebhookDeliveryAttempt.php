@@ -16,12 +16,12 @@ class WebhookDeliveryAttempt
     public string $eventId;
 
     /**
+     * The event's type, as its body's type: assessment.updated, account.deleted or account.risk_changed.
      *
-     * @var \NoResponse\Models\Shared\EventType $eventType
+     * @var string $eventType
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('event_type')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EventType')]
-    public EventType $eventType;
+    public string $eventType;
 
     /**
      * Which attempt of this delivery this was: 1 for the first send, up to 9 with retries. A replay counts its own attempts from 1.
@@ -85,7 +85,7 @@ class WebhookDeliveryAttempt
 
     /**
      * @param  string  $eventId
-     * @param  \NoResponse\Models\Shared\EventType  $eventType
+     * @param  string  $eventType
      * @param  int  $attempt
      * @param  bool  $replay
      * @param  \NoResponse\Models\Shared\WebhookDeliveryAttemptStatus  $status
@@ -95,7 +95,7 @@ class WebhookDeliveryAttempt
      * @param  ?\NoResponse\Models\Shared\Failure  $failure
      * @phpstan-pure
      */
-    public function __construct(string $eventId, EventType $eventType, int $attempt, bool $replay, WebhookDeliveryAttemptStatus $status, int $latencyMs, string $attemptedAt, ?int $responseCode = null, ?Failure $failure = null)
+    public function __construct(string $eventId, string $eventType, int $attempt, bool $replay, WebhookDeliveryAttemptStatus $status, int $latencyMs, string $attemptedAt, ?int $responseCode = null, ?Failure $failure = null)
     {
         $this->eventId = $eventId;
         $this->eventType = $eventType;

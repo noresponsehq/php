@@ -25,20 +25,20 @@ class WebhookReplay
     public string $eventId;
 
     /**
+     * The event's type, as its body's type: assessment.updated, account.deleted or account.risk_changed.
      *
-     * @var \NoResponse\Models\Shared\EventType $eventType
+     * @var string $eventType
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('event_type')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EventType')]
-    public EventType $eventType;
+    public string $eventType;
 
     /**
      * @param  string  $endpointId
      * @param  string  $eventId
-     * @param  \NoResponse\Models\Shared\EventType  $eventType
+     * @param  string  $eventType
      * @phpstan-pure
      */
-    public function __construct(string $endpointId, string $eventId, EventType $eventType)
+    public function __construct(string $endpointId, string $eventId, string $eventType)
     {
         $this->endpointId = $endpointId;
         $this->eventId = $eventId;

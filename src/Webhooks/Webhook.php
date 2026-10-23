@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace NoResponse\Webhooks;
 
+use NoResponse\Models\Shared\Account;
+use NoResponse\Models\Shared\AccountDecisionsByFlow;
 use NoResponse\Models\Shared\Assessment;
 use NoResponse\Utils\JSON;
 use NoResponse\Serializer\DeserializationContext;
@@ -144,7 +146,7 @@ final class Webhook
     /**
      * @param  array<mixed>  $data
      */
-    private static function data(string $type, array $data): Assessment|AssessmentExpired|EndpointVerification|AccountDeleted|TenantDeleted|EndpointDisabled
+    private static function data(string $type, array $data): Assessment|AssessmentExpired|EndpointVerification|AccountDeleted|TenantDeleted|EndpointDisabled|AccountRiskChanged
     {
         if ($type === 'endpoint.verification') {
             $endpointId = $data['endpoint_id'] ?? null;
@@ -193,6 +195,21 @@ final class Webhook
 
             return new EndpointDisabled($endpointId, $failingSince, $disabledAt);
         }
+        if ($type === 'account.risk_changed') {
+            $account = $data['account'] ?? null;
+            $previous = $data['previous_decisions_by_flow'] ?? null;
+            if (! is_array($account) || ! is_array($previous)) {
+                throw new VerificationException('invalid_payload', 'Account risk changed event is malformed');
+            }
+            $parsed = self::deserialize($account, Account::class, 'Account risk changed event is malformed');
+            $before = self::deserialize($previous, AccountDecisionsByFlow::class, 'Account risk changed event is malformed');
+            if (! $parsed instanceof Account || ! $before instanceof AccountDecisionsByFlow
+                || preg_match(self::ACCOUNT_ID, $parsed->id) !== 1) {
+                throw new VerificationException('invalid_payload', 'Account risk changed event is malformed');
+            }
+
+            return new AccountRiskChanged($parsed, $before);
+        }
         if ($type !== 'assessment.updated') {
             throw new VerificationException('invalid_payload', 'Unknown webhook event type');
         }
@@ -224,5 +241,25 @@ final class Webhook
         }
 
         return $assessment;
+    }
+
+    /**
+     * Decode $data into $class with every required property present.
+     *
+     * @param  array<mixed>  $data
+     * @param  class-string  $class
+     */
+    private static function deserialize(array $data, string $class, string $message): mixed
+    {
+        try {
+            return JSON::createSerializer()->deserialize(
+                json_encode($data, JSON_THROW_ON_ERROR),
+                $class,
+                'json',
+                DeserializationContext::create()->setRequireAllRequiredProperties(true),
+            );
+        } catch (\Throwable) {
+            throw new VerificationException('invalid_payload', $message);
+        }
     }
 }

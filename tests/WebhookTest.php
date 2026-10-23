@@ -6,7 +6,9 @@ namespace NoResponse\Tests;
 
 use NoResponse\Models\Shared\Assessment;
 use NoResponse\Models\Shared\AccountDecision;
+use NoResponse\Models\Shared\Account;
 use NoResponse\Webhooks\AccountDeleted;
+use NoResponse\Webhooks\AccountRiskChanged;
 use NoResponse\Webhooks\AssessmentExpired;
 use NoResponse\Webhooks\EndpointDisabled;
 use NoResponse\Webhooks\EndpointVerification;
@@ -239,6 +241,54 @@ final class WebhookTest extends TestCase
         ] as $change) {
             $bad = $erased;
             $bad['data'] = $change + $erased['data'];
+            [$raw, $headers] = self::signed($bad, 'secret', $bad['id']);
+            $this->refused('invalid_payload', $raw, $headers, $secrets);
+        }
+        $this->expectException(VerificationException::class);
+        Webhook::verificationResponse($event);
+    }
+
+    public function test_account_risk_changed_event(): void
+    {
+        $secrets = ['whk_sdktest01' => 'secret'];
+        $changed = self::fixture('valid/webhook-account-risk-changed.json');
+        [$raw, $headers] = self::signed($changed, 'secret', $changed['id']);
+        $event = Webhook::constructEvent($raw, $headers, $secrets, now: self::NOW);
+        $this->assertSame('account.risk_changed', $event->type);
+        $this->assertSame($changed['id'], $event->id);
+        $this->assertFalse($event->isExpired());
+        $this->assertFalse($event->test);
+        $this->assertInstanceOf(AccountRiskChanged::class, $event->data);
+        // data->account is the same type accounts->get returns.
+        $account = $event->data->account;
+        $this->assertInstanceOf(Account::class, $account);
+        $this->assertSame('acct_7f3a9c', $account->id);
+        $this->assertSame('1', $account->schemaVersion);
+        $this->assertSame(70, $account->risk->score);
+        $this->assertSame(AccountDecision::Review, $account->risk->decision);
+        $this->assertCount(2, $account->risk->reasons);
+        $this->assertSame(55, $account->risk->reasons[0]->weight);
+        $this->assertSame('asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM', $account->assessmentId);
+        $this->assertSame('2026-10-23T09:00:04.812Z', $account->updatedAt);
+        $this->assertSame(
+            [AccountDecision::Review, AccountDecision::Review, AccountDecision::Review],
+            [$account->decisionsByFlow->signup, $account->decisionsByFlow->login, $account->decisionsByFlow->purchase],
+        );
+        $previous = $event->data->previousDecisionsByFlow;
+        $this->assertSame(
+            [AccountDecision::Allow, AccountDecision::Allow, AccountDecision::Allow],
+            [$previous->signup, $previous->login, $previous->purchase],
+        );
+        foreach ([
+            static function (array &$d): void { unset($d['previous_decisions_by_flow']); },
+            static function (array &$d): void { unset($d['previous_decisions_by_flow']['login']); },
+            static function (array &$d): void { unset($d['account']['decisions_by_flow']); },
+            static function (array &$d): void { unset($d['account']['risk']['score']); },
+            static function (array &$d): void { $d['account'] = 'acct_7f3a9c'; },
+            static function (array &$d): void { $d['account']['id'] = 'jane@example.com'; },
+        ] as $mutate) {
+            $bad = $changed;
+            $mutate($bad['data']);
             [$raw, $headers] = self::signed($bad, 'secret', $bad['id']);
             $this->refused('invalid_payload', $raw, $headers, $secrets);
         }

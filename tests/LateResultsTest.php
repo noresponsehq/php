@@ -13,6 +13,8 @@ use NoResponse\LateResults\LateResults;
 use NoResponse\LateResults\LogOnlyProvider;
 use NoResponse\LateResults\ProviderActionException;
 use NoResponse\LateResults\WorkosProvider;
+use NoResponse\Models\Shared\AccountDecision;
+use NoResponse\Webhooks\AccountRiskChanged;
 use NoResponse\Webhooks\AssessmentExpired;
 use NoResponse\Webhooks\Event;
 use NoResponse\Webhooks\VerificationException;
@@ -210,7 +212,7 @@ PHP;
     }
 
     /** @return array{string, array<string, string>} */
-    private static function delivery(\stdClass $data, ?string $accountId = null, bool $test = false): array
+    private static function delivery(\stdClass $data, ?string $accountId = null, bool $test = false, string $type = 'assessment.updated'): array
     {
         if ($accountId !== null) {
             $data = json_decode(json_encode($data, JSON_THROW_ON_ERROR), false, 512, JSON_THROW_ON_ERROR);
@@ -219,7 +221,7 @@ PHP;
                 $data->account->id = $accountId;
             }
         }
-        $body = ['id' => self::EVENT_ID, 'type' => 'assessment.updated', 'created_at' => '2026-10-18T11:00:04Z'];
+        $body = ['id' => self::EVENT_ID, 'type' => $type, 'created_at' => '2026-10-18T11:00:04Z'];
         if ($test) {
             $body['test'] = true;
         }
@@ -303,6 +305,9 @@ PHP;
         $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'account.deleted', 'x', new \NoResponse\Webhooks\AccountDeleted('acct_1', 1, 'x'))));
         $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'tenant.deleted', 'x', new \NoResponse\Webhooks\TenantDeleted('tnt_1', 'live', 'x'))));
         $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'webhook_endpoint.disabled', 'x', new \NoResponse\Webhooks\EndpointDisabled('whe_1', 'x', 'x'))));
+        $flows = new \NoResponse\Models\Shared\AccountDecisionsByFlow(AccountDecision::Block, AccountDecision::Block, AccountDecision::Block);
+        $blocked = new \NoResponse\Models\Shared\Account('acct_1', new \NoResponse\Models\Shared\AccountRisk(90, AccountDecision::Block, []), $flows, 'asm_x', 'x');
+        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'account.risk_changed', 'x', new AccountRiskChanged($blocked, $flows)), ['block' => 'ban']));
         $this->assertSame('ban', LateResults::lateResultAction($stepUp, ['step_up' => 'ban']));
         $this->assertSame('none', LateResults::lateResultAction($review, ['step_up' => 'ban']));
         try {
@@ -634,6 +639,14 @@ PHP;
             [$r, $h] = self::delivery($data);
             $this->assertSame('none', LateResults::handleLateResult($r, $h, self::secrets(), $auth0, now: self::NOW)->action);
         }
+        // account.risk_changed is verified and typed, and acts on nothing: the
+        // assessment.updated that moved the decision does.
+        [$r, $h] = self::delivery(self::fixture('valid/webhook-account-risk-changed.json')->data, type: 'account.risk_changed');
+        $ignored = LateResults::handleLateResult($r, $h, self::secrets(), $auth0, now: self::NOW);
+        $this->assertSame('none', $ignored->action);
+        $this->assertSame('account.risk_changed', $ignored->event->type);
+        $this->assertInstanceOf(AccountRiskChanged::class, $ignored->event->data);
+        $this->assertSame(AccountDecision::Review, $ignored->event->data->account->decisionsByFlow->login);
         $this->assertSame('none', LateResults::handleLateResult($raw, $headers, self::secrets(), $auth0, userId: static fn (): ?string => null, now: self::NOW)->action);
         $this->assertSame([], $this->calls());
 

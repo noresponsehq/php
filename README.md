@@ -212,6 +212,7 @@ use NoResponse\Models\Shared\Assessment;
 use NoResponse\Webhooks\AccountDeleted;
 use NoResponse\Webhooks\EndpointDisabled;
 use NoResponse\Webhooks\TenantDeleted;
+use NoResponse\Webhooks\AccountRiskChanged;
 use NoResponse\Webhooks\VerificationException;
 use NoResponse\Webhooks\Webhook;
 
@@ -236,6 +237,9 @@ if ($event->test) {
     // tenant.deleted: the workspace is deleted, the last event this endpoint receives
 } elseif ($event->data instanceof EndpointDisabled) {
     // webhook_endpoint.disabled: $event->data->endpointId failed for 72 hours; fix it and verify it again
+} elseif ($event->data instanceof AccountRiskChanged) {
+    // account.risk_changed: $event->data->account is the Account accounts->get returns, with its new
+    // decisionsByFlow; $event->data->previousDecisionsByFlow holds the decisions it replaced
 } elseif ($event->isExpired()) {
     // forget the assessment: GET now answers 404
 } elseif ($event->data instanceof Assessment) {
@@ -248,7 +252,7 @@ http_response_code(204);
 
 ### Late results
 
-When a slow source settles and the account's decision rises after you allowed the signup, `LateResults::handleLateResult` verifies the delivery, applies your policy to `account->risk->decision` and acts through your auth provider. The default policy revokes sessions on `review` and `block`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
+When a slow source settles and the account's decision rises after you allowed the signup, `LateResults::handleLateResult` verifies the delivery, applies your policy to `account->risk->decision` and acts through your auth provider. The default policy revokes sessions on `review` and `block`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. An `account.risk_changed` event acts on nothing: the handler acts on the `assessment.updated` that changed the decision. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
 
 ```php
 $result = LateResults::handleLateResult($payload, getallheaders(), [$keyId => $secret], new ClerkProvider($clerkSecretKey));
