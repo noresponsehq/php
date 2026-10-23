@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace NoResponse\Tests;
 
+use GuzzleHttp\Psr7\Response;
 use NoResponse\LateResults\Auth0Provider;
 use NoResponse\LateResults\ClerkProvider;
 use NoResponse\LateResults\LateResultAction;
@@ -16,6 +17,9 @@ use NoResponse\Webhooks\AssessmentExpired;
 use NoResponse\Webhooks\Event;
 use NoResponse\Webhooks\VerificationException;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 final class LateResultsTest extends TestCase
 {
@@ -469,6 +473,111 @@ PHP;
             $this->assertSame('insufficient_scope', $e->errorCode);
         }
         $this->assertSame(['DELETE /scope/api/v2/users/auth0%7Cabc/sessions'], self::lines($this->calls()));
+    }
+
+    private const TOO_MANY = '{"statusCode":429,"error":"Too Many Requests","message":"Global limit has been reached","errorCode":"too_many_requests"}';
+
+    /**
+     * A PSR-18 client standing in for the Management API: it answers each request from $answer and records it.
+     *
+     * @param  callable(RequestInterface): ResponseInterface  $answer
+     */
+    private static function stubClient(callable $answer): ClientInterface
+    {
+        return new class($answer) implements ClientInterface
+        {
+            /** @var list<string> */
+            public array $sent = [];
+
+            /** @var callable(RequestInterface): ResponseInterface */
+            private $answer;
+
+            public function __construct(callable $answer)
+            {
+                $this->answer = $answer;
+            }
+
+            public function sendRequest(RequestInterface $request): ResponseInterface
+            {
+                $this->sent[] = $request->getMethod().' '.$request->getUri()->getPath().($request->getMethod() === 'GET' ? ' '.self::type($request) : '');
+
+                return ($this->answer)($request);
+            }
+
+            private static function type(RequestInterface $request): string
+            {
+                parse_str($request->getUri()->getQuery(), $query);
+
+                return is_string($query['type'] ?? null) ? $query['type'] : '';
+            }
+        };
+    }
+
+    public function test_auth0_waits_out_a_429_from_the_management_api_and_retries_the_call(): void
+    {
+        $credentials = ['refresh_token' => ['dcr_a', 'dcr_b'], 'rotating_refresh_token' => []];
+        // One 429 each: Retry-After, an X-RateLimit-Reset already past, and no header (the backoff).
+        $limited = [
+            'GET /api/v2/device-credentials refresh_token' => ['Retry-After' => '0'],
+            'DELETE /api/v2/device-credentials/dcr_a' => ['X-RateLimit-Reset' => (string) (time() - 5)],
+            'DELETE /api/v2/device-credentials/dcr_b' => [],
+        ];
+        $blocked = false;
+        $client = self::stubClient(function (RequestInterface $request) use (&$limited, &$credentials, &$blocked): ResponseInterface {
+            $method = $request->getMethod();
+            $path = $request->getUri()->getPath();
+            parse_str($request->getUri()->getQuery(), $query);
+            $key = $method.' '.$path.($method === 'GET' ? ' '.$query['type'] : '');
+            if (array_key_exists($key, $limited)) {
+                $headers = $limited[$key];
+                unset($limited[$key]);
+
+                return new Response(429, ['Content-Type' => 'application/json'] + $headers, self::TOO_MANY);
+            }
+            if ($method === 'DELETE' && (str_ends_with($path, '/sessions') || str_ends_with($path, '/refresh-tokens'))) {
+                return new Response(403, [], '{"errorCode":"feature_not_enabled"}');
+            }
+            if ($method === 'PATCH') {
+                $blocked = true;
+
+                return new Response(200, [], '{"blocked":true}');
+            }
+            if ($method === 'GET') {
+                $type = (string) $query['type'];
+
+                return new Response(200, [], (string) json_encode(array_map(static fn (string $id): array => ['id' => $id, 'type' => $type], $credentials[$type])));
+            }
+            $id = substr($path, strlen('/api/v2/device-credentials/'));
+            $credentials['refresh_token'] = array_values(array_diff($credentials['refresh_token'], [$id]));
+
+            return new Response(204);
+        });
+        $auth0 = new Auth0Provider('mgmt_token', baseUrl: 'https://tenant.example/api/v2', http: $client);
+
+        $this->assertSame('ban', $auth0->act('revoke_sessions', 'auth0|abc'));
+        $this->assertTrue($blocked);
+        $this->assertSame([], $credentials['refresh_token']);
+        $this->assertSame([], $limited);
+        $counts = array_count_values($client->sent);
+        $this->assertSame(2, $counts['GET /api/v2/device-credentials refresh_token']);
+        $this->assertSame(2, $counts['DELETE /api/v2/device-credentials/dcr_a']);
+        $this->assertSame(2, $counts['DELETE /api/v2/device-credentials/dcr_b']);
+    }
+
+    public function test_auth0_throws_a_429_at_once_when_the_wait_it_asks_for_passes_the_budget(): void
+    {
+        $client = self::stubClient(static fn (): ResponseInterface => new Response(429, ['Retry-After' => '60'], self::TOO_MANY));
+        $auth0 = new Auth0Provider('mgmt_token', baseUrl: 'https://tenant.example/api/v2', http: $client);
+        $started = microtime(true);
+        try {
+            $auth0->act('revoke_sessions', 'auth0|abc');
+            $this->fail('a 429 past the budget must throw');
+        } catch (ProviderActionException $e) {
+            $this->assertSame(429, $e->status);
+            $this->assertSame('too_many_requests', $e->errorCode);
+        }
+        $this->assertLessThan(1.0, microtime(true) - $started);
+        $this->assertCount(1, $client->sent);
     }
 
     public function test_a_provider_without_act_reports_the_action_asked_for(): void

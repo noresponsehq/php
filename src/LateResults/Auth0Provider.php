@@ -21,6 +21,11 @@ use Psr\Http\Client\ClientInterface;
  * the refresh tokens, and act() reports "ban". Unblock the user in the
  * dashboard to undo it. Any other refusal, such as 403 insufficient_scope,
  * throws.
+ *
+ * A 429 from the Management API is waited out and retried: Retry-After, else
+ * X-RateLimit-Reset, else 0.25 s doubling, at most 4 retries a call and 3 s of
+ * waiting a revoke or ban. Past that the 429 throws as
+ * ProviderActionException.
  */
 final class Auth0Provider implements LateResultActor
 {
@@ -59,10 +64,11 @@ final class Auth0Provider implements LateResultActor
     public function ban(string $userId): void
     {
         $user = HttpCaller::segment($userId);
-        $this->block($user);
+        $call = $this->call->retryingRateLimits();
+        self::block($call, $user);
         // The block already ends a session the plan cannot delete.
-        $this->deleteSessions($user);
-        $this->deleteRefreshTokens($userId, $user);
+        self::deleteSessions($call, $user);
+        self::deleteRefreshTokens($call, $userId, $user);
     }
 
     /** Bans or revokes and returns the action that ran: "ban" when revoking had to block the user. */
@@ -80,12 +86,13 @@ final class Auth0Provider implements LateResultActor
     private function revoke(string $userId): string
     {
         $user = HttpCaller::segment($userId);
-        $ended = $this->deleteSessions($user);
+        $call = $this->call->retryingRateLimits();
+        $ended = self::deleteSessions($call, $user);
         // Without the sessions API a login session survives; blocking is the only way to end it.
         if (! $ended) {
-            $this->block($user);
+            self::block($call, $user);
         }
-        $this->deleteRefreshTokens($userId, $user);
+        self::deleteRefreshTokens($call, $userId, $user);
 
         return $ended ? LateResultAction::REVOKE_SESSIONS : LateResultAction::BAN;
     }
@@ -96,16 +103,16 @@ final class Auth0Provider implements LateResultActor
         return $e->status === 403 && $e->errorCode === 'feature_not_enabled';
     }
 
-    private function block(string $user): void
+    private static function block(HttpCaller $call, string $user): void
     {
-        $this->call->call('PATCH', "/users/{$user}", [], ['blocked' => true], true);
+        $call->call('PATCH', "/users/{$user}", [], ['blocked' => true], true);
     }
 
     /** End every session; false when the plan has no sessions API. */
-    private function deleteSessions(string $user): bool
+    private static function deleteSessions(HttpCaller $call, string $user): bool
     {
         try {
-            $this->call->call('DELETE', "/users/{$user}/sessions", [], null, true);
+            $call->call('DELETE', "/users/{$user}/sessions", [], null, true);
         } catch (ProviderActionException $e) {
             if (self::notOnPlan($e)) {
                 return false;
@@ -116,10 +123,10 @@ final class Auth0Provider implements LateResultActor
         return true;
     }
 
-    private function deleteRefreshTokens(string $userId, string $user): void
+    private static function deleteRefreshTokens(HttpCaller $call, string $userId, string $user): void
     {
         try {
-            $this->call->call('DELETE', "/users/{$user}/refresh-tokens", [], null, true);
+            $call->call('DELETE', "/users/{$user}/refresh-tokens", [], null, true);
 
             return;
         } catch (ProviderActionException $e) {
@@ -131,7 +138,7 @@ final class Auth0Provider implements LateResultActor
         $ids = [];
         foreach (['refresh_token', 'rotating_refresh_token'] as $type) {
             for ($page = 0; $page < 10; $page++) {
-                $body = $this->call->call('GET', '/device-credentials', [
+                $body = $call->call('GET', '/device-credentials', [
                     'user_id' => $userId,
                     'type' => $type,
                     'page' => (string) $page,
@@ -150,7 +157,7 @@ final class Auth0Provider implements LateResultActor
             }
         }
         foreach ($ids as $id) {
-            $this->call->call('DELETE', '/device-credentials/'.rawurlencode($id), [], null, true);
+            $call->call('DELETE', '/device-credentials/'.rawurlencode($id), [], null, true);
         }
     }
 }
