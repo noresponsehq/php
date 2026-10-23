@@ -9,6 +9,7 @@ use NoResponse\LateResults\ClerkProvider;
 use NoResponse\LateResults\LateResultAction;
 use NoResponse\LateResults\LateResultProvider;
 use NoResponse\LateResults\LateResults;
+use NoResponse\LateResults\LogOnlyProvider;
 use NoResponse\LateResults\ProviderActionException;
 use NoResponse\LateResults\WorkosProvider;
 use NoResponse\Webhooks\AssessmentExpired;
@@ -449,6 +450,35 @@ PHP;
             } catch (\InvalidArgumentException) {
                 $this->addToAssertionCount(1);
             }
+        }
+        $this->assertSame([], $this->calls());
+    }
+
+    public function test_the_log_only_provider_logs_what_it_would_revoke_or_ban_and_calls_nothing(): void
+    {
+        $lines = [];
+        $logOnly = new LogOnlyProvider(function (string $line) use (&$lines): void {
+            $lines[] = $line;
+        });
+        $this->assertSame('log_only', $logOnly->name());
+        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'usr_8f2k1');
+        $revoked = LateResults::handleLateResult($raw, $headers, self::secrets(), $logOnly, now: self::NOW);
+        $this->assertSame('revoke_sessions', $revoked->action);
+        $this->assertSame('usr_8f2k1', $revoked->userId);
+        $banned = LateResults::handleLateResult($raw, $headers, self::secrets(), $logOnly, policy: ['review' => 'ban'], now: self::NOW);
+        $this->assertSame('ban', $banned->action);
+        $this->assertSame([
+            'NoResponse late result (log only): would revoke every session of user usr_8f2k1',
+            'NoResponse late result (log only): would ban user usr_8f2k1 and end their sessions',
+        ], $lines);
+        [$testRaw, $testHeaders] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'usr_8f2k1', true);
+        $this->assertSame('none', LateResults::handleLateResult($testRaw, $testHeaders, self::secrets(), $logOnly, now: self::NOW)->action);
+        $this->assertCount(2, $lines);
+        try {
+            $logOnly->ban('');
+            $this->fail('expected InvalidArgumentException');
+        } catch (\InvalidArgumentException) {
+            $this->addToAssertionCount(1);
         }
         $this->assertSame([], $this->calls());
     }

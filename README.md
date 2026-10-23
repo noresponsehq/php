@@ -237,6 +237,8 @@ When a slow source settles and the recommendation rises after you allowed the si
 $result = LateResults::handleLateResult($payload, getallheaders(), [$keyId => $secret], new ClerkProvider($clerkSecretKey));
 ```
 
+If your app has its own login, `new LogOnlyProvider()` logs what it would revoke or ban (through `error_log()`, or pass a callable) and calls nothing. Use it to try the handler, then implement `LateResultProvider` yourself: `name()`, `revokeSessions($userId)` and `ban($userId)`.
+
 ## Changes since 2.0.0
 
 Names that changed:
