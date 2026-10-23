@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: aebd10ea69621635e9aee3ae1a3c53a1
+  docChecksum: d74ad986467220476660542a8e6d83d8
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 4.1.1
-  configChecksum: 5431bac6c8b4b4fcce13fc4aea7e39b9
+  releaseVersion: 4.1.2
+  configChecksum: e3812b53bc3bdfe35173c562e71b46c5
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -103,7 +103,7 @@ trackedFiles:
   docs/Models/Shared/AssessmentQuery.md:
     last_write_checksum: sha1:de7e70fc1bafce2e257cc4228782601620de7a82
   docs/Models/Shared/AssessmentRequest.md:
-    last_write_checksum: sha1:702a97e94e1540dde425fe3b35ba410a3bb609cd
+    last_write_checksum: sha1:96e678bb6bc60bef260f8a66ca0dc1bda35230b3
   docs/Models/Shared/AssessmentRequestClientContext.md:
     last_write_checksum: sha1:a127511269f1fd0929feb2f468e0f978e7c86753
   docs/Models/Shared/AssessmentRequestIdentifiers.md:
@@ -291,7 +291,7 @@ trackedFiles:
   docs/Models/Shared/WebsiteUnion.md:
     last_write_checksum: sha1:496997c605a99b0d11d7e4da70d639039cdd44d6
   docs/sdks/assessments/README.md:
-    last_write_checksum: sha1:2bf541ff3103172786bd4bc8c48e75095c0dfb09
+    last_write_checksum: sha1:8877ddbfc0fd204b3df4f95c13d731d8155e01e2
   docs/sdks/integrations/README.md:
     last_write_checksum: sha1:5c4cfd1918b1ee51af5f16e1fc2ebabc5f798478
   docs/sdks/keys/README.md:
@@ -307,7 +307,7 @@ trackedFiles:
   rector.php:
     last_write_checksum: sha1:7864a4ae8ebfea6329d1a0eb047c070bf01a2ada
   src/Assessments.php:
-    last_write_checksum: sha1:7d8814a82d4f5f495323a1617f0086e9920b60cb
+    last_write_checksum: sha1:68f9740f87a4da377e780eed52ff37e69cd898db
   src/Hooks/AfterErrorContext.php:
     last_write_checksum: sha1:f1bfa05a3faedf129d634b9b23fdd301357cb306
   src/Hooks/AfterErrorHook.php:
@@ -429,7 +429,7 @@ trackedFiles:
   src/Models/Shared/AssessmentQuery.php:
     last_write_checksum: sha1:970f4163a1e07685f7369dc3fd46dc7a23097418
   src/Models/Shared/AssessmentRequest.php:
-    last_write_checksum: sha1:cc0cee5e7fb8e1553fd9eb30ef5e8f6c93bff340
+    last_write_checksum: sha1:284190e20bb064485e7f9314f4dd171ab876afb0
   src/Models/Shared/AssessmentRequestClientContext.php:
     last_write_checksum: sha1:a7fbedf4231a2a07b4d6c224d9f465a5a579305b
   src/Models/Shared/AssessmentRequestIdentifiers.php:
@@ -971,7 +971,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:1ce3ebc8e86ab40d144a4d51d5a90988250a091b
+    last_write_checksum: sha1:5a8296bfcd06e9144aa2497e90e80256ef0adb7a
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:

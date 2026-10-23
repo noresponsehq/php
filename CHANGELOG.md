@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.2
+
+No changes detected.
+
 ## 4.1.1
 
 No changes detected.
