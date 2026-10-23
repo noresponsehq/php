@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** KeyRotation - The 201 answer of POST /v1/keys/rotate: the new key, shown once, and when the key that was presented stops working. The new key has the scopes of the presented key. */
+/** KeyRotation - The 201 answer of POST /v1/keys/rotate: the new key, shown once, and when the key that was presented stops working. The new key has the scopes and the environment of the presented key. */
 class KeyRotation
 {
     /**
-     * The new credential, nrk_<key id>_<secret>. It is shown only in this answer; store it now.
+     * The new credential, nrk_<mode>_<key id>_<secret>, in the environment of the presented key: nrk_live_ or nrk_test_. It is shown only in this answer; store it now.
      *
      * @var string $key
      */
