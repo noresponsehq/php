@@ -88,4 +88,58 @@ final class WaitTest extends TestCase
         }
         $this->assertSame([2.0, 2.0], $slept);
     }
+
+    /**
+     * @return array{callable(float): void, callable(): float}
+     */
+    private static function fakeTime(array &$slept, float &$now): array
+    {
+        return [
+            function (float $s) use (&$slept, &$now): void {
+                $slept[] = $s;
+                $now += $s;
+            },
+            function () use (&$now): float {
+                return $now;
+            },
+        ];
+    }
+
+    public function test_keeps_polling_a_partial_answer_until_complete(): void
+    {
+        $json = ['Content-Type' => 'application/json'];
+        $history = [];
+        $client = self::client([
+            new Response(200, $json, self::body('assessment-partial.json')),
+            new Response(200, $json + ['Retry-After' => '2'], self::body('assessment-partial.json')),
+            new Response(200, $json, self::body('assessment-complete.json')),
+        ], $history);
+        $slept = [];
+        $now = 0.0;
+        [$sleep, $clock] = self::fakeTime($slept, $now);
+        $result = Wait::wait($client, 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM', sleep: $sleep, clock: $clock);
+        $this->assertSame(Status::Complete, $result->status);
+        $this->assertSame([1.0, 2.0], $slept);
+        $this->assertCount(3, $history);
+    }
+
+    public function test_returns_the_latest_partial_answer_at_the_timeout(): void
+    {
+        $json = ['Content-Type' => 'application/json'];
+        $history = [];
+        $partial = self::body('assessment-partial.json');
+        $client = self::client([
+            new Response(200, $json + ['Retry-After' => '1'], self::body('assessment-pending.json')),
+            new Response(200, $json, $partial),
+            new Response(200, $json, $partial),
+            new Response(200, $json, $partial),
+        ], $history);
+        $slept = [];
+        $now = 0.0;
+        [$sleep, $clock] = self::fakeTime($slept, $now);
+        $result = Wait::wait($client, 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM', 3.5, $sleep, $clock);
+        $this->assertSame(Status::Partial, $result->status);
+        $this->assertSame([1.0, 1.0, 1.0], $slept);
+        $this->assertCount(4, $history);
+    }
 }

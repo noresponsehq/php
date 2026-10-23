@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.5
+
+No changes detected.
+
 ## 5.0.4
 
 * `sdk->webhookendpoints->listDeliveries()`: **Added**

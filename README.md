@@ -86,7 +86,7 @@ $latest = $client->assessments->get($created->result->assessmentId);
 $settled = Wait::wait($client, $created->result->assessmentId, timeoutSeconds: 30);
 ```
 
-`Wait::wait` polls `assessments->get` until the status is no longer pending, sleeping the server's `Retry-After` (at least one second) between polls. It throws `WaitTimeoutException`, which carries the last pending assessment, when the timeout (default 30 s) passes.
+`Wait::wait` polls `assessments->get` until the status is `Complete`, sleeping the server's `Retry-After` (at least one second) between polls. When the timeout (default 30 s) passes it returns the latest answer if that is `Partial`, with its status still `Partial`, and throws `WaitTimeoutException`, which carries the last pending assessment, if the assessment is still `Pending`.
 
 ### Query an account's history
 

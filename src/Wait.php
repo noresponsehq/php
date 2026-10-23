@@ -7,19 +7,21 @@ namespace NoResponse;
 use NoResponse\Models\Shared\Assessment;
 use NoResponse\Models\Shared\Status;
 
-/** Wait for a pending assessment. Hand-written beside the generated client. */
+/** Wait for an assessment to complete. Hand-written beside the generated client. */
 final class Wait
 {
     public const DEFAULT_TIMEOUT_SECONDS = 30.0;
 
     /**
-     * Poll assessments->get until the assessment is no longer pending,
+     * Poll assessments->get until the assessment's status is complete,
      * sleeping for the Retry-After the API sends (at least 1 s) between polls.
+     * When $timeoutSeconds have passed, a partial answer is returned as it
+     * stands, its status still Status::Partial.
      *
      * @param  (callable(float): void)|null  $sleep  defaults to usleep
      * @param  (callable(): float)|null  $clock  monotonic seconds, defaults to hrtime
      *
-     * @throws WaitTimeoutException once $timeoutSeconds have passed
+     * @throws WaitTimeoutException once $timeoutSeconds have passed while the assessment is still pending
      */
     public static function wait(
         NoResponseClient $client,
@@ -38,11 +40,14 @@ final class Wait
         $deadline = $clock() + $timeoutSeconds;
         while (true) {
             $response = $client->assessments->get($assessmentId);
-            if ($response->result->status !== Status::Pending) {
+            if ($response->result->status === Status::Complete) {
                 return $response->result;
             }
             $delay = self::retryAfter($response->headers);
             if ($clock() + $delay > $deadline) {
+                if ($response->result->status === Status::Partial) {
+                    return $response->result;
+                }
                 throw new WaitTimeoutException($assessmentId, $response->result);
             }
             $sleep($delay);
