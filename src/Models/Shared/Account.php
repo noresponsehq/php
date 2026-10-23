@@ -25,7 +25,7 @@ class Account
     public AccountRisk $risk;
 
     /**
-     * The decision for each flow. Every flow uses the tenant's signup thresholds today, so all three are equal.
+     * The decision for each flow: the account's score under that flow's thresholds. A flow the workspace has not set uses its signup thresholds, so the flows differ only where it set them.
      *
      * @var \NoResponse\Models\Shared\AccountDecisionsByFlow $decisionsByFlow
      */

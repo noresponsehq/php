@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: a1893d018aac94664ea9bed91f614ae7
+  docChecksum: ebd907e0ac68512a3b0a8880980bd529
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 7.0.2
-  configChecksum: 9c812bdbce0f1ece4195f36636c4714e
+  releaseVersion: 7.0.3
+  configChecksum: f3a5ed373cd1946a8b67ae809357c008
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -115,11 +115,11 @@ trackedFiles:
   docs/Models/Operations/SendWebhookTestEventResponse.md:
     last_write_checksum: sha1:a50f943398a777d9a1ea6b1be511328823c3001b
   docs/Models/Shared/Account.md:
-    last_write_checksum: sha1:76f4ef3b4c48d566f03f34a8e76958a387e35c7e
+    last_write_checksum: sha1:4ee1b0ecff881ad56bfec89f8f35e7b095d9e262
   docs/Models/Shared/AccountDecision.md:
     last_write_checksum: sha1:fe72fc737ce86b76ee8533c26f670c5c45d04c2b
   docs/Models/Shared/AccountDecisionsByFlow.md:
-    last_write_checksum: sha1:ffd9c3e26977bba2661dde9636b26a4287d0b7b1
+    last_write_checksum: sha1:0a5b0b204fa6dc0f4754ab0e3fceb0c10145a5f2
   docs/Models/Shared/AccountDeletion.md:
     last_write_checksum: sha1:f3cd67768539ba95d188ac003fb738ae799d1a01
   docs/Models/Shared/AccountRisk.md:
@@ -519,11 +519,11 @@ trackedFiles:
   src/Models/Operations/SendWebhookTestEventResponse.php:
     last_write_checksum: sha1:dbb8b188cd8003bdcae3ea05dc8f61c3e684e274
   src/Models/Shared/Account.php:
-    last_write_checksum: sha1:3171bac0087a6a62ccca6f11f47d24d0bd1b2210
+    last_write_checksum: sha1:7e7f83dac6ac88db7c18001736bb86c03059c237
   src/Models/Shared/AccountDecision.php:
     last_write_checksum: sha1:67335f06d1f1be462ba808624321fa351db9ad5e
   src/Models/Shared/AccountDecisionsByFlow.php:
-    last_write_checksum: sha1:9801aef26c1cae0072834f2bd5c7cdf9ff62371c
+    last_write_checksum: sha1:db81a20d3128959c48f6ee9e7039680b29f86224
   src/Models/Shared/AccountDeletion.php:
     last_write_checksum: sha1:ba27e029a6c5e1f40f87096b92e8d508cfe98e94
   src/Models/Shared/AccountRisk.php:
@@ -1115,7 +1115,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:1d778c8d9f59bf8d79fe00ef341b7fdec50fd01d
+    last_write_checksum: sha1:0a3702e527a235df841098f3d4fc1bf7f835d933
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
