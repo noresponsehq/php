@@ -64,10 +64,10 @@ final class HttpCaller
         if ($allow404 && $status === 404) {
             return null;
         }
-        if ($status < 200 || $status > 299) {
-            throw new ProviderActionException($this->provider, $status, "{$this->provider} {$method} {$path} answered {$status}");
-        }
         $text = (string) $response->getBody();
+        if ($status < 200 || $status > 299) {
+            throw new ProviderActionException($this->provider, $status, "{$this->provider} {$method} {$path} answered {$status}", self::errorCode($text));
+        }
         if ($text === '') {
             return null;
         }
@@ -76,6 +76,26 @@ final class HttpCaller
         } catch (\JsonException) {
             return null;
         }
+    }
+
+    /** The error code in a provider's error body: Auth0's errorCode, or a top-level code. */
+    public static function errorCode(string $text): ?string
+    {
+        try {
+            $body = json_decode($text, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException) {
+            return null;
+        }
+        if (! is_array($body)) {
+            return null;
+        }
+        foreach (['errorCode', 'code'] as $field) {
+            if (isset($body[$field]) && is_string($body[$field]) && $body[$field] !== '') {
+                return $body[$field];
+            }
+        }
+
+        return null;
     }
 
     /**

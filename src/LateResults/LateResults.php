@@ -99,12 +99,15 @@ final class LateResults
         if ($user === null || $user === '') {
             return new LateResult($event, LateResultAction::NONE);
         }
-        if ($action === LateResultAction::BAN) {
+        $ran = $action;
+        if ($provider instanceof LateResultActor) {
+            $ran = $provider->act($action, $user);
+        } elseif ($action === LateResultAction::BAN) {
             $provider->ban($user);
         } else {
             $provider->revokeSessions($user);
         }
 
-        return new LateResult($event, $action, $user);
+        return new LateResult($event, $ran, $user);
     }
 }

@@ -76,6 +76,8 @@ final class LateResultsTest extends TestCase
     /**
      * The mock provider API: records each request, answers by path. A /forbid prefix refuses every DELETE with 403;
      * /gone answers 404 to everything, /vanish lists one session then answers 404, /broken answers 500.
+     * /free is an Auth0 tenant without the sessions API (/freert: with the refresh-token endpoint), keeping its
+     * state in free.json; /scope refuses every DELETE with 403 insufficient_scope.
      */
     private const ROUTER = <<<'PHP'
 <?php
@@ -129,6 +131,44 @@ if ($method === 'POST' && $path === '/user_management/sessions/revoke') {
 }
 if ($method === 'DELETE' && $path === '/user_management/users/user_01WORKOS') {
     reply(202);
+}
+if (preg_match('#^/(free|freert)(/api/v2/.*)$#', $path, $m)) {
+    // An Auth0 tenant on a plan without the sessions API, as a Free tenant answers: both bulk endpoints refuse with
+    // 403 feature_not_enabled, while /device-credentials and PATCH /users/{id} work.
+    $file = dirname(getenv('NR_CALLS')).'/free.json';
+    $state = is_file($file) ? json_decode(file_get_contents($file), true) : ['blocked' => false, 'credentials' => [['id' => 'dcr_a', 'type' => 'refresh_token'], ['id' => 'dcr_b', 'type' => 'refresh_token'], ['id' => 'dcr_r', 'type' => 'rotating_refresh_token']]];
+    $save = static function () use (&$state, $file): void { file_put_contents($file, json_encode($state)); };
+    $refused = ['statusCode' => 403, 'error' => 'Forbidden', 'message' => 'This feature is not enabled for this tenant.', 'errorCode' => 'feature_not_enabled'];
+    $rest = $m[2];
+    if ($method === 'DELETE' && preg_match('#^/api/v2/users/[^/]+/sessions$#', $rest)) {
+        reply(403, $refused);
+    }
+    if ($method === 'DELETE' && preg_match('#^/api/v2/users/[^/]+/refresh-tokens$#', $rest)) {
+        if ($m[1] === 'free') {
+            reply(403, $refused);
+        }
+        $state['credentials'] = [];
+        $save();
+        reply(202);
+    }
+    if ($method === 'PATCH' && preg_match('#^/api/v2/users/[^/]+$#', $rest)) {
+        $state['blocked'] = json_decode($raw, true)['blocked'] === true;
+        $save();
+        reply(200, ['blocked' => $state['blocked']]);
+    }
+    if ($method === 'GET' && $rest === '/api/v2/device-credentials') {
+        reply(200, array_values(array_filter($state['credentials'], static fn ($d) => $d['type'] === ($_GET['type'] ?? null))));
+    }
+    if ($method === 'DELETE' && preg_match('#^/api/v2/device-credentials/(.+)$#', $rest, $d)) {
+        $before = count($state['credentials']);
+        $state['credentials'] = array_values(array_filter($state['credentials'], static fn ($c) => $c['id'] !== $d[1]));
+        $save();
+        count($state['credentials']) < $before ? reply(204) : reply(404, ['errorCode' => 'inexistent_device_credential']);
+    }
+    reply(404, ['error' => 'not found']);
+}
+if (str_starts_with($path, '/scope') && $method === 'DELETE') {
+    reply(403, ['statusCode' => 403, 'error' => 'Forbidden', 'message' => 'Insufficient scope', 'errorCode' => 'insufficient_scope']);
 }
 $escaped = 'auth0%7C64abc0de1234567890abcdef';
 if ($method === 'DELETE' && in_array($path, ["/api/v2/users/{$escaped}/sessions", "/api/v2/users/{$escaped}/refresh-tokens"], true)) {
@@ -333,6 +373,114 @@ PHP;
         foreach ($calls as $c) {
             $this->assertSame('Bearer mgmt_token', $c['auth']);
         }
+    }
+
+    /** @return array{blocked: bool, credentials: list<array{id: string, type: string}>} */
+    private function freeTenant(): array
+    {
+        return json_decode((string) file_get_contents($this->dir.'/free.json'), true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    /** @param  array{blocked: bool, credentials: list<array{id: string, type: string}>}  $state */
+    private function setFreeTenant(array $state): void
+    {
+        file_put_contents($this->dir.'/free.json', json_encode($state));
+    }
+
+    public function test_auth0_without_the_sessions_api_blocks_deletes_device_credentials_and_reports_ban(): void
+    {
+        $id = 'auth0|64abc0de1234567890abcdef';
+        $escaped = 'auth0%7C64abc0de1234567890abcdef';
+        $auth0 = new Auth0Provider('mgmt_token', baseUrl: $this->url.'/free/api/v2');
+        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), $id);
+
+        $result = LateResults::handleLateResult($raw, $headers, self::secrets(), $auth0, now: self::NOW);
+        $this->assertSame('ban', $result->action);
+        $this->assertSame($id, $result->userId);
+        $this->assertSame(['blocked' => true, 'credentials' => []], $this->freeTenant());
+        $calls = $this->calls();
+        $this->assertSame([
+            "DELETE /free/api/v2/users/{$escaped}/sessions",
+            "PATCH /free/api/v2/users/{$escaped}",
+            "DELETE /free/api/v2/users/{$escaped}/refresh-tokens",
+            'GET /free/api/v2/device-credentials',
+            'GET /free/api/v2/device-credentials',
+            'DELETE /free/api/v2/device-credentials/dcr_a',
+            'DELETE /free/api/v2/device-credentials/dcr_b',
+            'DELETE /free/api/v2/device-credentials/dcr_r',
+        ], self::lines($calls));
+        $this->assertSame(['refresh_token', 'rotating_refresh_token'], [$calls[3]['query']['type'], $calls[4]['query']['type']]);
+        $this->assertSame($id, $calls[3]['query']['user_id']);
+        foreach ($calls as $c) {
+            $this->assertSame('Bearer mgmt_token', $c['auth']);
+        }
+
+        // The same delivery again: still blocked, nothing left to delete, same report.
+        $this->resetCalls();
+        $this->assertSame('ban', LateResults::handleLateResult($raw, $headers, self::secrets(), $auth0, now: self::NOW)->action);
+        $this->assertTrue($this->freeTenant()['blocked']);
+        foreach ($this->calls() as $c) {
+            $this->assertFalse($c['method'] === 'DELETE' && str_starts_with($c['path'], '/free/api/v2/device-credentials/'), $c['path']);
+        }
+
+        // ban blocks first, and the plan refusing the sessions endpoint is no failure.
+        $this->setFreeTenant(['blocked' => false, 'credentials' => [['id' => 'dcr_c', 'type' => 'refresh_token']]]);
+        $this->resetCalls();
+        $banned = LateResults::handleLateResult($raw, $headers, self::secrets(), $auth0, policy: ['review' => 'ban'], now: self::NOW);
+        $this->assertSame('ban', $banned->action);
+        $this->assertSame('PATCH', $this->calls()[0]['method']);
+        $this->assertSame(['blocked' => true, 'credentials' => []], $this->freeTenant());
+
+        // Called directly, revokeSessions takes the same fallback.
+        $this->setFreeTenant(['blocked' => false, 'credentials' => []]);
+        $auth0->revokeSessions($id);
+        $this->assertTrue($this->freeTenant()['blocked']);
+    }
+
+    public function test_auth0_with_refresh_tokens_but_no_sessions_api_still_blocks_and_a_scope_refusal_never_falls_back(): void
+    {
+        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'auth0|abc');
+        $result = LateResults::handleLateResult($raw, $headers, self::secrets(), new Auth0Provider('t', baseUrl: $this->url.'/freert/api/v2'), now: self::NOW);
+        $this->assertSame('ban', $result->action);
+        $this->assertTrue($this->freeTenant()['blocked']);
+        $this->assertNotContains('GET /freert/api/v2/device-credentials', self::lines($this->calls()));
+
+        $this->resetCalls();
+        try {
+            LateResults::handleLateResult($raw, $headers, self::secrets(), new Auth0Provider('t', baseUrl: $this->url.'/scope/api/v2'), now: self::NOW);
+            $this->fail('a scope refusal must throw');
+        } catch (ProviderActionException $e) {
+            $this->assertSame(403, $e->status);
+            $this->assertSame('insufficient_scope', $e->errorCode);
+        }
+        $this->assertSame(['DELETE /scope/api/v2/users/auth0%7Cabc/sessions'], self::lines($this->calls()));
+    }
+
+    public function test_a_provider_without_act_reports_the_action_asked_for(): void
+    {
+        $plain = new class implements LateResultProvider {
+            /** @var list<string> */
+            public array $done = [];
+
+            public function name(): string
+            {
+                return 'plain';
+            }
+
+            public function revokeSessions(string $userId): void
+            {
+                $this->done[] = "revoke {$userId}";
+            }
+
+            public function ban(string $userId): void
+            {
+                $this->done[] = "ban {$userId}";
+            }
+        };
+        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'u_1');
+        $this->assertSame('revoke_sessions', LateResults::handleLateResult($raw, $headers, self::secrets(), $plain, now: self::NOW)->action);
+        $this->assertSame('ban', LateResults::handleLateResult($raw, $headers, self::secrets(), $plain, policy: ['review' => 'ban'], now: self::NOW)->action);
+        $this->assertSame(['revoke u_1', 'ban u_1'], $plain->done);
     }
 
     public function test_an_unverified_quiet_or_unmapped_event_makes_no_provider_call_and_a_provider_refusal_throws(): void
