@@ -26,6 +26,13 @@ class NoResponseClient
     public Assessments $assessments;
 
     /**
+     * Your accounts, each with one current risk, and their assessment history.
+     *
+     * @var Accounts $$accounts
+     */
+    public Accounts $accounts;
+
+    /**
      * Your own API keys.
      *
      * @var Keys $$keys
@@ -73,6 +80,7 @@ class NoResponseClient
         public SDKConfiguration $sdkConfiguration,
     ) {
         $this->assessments = new Assessments($this->sdkConfiguration);
+        $this->accounts = new Accounts($this->sdkConfiguration);
         $this->keys = new Keys($this->sdkConfiguration);
         $this->integrations = new Integrations($this->sdkConfiguration);
         $this->webhookEndpoints = new WebhookEndpoints($this->sdkConfiguration);

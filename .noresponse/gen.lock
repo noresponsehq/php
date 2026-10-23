@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: d74ad986467220476660542a8e6d83d8
+  docChecksum: 352b6dd36649c6875138dfc0ab601ba9
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 4.1.3
-  configChecksum: acaf252b4ce85fed974a82bc5c062661
+  releaseVersion: 4.1.4
+  configChecksum: fe265acd11d482ecbe4d1200c6cdf047
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -58,10 +58,18 @@ trackedFiles:
     last_write_checksum: sha1:0e1080a7519190467a875fa290eb325f07e020fc
   docs/Models/Operations/DeleteWebhookEndpointResponse.md:
     last_write_checksum: sha1:75842efc8b987fb321cce6aa140a9614d0c3fcf4
+  docs/Models/Operations/GetAccountRequest.md:
+    last_write_checksum: sha1:6cbf6ea6718395c52fdff554d75b10b26cd1b0b5
+  docs/Models/Operations/GetAccountResponse.md:
+    last_write_checksum: sha1:6861214f62a224425065b82f6564d8fc711afa9f
   docs/Models/Operations/GetAssessmentRequest.md:
     last_write_checksum: sha1:a6e5db3f70a8a975a79c92109c3c0edeb79dea63
   docs/Models/Operations/GetAssessmentResponse.md:
     last_write_checksum: sha1:9c3551655a955903cb74e19a17cc593f46ad0ddd
+  docs/Models/Operations/ListAccountAssessmentsRequest.md:
+    last_write_checksum: sha1:6857f112f4a36b67e5969c62ee5626b30953fbc8
+  docs/Models/Operations/ListAccountAssessmentsResponse.md:
+    last_write_checksum: sha1:fd362ed101e4174ed4915867c259aae49174ab8c
   docs/Models/Operations/ListIntegrationsResponse.md:
     last_write_checksum: sha1:990a161b264692ac44f30fa4b94d4f11b586be8b
   docs/Models/Operations/ListWebhookEndpointsResponse.md:
@@ -86,24 +94,34 @@ trackedFiles:
     last_write_checksum: sha1:4be55f723887a0a278bd9bf78115f431c201ca36
   docs/Models/Operations/SendWebhookTestEventResponse.md:
     last_write_checksum: sha1:a50f943398a777d9a1ea6b1be511328823c3001b
+  docs/Models/Shared/Account.md:
+    last_write_checksum: sha1:0f18ffaeace415368e3fcfbf889dea0c6813f996
+  docs/Models/Shared/AccountDecision.md:
+    last_write_checksum: sha1:fe72fc737ce86b76ee8533c26f670c5c45d04c2b
+  docs/Models/Shared/AccountDecisionsByFlow.md:
+    last_write_checksum: sha1:55fe71c77129bf8b75879338535a1deb8cf924e5
+  docs/Models/Shared/AccountRisk.md:
+    last_write_checksum: sha1:9bae6491a60a2c7a412dfd2145e5a6538aeade2a
+  docs/Models/Shared/AccountRiskReason.md:
+    last_write_checksum: sha1:595c72b4cfda4afc6413862c7f1bb0228f0e6229
   docs/Models/Shared/AlternateName.md:
     last_write_checksum: sha1:f570181d957d21d0af9792dabb2bef986d7df4be
   docs/Models/Shared/AlternateNameUnion.md:
     last_write_checksum: sha1:3f68c320e76262017431e96c1d1e472e827e5558
   docs/Models/Shared/Assessment.md:
-    last_write_checksum: sha1:b5ee58ffc0799086bce22fbd46379a7166229fa4
+    last_write_checksum: sha1:3f2c1e97fcb7461b2fc1621aaa0cd420de03ab9f
   docs/Models/Shared/AssessmentAuthContext.md:
     last_write_checksum: sha1:f8c99015513441a1b7876d320e181a090de36293
   docs/Models/Shared/AssessmentList.md:
-    last_write_checksum: sha1:1db7f2a0053c09fc0be0bb09365a4c3d768b1ac5
+    last_write_checksum: sha1:45518768d1cbc9054e28bf61e85afb74599fb8bb
   docs/Models/Shared/AssessmentOutcome.md:
     last_write_checksum: sha1:b284fb635c0d7d94a7e8ab9a5dcc7d06fb198e3d
   docs/Models/Shared/AssessmentOutcomeRequest.md:
     last_write_checksum: sha1:c5bc5abc68ccc181a499daf679efe7aecbebc0ee
   docs/Models/Shared/AssessmentQuery.md:
-    last_write_checksum: sha1:de7e70fc1bafce2e257cc4228782601620de7a82
+    last_write_checksum: sha1:14b953159dab093e163594c3c505abda1ffd2f53
   docs/Models/Shared/AssessmentRequest.md:
-    last_write_checksum: sha1:96e678bb6bc60bef260f8a66ca0dc1bda35230b3
+    last_write_checksum: sha1:59a7234e98809d06deca9d937e7fc3e802a2998e
   docs/Models/Shared/AssessmentRequestClientContext.md:
     last_write_checksum: sha1:a127511269f1fd0929feb2f468e0f978e7c86753
   docs/Models/Shared/AssessmentRequestIdentifiers.md:
@@ -290,6 +308,8 @@ trackedFiles:
     last_write_checksum: sha1:0c51cc841fa8bca9e86405df9cb958841a5a4134
   docs/Models/Shared/WebsiteUnion.md:
     last_write_checksum: sha1:496997c605a99b0d11d7e4da70d639039cdd44d6
+  docs/sdks/accounts/README.md:
+    last_write_checksum: sha1:345ab0a78ad4683699d07e7f61430c3025e4df6b
   docs/sdks/assessments/README.md:
     last_write_checksum: sha1:8877ddbfc0fd204b3df4f95c13d731d8155e01e2
   docs/sdks/integrations/README.md:
@@ -306,6 +326,8 @@ trackedFiles:
     last_write_checksum: sha1:7c1743909404d6273738721583c7d76a26ed8554
   rector.php:
     last_write_checksum: sha1:7864a4ae8ebfea6329d1a0eb047c070bf01a2ada
+  src/Accounts.php:
+    last_write_checksum: sha1:a225eb1025fab5d38be984c6502d8c85d5de9868
   src/Assessments.php:
     last_write_checksum: sha1:68f9740f87a4da377e780eed52ff37e69cd898db
   src/Hooks/AfterErrorContext.php:
@@ -386,10 +408,18 @@ trackedFiles:
     last_write_checksum: sha1:3cfd5903955c381b4c680a74c31c113d66a99842
   src/Models/Operations/DeleteWebhookEndpointResponse.php:
     last_write_checksum: sha1:e420d84ef080c04102ecec21064dfacae2a1a10a
+  src/Models/Operations/GetAccountRequest.php:
+    last_write_checksum: sha1:388432226f510fe21e84b0515ffde60fe384bcee
+  src/Models/Operations/GetAccountResponse.php:
+    last_write_checksum: sha1:9530a5522c3328cbf4be858def2bf7511cf0a5e7
   src/Models/Operations/GetAssessmentRequest.php:
     last_write_checksum: sha1:131506598632d139f83767dc7c815bc1f89ac07a
   src/Models/Operations/GetAssessmentResponse.php:
     last_write_checksum: sha1:37e79289a63ce57dea4408ad2d33a75a4fed2122
+  src/Models/Operations/ListAccountAssessmentsRequest.php:
+    last_write_checksum: sha1:a79d67d7c0a5c3787871968b3cca75cf86f42139
+  src/Models/Operations/ListAccountAssessmentsResponse.php:
+    last_write_checksum: sha1:0f4ff9e57a2731d472b788ed4e7cd357cd85f886
   src/Models/Operations/ListIntegrationsResponse.php:
     last_write_checksum: sha1:1dbff62b8522310a4ef3fa888f435392d6ebe7b5
   src/Models/Operations/ListWebhookEndpointsResponse.php:
@@ -414,22 +444,32 @@ trackedFiles:
     last_write_checksum: sha1:2e732f2d4539d5877a43ccd3720fa3510e1ad24e
   src/Models/Operations/SendWebhookTestEventResponse.php:
     last_write_checksum: sha1:dbb8b188cd8003bdcae3ea05dc8f61c3e684e274
+  src/Models/Shared/Account.php:
+    last_write_checksum: sha1:1aaffc3bfa5718ad7838772bef85a922358ee535
+  src/Models/Shared/AccountDecision.php:
+    last_write_checksum: sha1:67335f06d1f1be462ba808624321fa351db9ad5e
+  src/Models/Shared/AccountDecisionsByFlow.php:
+    last_write_checksum: sha1:5a46adee0f59462d2052b974bf996530f5740a4a
+  src/Models/Shared/AccountRisk.php:
+    last_write_checksum: sha1:32b5adc18a668c3b7155c4c92b2796dddbf39a7d
+  src/Models/Shared/AccountRiskReason.php:
+    last_write_checksum: sha1:25f74fc03d03e662f2f24ba4f332071db0791980
   src/Models/Shared/AlternateName.php:
     last_write_checksum: sha1:429d42e3ab27dafc061516811dee1ed6379b6426
   src/Models/Shared/Assessment.php:
-    last_write_checksum: sha1:5effc20556dd09a27a946c83d042c1a665a24edd
+    last_write_checksum: sha1:4f35327863dd0fd6af6ba31f0298b89d0cc0f4ee
   src/Models/Shared/AssessmentAuthContext.php:
     last_write_checksum: sha1:6c475e169185856678568717d0e76c68b5911654
   src/Models/Shared/AssessmentList.php:
-    last_write_checksum: sha1:0bf52dc89571aefffb4acee88765f9ef219917e7
+    last_write_checksum: sha1:aa1a9ff8fb4f50f6eaeaf8cfce7e4aa92a80baa9
   src/Models/Shared/AssessmentOutcome.php:
     last_write_checksum: sha1:fffa7f14cbc6205aec2ca864a111ff3804dcf79b
   src/Models/Shared/AssessmentOutcomeRequest.php:
     last_write_checksum: sha1:417c65b04cd722a9f3cd6f35eb8401a6ab6a3de3
   src/Models/Shared/AssessmentQuery.php:
-    last_write_checksum: sha1:970f4163a1e07685f7369dc3fd46dc7a23097418
+    last_write_checksum: sha1:69fc10d5d1769dcdc68652259b83820b2e5e27a0
   src/Models/Shared/AssessmentRequest.php:
-    last_write_checksum: sha1:284190e20bb064485e7f9314f4dd171ab876afb0
+    last_write_checksum: sha1:ee81780658ccd0d8fe745410992cf1200e0cf493
   src/Models/Shared/AssessmentRequestClientContext.php:
     last_write_checksum: sha1:a7fbedf4231a2a07b4d6c224d9f465a5a579305b
   src/Models/Shared/AssessmentRequestIdentifiers.php:
@@ -967,11 +1007,11 @@ trackedFiles:
   src/NoResponse/Serializer/XmlSerializationVisitor.php:
     last_write_checksum: sha1:d0629d021bd25ac2756ca7bbc43d1da5f2c0094e
   src/NoResponseClient.php:
-    last_write_checksum: sha1:0d933c75aa5e5cfe030185baea42d0c5329911a8
+    last_write_checksum: sha1:8faa758cbc166f43d91cab034eb0a73dd4009257
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:01589538defc902b2a81beba032047328d8784ba
+    last_write_checksum: sha1:02ded4d436efabe20a691d0d7234b72f06336c5d
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
@@ -1261,6 +1301,31 @@ examples:
     page:
       requestBody:
         application/json: {"account_id": "acct_7f3a9c", "limit": 20, "cursor": "eyJvIjoyMH0"}
+      responses:
+        "200":
+          application/json: {"schema_version": "1", "account_id": "acct_7f3a9c", "items": [{"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "complete", "recommendation": "step_up", "confidence": "medium", "signals": [{"type": "account_presence", "identifier": "email", "outcome": "found", "source_id": "github", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKN", "observed_at": "2026-10-14T09:00:00.210Z", "last_checked_at": "2026-10-14T09:00:00.210Z", "freshness": "fresh"}, {"type": "account_presence", "identifier": "username", "outcome": "not_found", "source_id": "gitlab", "last_checked_at": "2026-10-14T09:00:00.190Z", "freshness": "fresh"}, {"type": "breach_exposure", "identifier": "email", "outcome": "found", "source_id": "breach.corpus", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKP", "observed_at": "2025-03-02T00:00:00Z", "last_checked_at": "2026-10-14T09:00:00.150Z", "freshness": "stale"}], "incomplete_sources": [], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "timing": {"deadline_ms": 300, "elapsed_ms": 287}}, {"schema_version": "1", "assessment_id": "asm_01JA2Z9Y3R5T6V7W8X9ZABCDEF", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-01-0007", "status": "complete", "recommendation": "allow", "confidence": "high", "signals": [{"type": "account_presence", "identifier": "username", "outcome": "not_found", "source_id": "gitlab", "last_checked_at": "2026-10-14T09:00:00.190Z", "freshness": "fresh"}], "incomplete_sources": [], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-01T12:00:00Z", "updated_at": "2026-10-01T12:00:05Z", "expires_at": "2027-10-01T12:00:00.000Z", "timing": {"deadline_ms": 300, "elapsed_ms": 287}}], "next_cursor": "eyJiIjoiY2hrXzAxIn0", "retention_days": 365}
+  getAccount:
+    current:
+      parameters:
+        path:
+          account_id: "acct_7f3a9c"
+      responses:
+        "200":
+          application/json: {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 35, "decision": "step_up", "reasons": [{"code": "new_email", "weight": 20, "identifier": "email"}, {"code": "proxy_ip", "weight": 15, "identifier": "ip"}]}, "decisions_by_flow": {"signup": "step_up", "login": "step_up", "purchase": "step_up"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}
+    blocked:
+      parameters:
+        path:
+          account_id: "acct_7f3a9c"
+      responses:
+        "200":
+          application/json: {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 90, "decision": "block", "reasons": [{"code": "disposable_email", "weight": 40, "identifier": "email"}, {"code": "proxy_ip", "weight": 30, "identifier": "ip"}, {"code": "many_recent_signups", "weight": 20}]}, "decisions_by_flow": {"signup": "block", "login": "block", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}
+  listAccountAssessments:
+    page:
+      parameters:
+        path:
+          account_id: "acct_7f3a9c"
+        query:
+          limit: 20
       responses:
         "200":
           application/json: {"schema_version": "1", "account_id": "acct_7f3a9c", "items": [{"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "complete", "recommendation": "step_up", "confidence": "medium", "signals": [{"type": "account_presence", "identifier": "email", "outcome": "found", "source_id": "github", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKN", "observed_at": "2026-10-14T09:00:00.210Z", "last_checked_at": "2026-10-14T09:00:00.210Z", "freshness": "fresh"}, {"type": "account_presence", "identifier": "username", "outcome": "not_found", "source_id": "gitlab", "last_checked_at": "2026-10-14T09:00:00.190Z", "freshness": "fresh"}, {"type": "breach_exposure", "identifier": "email", "outcome": "found", "source_id": "breach.corpus", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKP", "observed_at": "2025-03-02T00:00:00Z", "last_checked_at": "2026-10-14T09:00:00.150Z", "freshness": "stale"}], "incomplete_sources": [], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "timing": {"deadline_ms": 300, "elapsed_ms": 287}}, {"schema_version": "1", "assessment_id": "asm_01JA2Z9Y3R5T6V7W8X9ZABCDEF", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-01-0007", "status": "complete", "recommendation": "allow", "confidence": "high", "signals": [{"type": "account_presence", "identifier": "username", "outcome": "not_found", "source_id": "gitlab", "last_checked_at": "2026-10-14T09:00:00.190Z", "freshness": "fresh"}], "incomplete_sources": [], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-01T12:00:00Z", "updated_at": "2026-10-01T12:00:05Z", "expires_at": "2027-10-01T12:00:00.000Z", "timing": {"deadline_ms": 300, "elapsed_ms": 287}}], "next_cursor": "eyJiIjoiY2hrXzAxIn0", "retention_days": 365}

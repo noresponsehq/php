@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.4
+
+* `sdk->accounts->get()`: **Added**
+* `sdk->accounts->listAssessments()`: **Added**
+
 ## 4.1.3
 
 No changes detected.
