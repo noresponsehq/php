@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.1
+
+No changes detected.
+
 ## 4.1.0
 
 * `sdk->assessments->create()`:  `response.authContext` **Added**
