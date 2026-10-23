@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 5fac20f7bb5359451e9cd9ca386137c0
+  docChecksum: a1893d018aac94664ea9bed91f614ae7
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 7.0.1
-  configChecksum: 1b9ae42d963cddd2fd1e5e4162600002
+  releaseVersion: 7.0.2
+  configChecksum: 9c812bdbce0f1ece4195f36636c4714e
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -1115,7 +1115,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:145bfdcb617152c71becc4b0694bbffd59ae452b
+    last_write_checksum: sha1:1d778c8d9f59bf8d79fe00ef341b7fdec50fd01d
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
