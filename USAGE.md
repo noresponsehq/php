@@ -22,7 +22,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: 'signup-7f3a9c-0001'
+    idempotencyKey: 'signup-acct_7f3a9c'
 
 );
 
