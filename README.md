@@ -34,8 +34,8 @@ require 'vendor/autoload.php';
 
 use NoResponse\Models\Shared\AssessmentRequest;
 use NoResponse\Models\Shared\AssessmentRequestIdentifiers;
+use NoResponse\Models\Shared\Flow;
 use NoResponse\Models\Shared\ResponseMode;
-use NoResponse\Models\Shared\Status;
 use NoResponse\NoResponseClient;
 use NoResponse\Wait;
 
@@ -43,17 +43,20 @@ $client = NoResponseClient::create(getenv('NORESPONSE_API_KEY'));
 
 $response = $client->assessments->create(new AssessmentRequest(
     accountId: 'usr_8f2k1',
+    flow: Flow::Signup,
     identifiers: new AssessmentRequestIdentifiers(email: 'jordan.lee@example.com'),
 ));
 
 $assessment = $response->result;
-if ($assessment->status === Status::Pending) {
-    // No recommendation yet. Apply your fallback now, then wait or take the webhook.
-    $assessment = Wait::wait($client, $assessment->assessmentId);
+if ($assessment->account === null) {
+    // The account's first assessment is pending. Apply your fallback now, then wait or take the webhook.
+    $assessment = Wait::wait($client, $assessment->id);
 }
 
-echo $assessment->recommendation?->value; // allow, step_up or review
+echo $assessment->account?->risk->decision->value; // allow, step_up, review or block
 ```
+
+`account->risk->decision` is the decision for the request's `flow` and the value to act on. The assessment's own facts (`recommendation`, `risk`, `signals`, `assessmentVersion`) are under `detail`.
 
 Every method returns an envelope: `result` holds the object and `headers` the response headers (`X-Request-ID`, `Retry-After`, `Idempotent-Replayed`).
 
@@ -76,14 +79,15 @@ $client = NoResponseClient::builder()
 $created = $client->assessments->create(
     new AssessmentRequest(
         accountId: 'usr_8f2k1',
+        flow: Flow::Signup,
         identifiers: new AssessmentRequestIdentifiers(email: 'jordan.lee@example.com'),
         responseMode: ResponseMode::Detailed, // detailed needs the detailed scope
     ),
     idempotencyKey: 'signup-usr_8f2k1-0001',
 );
 
-$latest = $client->assessments->get($created->result->assessmentId);
-$settled = Wait::wait($client, $created->result->assessmentId, timeoutSeconds: 30);
+$latest = $client->assessments->get($created->result->id);
+$settled = Wait::wait($client, $created->result->id, timeoutSeconds: 30);
 ```
 
 `Wait::wait` polls `assessments->get` until the status is `Complete`, sleeping the server's `Retry-After` (at least one second) between polls. When the timeout (default 30 s) passes it returns the latest answer if that is `Partial`, with its status still `Partial`, and throws `WaitTimeoutException`, which carries the last pending assessment, if the assessment is still `Pending`.
@@ -97,7 +101,7 @@ use NoResponse\Models\Shared\AssessmentQuery;
 
 foreach ($client->assessments->query(new AssessmentQuery(accountId: 'usr_8f2k1', limit: 20)) as $page) {
     foreach ($page->result->items as $item) {
-        // each assessment at its latest version
+        // each AssessmentDetail at its latest version
     }
 }
 ```
@@ -110,7 +114,7 @@ use NoResponse\Models\Shared\Outcome;
 
 $client->assessments->recordOutcome(
     new AssessmentOutcomeRequest(outcome: Outcome::Chargeback, externalRef: 'case-42'),
-    $created->result->assessmentId,
+    $created->result->id,
 );
 ```
 
@@ -227,7 +231,7 @@ if ($event->test) {
 } elseif ($event->isExpired()) {
     // forget the assessment: GET now answers 404
 } elseif ($event->data instanceof Assessment) {
-    // keep the highest assessmentVersion per assessment
+    // keep the highest detail->assessmentVersion per assessment, then act on account?->risk->decision
 }
 http_response_code(204);
 ```
@@ -236,13 +240,21 @@ http_response_code(204);
 
 ### Late results
 
-When a slow source settles and the recommendation rises after you allowed the signup, `LateResults::handleLateResult` verifies the delivery, applies your policy and acts through your auth provider. The default policy revokes sessions on `review`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
+When a slow source settles and the account's decision rises after you allowed the signup, `LateResults::handleLateResult` verifies the delivery, applies your policy to `account->risk->decision` and acts through your auth provider. The default policy revokes sessions on `review` and `block`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
 
 ```php
 $result = LateResults::handleLateResult($payload, getallheaders(), [$keyId => $secret], new ClerkProvider($clerkSecretKey));
 ```
 
 If your app has its own login, `new LogOnlyProvider()` logs what it would revoke or ban (through `error_log()`, or pass a callable) and calls nothing. Use it to try the handler, then implement `LateResultProvider` yourself: `name()`, `revokeSessions($userId)` and `ban($userId)`.
+
+## Changes in 6.0.0
+
+- `AssessmentRequest` takes a required `flow` (`Flow::Signup`, `Flow::Login` or `Flow::Purchase`) and an optional `depth`. `AssessmentRequestPolicyContext` no longer has `flow`.
+- `create`, `get` and the `assessment.updated` webhook return the `Assessment` resource: `id`, `status`, `flow`, `depth`, `account` (the account's current risk, decided for this flow; null while the account's first assessment is pending) and `detail` (`AssessmentDetail`, the previous assessment body).
+- Act on `account->risk->decision` (`allow`, `step_up`, `review`, `block`). `block` replaces `detail->risk->block`. Keep the highest `detail->assessmentVersion`.
+- History pages hold `AssessmentDetail` items.
+- The late-result policy is keyed by decision, and the default revokes sessions on `block` as well as `review`.
 
 ## Changes since 2.0.0
 

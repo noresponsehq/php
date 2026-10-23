@@ -44,9 +44,9 @@ final class WaitTest extends TestCase
         $json = ['Content-Type' => 'application/json'];
         $history = [];
         $client = self::client([
-            new Response(200, $json + ['Retry-After' => '3'], self::body('assessment-pending.json')),
-            new Response(200, $json + ['Retry-After' => '0'], self::body('assessment-pending.json')),
-            new Response(200, $json, self::body('assessment-complete.json')),
+            new Response(200, $json + ['Retry-After' => '3'], self::body('assessment-view-pending.json')),
+            new Response(200, $json + ['Retry-After' => '0'], self::body('assessment-view-pending.json')),
+            new Response(200, $json, self::body('assessment-view-complete.json')),
         ], $history);
         $slept = [];
         $now = 0.0;
@@ -69,7 +69,7 @@ final class WaitTest extends TestCase
     {
         $json = ['Content-Type' => 'application/json', 'Retry-After' => '2'];
         $history = [];
-        $pending = self::body('assessment-pending.json');
+        $pending = self::body('assessment-view-pending.json');
         $client = self::client([new Response(200, $json, $pending), new Response(200, $json, $pending), new Response(200, $json, $pending)], $history);
         $slept = [];
         $now = 0.0;
@@ -110,9 +110,9 @@ final class WaitTest extends TestCase
         $json = ['Content-Type' => 'application/json'];
         $history = [];
         $client = self::client([
-            new Response(200, $json, self::body('assessment-partial.json')),
-            new Response(200, $json + ['Retry-After' => '2'], self::body('assessment-partial.json')),
-            new Response(200, $json, self::body('assessment-complete.json')),
+            new Response(200, $json, self::body('assessment-view-partial.json')),
+            new Response(200, $json + ['Retry-After' => '2'], self::body('assessment-view-partial.json')),
+            new Response(200, $json, self::body('assessment-view-complete.json')),
         ], $history);
         $slept = [];
         $now = 0.0;
@@ -127,9 +127,9 @@ final class WaitTest extends TestCase
     {
         $json = ['Content-Type' => 'application/json'];
         $history = [];
-        $partial = self::body('assessment-partial.json');
+        $partial = self::body('assessment-view-partial.json');
         $client = self::client([
-            new Response(200, $json + ['Retry-After' => '1'], self::body('assessment-pending.json')),
+            new Response(200, $json + ['Retry-After' => '1'], self::body('assessment-view-pending.json')),
             new Response(200, $json, $partial),
             new Response(200, $json, $partial),
             new Response(200, $json, $partial),

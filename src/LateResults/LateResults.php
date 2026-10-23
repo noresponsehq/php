@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\LateResults;
 
 use NoResponse\Models\Shared\Assessment;
+use NoResponse\Models\Shared\Status;
 use NoResponse\Webhooks\Event;
 use NoResponse\Webhooks\Webhook;
 
@@ -12,8 +13,8 @@ use NoResponse\Webhooks\Webhook;
  * Late-result handlers. Hand-written; not generated.
  *
  * An assessment can be revised after the signup was allowed: a slow source
- * settles and the recommendation rises. NoResponse sends the new version as a
- * signed assessment.updated webhook. handleLateResult verifies that delivery
+ * settles and the account's decision rises. NoResponse sends the new version
+ * as a signed assessment.updated webhook. handleLateResult verifies that delivery
  * with Webhook::constructEvent, picks an action from your policy, and acts
  * through the auth provider's admin API: revoke the user's sessions or ban
  * the user. It never acts on an unverified event or a test event. Every
@@ -22,35 +23,36 @@ use NoResponse\Webhooks\Webhook;
  */
 final class LateResults
 {
-    /** Revoke sessions on review; do nothing on allow or step_up. Banning is opt-in. */
+    /** Revoke sessions on review or block; do nothing on allow or step_up. Banning is opt-in. */
     public const DEFAULT_POLICY = [
         'allow' => LateResultAction::NONE,
         'step_up' => LateResultAction::NONE,
         'review' => LateResultAction::REVOKE_SESSIONS,
+        'block' => LateResultAction::REVOKE_SESSIONS,
     ];
 
     /**
      * The action your policy names for a verified event. Only a served
-     * assessment with a recommendation can act; a test event from the
-     * send-test-event call never does. A recommendation the policy leaves out
-     * does nothing.
+     * assessment that carries the account's decision (account.risk.decision)
+     * can act; a test event from the send-test-event call never does. A
+     * decision the policy leaves out does nothing.
      *
-     * @param  array<string, string>|null  $policy  recommendation => action; defaults to DEFAULT_POLICY
+     * @param  array<string, string>|null  $policy  decision => action; defaults to DEFAULT_POLICY
      *
      * @throws \InvalidArgumentException for an action other than none, revoke_sessions or ban
      */
     public static function lateResultAction(Event $event, ?array $policy = null): string
     {
         $policy ??= self::DEFAULT_POLICY;
-        if ($event->type !== 'assessment.updated' || $event->test || ! $event->data instanceof Assessment || $event->isExpired()) {
+        if ($event->type !== 'assessment.updated' || $event->test || ! $event->data instanceof Assessment || $event->isExpired()
+            || $event->data->status === Status::Pending) {
             return LateResultAction::NONE;
         }
-        $recommendation = $event->data->recommendation ?? $event->data->risk?->recommendation;
-        $recommendation = $recommendation instanceof \BackedEnum ? $recommendation->value : $recommendation;
-        if (! in_array($recommendation, ['allow', 'step_up', 'review'], true)) {
+        $decision = $event->data->account?->risk->decision;
+        if ($decision === null) {
             return LateResultAction::NONE;
         }
-        $action = $policy[$recommendation] ?? null;
+        $action = $policy[$decision->value] ?? null;
         if ($action === null) {
             return LateResultAction::NONE;
         }
@@ -71,7 +73,7 @@ final class LateResults
      *
      * @param  array<string, string|array<string>>  $headers
      * @param  array<string, string>  $secrets
-     * @param  array<string, string>|null  $policy  recommendation => action; defaults to DEFAULT_POLICY
+     * @param  array<string, string>|null  $policy  decision => action; defaults to DEFAULT_POLICY
      * @param  (callable(string, Event): (string|null))|null  $userId  maps the assessment's account_id to the provider
      *                                                                 user id; defaults to the account_id itself.
      *                                                                 Return null or '' to take no action.
@@ -94,7 +96,7 @@ final class LateResults
         if ($action === LateResultAction::NONE || ! $event->data instanceof Assessment) {
             return new LateResult($event, LateResultAction::NONE);
         }
-        $accountId = $event->data->accountId;
+        $accountId = $event->data->detail->accountId;
         $user = $userId === null ? $accountId : $userId($accountId, $event);
         if ($user === null || $user === '') {
             return new LateResult($event, LateResultAction::NONE);

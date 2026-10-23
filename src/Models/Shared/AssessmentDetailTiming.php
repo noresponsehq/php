@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-class AssessmentTiming
+class AssessmentDetailTiming
 {
     /**
      * The budget the server applied to the synchronous answer.

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Tests;
 
 use NoResponse\Models\Shared\Assessment;
-use NoResponse\Models\Shared\Recommendation;
+use NoResponse\Models\Shared\AccountDecision;
 use NoResponse\Webhooks\AccountDeleted;
 use NoResponse\Webhooks\AssessmentExpired;
 use NoResponse\Webhooks\EndpointVerification;
@@ -67,9 +67,9 @@ final class WebhookTest extends TestCase
         $this->assertSame($headers['NR-Webhook-Id'], $event->id);
         $this->assertSame('2026-10-14T09:00:02.000Z', $event->createdAt);
         $this->assertInstanceOf(Assessment::class, $event->data);
-        $this->assertSame('asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM', $event->data->assessmentId);
-        $this->assertSame(2, $event->data->assessmentVersion);
-        $this->assertSame(Recommendation::StepUp, $event->data->risk?->recommendation);
+        $this->assertSame('asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM', $event->data->id);
+        $this->assertSame(2, $event->data->detail->assessmentVersion);
+        $this->assertSame(AccountDecision::StepUp, $event->data->account?->risk->decision);
         $this->assertFalse($event->isExpired());
         // PSR-7 style lists of values, in lower case, verify the same delivery.
         $psr = [];
@@ -98,16 +98,17 @@ final class WebhookTest extends TestCase
 
     public function test_rotation_and_event_id(): void
     {
-        $complete = self::fixture('valid/assessment-complete.json');
+        $complete = self::fixture('valid/assessment-view-complete.json');
         $event = ['id' => 'evt_01JA2ZB4N5P6Q7R8S9T0VWXYZ2', 'type' => 'assessment.updated', 'created_at' => '2026-10-18T11:00:04Z', 'data' => $complete];
         $both = ['whk_sdktest01' => 'old-secret', 'whk_sdktest02' => 'new-secret'];
         [$raw, $headers] = self::signed($event, 'new-secret', $event['id'], 'whk_sdktest02');
         $verified = Webhook::constructEvent($raw, $headers, $both, now: self::NOW);
         $this->assertInstanceOf(Assessment::class, $verified->data);
-        $this->assertSame($complete['assessment_id'], $verified->data->assessmentId);
+        $this->assertSame($complete['id'], $verified->data->id);
+        $this->assertSame($complete['detail']['assessment_version'], $verified->data->detail->assessmentVersion);
         [$raw, $headers] = self::signed($event, 'new-secret', 'evt_01JA2ZB4N5P6Q7R8S9T0VWXYZ9', 'whk_sdktest02');
         $this->refused('invalid_payload', $raw, $headers, $both);
-        $pointer = ['data' => ['assessment_id' => $complete['assessment_id'], 'assessment_url' => '/v1/assessments/x']] + $event;
+        $pointer = ['data' => ['assessment_id' => $complete['id'], 'assessment_url' => '/v1/assessments/x']] + $event;
         [$raw, $headers] = self::signed($pointer, 'new-secret', $event['id'], 'whk_sdktest02');
         $this->refused('invalid_payload', $raw, $headers, $both);
     }
@@ -183,7 +184,7 @@ final class WebhookTest extends TestCase
     public function test_an_empty_summary_object_stays_an_object(): void
     {
         $body = self::fixture('valid/webhook-assessment-updated.json');
-        $body['data']['risk']['summary']['email'] = new \stdClass;
+        $body['data']['detail']['risk']['summary']['email'] = new \stdClass;
         [$raw, $headers] = self::signed($body, 'secret', $body['id']);
         $event = Webhook::constructEvent($raw, $headers, ['whk_sdktest01' => 'secret'], now: self::NOW);
         $this->assertInstanceOf(\NoResponse\Models\Shared\Assessment::class, $event->data);

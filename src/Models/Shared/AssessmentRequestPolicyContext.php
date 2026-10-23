@@ -5,18 +5,9 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
+/** AssessmentRequestPolicyContext - Optional policy inputs: region. */
 class AssessmentRequestPolicyContext
 {
-    /**
-     * The provider flow the assessment gates. Use the top-level flow instead; this member is ignored when the top-level flow is present. Absent means signup.
-     *
-     * @var ?\NoResponse\Models\Shared\Flow $flow
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('flow')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Flow|null')]
-    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?Flow $flow = null;
-
     /**
      * ISO 3166-1 alpha-2 region of the signup, as the provider determines it.
      *
@@ -27,13 +18,11 @@ class AssessmentRequestPolicyContext
     public ?string $region = null;
 
     /**
-     * @param  ?\NoResponse\Models\Shared\Flow  $flow
      * @param  ?string  $region
      * @phpstan-pure
      */
-    public function __construct(?Flow $flow = null, ?string $region = null)
+    public function __construct(?string $region = null)
     {
-        $this->flow = $flow;
         $this->region = $region;
     }
 }

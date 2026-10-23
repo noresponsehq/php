@@ -14,7 +14,7 @@ Signup and gateway assessments.
 
 ## create
 
-Returns within the deadline (3000 ms at most) with a complete, partial or pending assessment: 200 carries complete or partial, 202 carries pending with Location and Retry-After. A pending answer has no recommendation; apply your own fallback for pending, 429, 503 or a timeout. risk.block says when your block threshold was reached. Requires the assess scope. Idempotency-Key is optional in the SDK and is bound to the body for 24 hours: the same key with the same body replays the latest assessment with Idempotent-Replayed: true and starts no new work; the same key with a different body answers 409 idempotency_key_reused. response_mode defaults to standard; detailed needs the detailed scope.
+Assesses one signup, login or purchase (flow) and answers with the account's one current risk: account.risk.decision is the decision for this flow (allow, step_up, review or block, where block means your block threshold was reached), and detail holds this assessment's own facts. depth sets how long the answer waits for sources: quick waits only for the fast ones (500 ms), full for the whole budget (3000 ms at most); it defaults to full for signup and purchase and quick for login. 200 carries complete or partial, 202 carries pending with Location and Retry-After. While the account's first assessment is pending, account is absent: apply your own fallback for that, 429, 503 or a timeout. NoResponse blocks nothing itself; you decide. Requires the assess scope. Idempotency-Key is optional in the SDK and is bound to the body for 24 hours: the same key with the same body replays the latest assessment with Idempotent-Replayed: true and starts no new work; the same key with a different body answers 409 idempotency_key_reused. response_mode defaults to standard; detailed needs the detailed scope.
 
 ### Example Usage: complete
 
@@ -35,6 +35,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
+    flow: Shared\Flow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -72,7 +73,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: false,
+        verified: true,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -119,6 +120,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
+    flow: Shared\Flow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -156,7 +158,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: false,
+        verified: true,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -203,7 +205,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\AssessmentFlow::Signup,
+    flow: Shared\Flow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new_user_42',
@@ -214,6 +216,91 @@ $body = new Shared\AssessmentRequest(
     ),
     requestId: 'req-2026-10-14-0001',
     deadlineMs: 300,
+);
+
+$response = $sdk->assessments->create(
+    body: $body,
+    idempotencyKey: 'signup-acct_7f3a9c'
+
+);
+
+if ($response->assessment !== null) {
+    // handle response
+}
+```
+### Example Usage: login
+
+<!-- UsageSnippet language="php" operationID="createAssessment" method="post" path="/v1/assessments" example="login" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\AssessmentRequest(
+    accountId: 'acct_7f3a9c',
+    flow: Shared\Flow::Signup,
+    identifiers: new Shared\AssessmentRequestIdentifiers(
+        email: 'new.user@example.com',
+        username: 'new.user',
+        phone: '+61412345678',
+        name: 'Alex Example',
+        ip: '203.0.113.45',
+    ),
+    policyContext: new Shared\AssessmentRequestPolicyContext(
+        region: 'AU',
+    ),
+    requestId: 'req-2026-10-14-0001',
+    clientContext: new Shared\AssessmentRequestClientContext(
+        timezone: 'Australia/Sydney',
+        locale: 'en-AU',
+        appVersion: '4.12.0',
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
+        deviceId: 'dev_5c1e8a',
+        sessionId: 'sess_9b2d41',
+        clientObservedAt: '2026-10-14T08:59:58.000Z',
+    ),
+    authContext: new Shared\AuthContext(
+        provider: 'clerk',
+        issuer: 'https://example-app.clerk.accounts.dev',
+        audience: 'https://app.example.com',
+        audiences: [
+            'https://app.example.com',
+        ],
+        subject: 'user_2EXAMPLE',
+        sessionId: 'sess_2EXAMPLE',
+        organizationId: 'org_2EXAMPLE',
+        tenantId: 'tenant_2EXAMPLE',
+        tokenId: '2EXAMPLEJTI',
+        issuedAt: '2026-10-14T08:59:40.000Z',
+        expiresAt: '2026-10-14T09:00:40.000Z',
+        sessionCreatedAt: '2026-10-14T08:57:00.000Z',
+        authTime: '2026-10-14T08:55:00.000Z',
+        accountCreatedAt: '2026-10-14T08:56:00.000Z',
+        verified: true,
+        mfa: new Shared\AuthContextMfa(
+            methods: [
+                'totp',
+            ],
+        ),
+        roles: [
+            'admin',
+        ],
+        scopes: [
+            'org:sys_profile:manage',
+        ],
+    ),
+    issuedCredential: new Shared\AssessmentRequestIssuedCredential(
+        sha256: '2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b',
+    ),
 );
 
 $response = $sdk->assessments->create(
@@ -245,7 +332,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\AssessmentFlow::Signup,
+    flow: Shared\Flow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
     ),
@@ -280,7 +367,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_8412',
-    flow: Shared\AssessmentFlow::Signup,
+    flow: Shared\Flow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'jane.doe@example.com',
         username: 'janedoe',
@@ -325,6 +412,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
+    flow: Shared\Flow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -362,91 +450,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: false,
-        mfa: new Shared\AuthContextMfa(
-            methods: [
-                'totp',
-            ],
-        ),
-        roles: [
-            'admin',
-        ],
-        scopes: [
-            'org:sys_profile:manage',
-        ],
-    ),
-    issuedCredential: new Shared\AssessmentRequestIssuedCredential(
-        sha256: '2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b',
-    ),
-);
-
-$response = $sdk->assessments->create(
-    body: $body,
-    idempotencyKey: 'signup-acct_7f3a9c'
-
-);
-
-if ($response->assessment !== null) {
-    // handle response
-}
-```
-### Example Usage: standard
-
-<!-- UsageSnippet language="php" operationID="createAssessment" method="post" path="/v1/assessments" example="standard" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use NoResponse;
-use NoResponse\Models\Shared;
-
-$sdk = NoResponse\NoResponseClient::builder()
-    ->setSecurity(
-        getenv('NORESPONSE_API_KEY') ?: ''
-    )
-    ->build();
-
-$body = new Shared\AssessmentRequest(
-    accountId: 'acct_7f3a9c',
-    identifiers: new Shared\AssessmentRequestIdentifiers(
-        email: 'new.user@example.com',
-        username: 'new.user',
-        phone: '+61412345678',
-        name: 'Alex Example',
-        ip: '203.0.113.45',
-    ),
-    policyContext: new Shared\AssessmentRequestPolicyContext(
-        region: 'AU',
-    ),
-    requestId: 'req-2026-10-14-0001',
-    clientContext: new Shared\AssessmentRequestClientContext(
-        timezone: 'Australia/Sydney',
-        locale: 'en-AU',
-        appVersion: '4.12.0',
-        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
-        deviceId: 'dev_5c1e8a',
-        sessionId: 'sess_9b2d41',
-        clientObservedAt: '2026-10-14T08:59:58.000Z',
-    ),
-    authContext: new Shared\AuthContext(
-        provider: 'clerk',
-        issuer: 'https://example-app.clerk.accounts.dev',
-        audience: 'https://app.example.com',
-        audiences: [
-            'https://app.example.com',
-        ],
-        subject: 'user_2EXAMPLE',
-        sessionId: 'sess_2EXAMPLE',
-        organizationId: 'org_2EXAMPLE',
-        tenantId: 'tenant_2EXAMPLE',
-        tokenId: '2EXAMPLEJTI',
-        issuedAt: '2026-10-14T08:59:40.000Z',
-        expiresAt: '2026-10-14T09:00:40.000Z',
-        sessionCreatedAt: '2026-10-14T08:57:00.000Z',
-        authTime: '2026-10-14T08:55:00.000Z',
-        accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: false,
+        verified: true,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -500,7 +504,7 @@ if ($response->assessment !== null) {
 
 ## get
 
-Returns the highest assessment_version. Requires the assess or history scope. While status is pending, or partial with a source still running, the response carries Retry-After; poll no faster than it says. Another tenant's assessment, an unknown or expired assessment and a malformed assessment_id all answer 404 not_found. response_mode=detailed needs the detailed scope.
+Returns the highest assessment_version, with the account's current risk. Requires the assess or history scope. While status is pending, or partial with a source still running, the response carries Retry-After; poll no faster than it says. Another tenant's assessment, an unknown or expired assessment and a malformed assessment_id all answer 404 not_found. response_mode=detailed needs the detailed scope.
 
 ### Example Usage: complete
 
@@ -531,6 +535,32 @@ if ($response->assessment !== null) {
 ### Example Usage: detailed
 
 <!-- UsageSnippet language="php" operationID="getAssessment" method="get" path="/v1/assessments/{assessment_id}" example="detailed" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$response = $sdk->assessments->get(
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
+);
+
+if ($response->assessment !== null) {
+    // handle response
+}
+```
+### Example Usage: login
+
+<!-- UsageSnippet language="php" operationID="getAssessment" method="get" path="/v1/assessments/{assessment_id}" example="login" -->
 ```php
 declare(strict_types=1);
 
@@ -606,9 +636,9 @@ if ($response->assessment !== null) {
     // handle response
 }
 ```
-### Example Usage: standard
+### Example Usage: pending_known_account
 
-<!-- UsageSnippet language="php" operationID="getAssessment" method="get" path="/v1/assessments/{assessment_id}" example="standard" -->
+<!-- UsageSnippet language="php" operationID="getAssessment" method="get" path="/v1/assessments/{assessment_id}" example="pending_known_account" -->
 ```php
 declare(strict_types=1);
 

@@ -15,7 +15,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\AssessmentFlow::Signup,
+    flow: Shared\Flow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
     ),

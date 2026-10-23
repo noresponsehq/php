@@ -41,7 +41,7 @@ final class TransportTest extends TestCase
      */
     private static function recording(array &$history): NoResponseClientBuilder
     {
-        $body = (string) file_get_contents(__DIR__.'/fixtures/valid/assessment-complete.json');
+        $body = (string) file_get_contents(__DIR__.'/fixtures/valid/assessment-view-complete.json');
         $stack = HandlerStack::create(fn () => \GuzzleHttp\Promise\Create::promiseFor(
             new Response(200, ['Content-Type' => 'application/json'], $body),
         ));

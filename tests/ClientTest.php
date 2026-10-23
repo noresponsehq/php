@@ -13,6 +13,7 @@ use NoResponse\Models\Errors\NoResponseException;
 use NoResponse\Models\Errors\NotFoundException;
 use NoResponse\Models\Shared\AssessmentRequest;
 use NoResponse\Models\Shared\AssessmentRequestIdentifiers;
+use NoResponse\Models\Shared\Flow;
 use NoResponse\NoResponseClient;
 use NoResponse\Utils;
 use PHPUnit\Framework\TestCase;
@@ -46,6 +47,7 @@ final class ClientTest extends TestCase
     {
         return new AssessmentRequest(
             accountId: 'acct_7f3a9c',
+            flow: Flow::Signup,
             identifiers: new AssessmentRequestIdentifiers(email: 'new.user@example.com'),
         );
     }
@@ -55,8 +57,8 @@ final class ClientTest extends TestCase
         $json = ['Content-Type' => 'application/json'];
         $history = [];
         $client = self::client([
-            new Response(200, $json, self::body('assessment-complete.json')),
-            new Response(200, $json, self::body('assessment-complete.json')),
+            new Response(200, $json, self::body('assessment-view-complete.json')),
+            new Response(200, $json, self::body('assessment-view-complete.json')),
         ], $history);
         $client->assessments->create(self::request());
         $client->assessments->create(self::request());
@@ -71,7 +73,7 @@ final class ClientTest extends TestCase
     {
         $history = [];
         $client = self::client([
-            new Response(200, ['Content-Type' => 'application/json'], self::body('assessment-complete.json')),
+            new Response(200, ['Content-Type' => 'application/json'], self::body('assessment-view-complete.json')),
         ], $history);
         $client->assessments->create(self::request(), 'signup-usr_8f2k1-0001');
         $this->assertSame('signup-usr_8f2k1-0001', $history[0]['request']->getHeaderLine('Idempotency-Key'));
@@ -83,7 +85,7 @@ final class ClientTest extends TestCase
         $history = [];
         $client = self::client([
             new Response(503, ['Content-Type' => 'application/problem+json'], '{}'),
-            new Response(200, $json, self::body('assessment-complete.json')),
+            new Response(200, $json, self::body('assessment-view-complete.json')),
         ], $history);
         $options = Utils\Options::builder()
             ->setRetryConfig(new Utils\Retry\RetryConfigBackoff(1, 5, 1.1, 1000, false))

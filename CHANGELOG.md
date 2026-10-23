@@ -1,5 +1,12 @@
 # Changelog
 
+## 6.0.0
+
+* `sdk->assessments->create()`: 
+  *  `request.body` **Changed** (Breaking ⚠️)
+  *  `response` **Changed** (Breaking ⚠️)
+* `sdk->assessments->get()`:  `response` **Changed** (Breaking ⚠️)
+
 ## 5.0.11
 
 * `sdk->assessments->delete()`: **Added**

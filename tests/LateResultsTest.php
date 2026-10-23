@@ -209,8 +209,11 @@ PHP;
     private static function delivery(\stdClass $data, ?string $accountId = null, bool $test = false): array
     {
         if ($accountId !== null) {
-            $data = clone $data;
-            $data->account_id = $accountId;
+            $data = json_decode(json_encode($data, JSON_THROW_ON_ERROR), false, 512, JSON_THROW_ON_ERROR);
+            $data->detail->account_id = $accountId;
+            if (isset($data->account)) {
+                $data->account->id = $accountId;
+            }
         }
         $body = ['id' => self::EVENT_ID, 'type' => 'assessment.updated', 'created_at' => '2026-10-18T11:00:04Z'];
         if ($test) {
@@ -256,29 +259,40 @@ PHP;
         return LateResults::handleLateResult($raw, $headers, self::secrets(), $provider, now: self::NOW)->event;
     }
 
-    private static function data(string $status, ?string $recommendation): \stdClass
+    /** An assessment with this status whose account carries this decision. */
+    private static function data(string $status, string $decision): \stdClass
     {
-        $data = self::fixture('valid/assessment-complete.json');
+        $data = self::fixture('valid/assessment-view-complete.json');
         $data->status = $status;
-        $data->recommendation = $recommendation;
-        if (isset($data->risk)) {
-            $data->risk->recommendation = $recommendation;
+        $data->detail->status = $status;
+        $data->account->risk->decision = $decision;
+        foreach (['signup', 'login', 'purchase'] as $flow) {
+            $data->account->decisions_by_flow->{$flow} = $decision;
         }
 
         return $data;
     }
 
-    public function test_default_policy_revokes_on_review_and_does_nothing_on_allow_step_up_pending_or_expiry(): void
+    public function test_default_policy_revokes_on_review_or_block_and_does_nothing_on_allow_step_up_pending_or_expiry(): void
     {
-        $review = self::event(self::fixture('valid/assessment-phone-uncovered-complete.json'));
-        $stepUp = self::event(self::fixture('valid/assessment-complete.json'));
-        $pending = self::event(self::fixture('valid/assessment-pending.json'));
+        $review = self::event(self::data('complete', 'review'));
+        $stepUp = self::event(self::data('complete', 'step_up'));
+        $block = self::event(self::fixture('valid/assessment-view-block.json'));
+        $allow = self::event(self::fixture('valid/assessment-view-complete.json'));
+        $pending = self::event(self::fixture('valid/assessment-view-pending.json'));
+        $pendingKnown = self::event(self::fixture('valid/assessment-view-pending-known-account.json'));
         $expired = self::event(self::fixture('valid/webhook-assessment-expired.json')->data);
         $this->assertInstanceOf(AssessmentExpired::class, $expired->data);
 
         $this->assertSame('revoke_sessions', LateResults::lateResultAction($review));
+        $this->assertSame('revoke_sessions', LateResults::lateResultAction($block));
         $this->assertSame('none', LateResults::lateResultAction($stepUp));
+        $this->assertSame('none', LateResults::lateResultAction($allow));
         $this->assertSame('none', LateResults::lateResultAction($pending));
+        // A pending assessment of a known account carries the earlier decision; it never acts.
+        $this->assertSame('none', LateResults::lateResultAction($pendingKnown, ['allow' => 'ban']));
+        $this->assertSame('none', LateResults::lateResultAction(self::event(self::data('pending', 'review'))));
+        $this->assertSame('ban', LateResults::lateResultAction($block, ['block' => 'ban']));
         $this->assertSame('none', LateResults::lateResultAction($expired));
         $this->assertSame('none', LateResults::lateResultAction(self::event(self::data('partial', 'allow'))));
         $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'endpoint.verification', 'x', new \NoResponse\Webhooks\EndpointVerification('whe_x', 'y'))));
@@ -291,18 +305,19 @@ PHP;
         } catch (\InvalidArgumentException) {
             $this->addToAssertionCount(1);
         }
-        $this->assertSame(['allow' => 'none', 'step_up' => 'none', 'review' => 'revoke_sessions'], LateResults::DEFAULT_POLICY);
+        $this->assertSame(['allow' => 'none', 'step_up' => 'none', 'review' => 'revoke_sessions', 'block' => 'revoke_sessions'], LateResults::DEFAULT_POLICY);
         $this->assertSame(['none', 'revoke_sessions', 'ban'], LateResultAction::ALL);
     }
 
     public function test_clerk_review_revokes_each_active_session_and_a_ban_policy_bans_the_user(): void
     {
         $clerk = new ClerkProvider('sk_test_mock', $this->url.'/v1');
-        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'user_2EXAMPLE');
+        [$raw, $headers] = self::delivery(self::data('complete', 'review'), 'user_2EXAMPLE');
         $result = LateResults::handleLateResult($raw, $headers, self::secrets(), $clerk, now: self::NOW);
         $this->assertSame('revoke_sessions', $result->action);
         $this->assertSame('user_2EXAMPLE', $result->userId);
-        $this->assertSame(self::fixture('valid/assessment-phone-uncovered-complete.json')->assessment_id, $result->event->data->assessmentId);
+        $this->assertSame(self::data('complete', 'review')->id, $result->event->data->id);
+        $this->assertSame('user_2EXAMPLE', $result->event->data->detail->accountId);
         $calls = $this->calls();
         $this->assertSame(['GET /v1/sessions', 'POST /v1/sessions/sess_1/revoke', 'POST /v1/sessions/sess_2/revoke'], self::lines($calls));
         $this->assertSame(['user_id' => 'user_2EXAMPLE', 'status' => 'active', 'limit' => '100', 'offset' => '0'], $calls[0]['query']);
@@ -320,7 +335,7 @@ PHP;
     public function test_workos_revoke_pages_through_the_sessions_and_ban_revokes_then_deletes_the_user(): void
     {
         $workos = new WorkosProvider('sk_test_workos', $this->url);
-        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-complete.json'), 'acct_7f3a9c');
+        [$raw, $headers] = self::delivery(self::data('complete', 'step_up'), 'acct_7f3a9c');
         $result = LateResults::handleLateResult(
             $raw,
             $headers,
@@ -354,7 +369,7 @@ PHP;
         $id = 'auth0|64abc0de1234567890abcdef';
         $escaped = 'auth0%7C64abc0de1234567890abcdef';
         $auth0 = new Auth0Provider('mgmt_token', baseUrl: $this->url.'/api/v2');
-        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), $id);
+        [$raw, $headers] = self::delivery(self::data('complete', 'review'), $id);
         $result = LateResults::handleLateResult($raw, $headers, self::secrets(), $auth0, now: self::NOW);
         $this->assertSame('revoke_sessions', $result->action);
         $this->assertSame($id, $result->userId);
@@ -392,7 +407,7 @@ PHP;
         $id = 'auth0|64abc0de1234567890abcdef';
         $escaped = 'auth0%7C64abc0de1234567890abcdef';
         $auth0 = new Auth0Provider('mgmt_token', baseUrl: $this->url.'/free/api/v2');
-        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), $id);
+        [$raw, $headers] = self::delivery(self::data('complete', 'review'), $id);
 
         $result = LateResults::handleLateResult($raw, $headers, self::secrets(), $auth0, now: self::NOW);
         $this->assertSame('ban', $result->action);
@@ -439,7 +454,7 @@ PHP;
 
     public function test_auth0_with_refresh_tokens_but_no_sessions_api_still_blocks_and_a_scope_refusal_never_falls_back(): void
     {
-        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'auth0|abc');
+        [$raw, $headers] = self::delivery(self::data('complete', 'review'), 'auth0|abc');
         $result = LateResults::handleLateResult($raw, $headers, self::secrets(), new Auth0Provider('t', baseUrl: $this->url.'/freert/api/v2'), now: self::NOW);
         $this->assertSame('ban', $result->action);
         $this->assertTrue($this->freeTenant()['blocked']);
@@ -477,7 +492,7 @@ PHP;
                 $this->done[] = "ban {$userId}";
             }
         };
-        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'u_1');
+        [$raw, $headers] = self::delivery(self::data('complete', 'review'), 'u_1');
         $this->assertSame('revoke_sessions', LateResults::handleLateResult($raw, $headers, self::secrets(), $plain, now: self::NOW)->action);
         $this->assertSame('ban', LateResults::handleLateResult($raw, $headers, self::secrets(), $plain, policy: ['review' => 'ban'], now: self::NOW)->action);
         $this->assertSame(['revoke u_1', 'ban u_1'], $plain->done);
@@ -486,7 +501,7 @@ PHP;
     public function test_an_unverified_quiet_or_unmapped_event_makes_no_provider_call_and_a_provider_refusal_throws(): void
     {
         $auth0 = new Auth0Provider('mgmt_token', baseUrl: $this->url.'/forbid/api/v2');
-        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'auth0|abc');
+        [$raw, $headers] = self::delivery(self::data('complete', 'review'), 'auth0|abc');
         $code = static function (callable $run): string {
             try {
                 $run();
@@ -500,8 +515,9 @@ PHP;
         $this->assertSame('invalid_signature', $code(fn () => LateResults::handleLateResult($raw.' ', $headers, self::secrets(), $auth0, now: self::NOW)));
         $this->assertSame('invalid_timestamp', $code(fn () => LateResults::handleLateResult($raw, $headers, self::secrets(), $auth0, now: self::NOW + 301)));
         foreach ([
-            self::fixture('valid/assessment-complete.json'),
-            self::fixture('valid/assessment-pending.json'),
+            self::data('complete', 'step_up'),
+            self::fixture('valid/assessment-view-pending.json'),
+            self::fixture('valid/assessment-view-pending-known-account.json'),
             self::fixture('valid/webhook-assessment-expired.json')->data,
         ] as $data) {
             [$r, $h] = self::delivery($data);
@@ -526,7 +542,7 @@ PHP;
     {
         $sample = self::fixture('valid/webhook-assessment-updated-test.json')->data;
         $clerk = new ClerkProvider('sk_test_mock', $this->url.'/v1');
-        $banAll = ['allow' => 'ban', 'step_up' => 'ban', 'review' => 'ban'];
+        $banAll = ['allow' => 'ban', 'step_up' => 'ban', 'review' => 'ban', 'block' => 'ban'];
         $resolver = static fn (): string => 'user_2EXAMPLE';
         [$raw, $headers] = self::delivery($sample, null, true);
         $result = LateResults::handleLateResult($raw, $headers, self::secrets(), $clerk, policy: $banAll, userId: $resolver, now: self::NOW);
@@ -551,7 +567,7 @@ PHP;
             new ClerkProvider('sk_test_mock', $this->url.'/gone/v1'),
             new Auth0Provider('mgmt_token', baseUrl: $this->url.'/gone/api/v2'),
         ];
-        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'user_GONE');
+        [$raw, $headers] = self::delivery(self::data('complete', 'review'), 'user_GONE');
         for ($i = 0; $i < 2; $i++) {
             foreach ($providers as $provider) {
                 $this->assertSame('ban', LateResults::handleLateResult($raw, $headers, self::secrets(), $provider, policy: ['review' => 'ban'], now: self::NOW)->action);
@@ -610,7 +626,7 @@ PHP;
             $lines[] = $line;
         });
         $this->assertSame('log_only', $logOnly->name());
-        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'usr_8f2k1');
+        [$raw, $headers] = self::delivery(self::data('complete', 'review'), 'usr_8f2k1');
         $revoked = LateResults::handleLateResult($raw, $headers, self::secrets(), $logOnly, now: self::NOW);
         $this->assertSame('revoke_sessions', $revoked->action);
         $this->assertSame('usr_8f2k1', $revoked->userId);
@@ -620,7 +636,7 @@ PHP;
             'NoResponse late result (log only): would revoke every session of user usr_8f2k1',
             'NoResponse late result (log only): would ban user usr_8f2k1 and end their sessions',
         ], $lines);
-        [$testRaw, $testHeaders] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'usr_8f2k1', true);
+        [$testRaw, $testHeaders] = self::delivery(self::data('complete', 'review'), 'usr_8f2k1', true);
         $this->assertSame('none', LateResults::handleLateResult($testRaw, $testHeaders, self::secrets(), $logOnly, now: self::NOW)->action);
         $this->assertCount(2, $lines);
         try {

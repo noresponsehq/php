@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** AccountDecisionsByFlow - The decision for each flow. Every flow uses the tenant's signup thresholds today, so all three equal risk.decision. */
+/** AccountDecisionsByFlow - The decision for each flow. Every flow uses the tenant's signup thresholds today, so all three are equal. */
 class AccountDecisionsByFlow
 {
     /**

@@ -37,18 +37,20 @@ final class MockServerTest extends TestCase
             idempotencyKey: 'mock-server-smoke-0001',
             body: new Shared\AssessmentRequest(
                 accountId: 'acct_7f3a9c',
+                flow: Shared\Flow::Signup,
                 identifiers: new Shared\AssessmentRequestIdentifiers(email: 'new.user@example.com'),
             ),
         );
 
-        self::assertStringStartsWith('asm_', $response->result->assessmentId);
-        self::assertSame('acct_7f3a9c', $response->result->accountId);
+        self::assertStringStartsWith('asm_', $response->result->id);
+        self::assertSame('acct_7f3a9c', $response->result->detail->accountId);
     }
 
     public function testGetReturnsTheDocumentedAssessment(): void
     {
         $response = self::client()->assessments->get('asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM');
 
-        self::assertStringStartsWith('asm_', $response->result->assessmentId);
+        self::assertStringStartsWith('asm_', $response->result->id);
+        self::assertSame($response->result->id, $response->result->detail->assessmentId);
     }
 }

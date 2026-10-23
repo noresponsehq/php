@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** AssessmentList - Body of the 200 answer to POST /v1/assessments/query: one page of the calling tenant's unexpired assessments for one account, newest first, each at its latest assessment_version. Every item's account_id equals the page's. An assessment past its expires_at is not listed. next_cursor is present only when another page exists. */
+/** AssessmentList - Body of the 200 answer to POST /v1/assessments/query: one page of the calling tenant's unexpired assessments for one account, newest first, each at its latest assessment_version, as its detail; the account's current risk is GET /v1/accounts/{account_id}. Every item's account_id equals the page's. An assessment past its expires_at is not listed. next_cursor is present only when another page exists. */
 class AssessmentList
 {
     /**
@@ -19,10 +19,10 @@ class AssessmentList
     /**
      * $items
      *
-     * @var array<\NoResponse\Models\Shared\Assessment> $items
+     * @var array<\NoResponse\Models\Shared\AssessmentDetail> $items
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('items')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Assessment>')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\AssessmentDetail>')]
     public array $items;
 
     /**
@@ -54,7 +54,7 @@ class AssessmentList
     /**
      * @param  string  $schemaVersion
      * @param  string  $accountId
-     * @param  array<\NoResponse\Models\Shared\Assessment>  $items
+     * @param  array<\NoResponse\Models\Shared\AssessmentDetail>  $items
      * @param  ?string  $nextCursor
      * @param  ?int  $retentionDays
      * @phpstan-pure
