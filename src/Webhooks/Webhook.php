@@ -135,7 +135,9 @@ final class Webhook
             throw new VerificationException('invalid_payload', 'Webhook event envelope is malformed');
         }
 
-        return new Event($headerId, $type, $createdAt, self::data($type, $data));
+        $test = ($body['test'] ?? null) === true && $type === 'assessment.updated';
+
+        return new Event($headerId, $type, $createdAt, self::data($type, $data), $test);
     }
 
     /**

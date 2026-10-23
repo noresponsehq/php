@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.0
+
+* `sdk->assessments->create()`:  `response.authContext` **Added**
+* `sdk->assessments->get()`:  `response.authContext` **Added**
+* `sdk->assessments->query()`:  `response.items[]->authContext` **Added**
+
 ## 4.0.3
 
 No changes detected.

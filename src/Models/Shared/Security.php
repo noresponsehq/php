@@ -9,16 +9,16 @@ class Security
 {
     /**
      *
-     * @var string $apiKey
+     * @var ?string $apiKey
      */
     #[NoResponseMetadata('security:scheme=true,type=http,subtype=bearer,name=Authorization')]
-    public string $apiKey;
+    public ?string $apiKey = null;
 
     /**
-     * @param  string  $apiKey
+     * @param  ?string  $apiKey
      * @phpstan-pure
      */
-    public function __construct(string $apiKey)
+    public function __construct(?string $apiKey = null)
     {
         $this->apiKey = $apiKey;
     }

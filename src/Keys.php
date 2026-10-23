@@ -48,7 +48,14 @@ class Keys
      *
      * @param  \NoResponse\Models\Shared\KeyRotationRequest  $request
      * @return \NoResponse\Models\Operations\RotateApiKeyResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function rotate(Shared\KeyRotationRequest $request, ?Options $options = null): Operations\RotateApiKeyResponse
     {

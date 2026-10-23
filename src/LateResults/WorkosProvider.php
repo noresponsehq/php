@@ -11,7 +11,9 @@ use Psr\Http\Client\ClientInterface;
  * GET /user_management/users/{id}/sessions and revokes each active one with
  * POST /user_management/sessions/revoke. WorkOS has no block or ban, so ban
  * revokes the sessions and then deletes the user
- * (DELETE /user_management/users/{id}); deletion is permanent.
+ * (DELETE /user_management/users/{id}); deletion is permanent. A 404 on any
+ * call (user or session already gone) counts as done, so a repeated delivery
+ * is safe.
  */
 final class WorkosProvider implements LateResultProvider
 {
@@ -41,7 +43,7 @@ final class WorkosProvider implements LateResultProvider
             if ($after !== null) {
                 $query['after'] = $after;
             }
-            $body = $this->call->call('GET', "/user_management/users/{$user}/sessions", $query);
+            $body = $this->call->call('GET', "/user_management/users/{$user}/sessions", $query, null, true);
             HttpCaller::collectActive(HttpCaller::sessions($body), $active);
             $next = is_array($body) && is_array($body['list_metadata'] ?? null) ? ($body['list_metadata']['after'] ?? null) : null;
             if (! is_string($next) || $next === '') {
@@ -50,7 +52,7 @@ final class WorkosProvider implements LateResultProvider
             $after = $next;
         }
         foreach ($active as $id) {
-            $this->call->call('POST', '/user_management/sessions/revoke', [], ['session_id' => $id]);
+            $this->call->call('POST', '/user_management/sessions/revoke', [], ['session_id' => $id], true);
         }
     }
 

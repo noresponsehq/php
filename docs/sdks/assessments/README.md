@@ -28,12 +28,12 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 $body = new Shared\AssessmentRequest(
-    accountId: '<id>',
+    accountId: 'acct_7f3a9c',
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -91,7 +91,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -112,12 +112,12 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 $body = new Shared\AssessmentRequest(
-    accountId: '<id>',
+    accountId: 'acct_7f3a9c',
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -175,7 +175,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -196,7 +196,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -217,7 +217,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -238,7 +238,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -251,7 +251,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -272,7 +272,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -296,7 +296,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -317,12 +317,12 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 $body = new Shared\AssessmentRequest(
-    accountId: '<id>',
+    accountId: 'acct_7f3a9c',
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -380,7 +380,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -401,12 +401,12 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 $body = new Shared\AssessmentRequest(
-    accountId: '<id>',
+    accountId: 'acct_7f3a9c',
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -464,7 +464,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -512,14 +512,14 @@ use NoResponse;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 
 
 $response = $sdk->assessments->get(
-    assessmentId: '<id>'
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
 if ($response->assessment !== null) {
@@ -538,14 +538,14 @@ use NoResponse;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 
 
 $response = $sdk->assessments->get(
-    assessmentId: '<id>'
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
 if ($response->assessment !== null) {
@@ -564,14 +564,14 @@ use NoResponse;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 
 
 $response = $sdk->assessments->get(
-    assessmentId: '<id>'
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
 if ($response->assessment !== null) {
@@ -590,14 +590,14 @@ use NoResponse;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 
 
 $response = $sdk->assessments->get(
-    assessmentId: '<id>'
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
 if ($response->assessment !== null) {
@@ -616,14 +616,14 @@ use NoResponse;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 
 
 $response = $sdk->assessments->get(
-    assessmentId: '<id>'
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
 if ($response->assessment !== null) {
@@ -671,7 +671,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -683,9 +683,9 @@ $body = new Shared\AssessmentOutcomeRequest(
 );
 
 $response = $sdk->assessments->recordOutcome(
-    assessmentId: '<id>',
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -706,7 +706,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -718,9 +718,9 @@ $body = new Shared\AssessmentOutcomeRequest(
 );
 
 $response = $sdk->assessments->recordOutcome(
-    assessmentId: '<id>',
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -741,7 +741,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -750,9 +750,9 @@ $body = new Shared\AssessmentOutcomeRequest(
 );
 
 $response = $sdk->assessments->recordOutcome(
-    assessmentId: '<id>',
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 
@@ -802,7 +802,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -834,12 +834,12 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
 $request = new Shared\AssessmentQuery(
-    accountId: '<id>',
+    accountId: 'acct_7f3a9c',
     cursor: 'eyJvIjoyMH0',
 );
 

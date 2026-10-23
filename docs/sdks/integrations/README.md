@@ -28,7 +28,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -57,7 +57,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -117,7 +117,7 @@ use NoResponse;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -164,7 +164,7 @@ use NoResponse;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -218,7 +218,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -247,7 +247,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 

@@ -147,6 +147,16 @@ class Assessment
     public ?string $assessmentUrl = null;
 
     /**
+     * The identity fields of the auth context the assessment was made with, echoed for the tenant's own correlation: the request's auth_context, or the one a hosted provider hook (POST /hooks/{integration_id}) built, with transport provider_hook and its hook_point. Present exactly when the request carried an auth_context, and the same on every revision of the assessment. Values are as the request or the hook sent them; tokens, timestamps, roles and scopes are not echoed, and the echo does not change the score.
+     *
+     * @var ?\NoResponse\Models\Shared\AssessmentAuthContext $authContext
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('auth_context')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentAuthContext|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?AssessmentAuthContext $authContext = null;
+
+    /**
      * Version of the body shape.
      *
      * @var string $schemaVersion
@@ -181,9 +191,10 @@ class Assessment
      * @param  ?\NoResponse\Models\Shared\Risk  $risk
      * @param  ?array<\NoResponse\Models\Shared\Signal>  $signals
      * @param  ?string  $assessmentUrl
+     * @param  ?\NoResponse\Models\Shared\AssessmentAuthContext  $authContext
      * @phpstan-pure
      */
-    public function __construct(string $assessmentId, string $accountId, Status $status, Confidence $confidence, array $incompleteSources, string $policyVersion, int $assessmentVersion, string $createdAt, string $updatedAt, string $expiresAt, AssessmentTiming $timing, ?string $requestId = null, ?Recommendation $recommendation = null, ?Risk $risk = null, ?array $signals = null, ?string $assessmentUrl = null, string $schemaVersion = '1', string $policyBasis = 'heuristic_unvalidated')
+    public function __construct(string $assessmentId, string $accountId, Status $status, Confidence $confidence, array $incompleteSources, string $policyVersion, int $assessmentVersion, string $createdAt, string $updatedAt, string $expiresAt, AssessmentTiming $timing, ?string $requestId = null, ?Recommendation $recommendation = null, ?Risk $risk = null, ?array $signals = null, ?string $assessmentUrl = null, ?AssessmentAuthContext $authContext = null, string $schemaVersion = '1', string $policyBasis = 'heuristic_unvalidated')
     {
         $this->assessmentId = $assessmentId;
         $this->accountId = $accountId;
@@ -201,6 +212,7 @@ class Assessment
         $this->risk = $risk;
         $this->signals = $signals;
         $this->assessmentUrl = $assessmentUrl;
+        $this->authContext = $authContext;
         $this->schemaVersion = $schemaVersion;
         $this->policyBasis = $policyBasis;
     }

@@ -68,7 +68,7 @@ $client = NoResponseClient::builder()
     ->build();
 ```
 
-`NoResponseClient::create($apiKey)` is the same as the builder with only the key. Timeouts, proxies and TLS settings belong to the Guzzle client you pass to `setClient`.
+`NoResponseClient::create($apiKey)` is the same as the builder with only the key. A builder given no key reads it from the `NORESPONSE_API_KEY` environment variable when `build()` runs, so `NoResponseClient::builder()->build()` works too; a key you set wins over the environment. Timeouts, proxies and TLS settings belong to the Guzzle client you pass to `setClient`.
 
 ## Assessments
 
@@ -162,7 +162,7 @@ try {
 
 ## Retries
 
-Connection errors, 408, 429 and every 5xx are retried with exponential backoff (500 ms to 8 s, 30 s in all). 409 and other 4xx are not retried. Override for the client with `setRetryConfig`, or for one call with `Options`:
+Connection errors, 408, 429 and every 5xx are retried with exponential backoff (500 ms to 8 s, 30 s in all). 409 and other 4xx are not retried. A connection failure throws a `GuzzleException` whether retries are on or off. Override for the client with `setRetryConfig`, or for one call with `Options`:
 
 ```php
 use NoResponse\Utils\Options;
@@ -180,6 +180,22 @@ $sha256 = \NoResponse\IssuedCredential::sha256($issuedKey);
 ```
 
 ## Webhooks
+
+Register an endpoint, store its signing secret, then send it test events:
+
+```php
+use NoResponse\Models\Shared\WebhookEndpointRequest;
+use NoResponse\Models\Shared\WebhookTestRequest;
+use NoResponse\Models\Shared\WebhookTestRequestEvent;
+
+$created = $client->webhookEndpoints->create(new WebhookEndpointRequest(url: 'https://app.example.com/webhooks/noresponse'))->result;
+// store $created->signingSecret->keyId and ->secret where your receiver reads them
+$endpointId = $created->endpoint->endpointId;
+$check = $client->webhookEndpoints->sendTestEvent(new WebhookTestRequest(WebhookTestRequestEvent::EndpointVerification), $endpointId); // $check->result->verified
+$client->webhookEndpoints->sendTestEvent(new WebhookTestRequest(WebhookTestRequestEvent::AssessmentUpdated), $endpointId); // $event->test is true
+```
+
+`list`, `rotateSigningKey` (the old key verifies for 7 more days) and `delete` manage it afterwards.
 
 Verify the exact bytes you received, then act on the typed event. `$secrets` maps each `whk_` key id we give you to its secret; hold both during a rotation.
 
@@ -201,7 +217,9 @@ if ($event->type === 'endpoint.verification') {
     echo json_encode(Webhook::verificationResponse($event));
     exit;
 }
-if ($event->isExpired()) {
+if ($event->test) {
+    // sendTestEvent's fixed example assessment: apply nothing
+} elseif ($event->isExpired()) {
     // forget the assessment: GET now answers 404
 } elseif ($event->data instanceof Assessment) {
     // keep the highest assessmentVersion per assessment
@@ -209,7 +227,7 @@ if ($event->isExpired()) {
 http_response_code(204);
 ```
 
-`constructEvent` refuses a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id or a bad signature. Deliveries are at least once: deduplicate on `$event->id`.
+`constructEvent` refuses a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id or a bad signature. Deliveries are at least once: deduplicate on `$event->id`. `$event->test` is true only on an `assessment.updated` event sent by `sendTestEvent`, whose data is a fixed example assessment.
 
 ### Late results
 
@@ -234,6 +252,6 @@ Names that changed:
 | `recordOutcome($body, $assessmentId, string $idempotencyKey)` | `recordOutcome($body, $assessmentId, ?string $idempotencyKey = null)` |
 | `Wait::wait(NoResponse $client, ...)` | `Wait::wait(NoResponseClient $client, ...)` |
 
-`NoResponseClient::create($apiKey)` is new. Two fixes ride along: a retry config passed in `Options` now applies (it was replaced by the default), and 5xx responses are now retried (the status code pattern never matched).
+`NoResponseClient::create($apiKey)` is new, a builder without a key reads `NORESPONSE_API_KEY`, `Event` has `test`, and each method's `@throws` lists every exception it throws. Three fixes ride along: with `RetryConfigNone` a connection failure throws a `GuzzleException` (it was a PHP `Error`), a retry config passed in `Options` now applies (it was replaced by the default), and 5xx responses are now retried (the status code pattern never matched).
 
 Issues: https://github.com/noresponsehq/php/issues. Quote `getRequestId()` when you write to us.

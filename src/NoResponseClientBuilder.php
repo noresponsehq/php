@@ -107,6 +107,12 @@ class NoResponseClientBuilder
         }
 
         $this->sdkConfig->defaultClient = $this->sdkConfig->client;
+        if (! $this->sdkConfig->hasSecurity()) {
+            $envSecurity = getenv('NORESPONSE_API_KEY');
+            if ($envSecurity !== false && $envSecurity !== '') {
+                $this->setSecurity($envSecurity);
+            }
+        }
         if ($this->sdkConfig->hasSecurity()) {
             $this->sdkConfig->client = Utils\Utils::configureSecurityClient($this->sdkConfig->client, $this->sdkConfig->getSecurity());
         }

@@ -72,7 +72,10 @@ final class LateResultsTest extends TestCase
         rmdir($this->dir);
     }
 
-    /** The mock provider API: records each request, answers by path. A /forbid prefix refuses every DELETE with 403. */
+    /**
+     * The mock provider API: records each request, answers by path. A /forbid prefix refuses every DELETE with 403;
+     * /gone answers 404 to everything, /vanish lists one session then answers 404, /broken answers 500.
+     */
     private const ROUTER = <<<'PHP'
 <?php
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -92,6 +95,15 @@ function reply(int $status, $body = null): void
         echo json_encode($body);
     }
     exit;
+}
+if (str_starts_with($path, '/gone')) {
+    reply(404, ['message' => 'not found']);
+}
+if (str_starts_with($path, '/vanish')) {
+    $method === 'GET' ? reply(200, [['id' => 'sess_1', 'status' => 'active']]) : reply(404);
+}
+if (str_starts_with($path, '/broken')) {
+    reply(500, ['error' => 'boom']);
 }
 if (str_starts_with($path, '/forbid') && $method === 'DELETE') {
     reply(403, ['error' => 'insufficient_scope secret-body']);
@@ -153,16 +165,18 @@ PHP;
     }
 
     /** @return array{string, array<string, string>} */
-    private static function delivery(\stdClass $data, ?string $accountId = null): array
+    private static function delivery(\stdClass $data, ?string $accountId = null, bool $test = false): array
     {
         if ($accountId !== null) {
             $data = clone $data;
             $data->account_id = $accountId;
         }
-        $raw = json_encode(
-            ['id' => self::EVENT_ID, 'type' => 'assessment.updated', 'created_at' => '2026-10-18T11:00:04Z', 'data' => $data],
-            JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES,
-        );
+        $body = ['id' => self::EVENT_ID, 'type' => 'assessment.updated', 'created_at' => '2026-10-18T11:00:04Z'];
+        if ($test) {
+            $body['test'] = true;
+        }
+        $body['data'] = $data;
+        $raw = json_encode($body, JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES);
         $stamp = (string) self::NOW;
 
         return [$raw, [
@@ -356,6 +370,73 @@ PHP;
             $this->assertStringNotContainsString('mgmt_token', $e->getMessage());
         }
         $this->assertCount(1, $this->calls());
+    }
+
+    public function test_a_test_event_is_flagged_and_makes_no_provider_call_even_under_a_ban_policy_with_a_resolver(): void
+    {
+        $sample = self::fixture('valid/webhook-assessment-updated-test.json')->data;
+        $clerk = new ClerkProvider('sk_test_mock', $this->url.'/v1');
+        $banAll = ['allow' => 'ban', 'step_up' => 'ban', 'review' => 'ban'];
+        $resolver = static fn (): string => 'user_2EXAMPLE';
+        [$raw, $headers] = self::delivery($sample, null, true);
+        $result = LateResults::handleLateResult($raw, $headers, self::secrets(), $clerk, policy: $banAll, userId: $resolver, now: self::NOW);
+        $this->assertSame('none', $result->action);
+        $this->assertTrue($result->event->test);
+        $this->assertNull($result->userId);
+        $this->assertSame([], $this->calls());
+
+        // The same body without the flag would ban, and an ordinary delivery is not a test.
+        [$raw, $headers] = self::delivery($sample);
+        $real = LateResults::handleLateResult($raw, $headers, self::secrets(), $clerk, policy: $banAll, userId: $resolver, now: self::NOW);
+        $this->assertFalse($real->event->test);
+        $this->assertSame('ban', $real->action);
+        $this->assertSame(['POST /v1/users/user_2EXAMPLE/ban'], self::lines($this->calls()));
+    }
+
+    public function test_a_repeated_ban_after_the_user_is_gone_completes_and_a_500_still_throws(): void
+    {
+        // Every user-scoped endpoint answers 404: the first delivery already removed the user.
+        $providers = [
+            new WorkosProvider('sk_test_workos', $this->url.'/gone'),
+            new ClerkProvider('sk_test_mock', $this->url.'/gone/v1'),
+            new Auth0Provider('mgmt_token', baseUrl: $this->url.'/gone/api/v2'),
+        ];
+        [$raw, $headers] = self::delivery(self::fixture('valid/assessment-phone-uncovered-complete.json'), 'user_GONE');
+        for ($i = 0; $i < 2; $i++) {
+            foreach ($providers as $provider) {
+                $this->assertSame('ban', LateResults::handleLateResult($raw, $headers, self::secrets(), $provider, policy: ['review' => 'ban'], now: self::NOW)->action);
+                $this->assertSame('revoke_sessions', LateResults::handleLateResult($raw, $headers, self::secrets(), $provider, now: self::NOW)->action);
+            }
+        }
+        $lines = self::lines($this->calls());
+        foreach ([
+            'GET /gone/user_management/users/user_GONE/sessions',
+            'DELETE /gone/user_management/users/user_GONE',
+            'GET /gone/v1/sessions',
+            'POST /gone/v1/users/user_GONE/ban',
+            'PATCH /gone/api/v2/users/user_GONE',
+            'DELETE /gone/api/v2/users/user_GONE/refresh-tokens',
+        ] as $line) {
+            $this->assertContains($line, $lines);
+        }
+
+        // A session that ends between the list and its revoke also counts as done.
+        $this->resetCalls();
+        (new ClerkProvider('sk_test_mock', $this->url.'/vanish/v1'))->revokeSessions('user_2EXAMPLE');
+        $this->assertSame(['GET /vanish/v1/sessions', 'POST /vanish/v1/sessions/sess_1/revoke'], self::lines($this->calls()));
+
+        foreach ([
+            new WorkosProvider('k', $this->url.'/broken'),
+            new ClerkProvider('k', $this->url.'/broken/v1'),
+            new Auth0Provider('t', baseUrl: $this->url.'/broken/api/v2'),
+        ] as $provider) {
+            try {
+                $provider->ban('user_X');
+                $this->fail('expected ProviderActionException');
+            } catch (ProviderActionException $e) {
+                $this->assertSame(500, $e->status);
+            }
+        }
     }
 
     public function test_empty_user_id_and_missing_credentials_are_argument_errors(): void

@@ -131,6 +131,29 @@ final class WebhookTest extends TestCase
         }
     }
 
+    public function test_the_test_flag_marks_only_a_test_assessment_event(): void
+    {
+        $secrets = ['whk_sdktest01' => 'secret'];
+        $real = self::fixture('valid/webhook-assessment-updated.json');
+        [$raw, $headers] = self::signed($real, 'secret', $real['id']);
+        $this->assertFalse(Webhook::constructEvent($raw, $headers, $secrets, now: self::NOW)->test);
+
+        $sample = ['test' => true] + $real;
+        [$raw, $headers] = self::signed($sample, 'secret', $sample['id']);
+        $event = Webhook::constructEvent($raw, $headers, $secrets, now: self::NOW);
+        $this->assertTrue($event->test);
+        $this->assertInstanceOf(Assessment::class, $event->data);
+
+        $notTrue = ['test' => 'true'] + $real;
+        [$raw, $headers] = self::signed($notTrue, 'secret', $notTrue['id']);
+        $this->assertFalse(Webhook::constructEvent($raw, $headers, $secrets, now: self::NOW)->test);
+
+        // A verification ping must still be echoed, so it never reads as a test event.
+        $ping = ['test' => true] + self::fixture('valid/webhook-endpoint-verification.json');
+        [$raw, $headers] = self::signed($ping, 'secret', $ping['id']);
+        $this->assertFalse(Webhook::constructEvent($raw, $headers, $secrets, now: self::NOW)->test);
+    }
+
     public function test_an_empty_summary_object_stays_an_object(): void
     {
         $body = self::fixture('valid/webhook-assessment-updated.json');

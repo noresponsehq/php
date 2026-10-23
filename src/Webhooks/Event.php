@@ -12,6 +12,10 @@ use NoResponse\Models\Shared\Assessment;
  * EndpointVerification for "endpoint.verification". Deliveries are at least
  * once and unordered: deduplicate on id and keep the highest
  * assessmentVersion per assessment.
+ *
+ * test is true on an assessment.updated event sent by
+ * webhookEndpoints->sendTestEvent: data is a fixed example assessment, not
+ * one of yours, so acknowledge it and apply nothing.
  */
 final class Event
 {
@@ -20,6 +24,11 @@ final class Event
         public readonly string $type,
         public readonly string $createdAt,
         public readonly Assessment|AssessmentExpired|EndpointVerification $data,
+        /**
+         * True on an event sent by the send-test-event call: data is a fixed
+         * example assessment, not one of yours. Acknowledge it and apply nothing.
+         */
+        public readonly bool $test = false,
     ) {
     }
 

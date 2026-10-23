@@ -10,7 +10,8 @@ use Psr\Http\Client\ClientInterface;
  * Clerk Backend API. revokeSessions lists the user's active sessions
  * (GET /sessions?user_id&status=active) and revokes each
  * (POST /sessions/{id}/revoke). ban is POST /users/{id}/ban, which revokes
- * every session and blocks sign-in.
+ * every session and blocks sign-in. A 404 on any call (user or session
+ * already gone) counts as done, so a repeated delivery is safe.
  */
 final class ClerkProvider implements LateResultProvider
 {
@@ -39,19 +40,19 @@ final class ClerkProvider implements LateResultProvider
         for ($offset = 0; $offset < self::PAGE * 1000; $offset += self::PAGE) {
             $page = HttpCaller::sessions($this->call->call('GET', '/sessions', [
                 'user_id' => $userId, 'status' => 'active', 'limit' => (string) self::PAGE, 'offset' => (string) $offset,
-            ]));
+            ], null, true));
             HttpCaller::collectActive($page, $active);
             if (count($page) < self::PAGE) {
                 break;
             }
         }
         foreach ($active as $id) {
-            $this->call->call('POST', '/sessions/'.rawurlencode($id).'/revoke');
+            $this->call->call('POST', '/sessions/'.rawurlencode($id).'/revoke', [], null, true);
         }
     }
 
     public function ban(string $userId): void
     {
-        $this->call->call('POST', '/users/'.HttpCaller::segment($userId).'/ban');
+        $this->call->call('POST', '/users/'.HttpCaller::segment($userId).'/ban', [], null, true);
     }
 }

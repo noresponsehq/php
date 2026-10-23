@@ -9,7 +9,7 @@ use NoResponse\Models\Shared;
 
 $sdk = NoResponse\NoResponseClient::builder()
     ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
+        getenv('NORESPONSE_API_KEY') ?: ''
     )
     ->build();
 
@@ -22,7 +22,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: '<value>'
+    idempotencyKey: 'signup-7f3a9c-0001'
 
 );
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** The provider event a provider_hook context was sent for. pre_registration runs before the user exists, so subject and the request's account_id may be absent there. Sent only with transport provider_hook. */
+/** The provider event a provider_hook context was sent for; absent for any other transport. */
 enum HookPoint: string
 {
     case PreRegistration = 'pre_registration';

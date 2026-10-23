@@ -33,10 +33,10 @@ class RetryUtils
                 return $httpResponse;
             } catch (\Exception $e) {
                 if ($e instanceof PermanentError) {
-                    throw $e->getPrevious();
+                    throw $e->getPrevious() ?? $e;
                 }
                 if ($config instanceof RetryConfigNone) {
-                    throw $e->getPrevious();
+                    throw $e;
                 } elseif ($config instanceof RetryConfigBackoff) {
                     $elapsed = 1000 * (LocalDateTime::now(TimeZone::utc())->getTime()->toSecondOfDay() - $start->getTime()->toSecondOfDay());
                     if ($elapsed > $config->maxElapsedTime) {

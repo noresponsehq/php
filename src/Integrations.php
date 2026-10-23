@@ -50,7 +50,14 @@ class Integrations
      *
      * @param  \NoResponse\Models\Shared\IntegrationRequest  $request
      * @return \NoResponse\Models\Operations\CreateIntegrationResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function create(Shared\IntegrationRequest $request, ?Options $options = null): Operations\CreateIntegrationResponse
     {
@@ -183,7 +190,14 @@ class Integrations
      *
      * @param  string  $integrationId
      * @return \NoResponse\Models\Operations\DeleteIntegrationResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function delete(string $integrationId, ?Options $options = null): Operations\DeleteIntegrationResponse
     {
@@ -327,7 +341,14 @@ class Integrations
      * Every integration, oldest first. Listings carry no secrets. Requires the integrations scope.
      *
      * @return \NoResponse\Models\Operations\ListIntegrationsResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function list(?Options $options = null): Operations\ListIntegrationsResponse
     {
@@ -483,7 +504,14 @@ class Integrations
      * @param  \NoResponse\Models\Shared\IntegrationRotationRequest  $body
      * @param  string  $integrationId
      * @return \NoResponse\Models\Operations\RotateIntegrationSecretResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function rotate(Shared\IntegrationRotationRequest $body, string $integrationId, ?Options $options = null): Operations\RotateIntegrationSecretResponse
     {

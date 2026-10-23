@@ -16,7 +16,9 @@ use NoResponse\Webhooks\Webhook;
  * signed assessment.updated webhook. handleLateResult verifies that delivery
  * with Webhook::constructEvent, picks an action from your policy, and acts
  * through the auth provider's admin API: revoke the user's sessions or ban
- * the user. It never acts on an unverified event.
+ * the user. It never acts on an unverified event or a test event. Every
+ * provider call treats a 404 (user or session already gone) as done, so a
+ * repeated delivery is safe.
  */
 final class LateResults
 {
@@ -29,8 +31,9 @@ final class LateResults
 
     /**
      * The action your policy names for a verified event. Only a served
-     * assessment with a recommendation can act. A recommendation the policy
-     * leaves out does nothing.
+     * assessment with a recommendation can act; a test event from the
+     * send-test-event call never does. A recommendation the policy leaves out
+     * does nothing.
      *
      * @param  array<string, string>|null  $policy  recommendation => action; defaults to DEFAULT_POLICY
      *
@@ -39,7 +42,7 @@ final class LateResults
     public static function lateResultAction(Event $event, ?array $policy = null): string
     {
         $policy ??= self::DEFAULT_POLICY;
-        if ($event->type !== 'assessment.updated' || ! $event->data instanceof Assessment || $event->isExpired()) {
+        if ($event->type !== 'assessment.updated' || $event->test || ! $event->data instanceof Assessment || $event->isExpired()) {
             return LateResultAction::NONE;
         }
         $recommendation = $event->data->recommendation ?? $event->data->risk?->recommendation;

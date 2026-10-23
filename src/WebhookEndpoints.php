@@ -50,7 +50,14 @@ class WebhookEndpoints
      *
      * @param  \NoResponse\Models\Shared\WebhookEndpointRequest  $request
      * @return \NoResponse\Models\Operations\CreateWebhookEndpointResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function create(Shared\WebhookEndpointRequest $request, ?Options $options = null): Operations\CreateWebhookEndpointResponse
     {
@@ -183,7 +190,14 @@ class WebhookEndpoints
      *
      * @param  string  $endpointId
      * @return \NoResponse\Models\Operations\DeleteWebhookEndpointResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function delete(string $endpointId, ?Options $options = null): Operations\DeleteWebhookEndpointResponse
     {
@@ -327,7 +341,14 @@ class WebhookEndpoints
      * Lists your webhook endpoints in every state, ordered by endpoint_id, with the ids of their signing keys and without secrets. Requires the webhooks scope.
      *
      * @return \NoResponse\Models\Operations\ListWebhookEndpointsResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function list(?Options $options = null): Operations\ListWebhookEndpointsResponse
     {
@@ -483,7 +504,14 @@ class WebhookEndpoints
      * @param  \NoResponse\Models\Shared\WebhookKeyRotationRequest  $body
      * @param  string  $endpointId
      * @return \NoResponse\Models\Operations\RotateWebhookSigningKeyResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function rotateSigningKey(Shared\WebhookKeyRotationRequest $body, string $endpointId, ?Options $options = null): Operations\RotateWebhookSigningKeyResponse
     {
@@ -621,7 +649,14 @@ class WebhookEndpoints
      * @param  \NoResponse\Models\Shared\WebhookTestRequest  $body
      * @param  string  $endpointId
      * @return \NoResponse\Models\Operations\SendWebhookTestEventResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendTestEvent(Shared\WebhookTestRequest $body, string $endpointId, ?Options $options = null): Operations\SendWebhookTestEventResponse
     {

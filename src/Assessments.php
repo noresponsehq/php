@@ -51,7 +51,14 @@ class Assessments
      * @param  \NoResponse\Models\Shared\AssessmentRequest  $body
      * @param  ?string  $idempotencyKey
      * @return \NoResponse\Models\Operations\CreateAssessmentResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function create(Shared\AssessmentRequest $body, ?string $idempotencyKey = null, ?Options $options = null): Operations\CreateAssessmentResponse
     {
@@ -220,7 +227,14 @@ class Assessments
      * @param  string  $assessmentId
      * @param  ?\NoResponse\Models\Shared\ResponseMode  $responseMode
      * @return \NoResponse\Models\Operations\GetAssessmentResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get(string $assessmentId, ?Shared\ResponseMode $responseMode = null, ?Options $options = null): Operations\GetAssessmentResponse
     {
@@ -382,7 +396,14 @@ class Assessments
      *
      * @param  \NoResponse\Models\Shared\AssessmentQuery  $request
      * @return \NoResponse\Models\Operations\QueryAccountAssessmentsResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function queryIndividual(Shared\AssessmentQuery $request, ?Options $options = null): Operations\QueryAccountAssessmentsResponse
     {
@@ -565,7 +586,14 @@ class Assessments
      *
      * @param  \NoResponse\Models\Shared\AssessmentQuery  $request
      * @return \Generator<\NoResponse\Models\Operations\QueryAccountAssessmentsResponse>
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function query(Shared\AssessmentQuery $request, ?Options $options = null): \Generator
     {
@@ -585,7 +613,14 @@ class Assessments
      * @param  string  $assessmentId
      * @param  ?string  $idempotencyKey
      * @return \NoResponse\Models\Operations\RecordAssessmentOutcomeResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
      * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function recordOutcome(Shared\AssessmentOutcomeRequest $body, string $assessmentId, ?string $idempotencyKey = null, ?Options $options = null): Operations\RecordAssessmentOutcomeResponse
     {

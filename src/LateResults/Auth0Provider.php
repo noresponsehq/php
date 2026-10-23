@@ -10,7 +10,8 @@ use Psr\Http\Client\ClientInterface;
  * Auth0 Management API. revokeSessions deletes every session
  * (DELETE /users/{id}/sessions) and refresh token
  * (DELETE /users/{id}/refresh-tokens). ban first sets blocked: true
- * (PATCH /users/{id}), then does the same.
+ * (PATCH /users/{id}), then does the same. A 404 on any call (user already
+ * gone) counts as done, so a repeated delivery is safe.
  */
 final class Auth0Provider implements LateResultProvider
 {
@@ -41,13 +42,13 @@ final class Auth0Provider implements LateResultProvider
     public function revokeSessions(string $userId): void
     {
         $user = HttpCaller::segment($userId);
-        $this->call->call('DELETE', "/users/{$user}/sessions");
-        $this->call->call('DELETE', "/users/{$user}/refresh-tokens");
+        $this->call->call('DELETE', "/users/{$user}/sessions", [], null, true);
+        $this->call->call('DELETE', "/users/{$user}/refresh-tokens", [], null, true);
     }
 
     public function ban(string $userId): void
     {
-        $this->call->call('PATCH', '/users/'.HttpCaller::segment($userId), [], ['blocked' => true]);
+        $this->call->call('PATCH', '/users/'.HttpCaller::segment($userId), [], ['blocked' => true], true);
         $this->revokeSessions($userId);
     }
 }
