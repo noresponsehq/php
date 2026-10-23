@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 46f576963576aa73d0e99582a902b020
+  docChecksum: 49ba3ef2d410c67dad5b1dcd622891f2
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 8.0.1
-  configChecksum: 31dc4e34609bb26dcf539c580d25cd4f
+  releaseVersion: 9.0.0
+  configChecksum: d1f33b30032b0481c391915e94040b9e
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -27,7 +27,7 @@ trackedFiles:
   .gitattributes:
     last_write_checksum: sha1:d1d000f6673e5838a636562dceffa2d9dec820df
   USAGE.md:
-    last_write_checksum: sha1:3b2ceed55c30e1c800c5b1013e93b5a5f948df16
+    last_write_checksum: sha1:549c2daa76f5550456f67d9adc872ea14d1964a8
   composer.json:
     last_write_checksum: sha1:a53818cb2ac02a8c15c4baabb2a0e2de814e7b41
   docs/Models/Errors/AuthenticationError.md:
@@ -43,7 +43,7 @@ trackedFiles:
   docs/Models/Errors/RateLimitError.md:
     last_write_checksum: sha1:9c81a4a5f18f8807019d1b1853a1a121a4799aec
   docs/Models/Operations/CreateAssessmentRequest.md:
-    last_write_checksum: sha1:d28c6eb68b289365088c47ae562d3d0ea2c624eb
+    last_write_checksum: sha1:ef6277d09e54c0d0ed840a02892ad9385ba7bd0c
   docs/Models/Operations/CreateAssessmentResponse.md:
     last_write_checksum: sha1:1c43655c5b02ca7961b726bee1fa0aa41d5c0fab
   docs/Models/Operations/CreateIntegrationResponse.md:
@@ -51,7 +51,7 @@ trackedFiles:
   docs/Models/Operations/CreateWebhookEndpointResponse.md:
     last_write_checksum: sha1:a4b89e73b339ff19c180feb20470759f20c01fef
   docs/Models/Operations/DeleteAccountRequest.md:
-    last_write_checksum: sha1:2d80fd22b9477ee5d71eae2f9d2157cd44d2d907
+    last_write_checksum: sha1:aa6a6ca886f2232605e95cb764142292c3787662
   docs/Models/Operations/DeleteAccountResponse.md:
     last_write_checksum: sha1:1eaa3f3f8d71785bae5879e3cab2ef3961b4cb0c
   docs/Models/Operations/DeleteAssessmentRequest.md:
@@ -59,15 +59,15 @@ trackedFiles:
   docs/Models/Operations/DeleteAssessmentResponse.md:
     last_write_checksum: sha1:e3035af571f34812d92298b0d787908e525bfd85
   docs/Models/Operations/DeleteIntegrationRequest.md:
-    last_write_checksum: sha1:c3f411caea6fdc93cb713098dd9fd2c648f6bf41
+    last_write_checksum: sha1:0f99cdcceac1da26c9b9dd01e7d56a93c109f10a
   docs/Models/Operations/DeleteIntegrationResponse.md:
     last_write_checksum: sha1:412fb32d54ae09ee9ccb4c2f692a9ac74e1b977d
   docs/Models/Operations/DeleteWebhookEndpointRequest.md:
-    last_write_checksum: sha1:0e1080a7519190467a875fa290eb325f07e020fc
+    last_write_checksum: sha1:ca562da2942cf3f4edc4d34c807429d1f97766f1
   docs/Models/Operations/DeleteWebhookEndpointResponse.md:
     last_write_checksum: sha1:75842efc8b987fb321cce6aa140a9614d0c3fcf4
   docs/Models/Operations/GetAccountRequest.md:
-    last_write_checksum: sha1:6cbf6ea6718395c52fdff554d75b10b26cd1b0b5
+    last_write_checksum: sha1:405a7008a2a3d619b4dad979c15d30da0f2cfeb3
   docs/Models/Operations/GetAccountResponse.md:
     last_write_checksum: sha1:6861214f62a224425065b82f6564d8fc711afa9f
   docs/Models/Operations/GetAssessmentRequest.md:
@@ -75,13 +75,13 @@ trackedFiles:
   docs/Models/Operations/GetAssessmentResponse.md:
     last_write_checksum: sha1:9c3551655a955903cb74e19a17cc593f46ad0ddd
   docs/Models/Operations/ListAccountAssessmentsRequest.md:
-    last_write_checksum: sha1:6857f112f4a36b67e5969c62ee5626b30953fbc8
+    last_write_checksum: sha1:97e5ecc530c18bf1e2291777f91d6038829944cc
   docs/Models/Operations/ListAccountAssessmentsResponse.md:
     last_write_checksum: sha1:fd362ed101e4174ed4915867c259aae49174ab8c
   docs/Models/Operations/ListIntegrationsResponse.md:
     last_write_checksum: sha1:990a161b264692ac44f30fa4b94d4f11b586be8b
   docs/Models/Operations/ListWebhookDeliveriesRequest.md:
-    last_write_checksum: sha1:791cd5c0a813875b3d447d4331e6a2abda4c7044
+    last_write_checksum: sha1:c5a92d7cfebca5e320a7b214128907ae96123555
   docs/Models/Operations/ListWebhookDeliveriesResponse.md:
     last_write_checksum: sha1:f341744e9cfca34118ce70349d2a554c3c299820
   docs/Models/Operations/ListWebhookEndpointsResponse.md:
@@ -89,39 +89,39 @@ trackedFiles:
   docs/Models/Operations/QueryAccountAssessmentsResponse.md:
     last_write_checksum: sha1:82f942ddbaa2ab7c9c7781eca39cf8948a3ddfa4
   docs/Models/Operations/RecordAssessmentOutcomeRequest.md:
-    last_write_checksum: sha1:dfd81cffff57122024c3a61ac1228f4a6fb0ecec
+    last_write_checksum: sha1:d2d3f6bcec8aa0ca0975856281a0f7fa475556d9
   docs/Models/Operations/RecordAssessmentOutcomeResponse.md:
     last_write_checksum: sha1:c8e45a38886156d1ae29761e1c47a1cefccaef17
   docs/Models/Operations/RecordKeyUsageRequest.md:
-    last_write_checksum: sha1:37bb079ce9c6e6bcc1ed19a09b771df7cd48e9cf
+    last_write_checksum: sha1:84f64a073bdb08759b9f57867dc29e13d8da6f52
   docs/Models/Operations/RecordKeyUsageResponse.md:
     last_write_checksum: sha1:0c04a5a47df193d2686870cb3a0ff2b168be5ab1
   docs/Models/Operations/ReplayWebhookDeliveryRequest.md:
-    last_write_checksum: sha1:adda9662490565b2c8af7ba99ad7ddf9590a7b69
+    last_write_checksum: sha1:7a76dd5b0063760099b885e6c05268c6366a6c54
   docs/Models/Operations/ReplayWebhookDeliveryResponse.md:
     last_write_checksum: sha1:c220db47e23ddb1bef54cc5a0845743d323d1e65
   docs/Models/Operations/RotateApiKeyResponse.md:
     last_write_checksum: sha1:89d45fef8c0569462b9efb5b65b25912def291ac
   docs/Models/Operations/RotateIntegrationSecretRequest.md:
-    last_write_checksum: sha1:b74bc105d279e060f935b0dc35bc8b0fe1168866
+    last_write_checksum: sha1:ea734c8b6ffba5fd8311a16a6409d4bacf1823cd
   docs/Models/Operations/RotateIntegrationSecretResponse.md:
     last_write_checksum: sha1:d7045e6ebc341c0336e48b48d0f844496076d0d3
   docs/Models/Operations/RotateWebhookSigningKeyRequest.md:
-    last_write_checksum: sha1:49d4b054f79734289e9d7653f7ab1e684ecc9e72
+    last_write_checksum: sha1:1f13f0f03370a35baf7f82d237d91f899f076bde
   docs/Models/Operations/RotateWebhookSigningKeyResponse.md:
     last_write_checksum: sha1:632f2f47e3fee5ca5cd2155816fbddd23fcf770a
   docs/Models/Operations/SendWebhookTestEventRequest.md:
-    last_write_checksum: sha1:4be55f723887a0a278bd9bf78115f431c201ca36
+    last_write_checksum: sha1:dddd54cb7d3ff096904ec36428d3e13ba1c8fb43
   docs/Models/Operations/SendWebhookTestEventResponse.md:
     last_write_checksum: sha1:a50f943398a777d9a1ea6b1be511328823c3001b
   docs/Models/Shared/Account.md:
-    last_write_checksum: sha1:4ee1b0ecff881ad56bfec89f8f35e7b095d9e262
+    last_write_checksum: sha1:565d8084de4ccc69b0a5800feda55360c12d789c
   docs/Models/Shared/AccountDecision.md:
     last_write_checksum: sha1:fe72fc737ce86b76ee8533c26f670c5c45d04c2b
   docs/Models/Shared/AccountDecisionsByFlow.md:
-    last_write_checksum: sha1:0a5b0b204fa6dc0f4754ab0e3fceb0c10145a5f2
+    last_write_checksum: sha1:a1846d8688c456b4f16e087952310e5742df8191
   docs/Models/Shared/AccountDeletion.md:
-    last_write_checksum: sha1:f3cd67768539ba95d188ac003fb738ae799d1a01
+    last_write_checksum: sha1:dde4bd25ee87beb22d8787de8acc61abc2b9947b
   docs/Models/Shared/AccountRisk.md:
     last_write_checksum: sha1:9bae6491a60a2c7a412dfd2145e5a6538aeade2a
   docs/Models/Shared/AccountRiskReason.md:
@@ -131,39 +131,39 @@ trackedFiles:
   docs/Models/Shared/AlternateNameUnion.md:
     last_write_checksum: sha1:3f68c320e76262017431e96c1d1e472e827e5558
   docs/Models/Shared/Assessment.md:
-    last_write_checksum: sha1:aa3c1c55fe55a19cac37e99052ad316e03473c44
+    last_write_checksum: sha1:4b954e0dfe9f472c2f887464eefbf1c1760ad9b9
   docs/Models/Shared/AssessmentDeletion.md:
-    last_write_checksum: sha1:67f13f3741f9376aa1f830b9aa8e19d7417f254c
+    last_write_checksum: sha1:1fe9ce86dc92d31e53f713bb27fa4454260ff657
   docs/Models/Shared/AssessmentDeletionAccount.md:
     last_write_checksum: sha1:ce2da11781850cab5adf0d0fef159eb992627aad
   docs/Models/Shared/AssessmentDetail.md:
-    last_write_checksum: sha1:836401be173790e3c150777e9038584e2bf54e08
+    last_write_checksum: sha1:046b389ad86c5d9926a2e7107d9c35d55ba021f3
   docs/Models/Shared/AssessmentDetailAuthContext.md:
-    last_write_checksum: sha1:0ee93352d47a1fe7f444f28477a2c23160e28e1d
+    last_write_checksum: sha1:006a6301bedd99428e7b8c048a5999be22d828a8
   docs/Models/Shared/AssessmentDetailTiming.md:
     last_write_checksum: sha1:a0b0c2d56d0d71e581dc18554b4820f2d6cf27ea
   docs/Models/Shared/AssessmentList.md:
-    last_write_checksum: sha1:c73d6be77341fb5cda03fdef171e0809e4a28cff
+    last_write_checksum: sha1:7b05e535567e04c6c1eaef9757612121f11ec7f5
   docs/Models/Shared/AssessmentOutcome.md:
-    last_write_checksum: sha1:b284fb635c0d7d94a7e8ab9a5dcc7d06fb198e3d
+    last_write_checksum: sha1:e242ca7b478eb38f1ac8f76c2ee31dfb664ffcef
   docs/Models/Shared/AssessmentOutcomeRequest.md:
-    last_write_checksum: sha1:c5bc5abc68ccc181a499daf679efe7aecbebc0ee
+    last_write_checksum: sha1:41ffa5548555c34a381c2f30e6fea6be0d12fff7
   docs/Models/Shared/AssessmentQuery.md:
-    last_write_checksum: sha1:14b953159dab093e163594c3c505abda1ffd2f53
+    last_write_checksum: sha1:9968c1130695390416a2d88b33ffb0ff887ef978
   docs/Models/Shared/AssessmentRequest.md:
-    last_write_checksum: sha1:ee59748d353ab17ce68c1bd1e58f118466c8c599
+    last_write_checksum: sha1:44dceed5a591736b2e112264f8446c432ec8b472
   docs/Models/Shared/AssessmentRequestClientContext.md:
-    last_write_checksum: sha1:a127511269f1fd0929feb2f468e0f978e7c86753
+    last_write_checksum: sha1:e07c326e89f4c86134658f2406ac866776a9514a
   docs/Models/Shared/AssessmentRequestIdentifiers.md:
-    last_write_checksum: sha1:4893684719f0ec18570c0c56df59abec05196556
+    last_write_checksum: sha1:273b4e60f8a3efeca8f383a6e6384366f76ed61b
   docs/Models/Shared/AssessmentRequestIssuedCredential.md:
-    last_write_checksum: sha1:7f418183272e2b43ceee15f82ec4768d6e6893b0
+    last_write_checksum: sha1:7e084356061b979bcd9ad6713261c7c983a11fdd
   docs/Models/Shared/AssessmentRequestPolicyContext.md:
-    last_write_checksum: sha1:39747849c4bb1045e9c4e92c490c8f786bcbd795
+    last_write_checksum: sha1:7fb80902a5e8edc0682f6fcb3e197f8954d74ac6
   docs/Models/Shared/AssuranceLevel.md:
     last_write_checksum: sha1:7e20555ddd7c123498de1c88fa33e126d43304da
   docs/Models/Shared/AuthContext.md:
-    last_write_checksum: sha1:a08af4845b2f3183bde766ebf457f90fc36e7e3b
+    last_write_checksum: sha1:732ab5fd56db26d368c113c3f0ae9b600c78ba41
   docs/Models/Shared/AuthContextMfa.md:
     last_write_checksum: sha1:b746eb970cb53e7e28e6f8af528f0c1db76fdfb7
   docs/Models/Shared/AuthenticationErrorCode.md:
@@ -203,7 +203,7 @@ trackedFiles:
   docs/Models/Shared/FailureReason.md:
     last_write_checksum: sha1:5dcebc86402a497d1b230726965b84870cad09f5
   docs/Models/Shared/Flow.md:
-    last_write_checksum: sha1:fdc0431be1c8ca893f065edfb34ea58cd87c8463
+    last_write_checksum: sha1:14f616aac0817011bf7327f5b6d864f905eada1f
   docs/Models/Shared/Freshness.md:
     last_write_checksum: sha1:106a5c45ed4bf0772b9596ce515c5734635883fb
   docs/Models/Shared/HookPoint.md:
@@ -215,29 +215,29 @@ trackedFiles:
   docs/Models/Shared/IncompleteSource.md:
     last_write_checksum: sha1:1d7ec5ec8365f21792f201cca72481b266ce80f9
   docs/Models/Shared/Integration.md:
-    last_write_checksum: sha1:da37467530a06bbcebb5d34c697d756bd7be80e6
+    last_write_checksum: sha1:4e781b29875a7f3661099749f2c7838c03d5fd18
   docs/Models/Shared/IntegrationHookPoint.md:
     last_write_checksum: sha1:7c8f960795f15bbce377472e836ff6f5a1643552
   docs/Models/Shared/IntegrationList.md:
-    last_write_checksum: sha1:a1262f5cd708921c31547e2f863f21840be70ccb
+    last_write_checksum: sha1:1b40521bb3f14c336e9942ac49f8b4649eaf527e
   docs/Models/Shared/IntegrationPlatform.md:
     last_write_checksum: sha1:b023488e85d0e36eb2e53bc85f86d674d49bdd5c
   docs/Models/Shared/IntegrationRequest.md:
-    last_write_checksum: sha1:3d61a026bdf44d8a749a1fc1cd964be68581f1ab
+    last_write_checksum: sha1:98da40a272843a23500504c574945cd7907313e4
   docs/Models/Shared/IntegrationRotationRequest.md:
     last_write_checksum: sha1:1f2982b287592c448ce056f8819d33f15002cd0f
   docs/Models/Shared/IpSummary.md:
-    last_write_checksum: sha1:ff77ab3ba801c70aac67302bc29130e7c9f8f19e
+    last_write_checksum: sha1:e249b175409394369919974e0ffd47dc4c0fd8b4
   docs/Models/Shared/IpSummaryType.md:
     last_write_checksum: sha1:41b6a4c12e9fa6e401cd0ac4333585f9e28c80d0
   docs/Models/Shared/KeyRotation.md:
     last_write_checksum: sha1:5b3cd21be6c5ccd21bd723f9419c575e1a727524
   docs/Models/Shared/KeyRotationRequest.md:
-    last_write_checksum: sha1:041306543e8fc3ec1b0b4b2efd24e119a636eb62
+    last_write_checksum: sha1:a04f2a4c2cd3a9978f73d1004081da84a5578215
   docs/Models/Shared/KeyUsageBatch.md:
     last_write_checksum: sha1:16479ce1cfa3f1414c87088a2cbf65d8acc9a179
   docs/Models/Shared/KeyUsageBatchRequest.md:
-    last_write_checksum: sha1:fdad0c4316ad4f2b27e034c6fdd8df22a4046628
+    last_write_checksum: sha1:38cb028ef8481d003b28a579a2280541a3a227f3
   docs/Models/Shared/KeyUsageEvent.md:
     last_write_checksum: sha1:cd76b4ac339386db0fca1c6c87c5274cd0ac5143
   docs/Models/Shared/Lane.md:
@@ -255,9 +255,9 @@ trackedFiles:
   docs/Models/Shared/NotFoundErrorCode.md:
     last_write_checksum: sha1:abd7b122019ea5d63d7f2218aea266a0017d35c1
   docs/Models/Shared/Outcome.md:
-    last_write_checksum: sha1:1db7bf0adcd015534e11c6e099c9e97d6c448eed
+    last_write_checksum: sha1:f70f120f5f28e997f2ab0a69c846421ed2535e71
   docs/Models/Shared/PermissionDeniedErrorCode.md:
-    last_write_checksum: sha1:2e4a547f3c746c12d2e0377fae07d9d799df4ae7
+    last_write_checksum: sha1:c5b437167b230b1a4b70b596903cc5ba893e3d51
   docs/Models/Shared/PhoneEnrichment.md:
     last_write_checksum: sha1:5300f448f3d73d25b0e3412425615981d2e863b4
   docs/Models/Shared/PhoneEnrichmentFields.md:
@@ -269,7 +269,7 @@ trackedFiles:
   docs/Models/Shared/RateLimitErrorCode.md:
     last_write_checksum: sha1:8128ace5e462531c710ce8047a8384ec8a0cc6c9
   docs/Models/Shared/ReasonCode.md:
-    last_write_checksum: sha1:1f13a6747b67793881833d34e8177b47c8a5f0e3
+    last_write_checksum: sha1:ce3b008ce09975b85f5cb697406d033e17ad7b62
   docs/Models/Shared/ReasonIdentifier.md:
     last_write_checksum: sha1:ead9e45339f96952e25b5178be3fb2a785953747
   docs/Models/Shared/Recommendation.md:
@@ -277,7 +277,7 @@ trackedFiles:
   docs/Models/Shared/ResponseMode.md:
     last_write_checksum: sha1:720bd5975a9f4d095f692154f856f8ddd0043463
   docs/Models/Shared/Risk.md:
-    last_write_checksum: sha1:854d320f0414adfe8b4edd05021a8bbb055e4f2f
+    last_write_checksum: sha1:43935700c01dc8d8a92a6829955b661850c04cbd
   docs/Models/Shared/RiskConfidence.md:
     last_write_checksum: sha1:f971a9c941a964bd1ba3302002e7228d6baaa2d0
   docs/Models/Shared/RiskCoverage.md:
@@ -291,7 +291,7 @@ trackedFiles:
   docs/Models/Shared/RiskReason.md:
     last_write_checksum: sha1:cd792150d31e5a2f2cd62ad0447b977cf5d240d3
   docs/Models/Shared/RiskSummary.md:
-    last_write_checksum: sha1:bdde577fbde0418b366b18e8a2aa07d2570de2a0
+    last_write_checksum: sha1:35e3b2ec4cc36a1dd50be85cfbbd6d89e5b86e95
   docs/Models/Shared/RiskSummaryEmail.md:
     last_write_checksum: sha1:7c37210374a395169bb0aedb68af7c24f69b4d03
   docs/Models/Shared/RiskSummaryPhone.md:
@@ -303,7 +303,7 @@ trackedFiles:
   docs/Models/Shared/Security.md:
     last_write_checksum: sha1:cdb5d1428a950f6aeb9e2e1403ace822e31abdf1
   docs/Models/Shared/Signal.md:
-    last_write_checksum: sha1:4b97dbadc01c0cbce46f2d0686c1b1705ca9b6fa
+    last_write_checksum: sha1:3bfdd2e021ab32750bfe63d982eecaa375aa7122
   docs/Models/Shared/SignalOutcome.md:
     last_write_checksum: sha1:910b6f69735f27fe3edf99bc55178107cdc8bf05
   docs/Models/Shared/SigningKey.md:
@@ -327,15 +327,15 @@ trackedFiles:
   docs/Models/Shared/WebhookDeliveryAttemptStatus.md:
     last_write_checksum: sha1:66028ab2e9ae1ce5046c57e7c82db5b3648f4c9d
   docs/Models/Shared/WebhookDeliveryList.md:
-    last_write_checksum: sha1:0da300c0b88aa2754e0ba62f1abdf67a92b96e71
+    last_write_checksum: sha1:a2ef324eb5d9b1d33edab79592989ddf90965bfe
   docs/Models/Shared/WebhookEndpoint.md:
-    last_write_checksum: sha1:a8303329dbdcae1307c92ae385200eea4826d2d0
+    last_write_checksum: sha1:2265ea878bb2c388e1337d8f47234a71f381934a
   docs/Models/Shared/WebhookEndpointCreated.md:
-    last_write_checksum: sha1:130ff1d558f43a67a5a60ff2e612e36f4def51b2
+    last_write_checksum: sha1:a32f65e5925073319b269722b570b49fe15d17a3
   docs/Models/Shared/WebhookEndpointList.md:
-    last_write_checksum: sha1:a0b894b24df07a99df871dcb2bf5846192d6fbc1
+    last_write_checksum: sha1:b8dcda9453e066d8935a5cc5cd187fcebe245add
   docs/Models/Shared/WebhookEndpointRequest.md:
-    last_write_checksum: sha1:31fe34461e9109f59a2d84a5e4723f146836965a
+    last_write_checksum: sha1:62bc6778f78e3a43b85f473fb6907e805ab15519
   docs/Models/Shared/WebhookEndpointState.md:
     last_write_checksum: sha1:1c158e008b3eddb5004b53f6a964a80d4d23bed9
   docs/Models/Shared/WebhookKeyRotation.md:
@@ -357,17 +357,17 @@ trackedFiles:
   docs/Models/Shared/WebsiteUnion.md:
     last_write_checksum: sha1:496997c605a99b0d11d7e4da70d639039cdd44d6
   docs/sdks/accounts/README.md:
-    last_write_checksum: sha1:8a09908b13f50b0d6bbc72548cba0df8c5f715ab
+    last_write_checksum: sha1:5305beb6f5ba7bfa98d50ea8711268d75d1f1b41
   docs/sdks/assessments/README.md:
-    last_write_checksum: sha1:1ed9ee27f1ac15fbd14956d7357c3932adda84d9
+    last_write_checksum: sha1:e22393f2ac147f9e421cee5f730617d010384cd2
   docs/sdks/integrations/README.md:
-    last_write_checksum: sha1:5c4cfd1918b1ee51af5f16e1fc2ebabc5f798478
+    last_write_checksum: sha1:8f5fc93385658b078cd5d2303fc48d30e0cc0231
   docs/sdks/keys/README.md:
     last_write_checksum: sha1:b17ccf6f7e2d5ee6dcb512165c0a8d7a8b92f36e
   docs/sdks/keyusage/README.md:
-    last_write_checksum: sha1:c35349ed7b03ae12fc737e91a124ec818092ed1a
+    last_write_checksum: sha1:33636c8cc2815f506095a3e979ac36b4f49e0df4
   docs/sdks/webhookendpoints/README.md:
-    last_write_checksum: sha1:7eee4b10641b26fff9761d2041929b2b5c5452bc
+    last_write_checksum: sha1:a67c8f4906b4da3103141a10a4c1cd69c8bd1439
   phpstan.neon:
     last_write_checksum: sha1:9f8575452e3255273fc38b211a73f845302b8af2
   phpunit.xml:
@@ -377,9 +377,9 @@ trackedFiles:
   rector.php:
     last_write_checksum: sha1:7864a4ae8ebfea6329d1a0eb047c070bf01a2ada
   src/Accounts.php:
-    last_write_checksum: sha1:04a386add5ba03fdaa5342e066843304bccb4802
+    last_write_checksum: sha1:8fc65bae7e80f3e4a9fd8a9aeffafb1f9c733819
   src/Assessments.php:
-    last_write_checksum: sha1:fff76b151824610d9d72b9efc41ec6d8f0f2112d
+    last_write_checksum: sha1:0401bde41241fddf036e621420a5cd0598a0a4b2
   src/Hooks/AfterErrorContext.php:
     last_write_checksum: sha1:f1bfa05a3faedf129d634b9b23fdd301357cb306
   src/Hooks/AfterErrorHook.php:
@@ -411,9 +411,9 @@ trackedFiles:
   src/Hooks/TokenResponse.php:
     last_write_checksum: sha1:7af8bda7f1e195e59cef6013020405abbd579658
   src/Integrations.php:
-    last_write_checksum: sha1:75b41f50ad7321e1c65ec561d203872552644b58
+    last_write_checksum: sha1:2991dbfd3b2eba44e64e4d08833152529349fee3
   src/KeyUsage.php:
-    last_write_checksum: sha1:44bfa88226c3e5b9471b9dd457954ccf3285240a
+    last_write_checksum: sha1:0226c630379c072b3b679aac1966010147f2d1bd
   src/Keys.php:
     last_write_checksum: sha1:683d196e3f47868b704b1914cb43f3e96209d6a4
   src/Models/Errors/APIStatusException.php:
@@ -445,7 +445,7 @@ trackedFiles:
   src/Models/Errors/RateLimitException.php:
     last_write_checksum: sha1:212f75de8841bcc52033d749a83ce3d1084590cf
   src/Models/Operations/CreateAssessmentRequest.php:
-    last_write_checksum: sha1:61c4a1100fdbc5e0c8f71ea0550e3ff27a0c9aa5
+    last_write_checksum: sha1:4abcdb36174a20ae01443a52545f1809471fea33
   src/Models/Operations/CreateAssessmentResponse.php:
     last_write_checksum: sha1:bb9bba9b8ecbba89b807be53ba0abda7759dc2ca
   src/Models/Operations/CreateIntegrationResponse.php:
@@ -453,7 +453,7 @@ trackedFiles:
   src/Models/Operations/CreateWebhookEndpointResponse.php:
     last_write_checksum: sha1:f38a4ae4e488807d0586596d15047a46619114f5
   src/Models/Operations/DeleteAccountRequest.php:
-    last_write_checksum: sha1:2ef0d2e1fa11908bdb0cf4b5580f35f6bdacee6f
+    last_write_checksum: sha1:ef249e0846cda9b64d5c12eea56acf1806ffe38a
   src/Models/Operations/DeleteAccountResponse.php:
     last_write_checksum: sha1:97408b1164ba305854415f1c63dc9c6fc1a24a25
   src/Models/Operations/DeleteAssessmentRequest.php:
@@ -461,15 +461,15 @@ trackedFiles:
   src/Models/Operations/DeleteAssessmentResponse.php:
     last_write_checksum: sha1:93233f49492d95aa4c315754ad61ca3d0e17fad6
   src/Models/Operations/DeleteIntegrationRequest.php:
-    last_write_checksum: sha1:dff99017a18d5fad68449de040b3552b8c205d65
+    last_write_checksum: sha1:0063ff280cbbe53561114d8cc22433b18e90ef02
   src/Models/Operations/DeleteIntegrationResponse.php:
     last_write_checksum: sha1:fa00e3b92f8308503019717dd9c3e3aa55846499
   src/Models/Operations/DeleteWebhookEndpointRequest.php:
-    last_write_checksum: sha1:3cfd5903955c381b4c680a74c31c113d66a99842
+    last_write_checksum: sha1:df24e85c476ae49fa07b75320a74741684a93850
   src/Models/Operations/DeleteWebhookEndpointResponse.php:
     last_write_checksum: sha1:e420d84ef080c04102ecec21064dfacae2a1a10a
   src/Models/Operations/GetAccountRequest.php:
-    last_write_checksum: sha1:388432226f510fe21e84b0515ffde60fe384bcee
+    last_write_checksum: sha1:0b78abb1b715dfba048dd38447e82c376b40145a
   src/Models/Operations/GetAccountResponse.php:
     last_write_checksum: sha1:9530a5522c3328cbf4be858def2bf7511cf0a5e7
   src/Models/Operations/GetAssessmentRequest.php:
@@ -477,13 +477,13 @@ trackedFiles:
   src/Models/Operations/GetAssessmentResponse.php:
     last_write_checksum: sha1:37e79289a63ce57dea4408ad2d33a75a4fed2122
   src/Models/Operations/ListAccountAssessmentsRequest.php:
-    last_write_checksum: sha1:a79d67d7c0a5c3787871968b3cca75cf86f42139
+    last_write_checksum: sha1:2bd12f32437a93f8aa4540269dbf68804cdf24fa
   src/Models/Operations/ListAccountAssessmentsResponse.php:
     last_write_checksum: sha1:0f4ff9e57a2731d472b788ed4e7cd357cd85f886
   src/Models/Operations/ListIntegrationsResponse.php:
     last_write_checksum: sha1:1dbff62b8522310a4ef3fa888f435392d6ebe7b5
   src/Models/Operations/ListWebhookDeliveriesRequest.php:
-    last_write_checksum: sha1:218144ab34c69b6bf64331efd9c9a80cb976eab2
+    last_write_checksum: sha1:af0decf1fa565359e6727fdd4ebbdd2273fe9ebe
   src/Models/Operations/ListWebhookDeliveriesResponse.php:
     last_write_checksum: sha1:edcb2f8278a630fcaf39bbe6eb2a1c45fe6bedba
   src/Models/Operations/ListWebhookEndpointsResponse.php:
@@ -491,39 +491,39 @@ trackedFiles:
   src/Models/Operations/QueryAccountAssessmentsResponse.php:
     last_write_checksum: sha1:c1b93c3efa8f7f2d6c4a951c14596b2c2cf8d80b
   src/Models/Operations/RecordAssessmentOutcomeRequest.php:
-    last_write_checksum: sha1:9e33905005e1f32daadc64ba417c04f0fa51a721
+    last_write_checksum: sha1:6c3ea7f46e881a6d2027e281cada07f8a1347a11
   src/Models/Operations/RecordAssessmentOutcomeResponse.php:
     last_write_checksum: sha1:83d2d0878e48d8432827dace48925773dfdbb56c
   src/Models/Operations/RecordKeyUsageRequest.php:
-    last_write_checksum: sha1:e94b5eeb2e5116014a2cdc041f60ebd5f082a9f8
+    last_write_checksum: sha1:fef424dacc01687fc2b2f693065ff6ed7f328918
   src/Models/Operations/RecordKeyUsageResponse.php:
     last_write_checksum: sha1:6b988b537945db243df6bc6917f06f2029571da1
   src/Models/Operations/ReplayWebhookDeliveryRequest.php:
-    last_write_checksum: sha1:77d3651aa3d7c743d66069fa067b88922bb20b81
+    last_write_checksum: sha1:69dbdc28186fb3d6e2808c23b28ea6805b82a5af
   src/Models/Operations/ReplayWebhookDeliveryResponse.php:
     last_write_checksum: sha1:06921ef9c49e83a1bfd99c857cb9a12aa6c92716
   src/Models/Operations/RotateApiKeyResponse.php:
     last_write_checksum: sha1:56e15ce2feb9d67f54332eeaccf38d7c742b43ce
   src/Models/Operations/RotateIntegrationSecretRequest.php:
-    last_write_checksum: sha1:3a15fa26a235c98244fff1730d068a9f31fb997c
+    last_write_checksum: sha1:1d8c3c50700c7863b8c915ed97282dbe5105d11d
   src/Models/Operations/RotateIntegrationSecretResponse.php:
     last_write_checksum: sha1:7238e46088cfc914e42499c1e161c1874bf4c1e4
   src/Models/Operations/RotateWebhookSigningKeyRequest.php:
-    last_write_checksum: sha1:e4e2651d5ad8156e03925c7466244a7c9bdcf780
+    last_write_checksum: sha1:a471dd63ebca3ba75a2d31c3d89a9fea96cb5954
   src/Models/Operations/RotateWebhookSigningKeyResponse.php:
     last_write_checksum: sha1:fe178ff55b489053e64912b8a37e1b9633504f1a
   src/Models/Operations/SendWebhookTestEventRequest.php:
-    last_write_checksum: sha1:2e732f2d4539d5877a43ccd3720fa3510e1ad24e
+    last_write_checksum: sha1:2e517a5d522c5d28b3f8b5db0f54949764eed293
   src/Models/Operations/SendWebhookTestEventResponse.php:
     last_write_checksum: sha1:dbb8b188cd8003bdcae3ea05dc8f61c3e684e274
   src/Models/Shared/Account.php:
-    last_write_checksum: sha1:7e7f83dac6ac88db7c18001736bb86c03059c237
+    last_write_checksum: sha1:3bccb4ccae8529782728bfdc01dbcba66ac5a47c
   src/Models/Shared/AccountDecision.php:
     last_write_checksum: sha1:67335f06d1f1be462ba808624321fa351db9ad5e
   src/Models/Shared/AccountDecisionsByFlow.php:
-    last_write_checksum: sha1:db81a20d3128959c48f6ee9e7039680b29f86224
+    last_write_checksum: sha1:b22a4dd2cfe72746e4cef6143bfebd0fcb518550
   src/Models/Shared/AccountDeletion.php:
-    last_write_checksum: sha1:ba27e029a6c5e1f40f87096b92e8d508cfe98e94
+    last_write_checksum: sha1:111d45a0a0137ad928bca3362535d477ae3004ad
   src/Models/Shared/AccountRisk.php:
     last_write_checksum: sha1:32b5adc18a668c3b7155c4c92b2796dddbf39a7d
   src/Models/Shared/AccountRiskReason.php:
@@ -531,39 +531,39 @@ trackedFiles:
   src/Models/Shared/AlternateName.php:
     last_write_checksum: sha1:429d42e3ab27dafc061516811dee1ed6379b6426
   src/Models/Shared/Assessment.php:
-    last_write_checksum: sha1:91fb99bbe9dcbf8aa2f0f40298fe7ae14c4ad1e5
+    last_write_checksum: sha1:883af4e384e74b3dd36823b50176f115186c9042
   src/Models/Shared/AssessmentDeletion.php:
-    last_write_checksum: sha1:10770ec92b0c96ce7c6544c64a8c7c9f51fc1d8d
+    last_write_checksum: sha1:4e54d74de3ec37b15f313302bb882d845c48c0f1
   src/Models/Shared/AssessmentDeletionAccount.php:
     last_write_checksum: sha1:98ae65e6c4f6a1584c917cac83a43e1e06ffe87a
   src/Models/Shared/AssessmentDetail.php:
-    last_write_checksum: sha1:a96ba7d4f2c66544fb300ae22610ddcb13ce89a4
+    last_write_checksum: sha1:ced1ba0f86fdcb40b402f1484eb136678a4a6e66
   src/Models/Shared/AssessmentDetailAuthContext.php:
-    last_write_checksum: sha1:680e779940418391fe8f56bd1b9d2b356cd8a1bd
+    last_write_checksum: sha1:c32ce8addfa7b5f7f3b38ef9f2a84909c092d251
   src/Models/Shared/AssessmentDetailTiming.php:
     last_write_checksum: sha1:3146d01ca0034fe089d692c0dfb8551605197227
   src/Models/Shared/AssessmentList.php:
-    last_write_checksum: sha1:3875a7b4ae90c757acd7c61b266acf09a8d69253
+    last_write_checksum: sha1:dfc41a568feeedc809c04f839e2b8fc70f6bbb7a
   src/Models/Shared/AssessmentOutcome.php:
-    last_write_checksum: sha1:fffa7f14cbc6205aec2ca864a111ff3804dcf79b
+    last_write_checksum: sha1:d058bcdcdd4931881439f12be60eda1f543048bc
   src/Models/Shared/AssessmentOutcomeRequest.php:
-    last_write_checksum: sha1:417c65b04cd722a9f3cd6f35eb8401a6ab6a3de3
+    last_write_checksum: sha1:9b92878b246a2871037c6cce4379662edb8867ec
   src/Models/Shared/AssessmentQuery.php:
-    last_write_checksum: sha1:69fc10d5d1769dcdc68652259b83820b2e5e27a0
+    last_write_checksum: sha1:48d9f0d5b209a65b7f40782118e6dee99055ad82
   src/Models/Shared/AssessmentRequest.php:
-    last_write_checksum: sha1:66313debf4b3951cdd0a33f9b95e325e9d0dd760
+    last_write_checksum: sha1:68f99620fe59f82d8a995327df49e3369cd7bbb2
   src/Models/Shared/AssessmentRequestClientContext.php:
-    last_write_checksum: sha1:a7fbedf4231a2a07b4d6c224d9f465a5a579305b
+    last_write_checksum: sha1:421cb971fbb766149557fb34c1bf4859487e1cc2
   src/Models/Shared/AssessmentRequestIdentifiers.php:
-    last_write_checksum: sha1:44b42b68c2e5ff3222ef6d0df0bee52601b2575e
+    last_write_checksum: sha1:a721ecb97dd243684f7aca6f49f9053dc2542c6f
   src/Models/Shared/AssessmentRequestIssuedCredential.php:
-    last_write_checksum: sha1:a9f343d72c4041bc1941d4d10b362d69f489faef
+    last_write_checksum: sha1:5ab50955bf9e923ccd8691303a3fcc4d42dd6e7f
   src/Models/Shared/AssessmentRequestPolicyContext.php:
-    last_write_checksum: sha1:a2be209ab53c97f4edd1c19cf0c5d4f458477f06
+    last_write_checksum: sha1:8688dd8b0d8340a60f1ebd662ae028c915121a1c
   src/Models/Shared/AssuranceLevel.php:
     last_write_checksum: sha1:9d3ad75a71ad0b6e1cb7ba45de8f272095d0bf3f
   src/Models/Shared/AuthContext.php:
-    last_write_checksum: sha1:82c9ff808d2c2b81b9650a8f9cf23df64fedf835
+    last_write_checksum: sha1:ade8d5620cb1bfcc37508f5e0c9ae1223bd81147
   src/Models/Shared/AuthContextMfa.php:
     last_write_checksum: sha1:2be4f11bb2498fa0e05212cd6ecbe0b3beb4b148
   src/Models/Shared/AuthenticationErrorCode.php:
@@ -601,7 +601,7 @@ trackedFiles:
   src/Models/Shared/FailureReason.php:
     last_write_checksum: sha1:4ed4fdd929d717c18fef8e5fa1d894b0878599d1
   src/Models/Shared/Flow.php:
-    last_write_checksum: sha1:2f8d50bf58d818fb8d86e78e212ff4ee463f02c5
+    last_write_checksum: sha1:f8a4c4d8723cfb54404c39dc9e3e63e31f5c8e82
   src/Models/Shared/Freshness.php:
     last_write_checksum: sha1:dc3f7e0977d7c6f93a42d5c95eb89c28a03e3e8d
   src/Models/Shared/HookPoint.php:
@@ -613,29 +613,29 @@ trackedFiles:
   src/Models/Shared/IncompleteSource.php:
     last_write_checksum: sha1:e558826608c619f39b604f45f2b0b477a006d111
   src/Models/Shared/Integration.php:
-    last_write_checksum: sha1:8000e6d22701805ad7de64302efbdf4dbb146133
+    last_write_checksum: sha1:9c5eed3cf7b387bba5dfb3f603d990601181330a
   src/Models/Shared/IntegrationHookPoint.php:
     last_write_checksum: sha1:e4d57ff0e2354925928dd4bab5a972367745302e
   src/Models/Shared/IntegrationList.php:
-    last_write_checksum: sha1:7f1b1fbca7851665a99bb2a63c6316f9decd86a3
+    last_write_checksum: sha1:0b51c78aa021414820f8595c4627416624c89948
   src/Models/Shared/IntegrationPlatform.php:
     last_write_checksum: sha1:eaf054be32a14e2efd9afe868a4ced6457cd375a
   src/Models/Shared/IntegrationRequest.php:
-    last_write_checksum: sha1:c48347be29c300fa353ef34f47a873da6eea67ba
+    last_write_checksum: sha1:53595be32e437a2fa7dc8428f2f287d9fc38c5f7
   src/Models/Shared/IntegrationRotationRequest.php:
     last_write_checksum: sha1:1f3317e17e5a7a9a14ad9cdfd3ba35c0972483ef
   src/Models/Shared/IpSummary.php:
-    last_write_checksum: sha1:d89bf0903d8ac89dac11423174775d4e43a35bcb
+    last_write_checksum: sha1:d304c48c5e699cc2f28c6b259e0a05991e6e9889
   src/Models/Shared/IpSummaryType.php:
     last_write_checksum: sha1:03cae0010ef871a96530e5019ddad30bd1c25b77
   src/Models/Shared/KeyRotation.php:
     last_write_checksum: sha1:33f390366f5f0fd582907786229a3e325923c447
   src/Models/Shared/KeyRotationRequest.php:
-    last_write_checksum: sha1:9215605784885562b76eadf0a61ba9c983055451
+    last_write_checksum: sha1:b13aff490fb5062073032fdd476099a4f29bf702
   src/Models/Shared/KeyUsageBatch.php:
     last_write_checksum: sha1:60db585636517a394b5369c84f785a14168ab1e8
   src/Models/Shared/KeyUsageBatchRequest.php:
-    last_write_checksum: sha1:b5c0bccb2b78cd40c8a8be986e18574324226a78
+    last_write_checksum: sha1:28a72004cda4e01d15151e34dc97af027b6e6e35
   src/Models/Shared/KeyUsageEvent.php:
     last_write_checksum: sha1:0c1164ae62c5459056c9d8c4b362f613c0b930e7
   src/Models/Shared/Lane.php:
@@ -649,9 +649,9 @@ trackedFiles:
   src/Models/Shared/NotFoundErrorCode.php:
     last_write_checksum: sha1:d29cb875a0d41a289466c92ca2cef74572cd9765
   src/Models/Shared/Outcome.php:
-    last_write_checksum: sha1:5c9c2b3e0a4c759ced7ce33524d6c2489a6fdeae
+    last_write_checksum: sha1:d5a487f98835bb18e51676449ddb80be583b0f03
   src/Models/Shared/PermissionDeniedErrorCode.php:
-    last_write_checksum: sha1:b4875d54412372811585db568dd3c6226f8a4ca1
+    last_write_checksum: sha1:a41dc8726e57973c9d79e7796c401940ea3d7048
   src/Models/Shared/PhoneEnrichment.php:
     last_write_checksum: sha1:76b06f47f09fa9b4d199681a768d99af3f863e3c
   src/Models/Shared/PhoneEnrichmentFields.php:
@@ -663,7 +663,7 @@ trackedFiles:
   src/Models/Shared/RateLimitErrorCode.php:
     last_write_checksum: sha1:fdd4f6d71b364fc902b95fcfa8c598675d02bce5
   src/Models/Shared/ReasonCode.php:
-    last_write_checksum: sha1:8409e2f52b3b219fdfaf1d6bc21dac61184708c9
+    last_write_checksum: sha1:fedbb1551fa782b7b884aa0f269bc6e64b1ec9a1
   src/Models/Shared/ReasonIdentifier.php:
     last_write_checksum: sha1:e99d6f4c8c70912291b3fca011f4eb11f2359bd7
   src/Models/Shared/Recommendation.php:
@@ -671,7 +671,7 @@ trackedFiles:
   src/Models/Shared/ResponseMode.php:
     last_write_checksum: sha1:28bb455b62659c7c24bd30506a70e47364ab4c44
   src/Models/Shared/Risk.php:
-    last_write_checksum: sha1:396de36d427e4a7d3e2378accae19676e0be5358
+    last_write_checksum: sha1:79b141abf37b7096f01ac4cab16189716fe59eb9
   src/Models/Shared/RiskConfidence.php:
     last_write_checksum: sha1:1350c6d1a775c8c244cfef02c557f11b84903290
   src/Models/Shared/RiskCoverage.php:
@@ -685,7 +685,7 @@ trackedFiles:
   src/Models/Shared/RiskReason.php:
     last_write_checksum: sha1:c94b7b8e2c4078d08e959434e432ba06bcabfc82
   src/Models/Shared/RiskSummary.php:
-    last_write_checksum: sha1:747a745cc6f540f6443e7dc528a65aab5c9abe9b
+    last_write_checksum: sha1:a274dee047d8697138eb0b30939a417198f23c37
   src/Models/Shared/RiskSummaryEmail.php:
     last_write_checksum: sha1:6a532cea7ac45a1c1bb125297514488b1141a19a
   src/Models/Shared/RiskSummaryPhone.php:
@@ -697,7 +697,7 @@ trackedFiles:
   src/Models/Shared/Security.php:
     last_write_checksum: sha1:ee7e944a0c28b077c8cfd8be5ee187f60c7ce171
   src/Models/Shared/Signal.php:
-    last_write_checksum: sha1:97f3ce8e4085c67141ec08137efa92ef2fa6336a
+    last_write_checksum: sha1:99243d7ff592b0da1e08939633be94176bac1d10
   src/Models/Shared/SignalOutcome.php:
     last_write_checksum: sha1:7d6e629d0977803bd24a6c2b00584dfe7b64ab89
   src/Models/Shared/SigningKey.php:
@@ -717,15 +717,15 @@ trackedFiles:
   src/Models/Shared/WebhookDeliveryAttemptStatus.php:
     last_write_checksum: sha1:eccb1ceb6689b3a0b04a733f6420f69e0b17d9f1
   src/Models/Shared/WebhookDeliveryList.php:
-    last_write_checksum: sha1:b1527a6e2fd1bb09bf439e78e1fd618813ad9a56
+    last_write_checksum: sha1:d4f13d683ca176cfa942937ad1b87d49270f03af
   src/Models/Shared/WebhookEndpoint.php:
-    last_write_checksum: sha1:9cd04375b139f4483bdd340f1a10c28c15ebdfcb
+    last_write_checksum: sha1:8a1d1103b6171eb820cab29c0e21425587eadbc4
   src/Models/Shared/WebhookEndpointCreated.php:
-    last_write_checksum: sha1:b9b7e349c266a807cf5fa3c031bef671381c0328
+    last_write_checksum: sha1:3b1d107b969e4c0a510ade87d4c176e212688f77
   src/Models/Shared/WebhookEndpointList.php:
-    last_write_checksum: sha1:3b58db7c476988322283813c04e60cabdd4283e0
+    last_write_checksum: sha1:7154ea4f2e4cdd0c7b85bf96ff559ab6cc7e7454
   src/Models/Shared/WebhookEndpointRequest.php:
-    last_write_checksum: sha1:8aa2fd621adec7d04b0f280bbfd46fa935150c0c
+    last_write_checksum: sha1:03dab600d01e526afce69e48993bb3a664dbd02e
   src/Models/Shared/WebhookEndpointState.php:
     last_write_checksum: sha1:05de50147b179f008e1ef3a52e90a5b2aee373b7
   src/Models/Shared/WebhookKeyRotation.php:
@@ -1107,11 +1107,11 @@ trackedFiles:
   src/NoResponse/Serializer/XmlSerializationVisitor.php:
     last_write_checksum: sha1:d0629d021bd25ac2756ca7bbc43d1da5f2c0094e
   src/NoResponseClient.php:
-    last_write_checksum: sha1:bdb975b44302e5a2df25846283c98c85b901e20f
+    last_write_checksum: sha1:ad05010b544c18585b5e69abc263d7d4613b7172
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:e38a0c31175ccd513f9ebd1f0be43eb57e37d959
+    last_write_checksum: sha1:f93cc2bc2116d34cb694f168f2cda5f637992c8b
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
@@ -1183,24 +1183,24 @@ trackedFiles:
   src/Utils/Utils.php:
     last_write_checksum: sha1:9a37c75aabd97be994c8b85ab1841b190032c8d3
   src/WebhookEndpoints.php:
-    last_write_checksum: sha1:27478694e18901f3bda7f84b5a67d202c1afa219
+    last_write_checksum: sha1:351275714282adc0ae04881424b4bf862cc78dbd
 examples:
   createAssessment:
     minimal:
       parameters:
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
-        application/json: {"account_id": "acct_7f3a9c", "flow": "signup", "identifiers": {"email": "new.user@example.com"}}
+        application/json: {"account_id": "acct_7f3a9c", "flow": "account_creation", "identifiers": {"email": "new.user@example.com"}}
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "purchase", "depth": "quick", "account": {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 75248, "decision": "block", "reasons": [{"code": "auth_impersonated", "weight": 255173}]}, "decisions_by_flow": {"signup": "review", "login": "step_up", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "risk": {"score": 215393, "band": "high", "recommendation": "step_up", "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "breach_cooccurrence", "weight": 119141}], "summary": {"phone": {"country": "AU", "carrier": "Telstra"}, "ip": {"country": "AU"}}, "coverage": {"answered": 549038, "failed": 658459, "pending": 847617}, "details": {"phone_names": [{"value": "Alex Example", "seen_by": 728610}], "breaches": [{"name": "Example Forum", "domain": "forum.example.com", "category": "forum", "kind": "stealer_log", "matched_on": "username"}], "breach_names": [{"value": "Alex Example", "seen_in": 550145}]}}, "signals": [{"type": "account_presence", "identifier": "ip", "outcome": "inconclusive", "source_id": "github", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKN", "observed_at": "2026-10-14T09:00:00.210Z", "last_checked_at": "2026-10-14T09:00:00.210Z", "freshness": "unknown", "enrichment": {"fields": {"phone": "+61412345678", "name": "Alex Example", "carrier": "Telstra", "line_type": "mobile", "entity_type": "person", "country_code": "61", "country": "Australia", "state": "New South Wales", "city": "Sydney", "location": "Sydney, New South Wales, Australia", "national_format": "0412 345 678", "job_title": "Engineer", "company_name": "Example Pty Ltd", "email": "new.user@example.com", "website": "https://example.com", "first_call_at": "2026-09-01T00:00:00.000Z", "last_call_at": "2026-10-10T00:00:00.000Z", "matched_name": "Alex Example", "alternate_names": ["Alex E."], "name_candidates": ["Alex Example"], "timezones": ["Australia/Sydney"], "emails": ["new.user@example.com"], "websites": ["https://example.com"], "locations": ["Sydney, New South Wales, Australia"], "social_profiles": ["https://example.com/alexexample"]}}}], "incomplete_sources": [{"lane": "ip", "reason": "unavailable"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 868034, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 861055, "elapsed_ms": 315337}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "verified": false, "transport": "backend"}}}
+          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "purchase", "depth": "quick", "account": {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 75248, "decision": "block", "reasons": [{"code": "auth_impersonated", "weight": 255173}]}, "decisions_by_flow": {"account_creation": "review", "login": "step_up", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "risk": {"score": 215393, "band": "high", "recommendation": "step_up", "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "breach_cooccurrence", "weight": 119141}], "summary": {"phone": {"country": "AU", "carrier": "Telstra"}, "ip": {"country": "AU"}}, "coverage": {"answered": 549038, "failed": 658459, "pending": 847617}, "details": {"phone_names": [{"value": "Alex Example", "seen_by": 728610}], "breaches": [{"name": "Example Forum", "domain": "forum.example.com", "category": "forum", "kind": "stealer_log", "matched_on": "username"}], "breach_names": [{"value": "Alex Example", "seen_in": 550145}]}}, "signals": [{"type": "account_presence", "identifier": "ip", "outcome": "inconclusive", "source_id": "github", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKN", "observed_at": "2026-10-14T09:00:00.210Z", "last_checked_at": "2026-10-14T09:00:00.210Z", "freshness": "unknown", "enrichment": {"fields": {"phone": "+61412345678", "name": "Alex Example", "carrier": "Telstra", "line_type": "mobile", "entity_type": "person", "country_code": "61", "country": "Australia", "state": "New South Wales", "city": "Sydney", "location": "Sydney, New South Wales, Australia", "national_format": "0412 345 678", "job_title": "Engineer", "company_name": "Example Pty Ltd", "email": "new.user@example.com", "website": "https://example.com", "first_call_at": "2026-09-01T00:00:00.000Z", "last_call_at": "2026-10-10T00:00:00.000Z", "matched_name": "Alex Example", "alternate_names": ["Alex E."], "name_candidates": ["Alex Example"], "timezones": ["Australia/Sydney"], "emails": ["new.user@example.com"], "websites": ["https://example.com"], "locations": ["Sydney, New South Wales, Australia"], "social_profiles": ["https://example.com/alexexample"]}}}], "incomplete_sources": [{"lane": "ip", "reason": "unavailable"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 868034, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 861055, "elapsed_ms": 315337}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "verified": false, "transport": "backend"}}}
         "400":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 400, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "invalid_cursor", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1210,18 +1210,18 @@ examples:
     full:
       parameters:
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
-        application/json: {"account_id": "acct_7f3a9c", "flow": "signup", "identifiers": {"email": "new.user@example.com", "username": "new_user_42", "phone": "+447700900123"}, "policy_context": {"region": "GB"}, "request_id": "req-2026-10-14-0001", "deadline_ms": 300}
+        application/json: {"account_id": "acct_7f3a9c", "flow": "account_creation", "identifiers": {"email": "new.user@example.com", "username": "new_user_42", "phone": "+447700900123"}, "policy_context": {"region": "GB"}, "request_id": "req-2026-10-14-0001", "deadline_ms": 300}
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "purchase", "depth": "quick", "account": {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 75248, "decision": "block", "reasons": [{"code": "auth_impersonated", "weight": 255173}]}, "decisions_by_flow": {"signup": "review", "login": "step_up", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "risk": {"score": 215393, "band": "high", "recommendation": "step_up", "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "breach_cooccurrence", "weight": 119141}], "summary": {"phone": {"country": "AU", "carrier": "Telstra"}, "ip": {"country": "AU"}}, "coverage": {"answered": 549038, "failed": 658459, "pending": 847617}, "details": {"phone_names": [{"value": "Alex Example", "seen_by": 728610}], "breaches": [{"name": "Example Forum", "domain": "forum.example.com", "category": "forum", "kind": "stealer_log", "matched_on": "username"}], "breach_names": [{"value": "Alex Example", "seen_in": 550145}]}}, "signals": [{"type": "account_presence", "identifier": "ip", "outcome": "inconclusive", "source_id": "github", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKN", "observed_at": "2026-10-14T09:00:00.210Z", "last_checked_at": "2026-10-14T09:00:00.210Z", "freshness": "unknown", "enrichment": {"fields": {"phone": "+61412345678", "name": "Alex Example", "carrier": "Telstra", "line_type": "mobile", "entity_type": "person", "country_code": "61", "country": "Australia", "state": "New South Wales", "city": "Sydney", "location": "Sydney, New South Wales, Australia", "national_format": "0412 345 678", "job_title": "Engineer", "company_name": "Example Pty Ltd", "email": "new.user@example.com", "website": "https://example.com", "first_call_at": "2026-09-01T00:00:00.000Z", "last_call_at": "2026-10-10T00:00:00.000Z", "matched_name": "Alex Example", "alternate_names": ["Alex E."], "name_candidates": ["Alex Example"], "timezones": ["Australia/Sydney"], "emails": ["new.user@example.com"], "websites": ["https://example.com"], "locations": ["Sydney, New South Wales, Australia"], "social_profiles": ["https://example.com/alexexample"]}}}], "incomplete_sources": [{"lane": "ip", "reason": "unavailable"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 868034, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 861055, "elapsed_ms": 315337}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "verified": false, "transport": "backend"}}}
+          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "purchase", "depth": "quick", "account": {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 75248, "decision": "block", "reasons": [{"code": "auth_impersonated", "weight": 255173}]}, "decisions_by_flow": {"account_creation": "review", "login": "step_up", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "risk": {"score": 215393, "band": "high", "recommendation": "step_up", "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "breach_cooccurrence", "weight": 119141}], "summary": {"phone": {"country": "AU", "carrier": "Telstra"}, "ip": {"country": "AU"}}, "coverage": {"answered": 549038, "failed": 658459, "pending": 847617}, "details": {"phone_names": [{"value": "Alex Example", "seen_by": 728610}], "breaches": [{"name": "Example Forum", "domain": "forum.example.com", "category": "forum", "kind": "stealer_log", "matched_on": "username"}], "breach_names": [{"value": "Alex Example", "seen_in": 550145}]}}, "signals": [{"type": "account_presence", "identifier": "ip", "outcome": "inconclusive", "source_id": "github", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKN", "observed_at": "2026-10-14T09:00:00.210Z", "last_checked_at": "2026-10-14T09:00:00.210Z", "freshness": "unknown", "enrichment": {"fields": {"phone": "+61412345678", "name": "Alex Example", "carrier": "Telstra", "line_type": "mobile", "entity_type": "person", "country_code": "61", "country": "Australia", "state": "New South Wales", "city": "Sydney", "location": "Sydney, New South Wales, Australia", "national_format": "0412 345 678", "job_title": "Engineer", "company_name": "Example Pty Ltd", "email": "new.user@example.com", "website": "https://example.com", "first_call_at": "2026-09-01T00:00:00.000Z", "last_call_at": "2026-10-10T00:00:00.000Z", "matched_name": "Alex Example", "alternate_names": ["Alex E."], "name_candidates": ["Alex Example"], "timezones": ["Australia/Sydney"], "emails": ["new.user@example.com"], "websites": ["https://example.com"], "locations": ["Sydney, New South Wales, Australia"], "social_profiles": ["https://example.com/alexexample"]}}}], "incomplete_sources": [{"lane": "ip", "reason": "unavailable"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 868034, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 861055, "elapsed_ms": 315337}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "verified": false, "transport": "backend"}}}
         "400":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 400, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "invalid_cursor", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1231,18 +1231,18 @@ examples:
     name_and_ip:
       parameters:
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
-        application/json: {"account_id": "acct_8412", "flow": "signup", "identifiers": {"email": "jane.doe@example.com", "username": "janedoe", "phone": "+14155550123", "name": "Jane A. Doe", "ip": "73.162.18.45"}, "policy_context": {"region": "US"}, "request_id": "req_01", "deadline_ms": 500, "response_mode": "standard"}
+        application/json: {"account_id": "acct_8412", "flow": "account_creation", "identifiers": {"email": "jane.doe@example.com", "username": "janedoe", "phone": "+14155550123", "name": "Jane A. Doe", "ip": "73.162.18.45"}, "policy_context": {"region": "US"}, "request_id": "req_01", "deadline_ms": 500, "response_mode": "standard"}
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "purchase", "depth": "quick", "account": {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 75248, "decision": "block", "reasons": [{"code": "auth_impersonated", "weight": 255173}]}, "decisions_by_flow": {"signup": "review", "login": "step_up", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "risk": {"score": 215393, "band": "high", "recommendation": "step_up", "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "breach_cooccurrence", "weight": 119141}], "summary": {"phone": {"country": "AU", "carrier": "Telstra"}, "ip": {"country": "AU"}}, "coverage": {"answered": 549038, "failed": 658459, "pending": 847617}, "details": {"phone_names": [{"value": "Alex Example", "seen_by": 728610}], "breaches": [{"name": "Example Forum", "domain": "forum.example.com", "category": "forum", "kind": "stealer_log", "matched_on": "username"}], "breach_names": [{"value": "Alex Example", "seen_in": 550145}]}}, "signals": [{"type": "account_presence", "identifier": "ip", "outcome": "inconclusive", "source_id": "github", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKN", "observed_at": "2026-10-14T09:00:00.210Z", "last_checked_at": "2026-10-14T09:00:00.210Z", "freshness": "unknown", "enrichment": {"fields": {"phone": "+61412345678", "name": "Alex Example", "carrier": "Telstra", "line_type": "mobile", "entity_type": "person", "country_code": "61", "country": "Australia", "state": "New South Wales", "city": "Sydney", "location": "Sydney, New South Wales, Australia", "national_format": "0412 345 678", "job_title": "Engineer", "company_name": "Example Pty Ltd", "email": "new.user@example.com", "website": "https://example.com", "first_call_at": "2026-09-01T00:00:00.000Z", "last_call_at": "2026-10-10T00:00:00.000Z", "matched_name": "Alex Example", "alternate_names": ["Alex E."], "name_candidates": ["Alex Example"], "timezones": ["Australia/Sydney"], "emails": ["new.user@example.com"], "websites": ["https://example.com"], "locations": ["Sydney, New South Wales, Australia"], "social_profiles": ["https://example.com/alexexample"]}}}], "incomplete_sources": [{"lane": "ip", "reason": "unavailable"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 868034, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 861055, "elapsed_ms": 315337}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "verified": false, "transport": "backend"}}}
+          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "purchase", "depth": "quick", "account": {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 75248, "decision": "block", "reasons": [{"code": "auth_impersonated", "weight": 255173}]}, "decisions_by_flow": {"account_creation": "review", "login": "step_up", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "risk": {"score": 215393, "band": "high", "recommendation": "step_up", "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "breach_cooccurrence", "weight": 119141}], "summary": {"phone": {"country": "AU", "carrier": "Telstra"}, "ip": {"country": "AU"}}, "coverage": {"answered": 549038, "failed": 658459, "pending": 847617}, "details": {"phone_names": [{"value": "Alex Example", "seen_by": 728610}], "breaches": [{"name": "Example Forum", "domain": "forum.example.com", "category": "forum", "kind": "stealer_log", "matched_on": "username"}], "breach_names": [{"value": "Alex Example", "seen_in": 550145}]}}, "signals": [{"type": "account_presence", "identifier": "ip", "outcome": "inconclusive", "source_id": "github", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKN", "observed_at": "2026-10-14T09:00:00.210Z", "last_checked_at": "2026-10-14T09:00:00.210Z", "freshness": "unknown", "enrichment": {"fields": {"phone": "+61412345678", "name": "Alex Example", "carrier": "Telstra", "line_type": "mobile", "entity_type": "person", "country_code": "61", "country": "Australia", "state": "New South Wales", "city": "Sydney", "location": "Sydney, New South Wales, Australia", "national_format": "0412 345 678", "job_title": "Engineer", "company_name": "Example Pty Ltd", "email": "new.user@example.com", "website": "https://example.com", "first_call_at": "2026-09-01T00:00:00.000Z", "last_call_at": "2026-10-10T00:00:00.000Z", "matched_name": "Alex Example", "alternate_names": ["Alex E."], "name_candidates": ["Alex Example"], "timezones": ["Australia/Sydney"], "emails": ["new.user@example.com"], "websites": ["https://example.com"], "locations": ["Sydney, New South Wales, Australia"], "social_profiles": ["https://example.com/alexexample"]}}}], "incomplete_sources": [{"lane": "ip", "reason": "unavailable"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 868034, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 861055, "elapsed_ms": 315337}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "verified": false, "transport": "backend"}}}
         "400":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 400, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "invalid_cursor", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1252,39 +1252,39 @@ examples:
     complete:
       parameters:
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
-        application/json: {"account_id": "acct_7f3a9c", "flow": "signup", "identifiers": {"email": "new.user@example.com", "username": "new.user", "phone": "+61412345678", "name": "Alex Example", "ip": "203.0.113.45"}, "policy_context": {"region": "AU"}, "request_id": "req-2026-10-14-0001", "client_context": {"timezone": "Australia/Sydney", "locale": "en-AU", "app_version": "4.12.0", "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "device_id": "dev_5c1e8a", "session_id": "sess_9b2d41", "client_observed_at": "2026-10-14T08:59:58.000Z"}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "audience": "https://app.example.com", "audiences": ["https://app.example.com"], "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "tenant_id": "tenant_2EXAMPLE", "token_id": "2EXAMPLEJTI", "issued_at": "2026-10-14T08:59:40.000Z", "expires_at": "2026-10-14T09:00:40.000Z", "session_created_at": "2026-10-14T08:57:00.000Z", "auth_time": "2026-10-14T08:55:00.000Z", "account_created_at": "2026-10-14T08:56:00.000Z", "verified": true, "mfa": {"methods": ["totp"]}, "roles": ["admin"], "scopes": ["org:sys_profile:manage"]}, "issued_credential": {"sha256": "2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b"}}
+        application/json: {"account_id": "acct_7f3a9c", "flow": "account_creation", "identifiers": {"email": "new.user@example.com", "username": "new.user", "phone": "+61412345678", "name": "Alex Example", "ip": "203.0.113.45"}, "policy_context": {"region": "AU"}, "request_id": "req-2026-10-14-0001", "client_context": {"timezone": "Australia/Sydney", "locale": "en-AU", "app_version": "4.12.0", "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "device_id": "dev_5c1e8a", "session_id": "sess_9b2d41", "client_observed_at": "2026-10-14T08:59:58.000Z"}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "audience": "https://app.example.com", "audiences": ["https://app.example.com"], "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "tenant_id": "tenant_2EXAMPLE", "token_id": "2EXAMPLEJTI", "issued_at": "2026-10-14T08:59:40.000Z", "expires_at": "2026-10-14T09:00:40.000Z", "session_created_at": "2026-10-14T08:57:00.000Z", "auth_time": "2026-10-14T08:55:00.000Z", "account_created_at": "2026-10-14T08:56:00.000Z", "verified": true, "mfa": {"methods": ["totp"]}, "roles": ["admin"], "scopes": ["org:sys_profile:manage"]}, "issued_credential": {"sha256": "2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b"}}
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "signup", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"signup": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:04.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 0, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}], "summary": {"phone": {"line_type": "voip", "country": "US", "report_count": 0}, "email": {"disposable": false, "accounts_found": 6, "breach": {"found": true, "breach_count": 7, "first_year": 2013, "last_year": 2021, "exposed": ["email", "name", "password", "phone", "ip"], "in_credential_lists": false, "recent_password_exposure": false, "truncated": false}}, "username": {"accounts_found": 3, "breach": {"found": false, "truncated": false}}, "ip": {"country": "US", "type": "residential", "seen_in_tenant": 1}, "consistency": {"name": "match", "phone": "match", "ip": "unknown", "country": "consistent"}}, "coverage": {"answered": 14, "failed": 1, "pending": 0}}, "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 3, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:04.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 4000}}}
+          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "account_creation", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"account_creation": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:04.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 0, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}], "summary": {"phone": {"line_type": "voip", "country": "US", "report_count": 0}, "email": {"disposable": false, "accounts_found": 6, "breach": {"found": true, "breach_count": 7, "first_year": 2013, "last_year": 2021, "exposed": ["email", "name", "password", "phone", "ip"], "in_credential_lists": false, "recent_password_exposure": false, "truncated": false}}, "username": {"accounts_found": 3, "breach": {"found": false, "truncated": false}}, "ip": {"country": "US", "type": "residential", "seen_in_workspace": 1}, "consistency": {"name": "match", "phone": "match", "ip": "unknown", "country": "consistent"}}, "coverage": {"answered": 14, "failed": 1, "pending": 0}}, "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 3, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:04.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 4000}}}
     partial:
       parameters:
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
-        application/json: {"account_id": "acct_7f3a9c", "flow": "signup", "identifiers": {"email": "new.user@example.com", "username": "new.user", "phone": "+61412345678", "name": "Alex Example", "ip": "203.0.113.45"}, "policy_context": {"region": "AU"}, "request_id": "req-2026-10-14-0001", "client_context": {"timezone": "Australia/Sydney", "locale": "en-AU", "app_version": "4.12.0", "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "device_id": "dev_5c1e8a", "session_id": "sess_9b2d41", "client_observed_at": "2026-10-14T08:59:58.000Z"}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "audience": "https://app.example.com", "audiences": ["https://app.example.com"], "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "tenant_id": "tenant_2EXAMPLE", "token_id": "2EXAMPLEJTI", "issued_at": "2026-10-14T08:59:40.000Z", "expires_at": "2026-10-14T09:00:40.000Z", "session_created_at": "2026-10-14T08:57:00.000Z", "auth_time": "2026-10-14T08:55:00.000Z", "account_created_at": "2026-10-14T08:56:00.000Z", "verified": true, "mfa": {"methods": ["totp"]}, "roles": ["admin"], "scopes": ["org:sys_profile:manage"]}, "issued_credential": {"sha256": "2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b"}}
+        application/json: {"account_id": "acct_7f3a9c", "flow": "account_creation", "identifiers": {"email": "new.user@example.com", "username": "new.user", "phone": "+61412345678", "name": "Alex Example", "ip": "203.0.113.45"}, "policy_context": {"region": "AU"}, "request_id": "req-2026-10-14-0001", "client_context": {"timezone": "Australia/Sydney", "locale": "en-AU", "app_version": "4.12.0", "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "device_id": "dev_5c1e8a", "session_id": "sess_9b2d41", "client_observed_at": "2026-10-14T08:59:58.000Z"}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "audience": "https://app.example.com", "audiences": ["https://app.example.com"], "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "tenant_id": "tenant_2EXAMPLE", "token_id": "2EXAMPLEJTI", "issued_at": "2026-10-14T08:59:40.000Z", "expires_at": "2026-10-14T09:00:40.000Z", "session_created_at": "2026-10-14T08:57:00.000Z", "auth_time": "2026-10-14T08:55:00.000Z", "account_created_at": "2026-10-14T08:56:00.000Z", "verified": true, "mfa": {"methods": ["totp"]}, "roles": ["admin"], "scopes": ["org:sys_profile:manage"]}, "issued_credential": {"sha256": "2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b"}}
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "partial", "flow": "signup", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 15, "decision": "allow", "reasons": [{"code": "recent_password_exposure", "weight": 15, "identifier": "email"}]}, "decisions_by_flow": {"signup": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:10.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "partial", "recommendation": "allow", "confidence": "medium", "risk": {"score": 15, "band": "low", "recommendation": "allow", "block": false, "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "recent_password_exposure", "weight": 15, "identifier": "email"}], "summary": {"email": {"disposable": false, "accounts_found": 1, "breach": {"found": true, "breach_count": 3, "first_year": 2019, "last_year": 2025, "exposed": ["email", "password"], "recent_password_exposure": true, "truncated": false}}, "username": {"breach": {"found": true, "breach_count": 25, "truncated": true}}, "consistency": {"name": "unknown"}}, "coverage": {"answered": 5, "failed": 1, "pending": 0}}, "incomplete_sources": [{"lane": "accounts", "reason": "timed_out"}], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:10.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JB3C4D5E6F7G8H9JKMNPQRST", "timing": {"deadline_ms": 500, "elapsed_ms": 10000}}}
+          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "partial", "flow": "account_creation", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 15, "decision": "allow", "reasons": [{"code": "recent_password_exposure", "weight": 15, "identifier": "email"}]}, "decisions_by_flow": {"account_creation": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:10.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "partial", "recommendation": "allow", "confidence": "medium", "risk": {"score": 15, "band": "low", "recommendation": "allow", "block": false, "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "recent_password_exposure", "weight": 15, "identifier": "email"}], "summary": {"email": {"disposable": false, "accounts_found": 1, "breach": {"found": true, "breach_count": 3, "first_year": 2019, "last_year": 2025, "exposed": ["email", "password"], "recent_password_exposure": true, "truncated": false}}, "username": {"breach": {"found": true, "breach_count": 25, "truncated": true}}, "consistency": {"name": "unknown"}}, "coverage": {"answered": 5, "failed": 1, "pending": 0}}, "incomplete_sources": [{"lane": "accounts", "reason": "timed_out"}], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:10.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JB3C4D5E6F7G8H9JKMNPQRST", "timing": {"deadline_ms": 500, "elapsed_ms": 10000}}}
     login:
       parameters:
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
-        application/json: {"account_id": "acct_7f3a9c", "flow": "signup", "identifiers": {"email": "new.user@example.com", "username": "new.user", "phone": "+61412345678", "name": "Alex Example", "ip": "203.0.113.45"}, "policy_context": {"region": "AU"}, "request_id": "req-2026-10-14-0001", "client_context": {"timezone": "Australia/Sydney", "locale": "en-AU", "app_version": "4.12.0", "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "device_id": "dev_5c1e8a", "session_id": "sess_9b2d41", "client_observed_at": "2026-10-14T08:59:58.000Z"}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "audience": "https://app.example.com", "audiences": ["https://app.example.com"], "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "tenant_id": "tenant_2EXAMPLE", "token_id": "2EXAMPLEJTI", "issued_at": "2026-10-14T08:59:40.000Z", "expires_at": "2026-10-14T09:00:40.000Z", "session_created_at": "2026-10-14T08:57:00.000Z", "auth_time": "2026-10-14T08:55:00.000Z", "account_created_at": "2026-10-14T08:56:00.000Z", "verified": true, "mfa": {"methods": ["totp"]}, "roles": ["admin"], "scopes": ["org:sys_profile:manage"]}, "issued_credential": {"sha256": "2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b"}}
+        application/json: {"account_id": "acct_7f3a9c", "flow": "account_creation", "identifiers": {"email": "new.user@example.com", "username": "new.user", "phone": "+61412345678", "name": "Alex Example", "ip": "203.0.113.45"}, "policy_context": {"region": "AU"}, "request_id": "req-2026-10-14-0001", "client_context": {"timezone": "Australia/Sydney", "locale": "en-AU", "app_version": "4.12.0", "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "device_id": "dev_5c1e8a", "session_id": "sess_9b2d41", "client_observed_at": "2026-10-14T08:59:58.000Z"}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "audience": "https://app.example.com", "audiences": ["https://app.example.com"], "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "tenant_id": "tenant_2EXAMPLE", "token_id": "2EXAMPLEJTI", "issued_at": "2026-10-14T08:59:40.000Z", "expires_at": "2026-10-14T09:00:40.000Z", "session_created_at": "2026-10-14T08:57:00.000Z", "auth_time": "2026-10-14T08:55:00.000Z", "account_created_at": "2026-10-14T08:56:00.000Z", "verified": true, "mfa": {"methods": ["totp"]}, "roles": ["admin"], "scopes": ["org:sys_profile:manage"]}, "issued_credential": {"sha256": "2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b"}}
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "login", "depth": "quick", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "credential_list_exposure", "weight": 10, "identifier": "email"}, {"code": "established_accounts", "weight": -15}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"signup": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:00.212Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 0, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "credential_list_exposure", "weight": 10, "identifier": "email"}, {"code": "established_accounts", "weight": -15}, {"code": "aged_identity", "weight": -25, "identifier": "email"}], "summary": {"email": {"disposable": false, "accounts_found": 4, "breach": {"found": true, "breach_count": 5, "first_year": 2014, "last_year": 2022, "exposed": ["email", "name", "password_hash"], "in_credential_lists": true, "recent_password_exposure": false, "truncated": false}}}, "coverage": {"answered": 6, "failed": 0, "pending": 0}}, "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 1, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:00.212Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 212}}}
+          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "login", "depth": "quick", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "credential_list_exposure", "weight": 10, "identifier": "email"}, {"code": "established_accounts", "weight": -15}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"account_creation": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:00.212Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 0, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "credential_list_exposure", "weight": 10, "identifier": "email"}, {"code": "established_accounts", "weight": -15}, {"code": "aged_identity", "weight": -25, "identifier": "email"}], "summary": {"email": {"disposable": false, "accounts_found": 4, "breach": {"found": true, "breach_count": 5, "first_year": 2014, "last_year": 2022, "exposed": ["email", "name", "password_hash"], "in_credential_lists": true, "recent_password_exposure": false, "truncated": false}}}, "coverage": {"answered": 6, "failed": 0, "pending": 0}}, "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 1, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:00.212Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 212}}}
     detailed:
       parameters:
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
-        application/json: {"account_id": "acct_7f3a9c", "flow": "signup", "identifiers": {"email": "new.user@example.com", "username": "new.user", "phone": "+61412345678", "name": "Alex Example", "ip": "203.0.113.45"}, "policy_context": {"region": "AU"}, "request_id": "req-2026-10-14-0001", "client_context": {"timezone": "Australia/Sydney", "locale": "en-AU", "app_version": "4.12.0", "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "device_id": "dev_5c1e8a", "session_id": "sess_9b2d41", "client_observed_at": "2026-10-14T08:59:58.000Z"}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "audience": "https://app.example.com", "audiences": ["https://app.example.com"], "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "tenant_id": "tenant_2EXAMPLE", "token_id": "2EXAMPLEJTI", "issued_at": "2026-10-14T08:59:40.000Z", "expires_at": "2026-10-14T09:00:40.000Z", "session_created_at": "2026-10-14T08:57:00.000Z", "auth_time": "2026-10-14T08:55:00.000Z", "account_created_at": "2026-10-14T08:56:00.000Z", "verified": true, "mfa": {"methods": ["totp"]}, "roles": ["admin"], "scopes": ["org:sys_profile:manage"]}, "issued_credential": {"sha256": "2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b"}}
+        application/json: {"account_id": "acct_7f3a9c", "flow": "account_creation", "identifiers": {"email": "new.user@example.com", "username": "new.user", "phone": "+61412345678", "name": "Alex Example", "ip": "203.0.113.45"}, "policy_context": {"region": "AU"}, "request_id": "req-2026-10-14-0001", "client_context": {"timezone": "Australia/Sydney", "locale": "en-AU", "app_version": "4.12.0", "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "device_id": "dev_5c1e8a", "session_id": "sess_9b2d41", "client_observed_at": "2026-10-14T08:59:58.000Z"}, "auth_context": {"provider": "clerk", "issuer": "https://example-app.clerk.accounts.dev", "audience": "https://app.example.com", "audiences": ["https://app.example.com"], "subject": "user_2EXAMPLE", "session_id": "sess_2EXAMPLE", "organization_id": "org_2EXAMPLE", "tenant_id": "tenant_2EXAMPLE", "token_id": "2EXAMPLEJTI", "issued_at": "2026-10-14T08:59:40.000Z", "expires_at": "2026-10-14T09:00:40.000Z", "session_created_at": "2026-10-14T08:57:00.000Z", "auth_time": "2026-10-14T08:55:00.000Z", "account_created_at": "2026-10-14T08:56:00.000Z", "verified": true, "mfa": {"methods": ["totp"]}, "roles": ["admin"], "scopes": ["org:sys_profile:manage"]}, "issued_credential": {"sha256": "2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b"}}
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "signup", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 10, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}]}, "decisions_by_flow": {"signup": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:04.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 10, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}], "summary": {"phone": {"line_type": "voip", "country": "US"}, "email": {"disposable": false, "accounts_found": 1, "breach": {"found": true, "breach_count": 2, "first_year": 2016, "last_year": 2019, "exposed": ["email", "password", "password_hash"], "in_credential_lists": true, "truncated": false}}, "consistency": {"name": "match"}}, "coverage": {"answered": 4, "failed": 0, "pending": 0}, "details": {"phone_names": [{"value": "Jane Doe", "seen_by": 3}], "breaches": [{"name": "Collection #1", "category": "combolist", "kind": "credential_list", "year": 2019, "matched_on": "email", "exposed": ["email", "password"]}, {"name": "LinkedIn", "domain": "linkedin.com", "category": "social", "kind": "site_breach", "year": 2016, "month": 5, "matched_on": "email", "exposed": ["email", "password_hash"]}], "breach_names": [{"value": "Jane Doe", "seen_in": 2}]}}, "signals": [{"type": "account_presence", "identifier": "email", "outcome": "found", "source_id": "src_3f9a1c", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSV", "observed_at": "2026-10-18T11:00:00.180Z", "last_checked_at": "2026-10-18T11:00:00.180Z", "freshness": "fresh"}, {"type": "breach_exposure", "identifier": "email", "outcome": "found", "source_id": "src_8d27e4", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSW", "observed_at": "2026-10-18T11:00:01.900Z", "last_checked_at": "2026-10-18T11:00:01.900Z", "freshness": "fresh"}, {"type": "account_presence", "identifier": "phone", "outcome": "found", "source_id": "src_51b0d7", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSX", "observed_at": "2026-10-18T11:00:03.700Z", "last_checked_at": "2026-10-18T11:00:03.700Z", "freshness": "fresh"}], "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:04.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 4000}}}
+          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "account_creation", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 10, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}]}, "decisions_by_flow": {"account_creation": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:04.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 10, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}], "summary": {"phone": {"line_type": "voip", "country": "US"}, "email": {"disposable": false, "accounts_found": 1, "breach": {"found": true, "breach_count": 2, "first_year": 2016, "last_year": 2019, "exposed": ["email", "password", "password_hash"], "in_credential_lists": true, "truncated": false}}, "consistency": {"name": "match"}}, "coverage": {"answered": 4, "failed": 0, "pending": 0}, "details": {"phone_names": [{"value": "Jane Doe", "seen_by": 3}], "breaches": [{"name": "Collection #1", "category": "combolist", "kind": "credential_list", "year": 2019, "matched_on": "email", "exposed": ["email", "password"]}, {"name": "LinkedIn", "domain": "linkedin.com", "category": "social", "kind": "site_breach", "year": 2016, "month": 5, "matched_on": "email", "exposed": ["email", "password_hash"]}], "breach_names": [{"value": "Jane Doe", "seen_in": 2}]}}, "signals": [{"type": "account_presence", "identifier": "email", "outcome": "found", "source_id": "src_3f9a1c", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSV", "observed_at": "2026-10-18T11:00:00.180Z", "last_checked_at": "2026-10-18T11:00:00.180Z", "freshness": "fresh"}, {"type": "breach_exposure", "identifier": "email", "outcome": "found", "source_id": "src_8d27e4", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSW", "observed_at": "2026-10-18T11:00:01.900Z", "last_checked_at": "2026-10-18T11:00:01.900Z", "freshness": "fresh"}, {"type": "account_presence", "identifier": "phone", "outcome": "found", "source_id": "src_51b0d7", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSX", "observed_at": "2026-10-18T11:00:03.700Z", "last_checked_at": "2026-10-18T11:00:03.700Z", "freshness": "fresh"}], "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:04.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 4000}}}
   getAssessment:
     complete:
       parameters:
@@ -1292,42 +1292,42 @@ examples:
           assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "signup", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"signup": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:04.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 0, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}], "summary": {"phone": {"line_type": "voip", "country": "US", "report_count": 0}, "email": {"disposable": false, "accounts_found": 6, "breach": {"found": true, "breach_count": 7, "first_year": 2013, "last_year": 2021, "exposed": ["email", "name", "password", "phone", "ip"], "in_credential_lists": false, "recent_password_exposure": false, "truncated": false}}, "username": {"accounts_found": 3, "breach": {"found": false, "truncated": false}}, "ip": {"country": "US", "type": "residential", "seen_in_tenant": 1}, "consistency": {"name": "match", "phone": "match", "ip": "unknown", "country": "consistent"}}, "coverage": {"answered": 14, "failed": 1, "pending": 0}}, "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 3, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:04.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 4000}}}
+          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "account_creation", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"account_creation": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:04.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 0, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}], "summary": {"phone": {"line_type": "voip", "country": "US", "report_count": 0}, "email": {"disposable": false, "accounts_found": 6, "breach": {"found": true, "breach_count": 7, "first_year": 2013, "last_year": 2021, "exposed": ["email", "name", "password", "phone", "ip"], "in_credential_lists": false, "recent_password_exposure": false, "truncated": false}}, "username": {"accounts_found": 3, "breach": {"found": false, "truncated": false}}, "ip": {"country": "US", "type": "residential", "seen_in_workspace": 1}, "consistency": {"name": "match", "phone": "match", "ip": "unknown", "country": "consistent"}}, "coverage": {"answered": 14, "failed": 1, "pending": 0}}, "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 3, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:04.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 4000}}}
     partial:
       parameters:
         path:
           assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "partial", "flow": "signup", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 15, "decision": "allow", "reasons": [{"code": "recent_password_exposure", "weight": 15, "identifier": "email"}]}, "decisions_by_flow": {"signup": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:10.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "partial", "recommendation": "allow", "confidence": "medium", "risk": {"score": 15, "band": "low", "recommendation": "allow", "block": false, "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "recent_password_exposure", "weight": 15, "identifier": "email"}], "summary": {"email": {"disposable": false, "accounts_found": 1, "breach": {"found": true, "breach_count": 3, "first_year": 2019, "last_year": 2025, "exposed": ["email", "password"], "recent_password_exposure": true, "truncated": false}}, "username": {"breach": {"found": true, "breach_count": 25, "truncated": true}}, "consistency": {"name": "unknown"}}, "coverage": {"answered": 5, "failed": 1, "pending": 0}}, "incomplete_sources": [{"lane": "accounts", "reason": "timed_out"}], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:10.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JB3C4D5E6F7G8H9JKMNPQRST", "timing": {"deadline_ms": 500, "elapsed_ms": 10000}}}
+          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "partial", "flow": "account_creation", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 15, "decision": "allow", "reasons": [{"code": "recent_password_exposure", "weight": 15, "identifier": "email"}]}, "decisions_by_flow": {"account_creation": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:10.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "partial", "recommendation": "allow", "confidence": "medium", "risk": {"score": 15, "band": "low", "recommendation": "allow", "block": false, "confidence": "medium", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "recent_password_exposure", "weight": 15, "identifier": "email"}], "summary": {"email": {"disposable": false, "accounts_found": 1, "breach": {"found": true, "breach_count": 3, "first_year": 2019, "last_year": 2025, "exposed": ["email", "password"], "recent_password_exposure": true, "truncated": false}}, "username": {"breach": {"found": true, "breach_count": 25, "truncated": true}}, "consistency": {"name": "unknown"}}, "coverage": {"answered": 5, "failed": 1, "pending": 0}}, "incomplete_sources": [{"lane": "accounts", "reason": "timed_out"}], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:10.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JB3C4D5E6F7G8H9JKMNPQRST", "timing": {"deadline_ms": 500, "elapsed_ms": 10000}}}
     pending:
       parameters:
         path:
           assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "signup", "depth": "full", "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "incomplete_sources": [{"lane": "accounts", "reason": "timed_out"}, {"lane": "breach", "reason": "timed_out"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 300, "elapsed_ms": 301}}}
+          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "account_creation", "depth": "full", "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "incomplete_sources": [{"lane": "accounts", "reason": "timed_out"}, {"lane": "breach", "reason": "timed_out"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 300, "elapsed_ms": 301}}}
     pending_known_account:
       parameters:
         path:
           assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "purchase", "depth": "full", "account": {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"signup": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JA1Y7J5P3T6V8WABCDEFGHJK", "updated_at": "2026-10-12T16:20:03.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "incomplete_sources": [{"lane": "accounts", "reason": "timed_out"}, {"lane": "breach", "reason": "timed_out"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 300, "elapsed_ms": 301}}}
+          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "pending", "flow": "purchase", "depth": "full", "account": {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_cooccurrence", "weight": -10, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}, {"code": "established_accounts", "weight": -15, "identifier": "email"}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"account_creation": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JA1Y7J5P3T6V8WABCDEFGHJK", "updated_at": "2026-10-12T16:20:03.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "pending", "confidence": "unavailable", "incomplete_sources": [{"lane": "accounts", "reason": "timed_out"}, {"lane": "breach", "reason": "timed_out"}], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "assessment_url": "/v1/assessments/asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "timing": {"deadline_ms": 300, "elapsed_ms": 301}}}
     login:
       parameters:
         path:
           assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "login", "depth": "quick", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "credential_list_exposure", "weight": 10, "identifier": "email"}, {"code": "established_accounts", "weight": -15}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"signup": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:00.212Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 0, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "credential_list_exposure", "weight": 10, "identifier": "email"}, {"code": "established_accounts", "weight": -15}, {"code": "aged_identity", "weight": -25, "identifier": "email"}], "summary": {"email": {"disposable": false, "accounts_found": 4, "breach": {"found": true, "breach_count": 5, "first_year": 2014, "last_year": 2022, "exposed": ["email", "name", "password_hash"], "in_credential_lists": true, "recent_password_exposure": false, "truncated": false}}}, "coverage": {"answered": 6, "failed": 0, "pending": 0}}, "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 1, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:00.212Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 212}}}
+          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "login", "depth": "quick", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 0, "decision": "allow", "reasons": [{"code": "credential_list_exposure", "weight": 10, "identifier": "email"}, {"code": "established_accounts", "weight": -15}, {"code": "aged_identity", "weight": -25, "identifier": "email"}]}, "decisions_by_flow": {"account_creation": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:00.212Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 0, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "credential_list_exposure", "weight": 10, "identifier": "email"}, {"code": "established_accounts", "weight": -15}, {"code": "aged_identity", "weight": -25, "identifier": "email"}], "summary": {"email": {"disposable": false, "accounts_found": 4, "breach": {"found": true, "breach_count": 5, "first_year": 2014, "last_year": 2022, "exposed": ["email", "name", "password_hash"], "in_credential_lists": true, "recent_password_exposure": false, "truncated": false}}}, "coverage": {"answered": 6, "failed": 0, "pending": 0}}, "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 1, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:00.212Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 212}}}
     detailed:
       parameters:
         path:
           assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "signup", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 10, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}]}, "decisions_by_flow": {"signup": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:04.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 10, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}], "summary": {"phone": {"line_type": "voip", "country": "US"}, "email": {"disposable": false, "accounts_found": 1, "breach": {"found": true, "breach_count": 2, "first_year": 2016, "last_year": 2019, "exposed": ["email", "password", "password_hash"], "in_credential_lists": true, "truncated": false}}, "consistency": {"name": "match"}}, "coverage": {"answered": 4, "failed": 0, "pending": 0}, "details": {"phone_names": [{"value": "Jane Doe", "seen_by": 3}], "breaches": [{"name": "Collection #1", "category": "combolist", "kind": "credential_list", "year": 2019, "matched_on": "email", "exposed": ["email", "password"]}, {"name": "LinkedIn", "domain": "linkedin.com", "category": "social", "kind": "site_breach", "year": 2016, "month": 5, "matched_on": "email", "exposed": ["email", "password_hash"]}], "breach_names": [{"value": "Jane Doe", "seen_in": 2}]}}, "signals": [{"type": "account_presence", "identifier": "email", "outcome": "found", "source_id": "src_3f9a1c", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSV", "observed_at": "2026-10-18T11:00:00.180Z", "last_checked_at": "2026-10-18T11:00:00.180Z", "freshness": "fresh"}, {"type": "breach_exposure", "identifier": "email", "outcome": "found", "source_id": "src_8d27e4", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSW", "observed_at": "2026-10-18T11:00:01.900Z", "last_checked_at": "2026-10-18T11:00:01.900Z", "freshness": "fresh"}, {"type": "account_presence", "identifier": "phone", "outcome": "found", "source_id": "src_51b0d7", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSX", "observed_at": "2026-10-18T11:00:03.700Z", "last_checked_at": "2026-10-18T11:00:03.700Z", "freshness": "fresh"}], "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:04.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 4000}}}
+          application/json: {"schema_version": "1", "id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "status": "complete", "flow": "account_creation", "depth": "full", "account": {"schema_version": "1", "id": "acct_8412", "risk": {"score": 10, "decision": "allow", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}]}, "decisions_by_flow": {"account_creation": "allow", "login": "allow", "purchase": "allow"}, "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "updated_at": "2026-10-18T11:00:04.000Z"}, "detail": {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 10, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}], "summary": {"phone": {"line_type": "voip", "country": "US"}, "email": {"disposable": false, "accounts_found": 1, "breach": {"found": true, "breach_count": 2, "first_year": 2016, "last_year": 2019, "exposed": ["email", "password", "password_hash"], "in_credential_lists": true, "truncated": false}}, "consistency": {"name": "match"}}, "coverage": {"answered": 4, "failed": 0, "pending": 0}, "details": {"phone_names": [{"value": "Jane Doe", "seen_by": 3}], "breaches": [{"name": "Collection #1", "category": "combolist", "kind": "credential_list", "year": 2019, "matched_on": "email", "exposed": ["email", "password"]}, {"name": "LinkedIn", "domain": "linkedin.com", "category": "social", "kind": "site_breach", "year": 2016, "month": 5, "matched_on": "email", "exposed": ["email", "password_hash"]}], "breach_names": [{"value": "Jane Doe", "seen_in": 2}]}}, "signals": [{"type": "account_presence", "identifier": "email", "outcome": "found", "source_id": "src_3f9a1c", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSV", "observed_at": "2026-10-18T11:00:00.180Z", "last_checked_at": "2026-10-18T11:00:00.180Z", "freshness": "fresh"}, {"type": "breach_exposure", "identifier": "email", "outcome": "found", "source_id": "src_8d27e4", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSW", "observed_at": "2026-10-18T11:00:01.900Z", "last_checked_at": "2026-10-18T11:00:01.900Z", "freshness": "fresh"}, {"type": "account_presence", "identifier": "phone", "outcome": "found", "source_id": "src_51b0d7", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSX", "observed_at": "2026-10-18T11:00:03.700Z", "last_checked_at": "2026-10-18T11:00:03.700Z", "freshness": "fresh"}], "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:04.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 4000}}}
   deleteAssessment:
     next:
       parameters:
@@ -1349,7 +1349,7 @@ examples:
         path:
           assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
         application/json: {"outcome": "confirmed_abuse", "observed_at": "2026-10-20T05:00:00Z", "external_ref": "case-123", "notes": "Card testing from this account; closed by trust and safety."}
       responses:
@@ -1360,7 +1360,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1372,7 +1372,7 @@ examples:
         path:
           assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
         application/json: {"outcome": "false_positive"}
       responses:
@@ -1383,7 +1383,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1395,9 +1395,9 @@ examples:
         path:
           assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
-        application/json: {"outcome": "legitimate", "observed_at": "2026-10-14T09:04:30.000Z", "external_ref": "case-48213", "notes": "Chargeback filed two days after signup."}
+        application/json: {"outcome": "legitimate", "observed_at": "2026-10-14T09:04:30.000Z", "external_ref": "case-48213", "notes": "Chargeback filed two days after account creation."}
       responses:
         "202":
           application/json: {"id": "out_01JA2ZC0Q1R2S3T4V5W6X7Y8Z9", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "outcome": "confirmed_abuse", "received_at": "2026-10-20T05:00:02.000Z"}
@@ -1413,7 +1413,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1433,14 +1433,14 @@ examples:
           account_id: "acct_7f3a9c"
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 35, "decision": "step_up", "reasons": [{"code": "new_email", "weight": 20, "identifier": "email"}, {"code": "proxy_ip", "weight": 15, "identifier": "ip"}]}, "decisions_by_flow": {"signup": "step_up", "login": "step_up", "purchase": "step_up"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}
+          application/json: {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 35, "decision": "step_up", "reasons": [{"code": "new_email", "weight": 20, "identifier": "email"}, {"code": "proxy_ip", "weight": 15, "identifier": "ip"}]}, "decisions_by_flow": {"account_creation": "step_up", "login": "step_up", "purchase": "step_up"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}
     blocked:
       parameters:
         path:
           account_id: "acct_7f3a9c"
       responses:
         "200":
-          application/json: {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 90, "decision": "block", "reasons": [{"code": "disposable_email", "weight": 40, "identifier": "email"}, {"code": "proxy_ip", "weight": 30, "identifier": "ip"}, {"code": "many_recent_signups", "weight": 20}]}, "decisions_by_flow": {"signup": "block", "login": "block", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}
+          application/json: {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 90, "decision": "block", "reasons": [{"code": "disposable_email", "weight": 40, "identifier": "email"}, {"code": "proxy_ip", "weight": 30, "identifier": "ip"}, {"code": "many_recent_accounts", "weight": 20}]}, "decisions_by_flow": {"account_creation": "block", "login": "block", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}
   deleteAccount:
     erased:
       parameters:
@@ -1470,7 +1470,7 @@ examples:
     batch:
       parameters:
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
         application/json: {"events": [{"key_sha256": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08", "ip": "203.0.113.24", "occurred_at": "2026-10-23T09:14:07Z", "user_agent": "python-requests/2.32.3", "model": "gpt-4o-mini", "input_tokens": 812, "output_tokens": 164, "sample_rate": 1}, {"key_sha256": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08", "ip": "2001:db8:4a::17", "occurred_at": "2026-10-23T09:14:09.250Z", "sample_rate": 0.25}]}
       responses:
@@ -1481,7 +1481,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1491,7 +1491,7 @@ examples:
     recorded:
       parameters:
         header:
-          Idempotency-Key: "signup-acct_7f3a9c"
+          Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
         application/json: {"events": [{"key_sha256": "2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b", "ip": "203.0.113.24", "occurred_at": "2026-10-23T09:14:07.000Z", "user_agent": "python-requests/2.32.3", "model": "gpt-4o-mini", "sample_rate": 1}]}
       responses:
@@ -1509,7 +1509,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1527,7 +1527,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1569,7 +1569,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1600,7 +1600,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1624,7 +1624,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1642,7 +1642,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1666,7 +1666,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1688,7 +1688,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":
@@ -1749,7 +1749,7 @@ examples:
         "401":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "403":
-          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "tenant_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "workspace_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "404":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "409":

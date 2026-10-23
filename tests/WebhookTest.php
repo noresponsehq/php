@@ -12,7 +12,7 @@ use NoResponse\Webhooks\AccountRiskChanged;
 use NoResponse\Webhooks\AssessmentExpired;
 use NoResponse\Webhooks\EndpointDisabled;
 use NoResponse\Webhooks\EndpointVerification;
-use NoResponse\Webhooks\TenantDeleted;
+use NoResponse\Webhooks\WorkspaceDeleted;
 use NoResponse\Webhooks\VerificationException;
 use NoResponse\Webhooks\Webhook;
 use PHPUnit\Framework\TestCase;
@@ -137,9 +137,9 @@ final class WebhookTest extends TestCase
         }
     }
 
-    private const TENANT_DELETED = [
+    private const WORKSPACE_DELETED = [
         'id' => 'evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2',
-        'type' => 'tenant.deleted',
+        'type' => 'workspace.deleted',
         'created_at' => '2026-10-23T10:00:00.000Z',
         'data' => [
             'workspace_id' => 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
@@ -183,17 +183,17 @@ final class WebhookTest extends TestCase
         }
     }
 
-    public function test_tenant_deleted_event(): void
+    public function test_workspace_deleted_event(): void
     {
-        [$raw, $headers] = self::signed(self::TENANT_DELETED, 'secret', self::TENANT_DELETED['id']);
+        [$raw, $headers] = self::signed(self::WORKSPACE_DELETED, 'secret', self::WORKSPACE_DELETED['id']);
         $event = Webhook::constructEvent($raw, $headers, ['whk_sdktest01' => 'secret'], now: self::NOW);
-        $this->assertSame('tenant.deleted', $event->type);
+        $this->assertSame('workspace.deleted', $event->type);
         $this->assertSame('evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2', $event->id);
         $this->assertSame('2026-10-23T10:00:00.000Z', $event->createdAt);
         $this->assertFalse($event->isExpired());
         $this->assertFalse($event->test);
-        $this->assertEquals(new TenantDeleted('tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM', 'live', '2026-10-23T10:00:00.000Z'), $event->data);
-        $this->refusesChangedData(self::TENANT_DELETED, [
+        $this->assertEquals(new WorkspaceDeleted('tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM', 'live', '2026-10-23T10:00:00.000Z'), $event->data);
+        $this->refusesChangedData(self::WORKSPACE_DELETED, [
             ['workspace_id' => '-tnt'],
             ['workspace_id' => 'tnt/01'],
             ['environment' => 'staging'],
@@ -272,12 +272,12 @@ final class WebhookTest extends TestCase
         $this->assertSame('2026-10-23T09:00:04.812Z', $account->updatedAt);
         $this->assertSame(
             [AccountDecision::Review, AccountDecision::Review, AccountDecision::Review],
-            [$account->decisionsByFlow->signup, $account->decisionsByFlow->login, $account->decisionsByFlow->purchase],
+            [$account->decisionsByFlow->accountCreation, $account->decisionsByFlow->login, $account->decisionsByFlow->purchase],
         );
         $previous = $event->data->previousDecisionsByFlow;
         $this->assertSame(
             [AccountDecision::Allow, AccountDecision::Allow, AccountDecision::Allow],
-            [$previous->signup, $previous->login, $previous->purchase],
+            [$previous->accountCreation, $previous->login, $previous->purchase],
         );
         foreach ([
             static function (array &$d): void { unset($d['previous_decisions_by_flow']); },

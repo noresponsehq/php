@@ -47,7 +47,7 @@ final class ClientTest extends TestCase
     {
         return new AssessmentRequest(
             accountId: 'acct_7f3a9c',
-            flow: Flow::Signup,
+            flow: Flow::AccountCreation,
             identifiers: new AssessmentRequestIdentifiers(email: 'new.user@example.com'),
         );
     }
@@ -75,8 +75,8 @@ final class ClientTest extends TestCase
         $client = self::client([
             new Response(200, ['Content-Type' => 'application/json'], self::body('assessment-view-complete.json')),
         ], $history);
-        $client->assessments->create(self::request(), 'signup-usr_8f2k1-0001');
-        $this->assertSame('signup-usr_8f2k1-0001', $history[0]['request']->getHeaderLine('Idempotency-Key'));
+        $client->assessments->create(self::request(), 'account-usr_8f2k1-0001');
+        $this->assertSame('account-usr_8f2k1-0001', $history[0]['request']->getHeaderLine('Idempotency-Key'));
     }
 
     public function test_a_retry_sends_the_same_idempotency_key_and_honours_the_call_options(): void

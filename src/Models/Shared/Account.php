@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** Account - Body of the 200 answer to GET /v1/accounts/{account_id}: the one current risk of one of the calling tenant's accounts. It is the risk of the account's latest assessment that has a decision (status complete or partial), by created_at and then assessment_id, scored exactly as GET /v1/assessments/{assessment_id} scores that assessment, plus the account's own reason shared_api_key when a key issued to the account was used from many IP addresses or countries (POST /v1/key_usage/batches). Its assessments are the account's history (GET /v1/accounts/{account_id}/assessments). */
+/** Account - Body of the 200 answer to GET /v1/accounts/{account_id}: the one current risk of one of the calling workspace's accounts. It is the risk of the account's latest assessment that has a decision (status complete or partial), by created_at and then assessment_id, scored exactly as GET /v1/assessments/{assessment_id} scores that assessment, plus the account's own reason shared_api_key when a key issued to the account was used from many IP addresses or countries (POST /v1/key_usage/batches). Its assessments are the account's history (GET /v1/accounts/{account_id}/assessments). */
 class Account
 {
     /**
-     * The account_id the tenant sends with its assessments.
+     * The account_id the workspace sends with its assessments.
      *
      * @var string $id
      */
@@ -25,7 +25,7 @@ class Account
     public AccountRisk $risk;
 
     /**
-     * The decision for each flow: the account's score under that flow's thresholds. A flow the workspace has not set uses its signup thresholds, so the flows differ only where it set them.
+     * The decision for each flow: the account's score under that flow's thresholds. A flow the workspace has not set uses its account_creation thresholds, so the flows differ only where it set them.
      *
      * @var \NoResponse\Models\Shared\AccountDecisionsByFlow $decisionsByFlow
      */

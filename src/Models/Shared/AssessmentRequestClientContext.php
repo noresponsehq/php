@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** AssessmentRequestClientContext - Optional context observed by your signup client. The server parses these hints into coarse features, leaves raw user_agent and opaque ids out of every answer, and weighs a mismatch with the other evidence. */
+/** AssessmentRequestClientContext - Optional context observed by the client of the user. The server parses these hints into coarse features, leaves raw user_agent and opaque ids out of every answer, and weighs a mismatch with the other evidence. */
 class AssessmentRequestClientContext
 {
     /**
@@ -46,7 +46,7 @@ class AssessmentRequestClientContext
     public ?string $appVersion = null;
 
     /**
-     * The raw User-Agent header of the signup request, at most 512 characters. It is parsed into coarse features and left out of every answer.
+     * The raw User-Agent header of the request that the user sent, at most 512 characters. It is parsed into coarse features and left out of every answer.
      *
      * @var ?string $userAgent
      */
@@ -55,7 +55,7 @@ class AssessmentRequestClientContext
     public ?string $userAgent = null;
 
     /**
-     * Tenant-scoped opaque identifier your application mints and rotates when the account or device changes. Send an id of your own, not a hardware fingerprint.
+     * Workspace-scoped opaque identifier your application mints and rotates when the account or device changes. Send an id of your own, not a hardware fingerprint.
      *
      * @var ?string $deviceId
      */
@@ -64,7 +64,7 @@ class AssessmentRequestClientContext
     public ?string $deviceId = null;
 
     /**
-     * Opaque signup session identifier. It is used for tenant-scoped velocity and replay checks only.
+     * Opaque signup session identifier. It is used for workspace-scoped velocity and replay checks only.
      *
      * @var ?string $sessionId
      */

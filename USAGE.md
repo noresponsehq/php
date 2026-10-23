@@ -15,7 +15,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::Signup,
+    flow: Shared\Flow::AccountCreation,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
     ),
@@ -23,7 +23,7 @@ $body = new Shared\AssessmentRequest(
 
 $response = $sdk->assessments->create(
     body: $body,
-    idempotencyKey: 'signup-acct_7f3a9c'
+    idempotencyKey: 'account-acct_7f3a9c'
 
 );
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** IntegrationList - GET /v1/integrations: every integration of the tenant, oldest first, at most 10. No secret is ever listed. */
+/** IntegrationList - GET /v1/integrations: every integration of the workspace, oldest first, at most 10. No secret is ever listed. */
 class IntegrationList
 {
     /**

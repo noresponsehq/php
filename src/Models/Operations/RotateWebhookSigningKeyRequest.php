@@ -9,7 +9,7 @@ use NoResponse\Utils\NoResponseMetadata;
 class RotateWebhookSigningKeyRequest
 {
     /**
-     * The endpoint's whe_ id. An id that is unknown, malformed or another tenant's answers 404.
+     * The endpoint's whe_ id. An id that is unknown, malformed or another workspace's answers 404.
      *
      * @var string $endpointId
      */

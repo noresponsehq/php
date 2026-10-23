@@ -1,5 +1,40 @@
 # Changelog
 
+## 9.0.0
+
+* `sdk->assessments->create()`: 
+  *  `request.body->flow` **Changed** (Breaking ⚠️)
+  *  `response` **Changed** (Breaking ⚠️)
+  *  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->get()`: 
+  *  `response` **Changed** (Breaking ⚠️)
+  *  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->delete()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->recordOutcome()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->query()`: 
+  *  `response.items[]->risk` **Changed** (Breaking ⚠️)
+  *  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->accounts->get()`: 
+  *  `response` **Changed** (Breaking ⚠️)
+  *  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->accounts->delete()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->accounts->listAssessments()`: 
+  *  `response.items[]->risk` **Changed** (Breaking ⚠️)
+  *  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->keyusage->record()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->keys->rotate()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->integrations->create()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->integrations->list()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->integrations->delete()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->integrations->rotate()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->webhookendpoints->list()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->webhookendpoints->create()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->webhookendpoints->delete()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->webhookendpoints->rotateSigningKey()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->webhookendpoints->sendTestEvent()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->webhookendpoints->listDeliveries()`:  `error.code` **Changed** (Breaking ⚠️)
+* `sdk->webhookendpoints->replayDelivery()`:  `error.code` **Changed** (Breaking ⚠️)
+
 ## 8.0.1
 
 No changes detected.

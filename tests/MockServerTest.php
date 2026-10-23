@@ -37,7 +37,7 @@ final class MockServerTest extends TestCase
             idempotencyKey: 'mock-server-smoke-0001',
             body: new Shared\AssessmentRequest(
                 accountId: 'acct_7f3a9c',
-                flow: Shared\Flow::Signup,
+                flow: Shared\Flow::AccountCreation,
                 identifiers: new Shared\AssessmentRequestIdentifiers(email: 'new.user@example.com'),
             ),
         );

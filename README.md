@@ -2,7 +2,7 @@
 
 # NoResponse for PHP
 
-The NoResponse client for PHP 8.2 and later. It assesses a signup or gateway event, polls a pending assessment, pages through an account's history, records what you later learned, rotates your API key and verifies webhooks. The client is generated from the NoResponse OpenAPI document; webhook verification and the wait helper are hand-written.
+The NoResponse client for PHP 8.2 and later. It assesses an account creation, login or purchase, polls a pending assessment, pages through an account's history, records what you later learned, rotates your API key and verifies webhooks. The client is generated from the NoResponse OpenAPI document; webhook verification and the wait helper are hand-written.
 
 Keep the API key on your server.
 
@@ -45,7 +45,7 @@ $client = NoResponseClient::create(getenv('NORESPONSE_API_KEY'));
 
 $response = $client->assessments->create(new AssessmentRequest(
     accountId: 'usr_8f2k1',
-    flow: Flow::Signup,
+    flow: Flow::AccountCreation,
     identifiers: new AssessmentRequestIdentifiers(email: 'jordan.lee@example.com'),
 ));
 
@@ -81,11 +81,11 @@ $client = NoResponseClient::builder()
 $created = $client->assessments->create(
     new AssessmentRequest(
         accountId: 'usr_8f2k1',
-        flow: Flow::Signup,
+        flow: Flow::AccountCreation,
         identifiers: new AssessmentRequestIdentifiers(email: 'jordan.lee@example.com'),
         responseMode: ResponseMode::Detailed, // detailed needs the detailed scope
     ),
-    idempotencyKey: 'signup-usr_8f2k1-0001',
+    idempotencyKey: 'account-usr_8f2k1-0001',
 );
 
 $latest = $client->assessments->get($created->result->id);
@@ -181,7 +181,7 @@ $client->assessments->create($request, options: Options::builder()->setRetryConf
 
 ## Issued keys
 
-When your signup gate issues an API key to the new account, send only its hash, as `issued_credential.sha256`; the key itself never leaves your backend.
+When your platform issues an API key to the new account, send only its hash, as `issued_credential.sha256`; the key itself never leaves your backend.
 
 ```php
 $sha256 = \NoResponse\IssuedCredential::sha256($issuedKey);
@@ -211,7 +211,7 @@ Verify the exact bytes you received, then act on the typed event. `$secrets` map
 use NoResponse\Models\Shared\Assessment;
 use NoResponse\Webhooks\AccountDeleted;
 use NoResponse\Webhooks\EndpointDisabled;
-use NoResponse\Webhooks\TenantDeleted;
+use NoResponse\Webhooks\WorkspaceDeleted;
 use NoResponse\Webhooks\AccountRiskChanged;
 use NoResponse\Webhooks\VerificationException;
 use NoResponse\Webhooks\Webhook;
@@ -233,8 +233,8 @@ if ($event->test) {
     // sendTestEvent's fixed example assessment: apply nothing
 } elseif ($event->data instanceof AccountDeleted) {
     // account.deleted: you erased $event->data->accountId with $client->accounts->delete
-} elseif ($event->data instanceof TenantDeleted) {
-    // tenant.deleted: the workspace is deleted, the last event this endpoint receives
+} elseif ($event->data instanceof WorkspaceDeleted) {
+    // workspace.deleted: the workspace is deleted, the last event this endpoint receives
 } elseif ($event->data instanceof EndpointDisabled) {
     // webhook_endpoint.disabled: $event->data->endpointId failed for 72 hours; fix it and verify it again
 } elseif ($event->data instanceof AccountRiskChanged) {
@@ -252,7 +252,7 @@ http_response_code(204);
 
 ### Late results
 
-When a slow source settles and the account's decision rises after you allowed the signup, `LateResults::handleLateResult` verifies the delivery, applies your policy to `account->risk->decision` and acts through your auth provider. The default policy revokes sessions on `review` and `block`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. An `account.risk_changed` event acts on nothing: the handler acts on the `assessment.updated` that changed the decision. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
+When a slow source settles and the account's decision rises after you allowed the account creation, `LateResults::handleLateResult` verifies the delivery, applies your policy to `account->risk->decision` and acts through your auth provider. The default policy revokes sessions on `review` and `block`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. An `account.risk_changed` event acts on nothing: the handler acts on the `assessment.updated` that changed the decision. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
 
 ```php
 $result = LateResults::handleLateResult($payload, getallheaders(), [$keyId => $secret], new ClerkProvider($clerkSecretKey));
@@ -262,7 +262,7 @@ If your app has its own login, `new LogOnlyProvider()` logs what it would revoke
 
 ## Changes in 6.0.0
 
-- `AssessmentRequest` takes a required `flow` (`Flow::Signup`, `Flow::Login` or `Flow::Purchase`) and an optional `depth`. `AssessmentRequestPolicyContext` no longer has `flow`.
+- `AssessmentRequest` takes a required `flow` (`Flow::AccountCreation`, `Flow::Login` or `Flow::Purchase`) and an optional `depth`. `AssessmentRequestPolicyContext` no longer has `flow`.
 - `create`, `get` and the `assessment.updated` webhook return the `Assessment` resource: `id`, `status`, `flow`, `depth`, `account` (the account's current risk, decided for this flow; null while the account's first assessment is pending) and `detail` (`AssessmentDetail`, the previous assessment body).
 - Act on `account->risk->decision` (`allow`, `step_up`, `review`, `block`). `block` replaces `detail->risk->block`. Keep the highest `detail->assessmentVersion`.
 - History pages hold `AssessmentDetail` items.

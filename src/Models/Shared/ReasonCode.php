@@ -19,7 +19,7 @@ enum ReasonCode: string
     case ProxyIp = 'proxy_ip';
     case SeenBefore = 'seen_before';
     case SharedIp = 'shared_ip';
-    case ManyRecentSignups = 'many_recent_signups';
+    case ManyRecentAccounts = 'many_recent_accounts';
     case EstablishedAccounts = 'established_accounts';
     case AgedIdentity = 'aged_identity';
     case BreachNameMatch = 'breach_name_match';

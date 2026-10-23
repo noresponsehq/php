@@ -9,7 +9,7 @@ namespace NoResponse\Models\Shared;
 class AssessmentOutcome
 {
     /**
-     * Opaque, server-assigned id of one recorded outcome: 'out_' and a 26-character Crockford base32 ULID. Unique within the tenant.
+     * Opaque, server-assigned id of one recorded outcome: 'out_' and a 26-character Crockford base32 ULID. Unique within the workspace.
      *
      * @var string $id
      */
@@ -17,7 +17,7 @@ class AssessmentOutcome
     public string $id;
 
     /**
-     * Opaque, server-assigned assessment id: 'asm_' and a 26-character Crockford base32 ULID. Unique within the tenant; another tenant's assessment id answers 404.
+     * Opaque, server-assigned assessment id: 'asm_' and a 26-character Crockford base32 ULID. Unique within the workspace; another workspace's assessment id answers 404.
      *
      * @var string $assessmentId
      */
@@ -25,7 +25,7 @@ class AssessmentOutcome
     public string $assessmentId;
 
     /**
-     * What the provider later learned about the assessed account. confirmed_abuse, account_takeover and chargeback report abuse; false_positive and legitimate withdraw an earlier abuse report of this tenant for the assessment; unknown is recorded only. Outcomes are append-only and the latest one recorded for an assessment wins.
+     * What the provider later learned about the assessed account. confirmed_abuse, account_takeover and chargeback report abuse; false_positive and legitimate withdraw an earlier abuse report of this workspace for the assessment; unknown is recorded only. Outcomes are append-only and the latest one recorded for an assessment wins.
      *
      * @var \NoResponse\Models\Shared\Outcome $outcome
      */

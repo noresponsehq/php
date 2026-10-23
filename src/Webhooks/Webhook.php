@@ -146,7 +146,7 @@ final class Webhook
     /**
      * @param  array<mixed>  $data
      */
-    private static function data(string $type, array $data): Assessment|AssessmentExpired|EndpointVerification|AccountDeleted|TenantDeleted|EndpointDisabled|AccountRiskChanged
+    private static function data(string $type, array $data): Assessment|AssessmentExpired|EndpointVerification|AccountDeleted|WorkspaceDeleted|EndpointDisabled|AccountRiskChanged
     {
         if ($type === 'endpoint.verification') {
             $endpointId = $data['endpoint_id'] ?? null;
@@ -171,17 +171,17 @@ final class Webhook
 
             return new AccountDeleted($accountId, $deleted, $deletedAt);
         }
-        if ($type === 'tenant.deleted') {
+        if ($type === 'workspace.deleted') {
             $workspaceId = $data['workspace_id'] ?? null;
             $environment = $data['environment'] ?? null;
             $deletedAt = $data['deleted_at'] ?? null;
             if (! is_string($workspaceId) || preg_match(self::WORKSPACE_ID, $workspaceId) !== 1
                 || ($environment !== 'live' && $environment !== 'test')
                 || ! is_string($deletedAt) || preg_match(self::DATETIME, $deletedAt) !== 1) {
-                throw new VerificationException('invalid_payload', 'Tenant deleted event is malformed');
+                throw new VerificationException('invalid_payload', 'Workspace deleted event is malformed');
             }
 
-            return new TenantDeleted($workspaceId, $environment, $deletedAt);
+            return new WorkspaceDeleted($workspaceId, $environment, $deletedAt);
         }
         if ($type === 'webhook_endpoint.disabled') {
             $endpointId = $data['endpoint_id'] ?? null;

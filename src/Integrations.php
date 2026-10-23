@@ -336,7 +336,7 @@ class Integrations
     }
 
     /**
-     * List the tenant's integrations.
+     * List the workspace's integrations.
      *
      * Every integration, oldest first. Listings carry no secrets. Requires the integrations scope.
      *

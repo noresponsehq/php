@@ -9,7 +9,7 @@ namespace NoResponse\Webhooks;
  * are torn down: the last event this endpoint receives. environment is
  * "live" or "test".
  */
-final class TenantDeleted
+final class WorkspaceDeleted
 {
     public function __construct(
         public readonly string $workspaceId,

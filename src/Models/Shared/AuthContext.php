@@ -78,7 +78,7 @@ class AuthContext
     public ?string $organizationId = null;
 
     /**
-     * The provider tenant identifier, when distinct from organization_id.
+     * The provider workspace identifier, when distinct from organization_id.
      *
      * @var ?string $tenantId
      */
