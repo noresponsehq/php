@@ -26,6 +26,26 @@ class AssessmentRequest
     public AssessmentRequestIdentifiers $identifiers;
 
     /**
+     * The customer event an assessment is made for: signup (a new account), login (a returning sign-in) or purchase (a payment or credit grant). The account's risk is reported with the decision for this flow.
+     *
+     * @var ?\NoResponse\Models\Shared\AssessmentFlow $flow
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('flow')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentFlow|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?AssessmentFlow $flow = null;
+
+    /**
+     * How long the synchronous answer waits for sources. quick waits only for the fast sources, those that answer within 500 ms of ingress (or deadline_ms when lower); full waits for the whole budget, up to 3000 ms. Sources still running at the cut continue asynchronously and update the assessment either way.
+     *
+     * @var ?\NoResponse\Models\Shared\Depth $depth
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('depth')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Depth|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?Depth $depth = null;
+
+    /**
      *
      * @var ?\NoResponse\Models\Shared\AssessmentRequestPolicyContext $policyContext
      */
@@ -95,6 +115,8 @@ class AssessmentRequest
     /**
      * @param  string  $accountId
      * @param  \NoResponse\Models\Shared\AssessmentRequestIdentifiers  $identifiers
+     * @param  ?\NoResponse\Models\Shared\AssessmentFlow  $flow
+     * @param  ?\NoResponse\Models\Shared\Depth  $depth
      * @param  ?\NoResponse\Models\Shared\AssessmentRequestPolicyContext  $policyContext
      * @param  ?string  $requestId
      * @param  ?int  $deadlineMs
@@ -104,10 +126,12 @@ class AssessmentRequest
      * @param  ?\NoResponse\Models\Shared\AssessmentRequestIssuedCredential  $issuedCredential
      * @phpstan-pure
      */
-    public function __construct(string $accountId, AssessmentRequestIdentifiers $identifiers, ?AssessmentRequestPolicyContext $policyContext = null, ?string $requestId = null, ?int $deadlineMs = null, ?ResponseMode $responseMode = null, ?AssessmentRequestClientContext $clientContext = null, ?AuthContext $authContext = null, ?AssessmentRequestIssuedCredential $issuedCredential = null)
+    public function __construct(string $accountId, AssessmentRequestIdentifiers $identifiers, ?AssessmentFlow $flow = null, ?Depth $depth = null, ?AssessmentRequestPolicyContext $policyContext = null, ?string $requestId = null, ?int $deadlineMs = null, ?ResponseMode $responseMode = null, ?AssessmentRequestClientContext $clientContext = null, ?AuthContext $authContext = null, ?AssessmentRequestIssuedCredential $issuedCredential = null)
     {
         $this->accountId = $accountId;
         $this->identifiers = $identifiers;
+        $this->flow = $flow;
+        $this->depth = $depth;
         $this->policyContext = $policyContext;
         $this->requestId = $requestId;
         $this->deadlineMs = $deadlineMs;

@@ -202,13 +202,13 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
+    flow: Shared\AssessmentFlow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new_user_42',
         phone: '+447700900123',
     ),
     policyContext: new Shared\AssessmentRequestPolicyContext(
-        flow: Shared\Flow::Signup,
         region: 'GB',
     ),
     requestId: 'req-2026-10-14-0001',
@@ -244,6 +244,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
+    flow: Shared\AssessmentFlow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
     ),
@@ -278,6 +279,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_8412',
+    flow: Shared\AssessmentFlow::Signup,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'jane.doe@example.com',
         username: 'janedoe',
@@ -286,7 +288,6 @@ $body = new Shared\AssessmentRequest(
         ip: '73.162.18.45',
     ),
     policyContext: new Shared\AssessmentRequestPolicyContext(
-        flow: Shared\Flow::Signup,
         region: 'US',
     ),
     requestId: 'req_01',

@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.6
+
+* `sdk->assessments->create()`:  `request.body` **Changed**
+
 ## 5.0.5
 
 No changes detected.
