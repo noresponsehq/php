@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.1
+
+No changes detected.
+
 ## 6.0.0
 
 * `sdk->assessments->create()`: 
