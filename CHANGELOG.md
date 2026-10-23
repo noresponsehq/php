@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.7
+
+No changes detected.
+
 ## 4.1.6
 
 No changes detected.
