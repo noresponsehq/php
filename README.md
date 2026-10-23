@@ -118,6 +118,8 @@ $client->assessments->recordOutcome(
 
 `create` and `recordOutcome` send a fresh UUID as the `Idempotency-Key` when you pass none, and the same key on every retry of that call, so a retried request is recorded once. Pass your own key to make a retry from your side replay the same assessment: the API answers the latest version with `Idempotent-Replayed: true`. The same key with a different body answers 409 (`ConflictException`).
 
+`$client->assessments->delete($assessmentId)` deletes one assessment (`history` scope); the answer's `account->currentAssessmentId` names the assessment the account's risk now comes from, null when none is left, and a repeat answers 404.
+
 ## Keys
 
 ```php

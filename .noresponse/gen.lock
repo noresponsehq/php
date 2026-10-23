@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 9aa853e9efd8b4e21d11ac5bb3e06b7f
+  docChecksum: 08a7fda0af0827ded4f968451777345b
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 5.0.10
-  configChecksum: be3f73fc125959c7ca63875d926b7fe0
+  releaseVersion: 5.0.11
+  configChecksum: 767d1aa6cb845d5e75b462443d4159d7
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -54,6 +54,10 @@ trackedFiles:
     last_write_checksum: sha1:2d80fd22b9477ee5d71eae2f9d2157cd44d2d907
   docs/Models/Operations/DeleteAccountResponse.md:
     last_write_checksum: sha1:1eaa3f3f8d71785bae5879e3cab2ef3961b4cb0c
+  docs/Models/Operations/DeleteAssessmentRequest.md:
+    last_write_checksum: sha1:ec5e069f14a97353903a0a01ce0afc489aa9028d
+  docs/Models/Operations/DeleteAssessmentResponse.md:
+    last_write_checksum: sha1:e3035af571f34812d92298b0d787908e525bfd85
   docs/Models/Operations/DeleteIntegrationRequest.md:
     last_write_checksum: sha1:c3f411caea6fdc93cb713098dd9fd2c648f6bf41
   docs/Models/Operations/DeleteIntegrationResponse.md:
@@ -126,6 +130,10 @@ trackedFiles:
     last_write_checksum: sha1:3f2c1e97fcb7461b2fc1621aaa0cd420de03ab9f
   docs/Models/Shared/AssessmentAuthContext.md:
     last_write_checksum: sha1:f8c99015513441a1b7876d320e181a090de36293
+  docs/Models/Shared/AssessmentDeletion.md:
+    last_write_checksum: sha1:67f13f3741f9376aa1f830b9aa8e19d7417f254c
+  docs/Models/Shared/AssessmentDeletionAccount.md:
+    last_write_checksum: sha1:ce2da11781850cab5adf0d0fef159eb992627aad
   docs/Models/Shared/AssessmentFlow.md:
     last_write_checksum: sha1:e3c22271b42f66737e9b2d6501a820fd76f523ea
   docs/Models/Shared/AssessmentList.md:
@@ -343,7 +351,7 @@ trackedFiles:
   docs/sdks/accounts/README.md:
     last_write_checksum: sha1:858272ae13bcf3ec95cadb35eeab2eff105cdb97
   docs/sdks/assessments/README.md:
-    last_write_checksum: sha1:ffa881be6a6605667ba1600e1822613905dbec57
+    last_write_checksum: sha1:678c96acc713d50da40af604ee0f82c85a0872be
   docs/sdks/integrations/README.md:
     last_write_checksum: sha1:5c4cfd1918b1ee51af5f16e1fc2ebabc5f798478
   docs/sdks/keys/README.md:
@@ -361,7 +369,7 @@ trackedFiles:
   src/Accounts.php:
     last_write_checksum: sha1:3972e47af415170ab3616e2c2840752c8f0182b9
   src/Assessments.php:
-    last_write_checksum: sha1:68f9740f87a4da377e780eed52ff37e69cd898db
+    last_write_checksum: sha1:691b05558107ea55a59317a73a317b08f95b12e9
   src/Hooks/AfterErrorContext.php:
     last_write_checksum: sha1:f1bfa05a3faedf129d634b9b23fdd301357cb306
   src/Hooks/AfterErrorHook.php:
@@ -436,6 +444,10 @@ trackedFiles:
     last_write_checksum: sha1:2ef0d2e1fa11908bdb0cf4b5580f35f6bdacee6f
   src/Models/Operations/DeleteAccountResponse.php:
     last_write_checksum: sha1:97408b1164ba305854415f1c63dc9c6fc1a24a25
+  src/Models/Operations/DeleteAssessmentRequest.php:
+    last_write_checksum: sha1:d9b33f813746db5347d64010f4199bb2e739d35e
+  src/Models/Operations/DeleteAssessmentResponse.php:
+    last_write_checksum: sha1:93233f49492d95aa4c315754ad61ca3d0e17fad6
   src/Models/Operations/DeleteIntegrationRequest.php:
     last_write_checksum: sha1:dff99017a18d5fad68449de040b3552b8c205d65
   src/Models/Operations/DeleteIntegrationResponse.php:
@@ -506,6 +518,10 @@ trackedFiles:
     last_write_checksum: sha1:4f35327863dd0fd6af6ba31f0298b89d0cc0f4ee
   src/Models/Shared/AssessmentAuthContext.php:
     last_write_checksum: sha1:6c475e169185856678568717d0e76c68b5911654
+  src/Models/Shared/AssessmentDeletion.php:
+    last_write_checksum: sha1:10770ec92b0c96ce7c6544c64a8c7c9f51fc1d8d
+  src/Models/Shared/AssessmentDeletionAccount.php:
+    last_write_checksum: sha1:98ae65e6c4f6a1584c917cac83a43e1e06ffe87a
   src/Models/Shared/AssessmentFlow.php:
     last_write_checksum: sha1:80b3edad65ea148a64f4218a401bf3cb46f20f2f
   src/Models/Shared/AssessmentList.php:
@@ -1075,7 +1091,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:e94e527c4fd4da9bbdbd874b89cea2a21cb000c1
+    last_write_checksum: sha1:8d1bbd153e2e7dd5c5c717868d6465cc29f3d9ab
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
@@ -1285,6 +1301,21 @@ examples:
       responses:
         "200":
           application/json: {"schema_version": "1", "assessment_id": "asm_01JB3C4D5E6F7G8H9JKMNPQRST", "account_id": "acct_8412", "request_id": "req_01", "status": "complete", "recommendation": "allow", "confidence": "high", "risk": {"score": 10, "band": "low", "recommendation": "allow", "block": false, "confidence": "high", "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "reasons": [{"code": "voip_number", "weight": 25, "identifier": "phone"}, {"code": "breach_name_match", "weight": -15, "identifier": "name"}], "summary": {"phone": {"line_type": "voip", "country": "US"}, "email": {"disposable": false, "accounts_found": 1, "breach": {"found": true, "breach_count": 2, "first_year": 2016, "last_year": 2019, "exposed": ["email", "password", "password_hash"], "in_credential_lists": true, "truncated": false}}, "consistency": {"name": "match"}}, "coverage": {"answered": 4, "failed": 0, "pending": 0}, "details": {"phone_names": [{"value": "Jane Doe", "seen_by": 3}], "breaches": [{"name": "Collection #1", "category": "combolist", "kind": "credential_list", "year": 2019, "matched_on": "email", "exposed": ["email", "password"]}, {"name": "LinkedIn", "domain": "linkedin.com", "category": "social", "kind": "site_breach", "year": 2016, "month": 5, "matched_on": "email", "exposed": ["email", "password_hash"]}], "breach_names": [{"value": "Jane Doe", "seen_in": 2}]}}, "signals": [{"type": "account_presence", "identifier": "email", "outcome": "found", "source_id": "src_3f9a1c", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSV", "observed_at": "2026-10-18T11:00:00.180Z", "last_checked_at": "2026-10-18T11:00:00.180Z", "freshness": "fresh"}, {"type": "breach_exposure", "identifier": "email", "outcome": "found", "source_id": "src_8d27e4", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSW", "observed_at": "2026-10-18T11:00:01.900Z", "last_checked_at": "2026-10-18T11:00:01.900Z", "freshness": "fresh"}, {"type": "account_presence", "identifier": "phone", "outcome": "found", "source_id": "src_51b0d7", "evidence_ref": "evr_01JB3C4D5E6F7G8H9JKMNPQRSX", "observed_at": "2026-10-18T11:00:03.700Z", "last_checked_at": "2026-10-18T11:00:03.700Z", "freshness": "fresh"}], "incomplete_sources": [], "policy_version": "risk-2026-10.3", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-18T11:00:00.000Z", "updated_at": "2026-10-18T11:00:04.000Z", "expires_at": "2027-10-18T11:00:00.000Z", "timing": {"deadline_ms": 500, "elapsed_ms": 4000}}
+  deleteAssessment:
+    next:
+      parameters:
+        path:
+          assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
+      responses:
+        "200":
+          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "deleted": true, "account": {"id": "acct_7f3a9c", "current_assessment_id": "asm_01JA2Z7Y3N5P8Q2R4S6T8V0W1X"}, "deleted_at": "2026-10-23T09:00:00.000Z"}
+    last:
+      parameters:
+        path:
+          assessment_id: "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
+      responses:
+        "200":
+          application/json: {"schema_version": "1", "id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "deleted": true, "account": {"id": "acct_7f3a9c"}, "deleted_at": "2026-10-23T09:00:00.000Z"}
   recordAssessmentOutcome:
     abuse:
       parameters:

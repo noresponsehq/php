@@ -8,6 +8,7 @@ Signup and gateway assessments.
 
 * [create](#create) - Assess identifiers for a signup or gateway decision.
 * [get](#get) - Poll the authoritative assessment of one assessment.
+* [delete](#delete) - Delete one assessment.
 * [recordOutcome](#recordoutcome) - Report what was later learned about an assessed account.
 * [query](#query) - Page through one account's unexpired assessments.
 
@@ -642,6 +643,85 @@ if ($response->assessment !== null) {
 ### Response
 
 **[?Operations\GetAssessmentResponse](../../Models/Operations/GetAssessmentResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## delete
+
+Deletes one assessment in the environment of your key, with its versions, evidence and outcomes and the identity-graph marks its outcomes set, and scores its account again from what remains. Afterwards the assessment answers 404 and leaves the account's history. The answer names the account and the assessment its current risk now comes from; current_assessment_id is absent when the account has no assessment with a decision left. Requires the history scope. An unknown, expired or already deleted assessment answers 404, so a repeat answers 404; to erase a whole account idempotently, use accounts.delete.
+
+### Example Usage: last
+
+<!-- UsageSnippet language="php" operationID="deleteAssessment" method="delete" path="/v1/assessments/{assessment_id}" example="last" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$response = $sdk->assessments->delete(
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
+);
+
+if ($response->assessmentDeletion !== null) {
+    // handle response
+}
+```
+### Example Usage: next
+
+<!-- UsageSnippet language="php" operationID="deleteAssessment" method="delete" path="/v1/assessments/{assessment_id}" example="next" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$response = $sdk->assessments->delete(
+    assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
+);
+
+if ($response->assessmentDeletion !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       | Example                                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `assessmentId`                                                                                                    | *string*                                                                                                          | :heavy_check_mark:                                                                                                | Path segment, matched case-sensitively. A value that does not match the assessment_id shape answers 404, not 400. | asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                    |
+
+### Response
+
+**[?Operations\DeleteAssessmentResponse](../../Models/Operations/DeleteAssessmentResponse.md)**
 
 ### Errors
 

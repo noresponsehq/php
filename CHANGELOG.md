@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.11
+
+* `sdk->assessments->delete()`: **Added**
+
 ## 5.0.10
 
 No changes detected.
