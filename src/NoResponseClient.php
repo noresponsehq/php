@@ -9,7 +9,7 @@ namespace NoResponse;
 /**
  * NoResponseClient - NoResponse API: Server-side signup and gateway risk assessment: a recommendation, polling and signed webhooks.
  *
- * Assess a signup, login or purchase and get back the account's one current risk, poll a pending assessment, page through an account's history, record what you later learned, rotate your API key, manage your webhook endpoints, and register hosted endpoints that answer your WorkOS or Auth0 sign-up and sign-in hooks. Every response carries X-Request-ID; every error is an RFC 9457 problem document. Keep the API key on your server.
+ * Assess a signup, login or purchase and get back the account's one current risk, poll a pending assessment, page through an account's history, record what you later learned, report usage of the API keys you issue to your accounts, rotate your API key, manage your webhook endpoints, and register hosted endpoints that answer your WorkOS or Auth0 sign-up and sign-in hooks. Every response carries X-Request-ID; every error is an RFC 9457 problem document. Keep the API key on your server.
  */
 class NoResponseClient
 {
@@ -31,6 +31,8 @@ class NoResponseClient
      * @var Accounts $$accounts
      */
     public Accounts $accounts;
+
+    public KeyUsage $keyUsage;
 
     /**
      * Your own API keys.
@@ -81,6 +83,7 @@ class NoResponseClient
     ) {
         $this->assessments = new Assessments($this->sdkConfiguration);
         $this->accounts = new Accounts($this->sdkConfiguration);
+        $this->keyUsage = new KeyUsage($this->sdkConfiguration);
         $this->keys = new Keys($this->sdkConfiguration);
         $this->integrations = new Integrations($this->sdkConfiguration);
         $this->webhookEndpoints = new WebhookEndpoints($this->sdkConfiguration);

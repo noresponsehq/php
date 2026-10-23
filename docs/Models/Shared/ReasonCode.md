@@ -43,3 +43,4 @@ A stable reason code. New codes may appear; ignore any you do not know.
 | `ContextLineCountryMismatch`  | context_line_country_mismatch |
 | `PriorAbuseLink`              | prior_abuse_link              |
 | `TestScenario`                | test_scenario                 |
+| `SharedApiKey`                | shared_api_key                |

@@ -44,4 +44,5 @@ enum ReasonCode: string
     case ContextLineCountryMismatch = 'context_line_country_mismatch';
     case PriorAbuseLink = 'prior_abuse_link';
     case TestScenario = 'test_scenario';
+    case SharedApiKey = 'shared_api_key';
 }
