@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 950e985c46ccffb991932a78fdb2e14d
+  docChecksum: a9782182e0638ee84ba949ba6e837641
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 5.0.6
-  configChecksum: fb18a9730e8c0fa50288145e608ea336
+  releaseVersion: 5.0.7
+  configChecksum: cb0e1da97a21c42f79865eaee5f67569
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -50,6 +50,10 @@ trackedFiles:
     last_write_checksum: sha1:b393a11124c5cfdd989a42f228bbf7b43efccdd7
   docs/Models/Operations/CreateWebhookEndpointResponse.md:
     last_write_checksum: sha1:a4b89e73b339ff19c180feb20470759f20c01fef
+  docs/Models/Operations/DeleteAccountRequest.md:
+    last_write_checksum: sha1:2d80fd22b9477ee5d71eae2f9d2157cd44d2d907
+  docs/Models/Operations/DeleteAccountResponse.md:
+    last_write_checksum: sha1:1eaa3f3f8d71785bae5879e3cab2ef3961b4cb0c
   docs/Models/Operations/DeleteIntegrationRequest.md:
     last_write_checksum: sha1:c3f411caea6fdc93cb713098dd9fd2c648f6bf41
   docs/Models/Operations/DeleteIntegrationResponse.md:
@@ -108,6 +112,8 @@ trackedFiles:
     last_write_checksum: sha1:fe72fc737ce86b76ee8533c26f670c5c45d04c2b
   docs/Models/Shared/AccountDecisionsByFlow.md:
     last_write_checksum: sha1:55fe71c77129bf8b75879338535a1deb8cf924e5
+  docs/Models/Shared/AccountDeletion.md:
+    last_write_checksum: sha1:f3cd67768539ba95d188ac003fb738ae799d1a01
   docs/Models/Shared/AccountRisk.md:
     last_write_checksum: sha1:9bae6491a60a2c7a412dfd2145e5a6538aeade2a
   docs/Models/Shared/AccountRiskReason.md:
@@ -335,7 +341,7 @@ trackedFiles:
   docs/Models/Shared/WebsiteUnion.md:
     last_write_checksum: sha1:496997c605a99b0d11d7e4da70d639039cdd44d6
   docs/sdks/accounts/README.md:
-    last_write_checksum: sha1:345ab0a78ad4683699d07e7f61430c3025e4df6b
+    last_write_checksum: sha1:858272ae13bcf3ec95cadb35eeab2eff105cdb97
   docs/sdks/assessments/README.md:
     last_write_checksum: sha1:ffa881be6a6605667ba1600e1822613905dbec57
   docs/sdks/integrations/README.md:
@@ -353,7 +359,7 @@ trackedFiles:
   rector.php:
     last_write_checksum: sha1:7864a4ae8ebfea6329d1a0eb047c070bf01a2ada
   src/Accounts.php:
-    last_write_checksum: sha1:a225eb1025fab5d38be984c6502d8c85d5de9868
+    last_write_checksum: sha1:3972e47af415170ab3616e2c2840752c8f0182b9
   src/Assessments.php:
     last_write_checksum: sha1:68f9740f87a4da377e780eed52ff37e69cd898db
   src/Hooks/AfterErrorContext.php:
@@ -426,6 +432,10 @@ trackedFiles:
     last_write_checksum: sha1:7267af6697ad2882e10c81ab8ac38810f8e38cd5
   src/Models/Operations/CreateWebhookEndpointResponse.php:
     last_write_checksum: sha1:f38a4ae4e488807d0586596d15047a46619114f5
+  src/Models/Operations/DeleteAccountRequest.php:
+    last_write_checksum: sha1:2ef0d2e1fa11908bdb0cf4b5580f35f6bdacee6f
+  src/Models/Operations/DeleteAccountResponse.php:
+    last_write_checksum: sha1:97408b1164ba305854415f1c63dc9c6fc1a24a25
   src/Models/Operations/DeleteIntegrationRequest.php:
     last_write_checksum: sha1:dff99017a18d5fad68449de040b3552b8c205d65
   src/Models/Operations/DeleteIntegrationResponse.php:
@@ -484,6 +494,8 @@ trackedFiles:
     last_write_checksum: sha1:67335f06d1f1be462ba808624321fa351db9ad5e
   src/Models/Shared/AccountDecisionsByFlow.php:
     last_write_checksum: sha1:5a46adee0f59462d2052b974bf996530f5740a4a
+  src/Models/Shared/AccountDeletion.php:
+    last_write_checksum: sha1:ba27e029a6c5e1f40f87096b92e8d508cfe98e94
   src/Models/Shared/AccountRisk.php:
     last_write_checksum: sha1:32b5adc18a668c3b7155c4c92b2796dddbf39a7d
   src/Models/Shared/AccountRiskReason.php:
@@ -1063,7 +1075,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:bc9e466b317aebc8e911522fce0b79ff892e811f
+    last_write_checksum: sha1:65136e93626b51b8ebc33f4d28e44b854781205a
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
@@ -1371,6 +1383,21 @@ examples:
       responses:
         "200":
           application/json: {"schema_version": "1", "id": "acct_7f3a9c", "risk": {"score": 90, "decision": "block", "reasons": [{"code": "disposable_email", "weight": 40, "identifier": "email"}, {"code": "proxy_ip", "weight": 30, "identifier": "ip"}, {"code": "many_recent_signups", "weight": 20}]}, "decisions_by_flow": {"signup": "block", "login": "block", "purchase": "block"}, "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "updated_at": "2026-10-14T09:00:00.412Z"}
+  deleteAccount:
+    erased:
+      parameters:
+        path:
+          account_id: "acct_7f3a9c"
+      responses:
+        "200":
+          application/json: {"schema_version": "1", "id": "acct_7f3a9c", "deleted": true, "assessments_deleted": 3, "deleted_at": "2026-10-23T09:00:00.000Z"}
+    repeat:
+      parameters:
+        path:
+          account_id: "acct_7f3a9c"
+      responses:
+        "200":
+          application/json: {"schema_version": "1", "id": "acct_7f3a9c", "deleted": true, "assessments_deleted": 0, "deleted_at": "2026-10-23T09:00:05.000Z"}
   listAccountAssessments:
     page:
       parameters:

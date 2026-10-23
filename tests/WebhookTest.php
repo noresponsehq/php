@@ -6,6 +6,7 @@ namespace NoResponse\Tests;
 
 use NoResponse\Models\Shared\Assessment;
 use NoResponse\Models\Shared\Recommendation;
+use NoResponse\Webhooks\AccountDeleted;
 use NoResponse\Webhooks\AssessmentExpired;
 use NoResponse\Webhooks\EndpointVerification;
 use NoResponse\Webhooks\VerificationException;
@@ -131,6 +132,31 @@ final class WebhookTest extends TestCase
         }
     }
 
+    public function test_account_deleted_event(): void
+    {
+        $secrets = ['whk_sdktest01' => 'secret'];
+        $erased = self::fixture('valid/webhook-account-deleted.json');
+        [$raw, $headers] = self::signed($erased, 'secret', $erased['id']);
+        $event = Webhook::constructEvent($raw, $headers, $secrets, now: self::NOW);
+        $this->assertSame('account.deleted', $event->type);
+        $this->assertFalse($event->isExpired());
+        $this->assertFalse($event->test);
+        $this->assertEquals(new AccountDeleted('acct_7f3a9c', 3, '2026-10-23T09:00:00.000Z'), $event->data);
+        foreach ([
+            ['assessments_deleted' => 0],
+            ['assessments_deleted' => 1.5],
+            ['account_id' => 'jane@example.com'],
+            ['deleted_at' => 'tomorrow'],
+        ] as $change) {
+            $bad = $erased;
+            $bad['data'] = $change + $erased['data'];
+            [$raw, $headers] = self::signed($bad, 'secret', $bad['id']);
+            $this->refused('invalid_payload', $raw, $headers, $secrets);
+        }
+        $this->expectException(VerificationException::class);
+        Webhook::verificationResponse($event);
+    }
+
     public function test_the_test_flag_marks_only_a_test_assessment_event(): void
     {
         $secrets = ['whk_sdktest01' => 'secret'];
@@ -171,6 +197,7 @@ final class WebhookTest extends TestCase
             'invalid/webhook-tenant-id.json',
             'invalid/webhook-identifier-leak.json',
             'invalid/webhook-expired-with-assessment-url.json',
+            'invalid/webhook-account-deleted-assessment-id.json',
         ] as $name) {
             $body = self::fixture($name);
             [$raw, $headers] = self::signed($body, 'secret', $body['id']);
@@ -187,6 +214,7 @@ final class WebhookTest extends TestCase
             'invalid/webhook-update-pointer-only.json',
             'invalid/webhook-update-with-expired-status.json',
             'invalid/webhook-verification-without-challenge.json',
+            'invalid/webhook-account-deleted-none.json',
         ] as $name) {
             $body = self::fixture($name);
             [$raw, $headers] = self::signed($body, 'secret', $body['id']);

@@ -201,6 +201,7 @@ Verify the exact bytes you received, then act on the typed event. `$secrets` map
 
 ```php
 use NoResponse\Models\Shared\Assessment;
+use NoResponse\Webhooks\AccountDeleted;
 use NoResponse\Webhooks\VerificationException;
 use NoResponse\Webhooks\Webhook;
 
@@ -219,6 +220,8 @@ if ($event->type === 'endpoint.verification') {
 }
 if ($event->test) {
     // sendTestEvent's fixed example assessment: apply nothing
+} elseif ($event->data instanceof AccountDeleted) {
+    // account.deleted: you erased $event->data->accountId with $client->accounts->delete
 } elseif ($event->isExpired()) {
     // forget the assessment: GET now answers 404
 } elseif ($event->data instanceof Assessment) {

@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.7
+
+* `sdk->accounts->delete()`: **Added**
+
 ## 5.0.6
 
 * `sdk->assessments->create()`:  `request.body` **Changed**

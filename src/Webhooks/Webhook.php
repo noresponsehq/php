@@ -143,7 +143,7 @@ final class Webhook
     /**
      * @param  array<mixed>  $data
      */
-    private static function data(string $type, array $data): Assessment|AssessmentExpired|EndpointVerification
+    private static function data(string $type, array $data): Assessment|AssessmentExpired|EndpointVerification|AccountDeleted
     {
         if ($type === 'endpoint.verification') {
             $endpointId = $data['endpoint_id'] ?? null;
@@ -155,6 +155,18 @@ final class Webhook
             }
 
             return new EndpointVerification($endpointId, $challenge);
+        }
+        if ($type === 'account.deleted') {
+            $accountId = $data['account_id'] ?? null;
+            $deleted = $data['assessments_deleted'] ?? null;
+            $deletedAt = $data['deleted_at'] ?? null;
+            if (! is_string($accountId) || preg_match(self::ACCOUNT_ID, $accountId) !== 1
+                || ! is_int($deleted) || $deleted < 1
+                || ! is_string($deletedAt) || preg_match(self::DATETIME, $deletedAt) !== 1) {
+                throw new VerificationException('invalid_payload', 'Account deleted event is malformed');
+            }
+
+            return new AccountDeleted($accountId, $deleted, $deletedAt);
         }
         if ($type !== 'assessment.updated') {
             throw new VerificationException('invalid_payload', 'Unknown webhook event type');
