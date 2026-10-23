@@ -43,4 +43,5 @@ enum ReasonCode: string
     case ContextLocaleMismatch = 'context_locale_mismatch';
     case ContextLineCountryMismatch = 'context_line_country_mismatch';
     case PriorAbuseLink = 'prior_abuse_link';
+    case TestScenario = 'test_scenario';
 }

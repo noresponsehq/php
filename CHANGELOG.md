@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.0.0
+
+* `sdk->assessments->create()`:  `response.risk->reasons[]->code->enum(testScenario)` **Added** (Breaking ⚠️)
+* `sdk->assessments->get()`:  `response.risk->reasons[]->code->enum(testScenario)` **Added** (Breaking ⚠️)
+* `sdk->assessments->query()`:  `response.items[]->risk->reasons[]->code->enum(testScenario)` **Added** (Breaking ⚠️)
+* `sdk->accounts->get()`:  `response.risk->reasons[]->code->enum(testScenario)` **Added** (Breaking ⚠️)
+* `sdk->accounts->listAssessments()`:  `response.items[]->risk->reasons[]->code->enum(testScenario)` **Added** (Breaking ⚠️)
+
 ## 4.1.10
 
 No changes detected.
