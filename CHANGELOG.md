@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.0.0
+
+No changes detected.
+
 ## 12.0.0
 
 * `sdk->keyusage->record()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)

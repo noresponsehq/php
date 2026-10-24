@@ -2,7 +2,7 @@
 
 # NoResponse for PHP
 
-The NoResponse client for PHP 8.2 and later. It assesses an account creation, login or purchase, polls a pending assessment, pages through an account's history, records what you later learned, rotates your API key and verifies webhooks. The client, webhook verification and the typed webhook events are generated from the NoResponse OpenAPI document; the wait helper, auth adapters and late-result handler are hand-written.
+The NoResponse client for PHP 8.2 and later. It assesses an account creation, login or purchase, polls a pending assessment, pages through an account's history, records what you later learned, rotates your API key and verifies webhooks. The client, webhook verification and the typed webhook events are generated from the NoResponse OpenAPI document; the wait helper is hand-written, and the auth adapters and late enforcement are rendered from shared tables.
 
 Keep the API key on your server.
 
@@ -255,13 +255,28 @@ http_response_code(204);
 
 ### Late results
 
-When a slow source settles and the account's decision rises after you allowed the account creation, `LateResults::handleLateResult` verifies the delivery, applies your policy to `account->risk->decision` and acts through your auth provider. The default policy revokes sessions on `review` and `block`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. An `account.risk_changed` event acts on its new `login` decision when that decision changed; one that moved only another flow's decision acts on nothing. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
+`account.risk_changed` only wakes your handler. `LateResults::handleRiskChange` verifies the delivery, reads the account's current risk with `accounts->get` (the event's own decision, and an event older than what you already enforced, change nothing), asks your `getAccountState` callable where the account is in your flow, and acts on the decision of that state's flow:
+
+| State | Flow | Decision | Actions |
+|---|---|---|---|
+| `onboarding` | `account_creation` | `review`, `block` | `fail_onboarding`, `revoke_sessions` |
+| `provisional` | `account_creation` | `review`, `block` | `reject_activation`, `revoke_sessions` |
+| `active` | `login` | `review` | `revoke_sessions` |
+| `active` | `login` | `block` | `restrict`, `revoke_sessions` |
+| `restricted` | `login` | `allow` | `unrestrict`, only with `flows: ['login' => ['reinstate' => true]]` |
+
+Each action, or `none` when the decision needs nothing, is recorded with `accounts->recordEnforcement` at the `riskVersion` read; store `$result->riskVersion` and return it as `enforcedRiskVersion` so a replay is skipped. Nothing ever deletes a user: Clerk bans (unban reverses it), Auth0 sets `blocked`, and WorkOS, which has no block, sets the user's metadata `noresponse_state` (gate sign-in on it) and revokes every session. A refused action is recorded as failed and throws `ProviderActionException` (`provider`, `status`, `errorCode`): answer 5xx so the delivery is retried.
 
 ```php
-$result = LateResults::handleLateResult($payload, getallheaders(), [$keyId => $secret], new ClerkProvider($clerkSecretKey));
+use NoResponse\LateResults\AccountStateAnswer;
+use NoResponse\LateResults\LateResults;
+
+$provider = LateResults::identityProvider('clerk', $clerkSecretKey); // or 'workos', or 'auth0' with domain:
+$result = LateResults::handleRiskChange($client, $payload, getallheaders(), [$keyId => $secret], $provider,
+    fn ($account) => new AccountStateAnswer($users->stateOf($account->id), enforcedRiskVersion: $users->enforcedVersion($account->id)));
 ```
 
-If your app has its own login, `new LogOnlyProvider()` logs what it would revoke or ban (through `error_log()`, or pass a callable) and calls nothing. Use it to try the handler, then implement `LateResultProvider` yourself: `name()`, `revokeSessions($userId)` and `ban($userId)`.
+`LateResults::enforceAccount` takes an account from `accounts->listChanged(unenforced: true)` to catch up on missed deliveries. For your own user store, `LateResults::customProvider(['restrict' => fn ($userId) => ..., 'revoke_sessions' => ...])` runs your callables.
 
 ## Changes in 6.0.0
 
@@ -269,7 +284,6 @@ If your app has its own login, `new LogOnlyProvider()` logs what it would revoke
 - `create`, `get` and the `assessment.updated` webhook return the `Assessment` resource: `id`, `status`, `flow`, `depth`, `account` (the account's current risk, decided for this flow; null while the account's first assessment is pending) and `detail` (`AssessmentDetail`, the previous assessment body).
 - Act on `account->risk->decision` (`allow`, `step_up`, `review`, `block`). `block` replaces `detail->risk->block`. Keep the highest `detail->assessmentVersion`.
 - History pages hold `AssessmentDetail` items.
-- The late-result policy is keyed by decision, and the default revokes sessions on `block` as well as `review`.
 
 ## Changes since 2.0.0
 
