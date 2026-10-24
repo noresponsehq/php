@@ -306,7 +306,7 @@ PHP;
         $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'workspace.deleted', 'x', new \NoResponse\Webhooks\WorkspaceDeleted('tnt_1', 'live', 'x'))));
         $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'webhook_endpoint.disabled', 'x', new \NoResponse\Webhooks\EndpointDisabled('whe_1', 'x', 'x'))));
         $flows = new \NoResponse\Models\Shared\AccountDecisionsByFlow(AccountDecision::Block, AccountDecision::Block, AccountDecision::Block);
-        $blocked = new \NoResponse\Models\Shared\Account('acct_1', new \NoResponse\Models\Shared\AccountRisk(90, AccountDecision::Block, []), $flows, 'asm_x', 'x');
+        $blocked = new \NoResponse\Models\Shared\Account('acct_1', new \NoResponse\Models\Shared\AccountRisk(90, AccountDecision::Block, []), $flows, 'asm_x', 'x', 3);
         $before = new \NoResponse\Models\Shared\AccountDecisionsByFlow(AccountDecision::Allow, AccountDecision::Allow, AccountDecision::Allow);
         $this->assertSame('ban', LateResults::lateResultAction(new Event('evt_x', 'account.risk_changed', 'x', new AccountRiskChanged($blocked, $before)), ['block' => 'ban']));
         // A change to another flow with the login decision as it was acts on nothing.

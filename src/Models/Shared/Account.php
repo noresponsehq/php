@@ -50,6 +50,14 @@ class Account
     public string $updatedAt;
 
     /**
+     * The version of the account's current risk. It increases every time the account's current risk or decisions_by_flow changes, and does not decrease. Of two copies of an account, the one with the higher risk_version is newer. account.risk_changed carries the risk_version that its change made.
+     *
+     * @var int $riskVersion
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('risk_version')]
+    public int $riskVersion;
+
+    /**
      * Version of the body shape.
      *
      * @var string $schemaVersion
@@ -64,15 +72,17 @@ class Account
      * @param  \NoResponse\Models\Shared\AccountDecisionsByFlow  $decisionsByFlow
      * @param  string  $assessmentId
      * @param  string  $updatedAt
+     * @param  int  $riskVersion
      * @phpstan-pure
      */
-    public function __construct(string $id, AccountRisk $risk, AccountDecisionsByFlow $decisionsByFlow, string $assessmentId, string $updatedAt, string $schemaVersion = '1')
+    public function __construct(string $id, AccountRisk $risk, AccountDecisionsByFlow $decisionsByFlow, string $assessmentId, string $updatedAt, int $riskVersion, string $schemaVersion = '1')
     {
         $this->id = $id;
         $this->risk = $risk;
         $this->decisionsByFlow = $decisionsByFlow;
         $this->assessmentId = $assessmentId;
         $this->updatedAt = $updatedAt;
+        $this->riskVersion = $riskVersion;
         $this->schemaVersion = $schemaVersion;
     }
 }

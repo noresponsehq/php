@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.0.2
+
+* `sdk->assessments->create()`:  `response.account->riskVersion` **Added**
+* `sdk->assessments->get()`:  `response.account->riskVersion` **Added**
+* `sdk->accounts->get()`:  `response.riskVersion` **Added**
+
 ## 10.0.1
 
 No changes detected.
