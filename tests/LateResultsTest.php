@@ -14,10 +14,20 @@ use NoResponse\LateResults\LogOnlyProvider;
 use NoResponse\LateResults\ProviderActionException;
 use NoResponse\LateResults\WorkosProvider;
 use NoResponse\Models\Shared\AccountDecision;
-use NoResponse\Webhooks\AccountRiskChanged;
-use NoResponse\Webhooks\AssessmentExpired;
-use NoResponse\Webhooks\Event;
-use NoResponse\Webhooks\VerificationException;
+use NoResponse\Models\Shared\AccountDeleted;
+use NoResponse\Models\Shared\AccountDeletedEvent;
+use NoResponse\Models\Shared\AccountRiskChanged;
+use NoResponse\Models\Shared\AccountRiskChangedEvent;
+use NoResponse\Models\Shared\AssessmentExpired;
+use NoResponse\Models\Shared\AssessmentUpdatedEvent;
+use NoResponse\Models\Shared\EndpointVerification;
+use NoResponse\Models\Shared\EndpointVerificationEvent;
+use NoResponse\Models\Shared\Environment;
+use NoResponse\Models\Shared\WebhookEndpointDisabled;
+use NoResponse\Models\Shared\WebhookEndpointDisabledEvent;
+use NoResponse\Models\Shared\WorkspaceDeleted;
+use NoResponse\Models\Shared\WorkspaceDeletedEvent;
+use NoResponse\WebhookVerification\WebhookVerificationException;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
@@ -244,7 +254,7 @@ PHP;
     }
 
     /** Build a typed event through the real verifier. */
-    private static function event(\stdClass $data): Event
+    private static function event(\stdClass $data): AssessmentUpdatedEvent|EndpointVerificationEvent|AccountDeletedEvent|WorkspaceDeletedEvent|WebhookEndpointDisabledEvent|AccountRiskChangedEvent
     {
         [$raw, $headers] = self::delivery($data);
         $provider = new class implements LateResultProvider {
@@ -301,17 +311,17 @@ PHP;
         $this->assertSame('ban', LateResults::lateResultAction($block, ['block' => 'ban']));
         $this->assertSame('none', LateResults::lateResultAction($expired));
         $this->assertSame('none', LateResults::lateResultAction(self::event(self::data('partial', 'allow'))));
-        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'endpoint.verification', 'x', new \NoResponse\Webhooks\EndpointVerification('whe_x', 'y'))));
-        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'account.deleted', 'x', new \NoResponse\Webhooks\AccountDeleted('acct_1', 1, 'x'))));
-        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'workspace.deleted', 'x', new \NoResponse\Webhooks\WorkspaceDeleted('tnt_1', 'live', 'x'))));
-        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'webhook_endpoint.disabled', 'x', new \NoResponse\Webhooks\EndpointDisabled('whe_1', 'x', 'x'))));
+        $this->assertSame('none', LateResults::lateResultAction(new EndpointVerificationEvent('evt_x', 'x', new EndpointVerification('whe_x', 'y'))));
+        $this->assertSame('none', LateResults::lateResultAction(new AccountDeletedEvent('evt_x', 'x', new AccountDeleted('acct_1', 1, 'x'))));
+        $this->assertSame('none', LateResults::lateResultAction(new WorkspaceDeletedEvent('evt_x', 'x', new WorkspaceDeleted('tnt_1', Environment::Live, 'x'))));
+        $this->assertSame('none', LateResults::lateResultAction(new WebhookEndpointDisabledEvent('evt_x', 'x', new WebhookEndpointDisabled('whe_1', 'x', 'x'))));
         $flows = new \NoResponse\Models\Shared\AccountDecisionsByFlow(AccountDecision::Block, AccountDecision::Block, AccountDecision::Block);
         $blocked = new \NoResponse\Models\Shared\Account('acct_1', new \NoResponse\Models\Shared\AccountRisk(90, AccountDecision::Block, []), $flows, 'asm_x', 'x', 3);
         $before = new \NoResponse\Models\Shared\AccountDecisionsByFlow(AccountDecision::Allow, AccountDecision::Allow, AccountDecision::Allow);
-        $this->assertSame('ban', LateResults::lateResultAction(new Event('evt_x', 'account.risk_changed', 'x', new AccountRiskChanged($blocked, $before)), ['block' => 'ban']));
+        $this->assertSame('ban', LateResults::lateResultAction(new AccountRiskChangedEvent('evt_x', 'x', new AccountRiskChanged($blocked, $before)), ['block' => 'ban']));
         // A change to another flow with the login decision as it was acts on nothing.
         $sameLogin = new \NoResponse\Models\Shared\AccountDecisionsByFlow(AccountDecision::Allow, AccountDecision::Block, AccountDecision::Allow);
-        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'account.risk_changed', 'x', new AccountRiskChanged($blocked, $sameLogin)), ['block' => 'ban']));
+        $this->assertSame('none', LateResults::lateResultAction(new AccountRiskChangedEvent('evt_x', 'x', new AccountRiskChanged($blocked, $sameLogin)), ['block' => 'ban']));
         $this->assertSame('ban', LateResults::lateResultAction($stepUp, ['step_up' => 'ban']));
         $this->assertSame('none', LateResults::lateResultAction($review, ['step_up' => 'ban']));
         try {
@@ -625,7 +635,7 @@ PHP;
         $code = static function (callable $run): string {
             try {
                 $run();
-            } catch (VerificationException $e) {
+            } catch (WebhookVerificationException $e) {
                 return $e->errorCode;
             }
 
@@ -649,6 +659,7 @@ PHP;
         $this->assertSame('revoke_sessions', LateResults::lateResultAction($ignored->event));
         $this->assertSame('none', $ignored->action);
         $this->assertSame('account.risk_changed', $ignored->event->type);
+        $this->assertInstanceOf(AccountRiskChangedEvent::class, $ignored->event);
         $this->assertInstanceOf(AccountRiskChanged::class, $ignored->event->data);
         $this->assertSame(AccountDecision::Review, $ignored->event->data->account->decisionsByFlow->login);
         $this->assertSame('none', LateResults::handleLateResult($raw, $headers, self::secrets(), $auth0, userId: static fn (): ?string => null, now: self::NOW)->action);
@@ -682,7 +693,7 @@ PHP;
         // The same body without the flag would ban, and an ordinary delivery is not a test.
         [$raw, $headers] = self::delivery($sample);
         $real = LateResults::handleLateResult($raw, $headers, self::secrets(), $clerk, policy: $banAll, userId: $resolver, now: self::NOW);
-        $this->assertFalse($real->event->test);
+        $this->assertNull($real->event->test);
         $this->assertSame('ban', $real->action);
         $this->assertSame(['POST /v1/users/user_2EXAMPLE/ban'], self::lines($this->calls()));
     }

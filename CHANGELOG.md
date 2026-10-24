@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.0.0
+
+No changes detected.
+
 ## 10.0.2
 
 * `sdk->assessments->create()`:  `response.account->riskVersion` **Added**

@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace NoResponse\LateResults;
 
+use NoResponse\Models\Shared\AccountDeletedEvent;
+use NoResponse\Models\Shared\AccountRiskChangedEvent;
 use NoResponse\Models\Shared\Assessment;
+use NoResponse\Models\Shared\AssessmentExpired;
+use NoResponse\Models\Shared\AssessmentUpdatedEvent;
+use NoResponse\Models\Shared\EndpointVerificationEvent;
 use NoResponse\Models\Shared\Status;
-use NoResponse\Webhooks\Event;
-use NoResponse\Webhooks\AccountRiskChanged;
-use NoResponse\Webhooks\Webhook;
+use NoResponse\Models\Shared\WebhookEndpointDisabledEvent;
+use NoResponse\Models\Shared\WorkspaceDeletedEvent;
+use NoResponse\WebhookVerification\Webhook;
 
 /**
  * Late-result handlers. Hand-written; not generated.
@@ -42,21 +47,22 @@ final class LateResults
      *
      * @throws \InvalidArgumentException for an action other than none, revoke_sessions or ban
      */
-    public static function lateResultAction(Event $event, ?array $policy = null): string
+    public static function lateResultAction(AssessmentUpdatedEvent|EndpointVerificationEvent|AccountDeletedEvent|WorkspaceDeletedEvent|WebhookEndpointDisabledEvent|AccountRiskChangedEvent $event, ?array $policy = null): string
     {
         $policy ??= self::DEFAULT_POLICY;
-        if ($event->test || $event->isExpired()) {
+        // Only an assessment.updated event can be a test event or an expiry.
+        if ($event instanceof AssessmentUpdatedEvent && ($event->test === true || $event->data instanceof AssessmentExpired)) {
             return LateResultAction::NONE;
         }
         $decision = null;
-        if ($event->type === 'account.risk_changed' && $event->data instanceof AccountRiskChanged) {
+        if ($event instanceof AccountRiskChangedEvent) {
             // The event is sent when any flow's decision changes; sessions are about the
             // login decision, so an unchanged login decision acts on nothing.
             if ($event->data->previousDecisionsByFlow->login === $event->data->account->decisionsByFlow->login) {
                 return LateResultAction::NONE;
             }
             $decision = $event->data->account->decisionsByFlow->login;
-        } elseif ($event->type === 'assessment.updated' && $event->data instanceof Assessment
+        } elseif ($event instanceof AssessmentUpdatedEvent && $event->data instanceof Assessment
             && $event->data->status !== Status::Pending) {
             $decision = $event->data->account?->risk->decision;
         }
@@ -79,17 +85,15 @@ final class LateResults
      *
      * $payload, $headers, $secrets, $toleranceSeconds and $now are exactly what
      * Webhook::constructEvent takes; a delivery that fails verification throws
-     * VerificationException before any provider call. Deduplicate on
+     * WebhookVerificationException before any provider call. Deduplicate on
      * $result->event->id and ignore versions older than one you have acted on.
      *
      * @param  array<string, string|array<string>>  $headers
      * @param  array<string, string>  $secrets
      * @param  array<string, string>|null  $policy  decision => action; defaults to DEFAULT_POLICY
-     * @param  (callable(string, Event): (string|null))|null  $userId  maps the assessment's account_id to the provider
-     *                                                                 user id; defaults to the account_id itself.
-     *                                                                 Return null or '' to take no action.
+     * @param  (callable(string, AssessmentUpdatedEvent|EndpointVerificationEvent|AccountDeletedEvent|WorkspaceDeletedEvent|WebhookEndpointDisabledEvent|AccountRiskChangedEvent): (string|null))|null  $userId  maps the account id to the provider user id (default: the account id itself); return null or '' to take no action
      *
-     * @throws \NoResponse\Webhooks\VerificationException
+     * @throws \NoResponse\WebhookVerification\WebhookVerificationException
      * @throws ProviderActionException
      */
     public static function handleLateResult(
@@ -107,9 +111,9 @@ final class LateResults
         if ($action === LateResultAction::NONE) {
             return new LateResult($event, LateResultAction::NONE);
         }
-        if ($event->data instanceof AccountRiskChanged) {
+        if ($event instanceof AccountRiskChangedEvent) {
             $accountId = $event->data->account->id;
-        } elseif ($event->data instanceof Assessment) {
+        } elseif ($event instanceof AssessmentUpdatedEvent && $event->data instanceof Assessment) {
             $accountId = $event->data->detail->accountId;
         } else {
             return new LateResult($event, LateResultAction::NONE);

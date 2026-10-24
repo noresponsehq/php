@@ -2,7 +2,7 @@
 
 # NoResponse for PHP
 
-The NoResponse client for PHP 8.2 and later. It assesses an account creation, login or purchase, polls a pending assessment, pages through an account's history, records what you later learned, rotates your API key and verifies webhooks. The client is generated from the NoResponse OpenAPI document; webhook verification and the wait helper are hand-written.
+The NoResponse client for PHP 8.2 and later. It assesses an account creation, login or purchase, polls a pending assessment, pages through an account's history, records what you later learned, rotates your API key and verifies webhooks. The client, webhook verification and the typed webhook events are generated from the NoResponse OpenAPI document; the wait helper, auth adapters and late-result handler are hand-written.
 
 Keep the API key on your server.
 
@@ -208,39 +208,42 @@ $client->webhookEndpoints->sendTestEvent(new WebhookTestRequest(WebhookTestReque
 Verify the exact bytes you received, then act on the typed event. `$secrets` maps each `whk_` key id we give you to its secret; hold both during a rotation.
 
 ```php
+use NoResponse\Models\Shared\AccountDeletedEvent;
+use NoResponse\Models\Shared\AccountRiskChangedEvent;
 use NoResponse\Models\Shared\Assessment;
-use NoResponse\Webhooks\AccountDeleted;
-use NoResponse\Webhooks\EndpointDisabled;
-use NoResponse\Webhooks\WorkspaceDeleted;
-use NoResponse\Webhooks\AccountRiskChanged;
-use NoResponse\Webhooks\VerificationException;
-use NoResponse\Webhooks\Webhook;
+use NoResponse\Models\Shared\AssessmentExpired;
+use NoResponse\Models\Shared\AssessmentUpdatedEvent;
+use NoResponse\Models\Shared\EndpointVerificationEvent;
+use NoResponse\Models\Shared\WebhookEndpointDisabledEvent;
+use NoResponse\Models\Shared\WorkspaceDeletedEvent;
+use NoResponse\WebhookVerification\Webhook;
+use NoResponse\WebhookVerification\WebhookVerificationException;
 
 $payload = file_get_contents('php://input');
 try {
     $event = Webhook::constructEvent($payload, getallheaders(), [$keyId => $secret]);
-} catch (VerificationException $e) {
-    http_response_code(400); // $e->code says which check failed
+} catch (WebhookVerificationException $e) {
+    http_response_code(400); // $e->errorCode says which check failed
     exit;
 }
 
-if ($event->type === 'endpoint.verification') {
+if ($event instanceof EndpointVerificationEvent) {
     header('Content-Type: application/json');
-    echo json_encode(Webhook::verificationResponse($event));
+    echo json_encode(['challenge' => $event->data->challenge]);
     exit;
 }
-if ($event->test) {
+if ($event instanceof AssessmentUpdatedEvent && $event->test === true) {
     // sendTestEvent's fixed example assessment: apply nothing
-} elseif ($event->data instanceof AccountDeleted) {
+} elseif ($event instanceof AccountDeletedEvent) {
     // account.deleted: you erased $event->data->accountId with $client->accounts->delete
-} elseif ($event->data instanceof WorkspaceDeleted) {
+} elseif ($event instanceof WorkspaceDeletedEvent) {
     // workspace.deleted: the workspace is deleted, the last event this endpoint receives
-} elseif ($event->data instanceof EndpointDisabled) {
+} elseif ($event instanceof WebhookEndpointDisabledEvent) {
     // webhook_endpoint.disabled: $event->data->endpointId failed for 72 hours; fix it and verify it again
-} elseif ($event->data instanceof AccountRiskChanged) {
+} elseif ($event instanceof AccountRiskChangedEvent) {
     // account.risk_changed: $event->data->account is the Account accounts->get returns, with its new
     // decisionsByFlow; $event->data->previousDecisionsByFlow holds the decisions it replaced
-} elseif ($event->isExpired()) {
+} elseif ($event->data instanceof AssessmentExpired) {
     // forget the assessment: GET now answers 404
 } elseif ($event->data instanceof Assessment) {
     // keep the highest detail->assessmentVersion per assessment, then act on account?->risk->decision
@@ -248,7 +251,7 @@ if ($event->test) {
 http_response_code(204);
 ```
 
-`constructEvent` refuses a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id or a bad signature. Deliveries are at least once: deduplicate on `$event->id`. `$event->test` is true only on an `assessment.updated` event sent by `sendTestEvent`, whose data is a fixed example assessment.
+`constructEvent` returns one of six typed events from `NoResponse\Models\Shared`: `AssessmentUpdatedEvent` (data `Assessment` or `AssessmentExpired`), `EndpointVerificationEvent`, `AccountDeletedEvent`, `WorkspaceDeletedEvent`, `WebhookEndpointDisabledEvent` and `AccountRiskChangedEvent`. It throws `WebhookVerificationException` for a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id, a bad signature or a body that is not a known event; `$e->errorCode` is one of its constants (`MISSING_HEADER`, `DUPLICATE_HEADER`, `INVALID_TIMESTAMP`, `UNKNOWN_KEY`, `INVALID_SIGNATURE`, `INVALID_PAYLOAD`). Deliveries are at least once: deduplicate on `$event->id`. `$event->test` is true only on an `assessment.updated` event sent by `sendTestEvent`, whose data is a fixed example assessment.
 
 ### Late results
 
