@@ -12,3 +12,4 @@ Machine codes an HTTP 409 answer can carry.
 | `WebhookEndpointLimitReached`  | webhook_endpoint_limit_reached |
 | `WebhookEndpointUnverified`    | webhook_endpoint_unverified    |
 | `TooManyIntegrations`          | too_many_integrations          |
+| `RiskVersionAhead`             | risk_version_ahead             |

@@ -13,4 +13,5 @@ enum ConflictErrorCode: string
     case WebhookEndpointLimitReached = 'webhook_endpoint_limit_reached';
     case WebhookEndpointUnverified = 'webhook_endpoint_unverified';
     case TooManyIntegrations = 'too_many_integrations';
+    case RiskVersionAhead = 'risk_version_ahead';
 }

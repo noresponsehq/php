@@ -1,5 +1,31 @@
 # Changelog
 
+## 12.0.0
+
+* `sdk->keyusage->record()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->accounts->delete()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->assessments->create()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->assessments->get()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->assessments->delete()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->assessments->recordOutcome()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->assessments->query()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->integrations->create()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->keys->rotate()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->accounts->listAssessments()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->webhookendpoints->replayDelivery()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->webhookendpoints->listDeliveries()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->accounts->get()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->integrations->list()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->integrations->delete()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->integrations->rotate()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->webhookendpoints->list()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->webhookendpoints->create()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->webhookendpoints->delete()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->webhookendpoints->rotateSigningKey()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->webhookendpoints->sendTestEvent()`:  `error.code->enum(riskVersionAhead)` **Added** (Breaking ⚠️)
+* `sdk->accounts->listChanged()`: **Added**
+* `sdk->accounts->recordEnforcement()`: **Added**
+
 ## 11.0.1
 
 No changes detected.

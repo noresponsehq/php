@@ -6,9 +6,96 @@ Your accounts, each with one current risk, and their assessment history.
 
 ### Available Operations
 
+* [listChanged](#listchanged) - Poll the accounts whose risk changed.
 * [get](#get) - Read an account's one current risk.
 * [delete](#delete) - Erase an account and its history.
 * [listAssessments](#listassessments) - Page through one account's unexpired assessments.
+* [recordEnforcement](#recordenforcement) - Record what you did to an account in your identity provider.
+
+## listChanged
+
+Your accounts whose risk changed, oldest change first, each as accounts.get answers it. Every page carries next_cursor: pass it back as changed_since to read the changes made after that page; without changed_since the list starts from the oldest change. When nothing changed, items is empty and next_cursor is the cursor you sent, so poll by calling again with the latest next_cursor. An account appears again each time its risk changes, with a higher risk_version; keep the copy with the highest. unenforced=true lists only accounts with a decision other than allow for some flow and no applied enforcement at their current risk_version; such a page can hold fewer than limit items, or none, while later changes exist, so keep polling with next_cursor. Requires the history scope. Read-only and safe to retry. A tampered or foreign cursor answers 400 invalid_cursor.
+
+### Example Usage: caughtUp
+
+<!-- UsageSnippet language="php" operationID="listAccounts" method="get" path="/v1/accounts" example="caughtUp" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$response = $sdk->accounts->listChanged(
+    limit: 50,
+    unenforced: false
+
+);
+
+if ($response->accountList !== null) {
+    // handle response
+}
+```
+### Example Usage: page
+
+<!-- UsageSnippet language="php" operationID="listAccounts" method="get" path="/v1/accounts" example="page" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$response = $sdk->accounts->listChanged(
+    limit: 50,
+    unenforced: false
+
+);
+
+if ($response->accountList !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `changedSince`                                                                                                                    | *?string*                                                                                                                         | :heavy_minus_sign:                                                                                                                | next_cursor from an earlier page, unchanged. Absent, the list starts from the oldest change.                                      |
+| `limit`                                                                                                                           | *?int*                                                                                                                            | :heavy_minus_sign:                                                                                                                | Most accounts per page.                                                                                                           |
+| `unenforced`                                                                                                                      | *?bool*                                                                                                                           | :heavy_minus_sign:                                                                                                                | true lists only accounts with a decision other than allow for some flow and no applied enforcement at their current risk_version. |
+
+### Response
+
+**[?Operations\ListAccountsResponse](../../Models/Operations/ListAccountsResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
 
 ## get
 
@@ -216,6 +303,107 @@ foreach ($responses as $response) {
 ### Response
 
 **[?Operations\ListAccountAssessmentsResponse](../../Models/Operations/ListAccountAssessmentsResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## recordEnforcement
+
+Records what you did to the account in your identity provider for one flow's decision at one risk_version: the action (or none), the account's state before it, the provider and whether it was applied or failed. It is your action, not an outcome, and it leaves the account's risk unchanged. A record is kept once per account, risk_version, flow and action: the first report answers 201, and a repeat answers 200 with the stored record unchanged, so retries are safe without an Idempotency-Key. An applied report after a failed one replaces the failed record, keeping its id and created_at, and answers 201. A risk_version older than the account's current one is accepted and stored, but only an applied record at the current risk_version takes the account out of listChanged with unenforced=true; a newer one answers 409 risk_version_ahead. An account with no current risk answers 404 not_found. error_code is allowed only with status failed. Requires the history scope.
+
+### Example Usage: applied
+
+<!-- UsageSnippet language="php" operationID="recordEnforcement" method="post" path="/v1/accounts/{account_id}/enforcements" example="applied" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\EnforcementRequest(
+    riskVersion: 3,
+    flow: Shared\Flow::AccountCreation,
+    action: Shared\EnforcementAction::Restrict,
+    stateBefore: Shared\EnforcementState::Provisional,
+    status: Shared\EnforcementStatus::Applied,
+    provider: Shared\EnforcementProvider::Clerk,
+);
+
+$response = $sdk->accounts->recordEnforcement(
+    accountId: 'acct_7f3a9c',
+    body: $body
+
+);
+
+if ($response->enforcement !== null) {
+    // handle response
+}
+```
+### Example Usage: failed
+
+<!-- UsageSnippet language="php" operationID="recordEnforcement" method="post" path="/v1/accounts/{account_id}/enforcements" example="failed" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\EnforcementRequest(
+    riskVersion: 3,
+    flow: Shared\Flow::AccountCreation,
+    action: Shared\EnforcementAction::Restrict,
+    stateBefore: Shared\EnforcementState::Provisional,
+    status: Shared\EnforcementStatus::Failed,
+    provider: Shared\EnforcementProvider::Clerk,
+    errorCode: 'clerk.rate_limited',
+);
+
+$response = $sdk->accounts->recordEnforcement(
+    accountId: 'acct_7f3a9c',
+    body: $body
+
+);
+
+if ($response->enforcement !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                          | Type                                                                                                                                                                                                               | Required                                                                                                                                                                                                           | Description                                                                                                                                                                                                        | Example                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `accountId`                                                                                                                                                                                                        | *string*                                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                                 | The account_id the workspace sends with its assessments, as one path segment (percent-encode '\|' and ':' if the client requires it). A value that does not match the account_id shape answers 400 invalid_request. | acct_7f3a9c                                                                                                                                                                                                        |
+| `body`                                                                                                                                                                                                             | [Shared\EnforcementRequest](../../Models/Shared/EnforcementRequest.md)                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                 | N/A                                                                                                                                                                                                                |                                                                                                                                                                                                                    |
+
+### Response
+
+**[?Operations\RecordEnforcementResponse](../../Models/Operations/RecordEnforcementResponse.md)**
 
 ### Errors
 
