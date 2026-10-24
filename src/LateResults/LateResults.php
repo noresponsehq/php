@@ -7,6 +7,7 @@ namespace NoResponse\LateResults;
 use NoResponse\Models\Shared\Assessment;
 use NoResponse\Models\Shared\Status;
 use NoResponse\Webhooks\Event;
+use NoResponse\Webhooks\AccountRiskChanged;
 use NoResponse\Webhooks\Webhook;
 
 /**
@@ -44,11 +45,21 @@ final class LateResults
     public static function lateResultAction(Event $event, ?array $policy = null): string
     {
         $policy ??= self::DEFAULT_POLICY;
-        if ($event->type !== 'assessment.updated' || $event->test || ! $event->data instanceof Assessment || $event->isExpired()
-            || $event->data->status === Status::Pending) {
+        if ($event->test || $event->isExpired()) {
             return LateResultAction::NONE;
         }
-        $decision = $event->data->account?->risk->decision;
+        $decision = null;
+        if ($event->type === 'account.risk_changed' && $event->data instanceof AccountRiskChanged) {
+            // The event is sent when any flow's decision changes; sessions are about the
+            // login decision, so an unchanged login decision acts on nothing.
+            if ($event->data->previousDecisionsByFlow->login === $event->data->account->decisionsByFlow->login) {
+                return LateResultAction::NONE;
+            }
+            $decision = $event->data->account->decisionsByFlow->login;
+        } elseif ($event->type === 'assessment.updated' && $event->data instanceof Assessment
+            && $event->data->status !== Status::Pending) {
+            $decision = $event->data->account?->risk->decision;
+        }
         if ($decision === null) {
             return LateResultAction::NONE;
         }
@@ -93,10 +104,16 @@ final class LateResults
     ): LateResult {
         $event = Webhook::constructEvent($payload, $headers, $secrets, $toleranceSeconds, $now);
         $action = self::lateResultAction($event, $policy);
-        if ($action === LateResultAction::NONE || ! $event->data instanceof Assessment) {
+        if ($action === LateResultAction::NONE) {
             return new LateResult($event, LateResultAction::NONE);
         }
-        $accountId = $event->data->detail->accountId;
+        if ($event->data instanceof AccountRiskChanged) {
+            $accountId = $event->data->account->id;
+        } elseif ($event->data instanceof Assessment) {
+            $accountId = $event->data->detail->accountId;
+        } else {
+            return new LateResult($event, LateResultAction::NONE);
+        }
         $user = $userId === null ? $accountId : $userId($accountId, $event);
         if ($user === null || $user === '') {
             return new LateResult($event, LateResultAction::NONE);

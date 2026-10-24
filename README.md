@@ -252,7 +252,7 @@ http_response_code(204);
 
 ### Late results
 
-When a slow source settles and the account's decision rises after you allowed the account creation, `LateResults::handleLateResult` verifies the delivery, applies your policy to `account->risk->decision` and acts through your auth provider. The default policy revokes sessions on `review` and `block`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. An `account.risk_changed` event acts on nothing: the handler acts on the `assessment.updated` that changed the decision. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
+When a slow source settles and the account's decision rises after you allowed the account creation, `LateResults::handleLateResult` verifies the delivery, applies your policy to `account->risk->decision` and acts through your auth provider. The default policy revokes sessions on `review` and `block`; pass `policy: ['step_up' => 'ban']` to change it. `ClerkProvider`, `WorkosProvider` and `Auth0Provider` take your credentials, an optional base URL and an optional PSR-18 client. An `account.risk_changed` event acts on its new `login` decision when that decision changed; one that moved only another flow's decision acts on nothing. A provider refusal throws `ProviderActionException`: answer 5xx so we retry. WorkOS has no block, so its ban deletes the user permanently.
 
 ```php
 $result = LateResults::handleLateResult($payload, getallheaders(), [$keyId => $secret], new ClerkProvider($clerkSecretKey));

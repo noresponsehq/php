@@ -7,6 +7,7 @@
 | -------------- | -------------- |
 | `Assess`       | assess         |
 | `History`      | history        |
+| `Delete`       | delete         |
 | `Webhooks`     | webhooks       |
 | `Detailed`     | detailed       |
 | `Integrations` | integrations   |

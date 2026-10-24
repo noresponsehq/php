@@ -9,6 +9,7 @@ enum Scope: string
 {
     case Assess = 'assess';
     case History = 'history';
+    case Delete = 'delete';
     case Webhooks = 'webhooks';
     case Detailed = 'detailed';
     case Integrations = 'integrations';

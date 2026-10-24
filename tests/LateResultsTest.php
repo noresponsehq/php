@@ -307,7 +307,11 @@ PHP;
         $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'webhook_endpoint.disabled', 'x', new \NoResponse\Webhooks\EndpointDisabled('whe_1', 'x', 'x'))));
         $flows = new \NoResponse\Models\Shared\AccountDecisionsByFlow(AccountDecision::Block, AccountDecision::Block, AccountDecision::Block);
         $blocked = new \NoResponse\Models\Shared\Account('acct_1', new \NoResponse\Models\Shared\AccountRisk(90, AccountDecision::Block, []), $flows, 'asm_x', 'x');
-        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'account.risk_changed', 'x', new AccountRiskChanged($blocked, $flows)), ['block' => 'ban']));
+        $before = new \NoResponse\Models\Shared\AccountDecisionsByFlow(AccountDecision::Allow, AccountDecision::Allow, AccountDecision::Allow);
+        $this->assertSame('ban', LateResults::lateResultAction(new Event('evt_x', 'account.risk_changed', 'x', new AccountRiskChanged($blocked, $before)), ['block' => 'ban']));
+        // A change to another flow with the login decision as it was acts on nothing.
+        $sameLogin = new \NoResponse\Models\Shared\AccountDecisionsByFlow(AccountDecision::Allow, AccountDecision::Block, AccountDecision::Allow);
+        $this->assertSame('none', LateResults::lateResultAction(new Event('evt_x', 'account.risk_changed', 'x', new AccountRiskChanged($blocked, $sameLogin)), ['block' => 'ban']));
         $this->assertSame('ban', LateResults::lateResultAction($stepUp, ['step_up' => 'ban']));
         $this->assertSame('none', LateResults::lateResultAction($review, ['step_up' => 'ban']));
         try {
@@ -639,10 +643,10 @@ PHP;
             [$r, $h] = self::delivery($data);
             $this->assertSame('none', LateResults::handleLateResult($r, $h, self::secrets(), $auth0, now: self::NOW)->action);
         }
-        // account.risk_changed is verified and typed, and acts on nothing: the
-        // assessment.updated that moved the decision does.
+        // account.risk_changed carries a separate account decision.
         [$r, $h] = self::delivery(self::fixture('valid/webhook-account-risk-changed.json')->data, type: 'account.risk_changed');
-        $ignored = LateResults::handleLateResult($r, $h, self::secrets(), $auth0, now: self::NOW);
+        $ignored = LateResults::handleLateResult($r, $h, self::secrets(), $auth0, userId: static fn (): ?string => null, now: self::NOW);
+        $this->assertSame('revoke_sessions', LateResults::lateResultAction($ignored->event));
         $this->assertSame('none', $ignored->action);
         $this->assertSame('account.risk_changed', $ignored->event->type);
         $this->assertInstanceOf(AccountRiskChanged::class, $ignored->event->data);

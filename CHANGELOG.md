@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.0.0
+
+* `sdk->keys->rotate()`:  `response.scopes[]->enum(delete)` **Added** (Breaking ⚠️)
+
 ## 9.0.2
 
 No changes detected.
