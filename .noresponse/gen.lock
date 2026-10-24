@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 49ba3ef2d410c67dad5b1dcd622891f2
+  docChecksum: 73c9c6b17103bacbba101b797079b25e
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 9.0.0
-  configChecksum: d1f33b30032b0481c391915e94040b9e
+  releaseVersion: 9.0.1
+  configChecksum: e09a839fc53ef3bb3af71e2d002be9ad
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -323,7 +323,7 @@ trackedFiles:
   docs/Models/Shared/Transport.md:
     last_write_checksum: sha1:cb67a732050c2eedd6fc5a634b5311a5b503d38c
   docs/Models/Shared/WebhookDeliveryAttempt.md:
-    last_write_checksum: sha1:51545ca800da9b118330a4a8dafe28ab1a414c0f
+    last_write_checksum: sha1:af3c1e1b9210234ded66cb6fc8a675179ec0b8ae
   docs/Models/Shared/WebhookDeliveryAttemptStatus.md:
     last_write_checksum: sha1:66028ab2e9ae1ce5046c57e7c82db5b3648f4c9d
   docs/Models/Shared/WebhookDeliveryList.md:
@@ -343,7 +343,7 @@ trackedFiles:
   docs/Models/Shared/WebhookKeyRotationRequest.md:
     last_write_checksum: sha1:9daf33b4d44abed8a71b970893c464fd6238b56f
   docs/Models/Shared/WebhookReplay.md:
-    last_write_checksum: sha1:0f34b3b6b528168911cfe86b34e80a7f829b10c2
+    last_write_checksum: sha1:d68ba1447446109a92f35bc02dc8bad3e8b90f80
   docs/Models/Shared/WebhookReplayRequest.md:
     last_write_checksum: sha1:97bbe30c0e5e3a903301bba0428af795c5a81d6d
   docs/Models/Shared/WebhookTest.md:
@@ -713,7 +713,7 @@ trackedFiles:
   src/Models/Shared/Transport.php:
     last_write_checksum: sha1:4766eef0f5351f384af5668bd32a0ee22fb2fb3e
   src/Models/Shared/WebhookDeliveryAttempt.php:
-    last_write_checksum: sha1:7772f2e7500308a848400cb7d5f39e9a5b1d6ea6
+    last_write_checksum: sha1:ac679edb829fe8af2fc0510d0493288b8b0b1e89
   src/Models/Shared/WebhookDeliveryAttemptStatus.php:
     last_write_checksum: sha1:eccb1ceb6689b3a0b04a733f6420f69e0b17d9f1
   src/Models/Shared/WebhookDeliveryList.php:
@@ -733,7 +733,7 @@ trackedFiles:
   src/Models/Shared/WebhookKeyRotationRequest.php:
     last_write_checksum: sha1:e398b537b58c6aaeaae04a9bddf3bc66fb48d2c1
   src/Models/Shared/WebhookReplay.php:
-    last_write_checksum: sha1:702fb456e5391a14d0e04b83955fcde8b084e2d9
+    last_write_checksum: sha1:b314365034aed9c227774909f079a5d15b82ab3f
   src/Models/Shared/WebhookReplayRequest.php:
     last_write_checksum: sha1:121f9c832946b8e06accd5402123978cee45f72d
   src/Models/Shared/WebhookTest.php:
@@ -1111,7 +1111,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:f93cc2bc2116d34cb694f168f2cda5f637992c8b
+    last_write_checksum: sha1:5a67d4e015f6a7e1ad2de9973d7cc177542da32a
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
