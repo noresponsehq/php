@@ -1,5 +1,12 @@
 # Changelog
 
+## 13.0.1
+
+* `sdk->assessments->create()`:  `response.account->risk->decision->enum(held)` **Added** (Breaking ⚠️)
+* `sdk->assessments->get()`:  `response.account->risk->decision->enum(held)` **Added** (Breaking ⚠️)
+* `sdk->accounts->listChanged()`:  `response.items[]->risk->decision->enum(held)` **Added** (Breaking ⚠️)
+* `sdk->accounts->get()`:  `response.risk->decision->enum(held)` **Added** (Breaking ⚠️)
+
 ## 13.0.0
 
 No changes detected.

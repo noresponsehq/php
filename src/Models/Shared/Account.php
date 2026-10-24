@@ -25,7 +25,7 @@ class Account
     public AccountRisk $risk;
 
     /**
-     * The decision for each flow: the account's score under that flow's thresholds. A flow the workspace has not set uses its account_creation thresholds, so the flows differ only where it set them.
+     * The decision for each flow: the account's score under that flow's thresholds. A flow the workspace has not set uses its account_creation thresholds, so the flows differ only where it set them. The flow of the current assessment is held while that flow's admission is held and the assessment's investigation has not completed.
      *
      * @var \NoResponse\Models\Shared\AccountDecisionsByFlow $decisionsByFlow
      */
