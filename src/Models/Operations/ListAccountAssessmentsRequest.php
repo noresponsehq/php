@@ -27,10 +27,10 @@ class ListAccountAssessmentsRequest
     /**
      * Optional standard or separately authorised detailed customer view; raw is rejected.
      *
-     * @var ?\NoResponse\Models\Shared\ResponseMode $responseMode
+     * @var \NoResponse\Models\Shared\ResponseMode|string|null $responseMode
      */
     #[NoResponseMetadata('queryParam:style=form,explode=true,name=response_mode')]
-    public ?Shared\ResponseMode $responseMode = null;
+    public Shared\ResponseMode|string|null $responseMode = null;
 
     /**
      * Items per page.
@@ -44,10 +44,10 @@ class ListAccountAssessmentsRequest
      * @param  string  $accountId
      * @param  ?int  $limit
      * @param  ?string  $cursor
-     * @param  ?\NoResponse\Models\Shared\ResponseMode  $responseMode
+     * @param  \NoResponse\Models\Shared\ResponseMode|string|null  $responseMode
      * @phpstan-pure
      */
-    public function __construct(string $accountId, ?string $cursor = null, ?Shared\ResponseMode $responseMode = null, ?int $limit = 20)
+    public function __construct(string $accountId, ?string $cursor = null, Shared\ResponseMode|string|null $responseMode = null, ?int $limit = 20)
     {
         $this->accountId = $accountId;
         $this->cursor = $cursor;

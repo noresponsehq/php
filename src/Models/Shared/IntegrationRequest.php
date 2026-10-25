@@ -11,19 +11,19 @@ class IntegrationRequest
     /**
      * The authentication provider that calls the endpoint.
      *
-     * @var \NoResponse\Models\Shared\IntegrationPlatform $platform
+     * @var \NoResponse\Models\Shared\IntegrationPlatform|string $platform
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('platform')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IntegrationPlatform')]
-    public IntegrationPlatform $platform;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IntegrationPlatform|string')]
+    public IntegrationPlatform|string $platform;
 
     /**
      * The provider events the endpoint scores. Default both: pre_registration (WorkOS user registration Action, Auth0 pre-user-registration trigger) and post_login (WorkOS authentication Action, Auth0 post-login trigger). An event that is not listed is answered allow without an assessment.
      *
-     * @var ?array<\NoResponse\Models\Shared\IntegrationHookPoint> $hookPoints
+     * @var array<\NoResponse\Models\Shared\IntegrationHookPoint|string>|null $hookPoints
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('hook_points')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\IntegrationHookPoint>|null')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\IntegrationHookPoint|string>|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $hookPoints = null;
 
@@ -37,12 +37,12 @@ class IntegrationRequest
     public ?string $signingSecret = null;
 
     /**
-     * @param  \NoResponse\Models\Shared\IntegrationPlatform  $platform
-     * @param  ?array<\NoResponse\Models\Shared\IntegrationHookPoint>  $hookPoints
+     * @param  \NoResponse\Models\Shared\IntegrationPlatform|string  $platform
+     * @param  array<\NoResponse\Models\Shared\IntegrationHookPoint|string>|null  $hookPoints
      * @param  ?string  $signingSecret
      * @phpstan-pure
      */
-    public function __construct(IntegrationPlatform $platform, ?array $hookPoints = null, ?string $signingSecret = null)
+    public function __construct(IntegrationPlatform|string $platform, ?array $hookPoints = null, ?string $signingSecret = null)
     {
         $this->platform = $platform;
         $this->hookPoints = $hookPoints;

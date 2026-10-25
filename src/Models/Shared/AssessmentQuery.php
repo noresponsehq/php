@@ -28,12 +28,12 @@ class AssessmentQuery
     /**
      * standard returns the consolidated risk response; detailed adds merged provider-neutral facts when the key has detailed scope. There is no raw mode.
      *
-     * @var ?\NoResponse\Models\Shared\ResponseMode $responseMode
+     * @var \NoResponse\Models\Shared\ResponseMode|string|null $responseMode
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('response_mode')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?ResponseMode $responseMode = null;
+    public ResponseMode|string|null $responseMode = null;
 
     /**
      *
@@ -47,10 +47,10 @@ class AssessmentQuery
      * @param  string  $accountId
      * @param  ?int  $limit
      * @param  ?string  $cursor
-     * @param  ?\NoResponse\Models\Shared\ResponseMode  $responseMode
+     * @param  \NoResponse\Models\Shared\ResponseMode|string|null  $responseMode
      * @phpstan-pure
      */
-    public function __construct(string $accountId, ?string $cursor = null, ?ResponseMode $responseMode = null, ?int $limit = 20)
+    public function __construct(string $accountId, ?string $cursor = null, ResponseMode|string|null $responseMode = null, ?int $limit = 20)
     {
         $this->accountId = $accountId;
         $this->cursor = $cursor;

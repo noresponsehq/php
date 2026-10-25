@@ -27,20 +27,20 @@ class AssessmentDetail
     /**
      * complete: final; nothing is still running. A lane that failed or missed its 10 s deadline stays listed in incomplete_sources, and confidence is lower. partial: a recommendation exists and at least one lane is still running or did not settle (see incomplete_sources). pending: nothing usable before the deadline; no recommendation yet, poll or wait for the webhook.
      *
-     * @var \NoResponse\Models\Shared\Status $status
+     * @var \NoResponse\Models\Shared\Status|string $status
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('status')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Status')]
-    public Status $status;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Status|string')]
+    public Status|string $status;
 
     /**
      * Ordinal confidence in the recommendation under the current policy: low, medium, high or unavailable.
      *
-     * @var \NoResponse\Models\Shared\Confidence $confidence
+     * @var \NoResponse\Models\Shared\Confidence|string $confidence
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('confidence')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Confidence')]
-    public Confidence $confidence;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Confidence|string')]
+    public Confidence|string $confidence;
 
     /**
      * The lanes that did not settle, each listed once with a reason; lanes, not sources. In a detailed view a lane is listed exactly when one of its signals did not settle; a standard view carries no signals to match.
@@ -110,12 +110,12 @@ class AssessmentDetail
     /**
      * The recommended action: allow, step_up or review. Your application applies it.
      *
-     * @var ?\NoResponse\Models\Shared\Recommendation $recommendation
+     * @var \NoResponse\Models\Shared\Recommendation|string|null $recommendation
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('recommendation')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Recommendation|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Recommendation|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?Recommendation $recommendation = null;
+    public Recommendation|string|null $recommendation = null;
 
     /**
      * The one risk decision for this event. score is 0 (safe) to 100 (risky): the sum of the weights of the reasons that fired, clamped to 0 to 100, from hand-set versioned weights. Every answer with a recommendation carries it, and the top-level recommendation equals risk.recommendation. It names no source or provider.
@@ -176,8 +176,8 @@ class AssessmentDetail
      * @param  string  $schemaVersion
      * @param  string  $assessmentId
      * @param  string  $accountId
-     * @param  \NoResponse\Models\Shared\Status  $status
-     * @param  \NoResponse\Models\Shared\Confidence  $confidence
+     * @param  \NoResponse\Models\Shared\Status|string  $status
+     * @param  \NoResponse\Models\Shared\Confidence|string  $confidence
      * @param  array<\NoResponse\Models\Shared\IncompleteSource>  $incompleteSources
      * @param  string  $policyVersion
      * @param  string  $policyBasis
@@ -187,14 +187,14 @@ class AssessmentDetail
      * @param  string  $expiresAt
      * @param  \NoResponse\Models\Shared\AssessmentDetailTiming  $timing
      * @param  ?string  $requestId
-     * @param  ?\NoResponse\Models\Shared\Recommendation  $recommendation
+     * @param  \NoResponse\Models\Shared\Recommendation|string|null  $recommendation
      * @param  ?\NoResponse\Models\Shared\Risk  $risk
      * @param  ?array<\NoResponse\Models\Shared\Signal>  $signals
      * @param  ?string  $assessmentUrl
      * @param  ?\NoResponse\Models\Shared\AssessmentDetailAuthContext  $authContext
      * @phpstan-pure
      */
-    public function __construct(string $assessmentId, string $accountId, Status $status, Confidence $confidence, array $incompleteSources, string $policyVersion, int $assessmentVersion, string $createdAt, string $updatedAt, string $expiresAt, AssessmentDetailTiming $timing, ?string $requestId = null, ?Recommendation $recommendation = null, ?Risk $risk = null, ?array $signals = null, ?string $assessmentUrl = null, ?AssessmentDetailAuthContext $authContext = null, string $schemaVersion = '1', string $policyBasis = 'heuristic_unvalidated')
+    public function __construct(string $assessmentId, string $accountId, Status|string $status, Confidence|string $confidence, array $incompleteSources, string $policyVersion, int $assessmentVersion, string $createdAt, string $updatedAt, string $expiresAt, AssessmentDetailTiming $timing, ?string $requestId = null, Recommendation|string|null $recommendation = null, ?Risk $risk = null, ?array $signals = null, ?string $assessmentUrl = null, ?AssessmentDetailAuthContext $authContext = null, string $schemaVersion = '1', string $policyBasis = 'heuristic_unvalidated')
     {
         $this->assessmentId = $assessmentId;
         $this->accountId = $accountId;

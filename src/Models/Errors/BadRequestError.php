@@ -48,11 +48,11 @@ class BadRequestError
     /**
      * Machine codes an HTTP 400 answer can carry.
      *
-     * @var \NoResponse\Models\Shared\BadRequestErrorCode $code
+     * @var \NoResponse\Models\Shared\BadRequestErrorCode|string $code
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('code')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BadRequestErrorCode')]
-    public Shared\BadRequestErrorCode $code;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BadRequestErrorCode|string')]
+    public Shared\BadRequestErrorCode|string $code;
 
     /**
      *
@@ -76,13 +76,13 @@ class BadRequestError
      * @param  string  $title
      * @param  int  $status
      * @param  string  $detail
-     * @param  \NoResponse\Models\Shared\BadRequestErrorCode  $code
+     * @param  \NoResponse\Models\Shared\BadRequestErrorCode|string  $code
      * @param  string  $requestId
      * @param  ?string  $instance
      * @param  ?array<\NoResponse\Models\Shared\ProblemInvalidParam>  $invalidParams
      * @phpstan-pure
      */
-    public function __construct(string $type, string $title, string $detail, Shared\BadRequestErrorCode $code, string $requestId, ?string $instance = null, ?array $invalidParams = null, int $status = 400)
+    public function __construct(string $type, string $title, string $detail, Shared\BadRequestErrorCode|string $code, string $requestId, ?string $instance = null, ?array $invalidParams = null, int $status = 400)
     {
         $this->type = $type;
         $this->title = $title;

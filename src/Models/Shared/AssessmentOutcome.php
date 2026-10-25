@@ -27,11 +27,11 @@ class AssessmentOutcome
     /**
      * What the provider later learned about the assessed account. confirmed_abuse, account_takeover and chargeback report abuse; false_positive and legitimate withdraw an earlier abuse report of this workspace for the assessment; unknown is recorded only. Outcomes are append-only and the latest one recorded for an assessment wins.
      *
-     * @var \NoResponse\Models\Shared\Outcome $outcome
+     * @var \NoResponse\Models\Shared\Outcome|string $outcome
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('outcome')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Outcome')]
-    public Outcome $outcome;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Outcome|string')]
+    public Outcome|string $outcome;
 
     /**
      * When NoResponse first recorded the outcome.
@@ -44,11 +44,11 @@ class AssessmentOutcome
     /**
      * @param  string  $id
      * @param  string  $assessmentId
-     * @param  \NoResponse\Models\Shared\Outcome  $outcome
+     * @param  \NoResponse\Models\Shared\Outcome|string  $outcome
      * @param  string  $receivedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $assessmentId, Outcome $outcome, string $receivedAt)
+    public function __construct(string $id, string $assessmentId, Outcome|string $outcome, string $receivedAt)
     {
         $this->id = $id;
         $this->assessmentId = $assessmentId;

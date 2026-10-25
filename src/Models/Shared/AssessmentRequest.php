@@ -19,11 +19,11 @@ class AssessmentRequest
     /**
      * The event an assessment is made for: account_creation (a user creates an account), login (a user returns to an existing account) or purchase (a payment or a credit grant). The account's risk is reported with the decision for this flow.
      *
-     * @var \NoResponse\Models\Shared\Flow $flow
+     * @var \NoResponse\Models\Shared\Flow|string $flow
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('flow')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Flow')]
-    public Flow $flow;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Flow|string')]
+    public Flow|string $flow;
 
     /**
      * At least one of email, username or phone. name and ip refine the match and travel beside a lookup identifier; a body with only name or ip is refused with 400.
@@ -37,12 +37,12 @@ class AssessmentRequest
     /**
      * How long the synchronous answer waits for sources. quick waits only for the fast sources, those that answer within 500 ms of ingress (or deadline_ms when lower); full waits for the whole budget, up to 3000 ms. Sources still running at the cut continue asynchronously and update the assessment either way.
      *
-     * @var ?\NoResponse\Models\Shared\Depth $depth
+     * @var \NoResponse\Models\Shared\Depth|string|null $depth
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('depth')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Depth|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Depth|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?Depth $depth = null;
+    public Depth|string|null $depth = null;
 
     /**
      * Optional policy inputs: region.
@@ -75,12 +75,12 @@ class AssessmentRequest
     /**
      * standard returns the consolidated risk response; detailed adds merged provider-neutral facts when the key has detailed scope. There is no raw mode.
      *
-     * @var ?\NoResponse\Models\Shared\ResponseMode $responseMode
+     * @var \NoResponse\Models\Shared\ResponseMode|string|null $responseMode
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('response_mode')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?ResponseMode $responseMode = null;
+    public ResponseMode|string|null $responseMode = null;
 
     /**
      * Optional context observed by the client of the user. The server parses these hints into coarse features, leaves raw user_agent and opaque ids out of every answer, and weighs a mismatch with the other evidence.
@@ -114,19 +114,19 @@ class AssessmentRequest
 
     /**
      * @param  string  $accountId
-     * @param  \NoResponse\Models\Shared\Flow  $flow
+     * @param  \NoResponse\Models\Shared\Flow|string  $flow
      * @param  \NoResponse\Models\Shared\AssessmentRequestIdentifiers  $identifiers
-     * @param  ?\NoResponse\Models\Shared\Depth  $depth
+     * @param  \NoResponse\Models\Shared\Depth|string|null  $depth
      * @param  ?\NoResponse\Models\Shared\AssessmentRequestPolicyContext  $policyContext
      * @param  ?string  $requestId
      * @param  ?int  $deadlineMs
-     * @param  ?\NoResponse\Models\Shared\ResponseMode  $responseMode
+     * @param  \NoResponse\Models\Shared\ResponseMode|string|null  $responseMode
      * @param  ?\NoResponse\Models\Shared\AssessmentRequestClientContext  $clientContext
      * @param  ?\NoResponse\Models\Shared\AuthContext  $authContext
      * @param  ?\NoResponse\Models\Shared\AssessmentRequestIssuedCredential  $issuedCredential
      * @phpstan-pure
      */
-    public function __construct(string $accountId, Flow $flow, AssessmentRequestIdentifiers $identifiers, ?Depth $depth = null, ?AssessmentRequestPolicyContext $policyContext = null, ?string $requestId = null, ?int $deadlineMs = null, ?ResponseMode $responseMode = null, ?AssessmentRequestClientContext $clientContext = null, ?AuthContext $authContext = null, ?AssessmentRequestIssuedCredential $issuedCredential = null)
+    public function __construct(string $accountId, Flow|string $flow, AssessmentRequestIdentifiers $identifiers, Depth|string|null $depth = null, ?AssessmentRequestPolicyContext $policyContext = null, ?string $requestId = null, ?int $deadlineMs = null, ResponseMode|string|null $responseMode = null, ?AssessmentRequestClientContext $clientContext = null, ?AuthContext $authContext = null, ?AssessmentRequestIssuedCredential $issuedCredential = null)
     {
         $this->accountId = $accountId;
         $this->flow = $flow;

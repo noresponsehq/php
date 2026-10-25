@@ -48,11 +48,11 @@ class NotFoundError
     /**
      * Machine codes an HTTP 404 answer can carry.
      *
-     * @var \NoResponse\Models\Shared\NotFoundErrorCode $code
+     * @var \NoResponse\Models\Shared\NotFoundErrorCode|string $code
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('code')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\NotFoundErrorCode')]
-    public Shared\NotFoundErrorCode $code;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\NotFoundErrorCode|string')]
+    public Shared\NotFoundErrorCode|string $code;
 
     /**
      *
@@ -76,13 +76,13 @@ class NotFoundError
      * @param  string  $title
      * @param  int  $status
      * @param  string  $detail
-     * @param  \NoResponse\Models\Shared\NotFoundErrorCode  $code
+     * @param  \NoResponse\Models\Shared\NotFoundErrorCode|string  $code
      * @param  string  $requestId
      * @param  ?string  $instance
      * @param  ?array<\NoResponse\Models\Shared\ProblemInvalidParam>  $invalidParams
      * @phpstan-pure
      */
-    public function __construct(string $type, string $title, string $detail, Shared\NotFoundErrorCode $code, string $requestId, ?string $instance = null, ?array $invalidParams = null, int $status = 404)
+    public function __construct(string $type, string $title, string $detail, Shared\NotFoundErrorCode|string $code, string $requestId, ?string $instance = null, ?array $invalidParams = null, int $status = 404)
     {
         $this->type = $type;
         $this->title = $title;

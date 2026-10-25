@@ -195,6 +195,10 @@ final class UnionHandler implements SubscribingHandlerInterface
     private function matchSimpleType(mixed $data, array $type, Context $context): mixed
     {
         foreach ($type['params'] as $possibleType) {
+            // A scalar is never an enum case: an open enum's raw value is its string member.
+            if ($possibleType['name'] === 'enum') {
+                continue;
+            }
             if ($this->isPrimitiveType($possibleType['name']) && ! $this->testPrimitive($data, $possibleType['name'])) {
                 continue;
             }
@@ -366,9 +370,11 @@ final class UnionHandler implements SubscribingHandlerInterface
                     return -1;
                 }
 
-                $order = ['null' => 0, 'true' => 1, 'false' => 2, 'bool' => 3, 'int' => 4, 'float' => 5, 'string' => 6];
+                // An enum goes before string, so an open enum (Enum|string)
+                // reads a known value as its case and only an unknown one as a string.
+                $order = ['null' => 0, 'true' => 1, 'false' => 2, 'bool' => 3, 'int' => 4, 'float' => 5, 'enum' => 6, 'string' => 7];
 
-                return ($order[$a['name']] ?? 7) <=> ($order[$b['name']] ?? 7);
+                return ($order[$a['name']] ?? 8) <=> ($order[$b['name']] ?? 8);
             });
         }
 

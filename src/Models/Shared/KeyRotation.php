@@ -27,10 +27,10 @@ class KeyRotation
     /**
      * The scopes of the new key: those of the presented key.
      *
-     * @var array<\NoResponse\Models\Shared\Scope> $scopes
+     * @var array<\NoResponse\Models\Shared\Scope|string> $scopes
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('scopes')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Scope>')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Scope|string>')]
     public array $scopes;
 
     /**
@@ -59,7 +59,7 @@ class KeyRotation
     /**
      * @param  string  $key
      * @param  string  $keyId
-     * @param  array<\NoResponse\Models\Shared\Scope>  $scopes
+     * @param  array<\NoResponse\Models\Shared\Scope|string>  $scopes
      * @param  string  $createdAt
      * @param  string  $previousKeyId
      * @param  string  $previousKeyExpiresAt

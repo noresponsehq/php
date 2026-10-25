@@ -19,17 +19,17 @@ class GetAssessmentRequest
     /**
      * Optional standard or separately authorised detailed customer view; raw is rejected.
      *
-     * @var ?\NoResponse\Models\Shared\ResponseMode $responseMode
+     * @var \NoResponse\Models\Shared\ResponseMode|string|null $responseMode
      */
     #[NoResponseMetadata('queryParam:style=form,explode=true,name=response_mode')]
-    public ?Shared\ResponseMode $responseMode = null;
+    public Shared\ResponseMode|string|null $responseMode = null;
 
     /**
      * @param  string  $assessmentId
-     * @param  ?\NoResponse\Models\Shared\ResponseMode  $responseMode
+     * @param  \NoResponse\Models\Shared\ResponseMode|string|null  $responseMode
      * @phpstan-pure
      */
-    public function __construct(string $assessmentId, ?Shared\ResponseMode $responseMode = null)
+    public function __construct(string $assessmentId, Shared\ResponseMode|string|null $responseMode = null)
     {
         $this->assessmentId = $assessmentId;
         $this->responseMode = $responseMode;

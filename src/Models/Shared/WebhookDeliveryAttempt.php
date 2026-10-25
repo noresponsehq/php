@@ -42,11 +42,11 @@ class WebhookDeliveryAttempt
     /**
      * delivered when the endpoint answered 2xx; failed otherwise, with failure naming why.
      *
-     * @var \NoResponse\Models\Shared\WebhookDeliveryAttemptStatus $status
+     * @var \NoResponse\Models\Shared\WebhookDeliveryAttemptStatus|string $status
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('status')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WebhookDeliveryAttemptStatus')]
-    public WebhookDeliveryAttemptStatus $status;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WebhookDeliveryAttemptStatus|string')]
+    public WebhookDeliveryAttemptStatus|string $status;
 
     /**
      * Milliseconds from sending the request to the answer or the failure.
@@ -76,26 +76,26 @@ class WebhookDeliveryAttempt
     /**
      * Why the attempt failed: the URL is no longer valid, the host did not resolve, it resolved to an address that is not public, no answer within 5 seconds, the connection failed, a 3xx (redirects are not followed) or another non-2xx status. Absent for a delivered attempt.
      *
-     * @var ?\NoResponse\Models\Shared\Failure $failure
+     * @var \NoResponse\Models\Shared\Failure|string|null $failure
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('failure')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Failure|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Failure|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?Failure $failure = null;
+    public Failure|string|null $failure = null;
 
     /**
      * @param  string  $eventId
      * @param  string  $eventType
      * @param  int  $attempt
      * @param  bool  $replay
-     * @param  \NoResponse\Models\Shared\WebhookDeliveryAttemptStatus  $status
+     * @param  \NoResponse\Models\Shared\WebhookDeliveryAttemptStatus|string  $status
      * @param  int  $latencyMs
      * @param  string  $attemptedAt
      * @param  ?int  $responseCode
-     * @param  ?\NoResponse\Models\Shared\Failure  $failure
+     * @param  \NoResponse\Models\Shared\Failure|string|null  $failure
      * @phpstan-pure
      */
-    public function __construct(string $eventId, string $eventType, int $attempt, bool $replay, WebhookDeliveryAttemptStatus $status, int $latencyMs, string $attemptedAt, ?int $responseCode = null, ?Failure $failure = null)
+    public function __construct(string $eventId, string $eventType, int $attempt, bool $replay, WebhookDeliveryAttemptStatus|string $status, int $latencyMs, string $attemptedAt, ?int $responseCode = null, Failure|string|null $failure = null)
     {
         $this->eventId = $eventId;
         $this->eventType = $eventType;

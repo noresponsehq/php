@@ -20,12 +20,12 @@ class IpSummary
     /**
      * The address's network type.
      *
-     * @var ?\NoResponse\Models\Shared\IpSummaryType $type
+     * @var \NoResponse\Models\Shared\IpSummaryType|string|null $type
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('type')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IpSummaryType|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IpSummaryType|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?IpSummaryType $type = null;
+    public IpSummaryType|string|null $type = null;
 
     /**
      * Assessments in this workspace with the same IP in the last 24 hours, this one included. A count only.
@@ -38,11 +38,11 @@ class IpSummary
 
     /**
      * @param  ?string  $country
-     * @param  ?\NoResponse\Models\Shared\IpSummaryType  $type
+     * @param  \NoResponse\Models\Shared\IpSummaryType|string|null  $type
      * @param  ?int  $seenInWorkspace
      * @phpstan-pure
      */
-    public function __construct(?string $country = null, ?IpSummaryType $type = null, ?int $seenInWorkspace = null)
+    public function __construct(?string $country = null, IpSummaryType|string|null $type = null, ?int $seenInWorkspace = null)
     {
         $this->country = $country;
         $this->type = $type;

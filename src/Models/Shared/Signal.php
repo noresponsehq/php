@@ -18,20 +18,20 @@ class Signal
     /**
      * Which submitted identifier a signal concerns. ip is a selector of breach_exposure only.
      *
-     * @var \NoResponse\Models\Shared\IdentifierKind $identifier
+     * @var \NoResponse\Models\Shared\IdentifierKind|string $identifier
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('identifier')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IdentifierKind')]
-    public IdentifierKind $identifier;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IdentifierKind|string')]
+    public IdentifierKind|string $identifier;
 
     /**
      * Per-signal outcome. A source that timed out, was blocked or errored reports blocked, unavailable or inconclusive with a reason and is listed in incomplete_sources; not_found is a definite absence.
      *
-     * @var \NoResponse\Models\Shared\SignalOutcome $outcome
+     * @var \NoResponse\Models\Shared\SignalOutcome|string $outcome
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('outcome')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\SignalOutcome')]
-    public SignalOutcome $outcome;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\SignalOutcome|string')]
+    public SignalOutcome|string $outcome;
 
     /**
      * Opaque, workspace-scoped projection of the source that produced a signal. It stays stable for your workspace while the projection key is unchanged and reveals no upstream provider, feed, breach table or source record.
@@ -44,21 +44,21 @@ class Signal
     /**
      * Freshness class of the evidence behind a signal. unknown whenever no evidence was obtained.
      *
-     * @var \NoResponse\Models\Shared\Freshness $freshness
+     * @var \NoResponse\Models\Shared\Freshness|string $freshness
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('freshness')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Freshness')]
-    public Freshness $freshness;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Freshness|string')]
+    public Freshness|string $freshness;
 
     /**
      * Why a signal or source did not produce a definite found/not_found. timed_out means the source missed the request deadline; a continuation may still settle it. deferred means the (source, identifier) pair is async-only and was not attempted on the synchronous path; a continuation settles it.
      *
-     * @var ?\NoResponse\Models\Shared\FailureReason $reason
+     * @var \NoResponse\Models\Shared\FailureReason|string|null $reason
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('reason')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\FailureReason|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\FailureReason|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?FailureReason $reason = null;
+    public FailureReason|string|null $reason = null;
 
     /**
      * Opaque pointer to evidence NoResponse holds for this signal. It carries no breach value, credential or page body.
@@ -99,18 +99,18 @@ class Signal
 
     /**
      * @param  string  $type
-     * @param  \NoResponse\Models\Shared\IdentifierKind  $identifier
-     * @param  \NoResponse\Models\Shared\SignalOutcome  $outcome
+     * @param  \NoResponse\Models\Shared\IdentifierKind|string  $identifier
+     * @param  \NoResponse\Models\Shared\SignalOutcome|string  $outcome
      * @param  string  $sourceId
-     * @param  \NoResponse\Models\Shared\Freshness  $freshness
-     * @param  ?\NoResponse\Models\Shared\FailureReason  $reason
+     * @param  \NoResponse\Models\Shared\Freshness|string  $freshness
+     * @param  \NoResponse\Models\Shared\FailureReason|string|null  $reason
      * @param  ?string  $evidenceRef
      * @param  ?string  $observedAt
      * @param  ?string  $lastCheckedAt
      * @param  ?\NoResponse\Models\Shared\PhoneEnrichment  $enrichment
      * @phpstan-pure
      */
-    public function __construct(string $type, IdentifierKind $identifier, SignalOutcome $outcome, string $sourceId, Freshness $freshness, ?FailureReason $reason = null, ?string $evidenceRef = null, ?string $observedAt = null, ?string $lastCheckedAt = null, ?PhoneEnrichment $enrichment = null)
+    public function __construct(string $type, IdentifierKind|string $identifier, SignalOutcome|string $outcome, string $sourceId, Freshness|string $freshness, FailureReason|string|null $reason = null, ?string $evidenceRef = null, ?string $observedAt = null, ?string $lastCheckedAt = null, ?PhoneEnrichment $enrichment = null)
     {
         $this->type = $type;
         $this->identifier = $identifier;

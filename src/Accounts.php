@@ -381,7 +381,7 @@ class Accounts
      * @param  string  $accountId
      * @param  ?int  $limit
      * @param  ?string  $cursor
-     * @param  ?\NoResponse\Models\Shared\ResponseMode  $responseMode
+     * @param  \NoResponse\Models\Shared\ResponseMode|string|null  $responseMode
      * @return \NoResponse\Models\Operations\ListAccountAssessmentsResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -392,7 +392,7 @@ class Accounts
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function listAssessmentsIndividual(string $accountId, ?int $limit = null, ?string $cursor = null, ?Shared\ResponseMode $responseMode = null, ?Options $options = null): Operations\ListAccountAssessmentsResponse
+    private function listAssessmentsIndividual(string $accountId, ?int $limit = null, ?string $cursor = null, Shared\ResponseMode|string|null $responseMode = null, ?Options $options = null): Operations\ListAccountAssessmentsResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -576,7 +576,7 @@ class Accounts
      * @param  string  $accountId
      * @param  ?int  $limit
      * @param  ?string  $cursor
-     * @param  ?\NoResponse\Models\Shared\ResponseMode  $responseMode
+     * @param  \NoResponse\Models\Shared\ResponseMode|string|null  $responseMode
      * @return \Generator<\NoResponse\Models\Operations\ListAccountAssessmentsResponse>
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -587,7 +587,7 @@ class Accounts
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function listAssessments(string $accountId, ?int $limit = null, ?string $cursor = null, ?Shared\ResponseMode $responseMode = null, ?Options $options = null): \Generator
+    public function listAssessments(string $accountId, ?int $limit = null, ?string $cursor = null, Shared\ResponseMode|string|null $responseMode = null, ?Options $options = null): \Generator
     {
         $res = $this->listAssessmentsIndividual($accountId, $limit, $cursor, $responseMode, $options);
         while ($res !== null) {

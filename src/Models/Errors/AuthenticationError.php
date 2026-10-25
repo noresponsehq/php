@@ -48,11 +48,11 @@ class AuthenticationError
     /**
      * Machine codes an HTTP 401 answer can carry.
      *
-     * @var \NoResponse\Models\Shared\AuthenticationErrorCode $code
+     * @var \NoResponse\Models\Shared\AuthenticationErrorCode|string $code
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('code')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AuthenticationErrorCode')]
-    public Shared\AuthenticationErrorCode $code;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AuthenticationErrorCode|string')]
+    public Shared\AuthenticationErrorCode|string $code;
 
     /**
      *
@@ -76,13 +76,13 @@ class AuthenticationError
      * @param  string  $title
      * @param  int  $status
      * @param  string  $detail
-     * @param  \NoResponse\Models\Shared\AuthenticationErrorCode  $code
+     * @param  \NoResponse\Models\Shared\AuthenticationErrorCode|string  $code
      * @param  string  $requestId
      * @param  ?string  $instance
      * @param  ?array<\NoResponse\Models\Shared\ProblemInvalidParam>  $invalidParams
      * @phpstan-pure
      */
-    public function __construct(string $type, string $title, string $detail, Shared\AuthenticationErrorCode $code, string $requestId, ?string $instance = null, ?array $invalidParams = null, int $status = 401)
+    public function __construct(string $type, string $title, string $detail, Shared\AuthenticationErrorCode|string $code, string $requestId, ?string $instance = null, ?array $invalidParams = null, int $status = 401)
     {
         $this->type = $type;
         $this->title = $title;

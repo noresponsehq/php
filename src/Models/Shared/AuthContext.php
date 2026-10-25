@@ -180,22 +180,22 @@ class AuthContext
     /**
      * Where the context was derived: backend (also when the request named no transport), browser, or provider_hook for a hosted provider hook.
      *
-     * @var ?\NoResponse\Models\Shared\Transport $transport
+     * @var \NoResponse\Models\Shared\Transport|string|null $transport
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('transport')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Transport|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Transport|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?Transport $transport = null;
+    public Transport|string|null $transport = null;
 
     /**
      * The provider event a provider_hook context was sent for; absent for any other transport.
      *
-     * @var ?\NoResponse\Models\Shared\HookPoint $hookPoint
+     * @var \NoResponse\Models\Shared\HookPoint|string|null $hookPoint
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('hook_point')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HookPoint|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HookPoint|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?HookPoint $hookPoint = null;
+    public HookPoint|string|null $hookPoint = null;
 
     /**
      * Normalized multi-factor evidence from a verified provider session.
@@ -247,14 +247,14 @@ class AuthContext
      * @param  ?bool  $phoneVerified
      * @param  ?\NoResponse\Models\Shared\AssuranceLevel  $assuranceLevel
      * @param  ?bool  $impersonated
-     * @param  ?\NoResponse\Models\Shared\Transport  $transport
-     * @param  ?\NoResponse\Models\Shared\HookPoint  $hookPoint
+     * @param  \NoResponse\Models\Shared\Transport|string|null  $transport
+     * @param  \NoResponse\Models\Shared\HookPoint|string|null  $hookPoint
      * @param  ?\NoResponse\Models\Shared\AuthContextMfa  $mfa
      * @param  ?array<string>  $roles
      * @param  ?array<string>  $scopes
      * @phpstan-pure
      */
-    public function __construct(string $provider, string $issuer, string $subject, bool $verified, ?string $audience = null, ?array $audiences = null, ?string $sessionId = null, ?string $organizationId = null, ?string $tenantId = null, ?string $tokenId = null, ?string $issuedAt = null, ?string $expiresAt = null, ?string $sessionCreatedAt = null, ?string $authTime = null, ?string $accountCreatedAt = null, ?bool $emailVerified = null, ?bool $phoneVerified = null, ?AssuranceLevel $assuranceLevel = null, ?bool $impersonated = null, ?Transport $transport = null, ?HookPoint $hookPoint = null, ?AuthContextMfa $mfa = null, ?array $roles = null, ?array $scopes = null)
+    public function __construct(string $provider, string $issuer, string $subject, bool $verified, ?string $audience = null, ?array $audiences = null, ?string $sessionId = null, ?string $organizationId = null, ?string $tenantId = null, ?string $tokenId = null, ?string $issuedAt = null, ?string $expiresAt = null, ?string $sessionCreatedAt = null, ?string $authTime = null, ?string $accountCreatedAt = null, ?bool $emailVerified = null, ?bool $phoneVerified = null, ?AssuranceLevel $assuranceLevel = null, ?bool $impersonated = null, Transport|string|null $transport = null, HookPoint|string|null $hookPoint = null, ?AuthContextMfa $mfa = null, ?array $roles = null, ?array $scopes = null)
     {
         $this->provider = $provider;
         $this->issuer = $issuer;

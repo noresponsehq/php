@@ -35,47 +35,47 @@ class Enforcement
     /**
      * The event an assessment is made for: account_creation (a user creates an account), login (a user returns to an existing account) or purchase (a payment or a credit grant). The account's risk is reported with the decision for this flow.
      *
-     * @var \NoResponse\Models\Shared\Flow $flow
+     * @var \NoResponse\Models\Shared\Flow|string $flow
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('flow')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Flow')]
-    public Flow $flow;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Flow|string')]
+    public Flow|string $flow;
 
     /**
      * What the workspace did in its identity provider: revoke_sessions (signed the account out everywhere), restrict (limited what the account can do), unrestrict (lifted an earlier restriction), fail_onboarding (stopped an account that was still onboarding), reject_activation (refused to activate a provisional account) or none (decided to take no action).
      *
-     * @var \NoResponse\Models\Shared\EnforcementAction $action
+     * @var \NoResponse\Models\Shared\EnforcementAction|string $action
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('action')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EnforcementAction')]
-    public EnforcementAction $action;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EnforcementAction|string')]
+    public EnforcementAction|string $action;
 
     /**
      * The account's state in the workspace's identity provider just before the action: onboarding, provisional (created, not yet activated), active, restricted or rejected.
      *
-     * @var \NoResponse\Models\Shared\EnforcementState $stateBefore
+     * @var \NoResponse\Models\Shared\EnforcementState|string $stateBefore
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('state_before')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EnforcementState')]
-    public EnforcementState $stateBefore;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EnforcementState|string')]
+    public EnforcementState|string $stateBefore;
 
     /**
      * applied when the identity provider accepted the action, failed when it refused it or could not be reached. Only applied counts as enforced.
      *
-     * @var \NoResponse\Models\Shared\EnforcementStatus $status
+     * @var \NoResponse\Models\Shared\EnforcementStatus|string $status
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('status')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EnforcementStatus')]
-    public EnforcementStatus $status;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EnforcementStatus|string')]
+    public EnforcementStatus|string $status;
 
     /**
      * The identity provider the action ran in; custom for the workspace's own user store.
      *
-     * @var \NoResponse\Models\Shared\EnforcementProvider $provider
+     * @var \NoResponse\Models\Shared\EnforcementProvider|string $provider
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('provider')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EnforcementProvider')]
-    public EnforcementProvider $provider;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EnforcementProvider|string')]
+    public EnforcementProvider|string $provider;
 
     /**
      * When NoResponse first recorded this enforcement, in UTC. A failed record that becomes applied keeps it.
@@ -98,16 +98,16 @@ class Enforcement
      * @param  string  $id
      * @param  string  $accountId
      * @param  int  $riskVersion
-     * @param  \NoResponse\Models\Shared\Flow  $flow
-     * @param  \NoResponse\Models\Shared\EnforcementAction  $action
-     * @param  \NoResponse\Models\Shared\EnforcementState  $stateBefore
-     * @param  \NoResponse\Models\Shared\EnforcementStatus  $status
-     * @param  \NoResponse\Models\Shared\EnforcementProvider  $provider
+     * @param  \NoResponse\Models\Shared\Flow|string  $flow
+     * @param  \NoResponse\Models\Shared\EnforcementAction|string  $action
+     * @param  \NoResponse\Models\Shared\EnforcementState|string  $stateBefore
+     * @param  \NoResponse\Models\Shared\EnforcementStatus|string  $status
+     * @param  \NoResponse\Models\Shared\EnforcementProvider|string  $provider
      * @param  string  $createdAt
      * @param  ?string  $errorCode
      * @phpstan-pure
      */
-    public function __construct(string $id, string $accountId, int $riskVersion, Flow $flow, EnforcementAction $action, EnforcementState $stateBefore, EnforcementStatus $status, EnforcementProvider $provider, string $createdAt, ?string $errorCode = null)
+    public function __construct(string $id, string $accountId, int $riskVersion, Flow|string $flow, EnforcementAction|string $action, EnforcementState|string $stateBefore, EnforcementStatus|string $status, EnforcementProvider|string $provider, string $createdAt, ?string $errorCode = null)
     {
         $this->id = $id;
         $this->accountId = $accountId;

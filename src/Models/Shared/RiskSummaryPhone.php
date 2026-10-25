@@ -9,12 +9,12 @@ class RiskSummaryPhone
 {
     /**
      *
-     * @var ?\NoResponse\Models\Shared\LineType $lineType
+     * @var \NoResponse\Models\Shared\LineType|string|null $lineType
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('line_type')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\LineType|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\LineType|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?LineType $lineType = null;
+    public LineType|string|null $lineType = null;
 
     /**
      *
@@ -43,13 +43,13 @@ class RiskSummaryPhone
     public ?string $carrier = null;
 
     /**
-     * @param  ?\NoResponse\Models\Shared\LineType  $lineType
+     * @param  \NoResponse\Models\Shared\LineType|string|null  $lineType
      * @param  ?string  $country
      * @param  ?int  $reportCount
      * @param  ?string  $carrier
      * @phpstan-pure
      */
-    public function __construct(?LineType $lineType = null, ?string $country = null, ?int $reportCount = null, ?string $carrier = null)
+    public function __construct(LineType|string|null $lineType = null, ?string $country = null, ?int $reportCount = null, ?string $carrier = null)
     {
         $this->lineType = $lineType;
         $this->country = $country;

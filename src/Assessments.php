@@ -390,7 +390,7 @@ class Assessments
      * Returns the highest assessment_version, with the account's current risk. Requires the assess or history scope. While status is pending, or partial with a source still running, the response carries Retry-After; poll no faster than it says. Another workspace's assessment, an unknown or expired assessment and a malformed assessment_id all answer 404 not_found. response_mode=detailed needs the detailed scope.
      *
      * @param  string  $assessmentId
-     * @param  ?\NoResponse\Models\Shared\ResponseMode  $responseMode
+     * @param  \NoResponse\Models\Shared\ResponseMode|string|null  $responseMode
      * @return \NoResponse\Models\Operations\GetAssessmentResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -401,7 +401,7 @@ class Assessments
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function get(string $assessmentId, ?Shared\ResponseMode $responseMode = null, ?Options $options = null): Operations\GetAssessmentResponse
+    public function get(string $assessmentId, Shared\ResponseMode|string|null $responseMode = null, ?Options $options = null): Operations\GetAssessmentResponse
     {
         $retryConfig = null;
         if ($options) {

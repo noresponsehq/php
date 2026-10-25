@@ -35,11 +35,11 @@ class AssessmentDetailAuthContext
     /**
      * Where the context was derived: backend (also when the request named no transport), browser, or provider_hook for a hosted provider hook.
      *
-     * @var \NoResponse\Models\Shared\Transport $transport
+     * @var \NoResponse\Models\Shared\Transport|string $transport
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('transport')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Transport')]
-    public Transport $transport;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Transport|string')]
+    public Transport|string $transport;
 
     /**
      * The subject the context named; absent when it named none (a pre_registration hook).
@@ -71,25 +71,25 @@ class AssessmentDetailAuthContext
     /**
      * The provider event a provider_hook context was sent for; absent for any other transport.
      *
-     * @var ?\NoResponse\Models\Shared\HookPoint $hookPoint
+     * @var \NoResponse\Models\Shared\HookPoint|string|null $hookPoint
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('hook_point')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HookPoint|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HookPoint|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?HookPoint $hookPoint = null;
+    public HookPoint|string|null $hookPoint = null;
 
     /**
      * @param  string  $provider
      * @param  string  $issuer
      * @param  bool  $verified
-     * @param  \NoResponse\Models\Shared\Transport  $transport
+     * @param  \NoResponse\Models\Shared\Transport|string  $transport
      * @param  ?string  $subject
      * @param  ?string  $sessionId
      * @param  ?string  $organizationId
-     * @param  ?\NoResponse\Models\Shared\HookPoint  $hookPoint
+     * @param  \NoResponse\Models\Shared\HookPoint|string|null  $hookPoint
      * @phpstan-pure
      */
-    public function __construct(string $provider, string $issuer, bool $verified, Transport $transport, ?string $subject = null, ?string $sessionId = null, ?string $organizationId = null, ?HookPoint $hookPoint = null)
+    public function __construct(string $provider, string $issuer, bool $verified, Transport|string $transport, ?string $subject = null, ?string $sessionId = null, ?string $organizationId = null, HookPoint|string|null $hookPoint = null)
     {
         $this->provider = $provider;
         $this->issuer = $issuer;

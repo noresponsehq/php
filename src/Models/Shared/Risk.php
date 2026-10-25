@@ -18,29 +18,29 @@ class Risk
     /**
      * low 0-29, medium 30-59, high 60-84, critical 85-100.
      *
-     * @var \NoResponse\Models\Shared\Band $band
+     * @var \NoResponse\Models\Shared\Band|string $band
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('band')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Band')]
-    public Band $band;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Band|string')]
+    public Band|string $band;
 
     /**
      * The recommended action: allow, step_up or review. Your application applies it.
      *
-     * @var \NoResponse\Models\Shared\Recommendation $recommendation
+     * @var \NoResponse\Models\Shared\Recommendation|string $recommendation
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('recommendation')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Recommendation')]
-    public Recommendation $recommendation;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Recommendation|string')]
+    public Recommendation|string $recommendation;
 
     /**
      * How much of the planned evidence answered; it says nothing about risk.
      *
-     * @var \NoResponse\Models\Shared\RiskConfidence $confidence
+     * @var \NoResponse\Models\Shared\RiskConfidence|string $confidence
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('confidence')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskConfidence')]
-    public RiskConfidence $confidence;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskConfidence|string')]
+    public RiskConfidence|string $confidence;
 
     /**
      * Version of the hand-authored heuristic weights that produced the recommendation, for example 'risk-2026-10.7'. A workspace threshold override adds a +t<N> suffix, e.g. 'risk-2026-10.7+t3'.
@@ -116,9 +116,9 @@ class Risk
 
     /**
      * @param  int  $score
-     * @param  \NoResponse\Models\Shared\Band  $band
-     * @param  \NoResponse\Models\Shared\Recommendation  $recommendation
-     * @param  \NoResponse\Models\Shared\RiskConfidence  $confidence
+     * @param  \NoResponse\Models\Shared\Band|string  $band
+     * @param  \NoResponse\Models\Shared\Recommendation|string  $recommendation
+     * @param  \NoResponse\Models\Shared\RiskConfidence|string  $confidence
      * @param  string  $policyVersion
      * @param  string  $policyBasis
      * @param  array<\NoResponse\Models\Shared\RiskReason>  $reasons
@@ -129,7 +129,7 @@ class Risk
      * @param  ?\NoResponse\Models\Shared\RiskDetails  $details
      * @phpstan-pure
      */
-    public function __construct(int $score, Band $band, Recommendation $recommendation, RiskConfidence $confidence, string $policyVersion, array $reasons, RiskCoverage $coverage, ?bool $block = null, ?int $blockThreshold = null, ?RiskSummary $summary = null, ?RiskDetails $details = null, string $policyBasis = 'heuristic_unvalidated')
+    public function __construct(int $score, Band|string $band, Recommendation|string $recommendation, RiskConfidence|string $confidence, string $policyVersion, array $reasons, RiskCoverage $coverage, ?bool $block = null, ?int $blockThreshold = null, ?RiskSummary $summary = null, ?RiskDetails $details = null, string $policyBasis = 'heuristic_unvalidated')
     {
         $this->score = $score;
         $this->band = $band;

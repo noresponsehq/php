@@ -19,19 +19,19 @@ class Integration
     /**
      * The authentication provider that calls the endpoint.
      *
-     * @var \NoResponse\Models\Shared\IntegrationPlatform $platform
+     * @var \NoResponse\Models\Shared\IntegrationPlatform|string $platform
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('platform')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IntegrationPlatform')]
-    public IntegrationPlatform $platform;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IntegrationPlatform|string')]
+    public IntegrationPlatform|string $platform;
 
     /**
      * Each hook point at most once.
      *
-     * @var array<\NoResponse\Models\Shared\IntegrationHookPoint> $hookPoints
+     * @var array<\NoResponse\Models\Shared\IntegrationHookPoint|string> $hookPoints
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('hook_points')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\IntegrationHookPoint>')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\IntegrationHookPoint|string>')]
     public array $hookPoints;
 
     /**
@@ -78,8 +78,8 @@ class Integration
 
     /**
      * @param  string  $integrationId
-     * @param  \NoResponse\Models\Shared\IntegrationPlatform  $platform
-     * @param  array<\NoResponse\Models\Shared\IntegrationHookPoint>  $hookPoints
+     * @param  \NoResponse\Models\Shared\IntegrationPlatform|string  $platform
+     * @param  array<\NoResponse\Models\Shared\IntegrationHookPoint|string>  $hookPoints
      * @param  string  $url
      * @param  string  $createdAt
      * @param  ?string  $secret
@@ -87,7 +87,7 @@ class Integration
      * @param  ?string  $previousSecretExpiresAt
      * @phpstan-pure
      */
-    public function __construct(string $integrationId, IntegrationPlatform $platform, array $hookPoints, string $url, string $createdAt, ?string $secret = null, ?string $rotatedAt = null, ?string $previousSecretExpiresAt = null)
+    public function __construct(string $integrationId, IntegrationPlatform|string $platform, array $hookPoints, string $url, string $createdAt, ?string $secret = null, ?string $rotatedAt = null, ?string $previousSecretExpiresAt = null)
     {
         $this->integrationId = $integrationId;
         $this->platform = $platform;

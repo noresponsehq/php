@@ -27,20 +27,20 @@ class WebhookTest
     /**
      * endpoint.verification sends a fresh challenge now, in this call, and the endpoint is verified if it echoes it. assessment.updated queues an event whose data is a fixed example assessment, with test true, delivered and retried like any other; the endpoint must be verified.
      *
-     * @var \NoResponse\Models\Shared\WebhookTestRequestEvent $event
+     * @var \NoResponse\Models\Shared\WebhookTestRequestEvent|string $event
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('event')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WebhookTestRequestEvent')]
-    public WebhookTestRequestEvent $event;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WebhookTestRequestEvent|string')]
+    public WebhookTestRequestEvent|string $event;
 
     /**
      * unverified until the endpoint echoes an endpoint.verification challenge (send one with POST /v1/webhooks/{endpoint_id}/test); verified receives assessment.updated events; disabled after 72 hours of continuous delivery failure, and verified again by the same challenge.
      *
-     * @var \NoResponse\Models\Shared\WebhookEndpointState $state
+     * @var \NoResponse\Models\Shared\WebhookEndpointState|string $state
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('state')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WebhookEndpointState')]
-    public WebhookEndpointState $state;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WebhookEndpointState|string')]
+    public WebhookEndpointState|string $state;
 
     /**
      * endpoint.verification only: true when the endpoint echoed the challenge within 5 seconds. A false answer leaves the endpoint's state as it was.
@@ -54,12 +54,12 @@ class WebhookTest
     /**
      * @param  string  $deliveryId
      * @param  string  $endpointId
-     * @param  \NoResponse\Models\Shared\WebhookTestRequestEvent  $event
-     * @param  \NoResponse\Models\Shared\WebhookEndpointState  $state
+     * @param  \NoResponse\Models\Shared\WebhookTestRequestEvent|string  $event
+     * @param  \NoResponse\Models\Shared\WebhookEndpointState|string  $state
      * @param  ?bool  $verified
      * @phpstan-pure
      */
-    public function __construct(string $deliveryId, string $endpointId, WebhookTestRequestEvent $event, WebhookEndpointState $state, ?bool $verified = null)
+    public function __construct(string $deliveryId, string $endpointId, WebhookTestRequestEvent|string $event, WebhookEndpointState|string $state, ?bool $verified = null)
     {
         $this->deliveryId = $deliveryId;
         $this->endpointId = $endpointId;

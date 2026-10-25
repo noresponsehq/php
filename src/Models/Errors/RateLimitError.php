@@ -48,11 +48,11 @@ class RateLimitError
     /**
      * Machine codes an HTTP 429 answer can carry.
      *
-     * @var \NoResponse\Models\Shared\RateLimitErrorCode $code
+     * @var \NoResponse\Models\Shared\RateLimitErrorCode|string $code
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('code')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RateLimitErrorCode')]
-    public Shared\RateLimitErrorCode $code;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RateLimitErrorCode|string')]
+    public Shared\RateLimitErrorCode|string $code;
 
     /**
      *
@@ -76,13 +76,13 @@ class RateLimitError
      * @param  string  $title
      * @param  int  $status
      * @param  string  $detail
-     * @param  \NoResponse\Models\Shared\RateLimitErrorCode  $code
+     * @param  \NoResponse\Models\Shared\RateLimitErrorCode|string  $code
      * @param  string  $requestId
      * @param  ?string  $instance
      * @param  ?array<\NoResponse\Models\Shared\ProblemInvalidParam>  $invalidParams
      * @phpstan-pure
      */
-    public function __construct(string $type, string $title, string $detail, Shared\RateLimitErrorCode $code, string $requestId, ?string $instance = null, ?array $invalidParams = null, int $status = 429)
+    public function __construct(string $type, string $title, string $detail, Shared\RateLimitErrorCode|string $code, string $requestId, ?string $instance = null, ?array $invalidParams = null, int $status = 429)
     {
         $this->type = $type;
         $this->title = $title;

@@ -116,7 +116,9 @@ final class LateResults
             return new EnforcementResult(account: $account, state: $state, riskVersion: $riskVersion, skipped: 'already_enforced');
         }
         $flow = $rule['flow'];
-        $decision = $account->decisionsByFlow->{self::FLOW_PROPERTIES[$flow]}->value;
+        // An open enum: a decision this SDK does not know arrives as its raw string.
+        $decision = $account->decisionsByFlow->{self::FLOW_PROPERTIES[$flow]};
+        $decision = $decision instanceof \BackedEnum ? $decision->value : $decision;
         $actions = $rule['on'][$decision] ?? null;
         if ($actions === null && ($flows[$flow]['reinstate'] ?? false)) {
             $actions = $rule['reinstate'][$decision] ?? null;

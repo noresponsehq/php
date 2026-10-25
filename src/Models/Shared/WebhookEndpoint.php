@@ -27,20 +27,20 @@ class WebhookEndpoint
     /**
      * unverified until the endpoint echoes an endpoint.verification challenge (send one with POST /v1/webhooks/{endpoint_id}/test); verified receives assessment.updated events; disabled after 72 hours of continuous delivery failure, and verified again by the same challenge.
      *
-     * @var \NoResponse\Models\Shared\WebhookEndpointState $state
+     * @var \NoResponse\Models\Shared\WebhookEndpointState|string $state
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('state')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WebhookEndpointState')]
-    public WebhookEndpointState $state;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WebhookEndpointState|string')]
+    public WebhookEndpointState|string $state;
 
     /**
      * standard returns the consolidated risk response; detailed adds merged provider-neutral facts when the key has detailed scope. There is no raw mode.
      *
-     * @var \NoResponse\Models\Shared\ResponseMode $responseMode
+     * @var \NoResponse\Models\Shared\ResponseMode|string $responseMode
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('response_mode')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode')]
-    public ResponseMode $responseMode;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ResponseMode|string')]
+    public ResponseMode|string $responseMode;
 
     /**
      *
@@ -70,14 +70,14 @@ class WebhookEndpoint
     /**
      * @param  string  $endpointId
      * @param  string  $url
-     * @param  \NoResponse\Models\Shared\WebhookEndpointState  $state
-     * @param  \NoResponse\Models\Shared\ResponseMode  $responseMode
+     * @param  \NoResponse\Models\Shared\WebhookEndpointState|string  $state
+     * @param  \NoResponse\Models\Shared\ResponseMode|string  $responseMode
      * @param  string  $createdAt
      * @param  array<\NoResponse\Models\Shared\SigningKey>  $signingKeys
      * @param  ?string  $verifiedAt
      * @phpstan-pure
      */
-    public function __construct(string $endpointId, string $url, WebhookEndpointState $state, ResponseMode $responseMode, string $createdAt, array $signingKeys, ?string $verifiedAt = null)
+    public function __construct(string $endpointId, string $url, WebhookEndpointState|string $state, ResponseMode|string $responseMode, string $createdAt, array $signingKeys, ?string $verifiedAt = null)
     {
         $this->endpointId = $endpointId;
         $this->url = $url;

@@ -18,20 +18,20 @@ class Breach
     /**
      * Who is in the table: site_breach, a site's own users; credential_list, a combolist or compilation; stealer_log, malware or botnet victims; scrape; hacking_forum, a criminal hacking, cracking or carding community; abuse_service, the customers of DDoS-for-hire, account generators, dump or card shops, darknet markets, stalkerware or breach-lookup services; darkweb_site, an onion site of unknown purpose.
      *
-     * @var \NoResponse\Models\Shared\BreachKind $kind
+     * @var \NoResponse\Models\Shared\BreachKind|string $kind
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('kind')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachKind')]
-    public BreachKind $kind;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachKind|string')]
+    public BreachKind|string $kind;
 
     /**
      * The submitted identifier a breach table matched on: email or username. Phone and name are not breach selectors.
      *
-     * @var \NoResponse\Models\Shared\BreachSelector $matchedOn
+     * @var \NoResponse\Models\Shared\BreachSelector|string $matchedOn
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('matched_on')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachSelector')]
-    public BreachSelector $matchedOn;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\BreachSelector|string')]
+    public BreachSelector|string $matchedOn;
 
     /**
      * The breached site's domain, lower case. Absent when the table has none (a credential list, for example).
@@ -72,25 +72,25 @@ class Breach
     /**
      * $exposed
      *
-     * @var ?array<\NoResponse\Models\Shared\BreachExposed> $exposed
+     * @var array<\NoResponse\Models\Shared\BreachExposed|string>|null $exposed
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('exposed')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\BreachExposed>|null')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\BreachExposed|string>|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $exposed = null;
 
     /**
      * @param  string  $name
-     * @param  \NoResponse\Models\Shared\BreachKind  $kind
-     * @param  \NoResponse\Models\Shared\BreachSelector  $matchedOn
+     * @param  \NoResponse\Models\Shared\BreachKind|string  $kind
+     * @param  \NoResponse\Models\Shared\BreachSelector|string  $matchedOn
      * @param  ?string  $domain
      * @param  ?string  $category
      * @param  ?int  $year
      * @param  ?int  $month
-     * @param  ?array<\NoResponse\Models\Shared\BreachExposed>  $exposed
+     * @param  array<\NoResponse\Models\Shared\BreachExposed|string>|null  $exposed
      * @phpstan-pure
      */
-    public function __construct(string $name, BreachKind $kind, BreachSelector $matchedOn, ?string $domain = null, ?string $category = null, ?int $year = null, ?int $month = null, ?array $exposed = null)
+    public function __construct(string $name, BreachKind|string $kind, BreachSelector|string $matchedOn, ?string $domain = null, ?string $category = null, ?int $year = null, ?int $month = null, ?array $exposed = null)
     {
         $this->name = $name;
         $this->kind = $kind;

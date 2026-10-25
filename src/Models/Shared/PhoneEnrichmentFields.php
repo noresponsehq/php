@@ -154,7 +154,7 @@ class PhoneEnrichmentFields
     /**
      * $alternateNames
      *
-     * @var ?array<string|float|bool|\NoResponse\Models\Shared\AlternateName|array<mixed>> $alternateNames
+     * @var array<string|float|bool|\NoResponse\Models\Shared\AlternateName|array<mixed>>|null $alternateNames
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('alternate_names')]
     #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\AlternateName|array<mixed>>|null')]
@@ -164,7 +164,7 @@ class PhoneEnrichmentFields
     /**
      * $nameCandidates
      *
-     * @var ?array<string|float|bool|\NoResponse\Models\Shared\NameCandidate|array<mixed>> $nameCandidates
+     * @var array<string|float|bool|\NoResponse\Models\Shared\NameCandidate|array<mixed>>|null $nameCandidates
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('name_candidates')]
     #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\NameCandidate|array<mixed>>|null')]
@@ -174,7 +174,7 @@ class PhoneEnrichmentFields
     /**
      * $timezones
      *
-     * @var ?array<string|float|bool|\NoResponse\Models\Shared\Timezone|array<mixed>> $timezones
+     * @var array<string|float|bool|\NoResponse\Models\Shared\Timezone|array<mixed>>|null $timezones
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('timezones')]
     #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Timezone|array<mixed>>|null')]
@@ -184,7 +184,7 @@ class PhoneEnrichmentFields
     /**
      * $emails
      *
-     * @var ?array<string|float|bool|\NoResponse\Models\Shared\Email|array<mixed>> $emails
+     * @var array<string|float|bool|\NoResponse\Models\Shared\Email|array<mixed>>|null $emails
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('emails')]
     #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Email|array<mixed>>|null')]
@@ -194,7 +194,7 @@ class PhoneEnrichmentFields
     /**
      * $websites
      *
-     * @var ?array<string|float|bool|\NoResponse\Models\Shared\Website|array<mixed>> $websites
+     * @var array<string|float|bool|\NoResponse\Models\Shared\Website|array<mixed>>|null $websites
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('websites')]
     #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Website|array<mixed>>|null')]
@@ -204,7 +204,7 @@ class PhoneEnrichmentFields
     /**
      * $locations
      *
-     * @var ?array<string|float|bool|\NoResponse\Models\Shared\Location|array<mixed>> $locations
+     * @var array<string|float|bool|\NoResponse\Models\Shared\Location|array<mixed>>|null $locations
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('locations')]
     #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\Location|array<mixed>>|null')]
@@ -214,7 +214,7 @@ class PhoneEnrichmentFields
     /**
      * $socialProfiles
      *
-     * @var ?array<string|float|bool|\NoResponse\Models\Shared\SocialProfile|array<mixed>> $socialProfiles
+     * @var array<string|float|bool|\NoResponse\Models\Shared\SocialProfile|array<mixed>>|null $socialProfiles
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('social_profiles')]
     #[\NoResponse\Serializer\Annotation\Type('array<string|float|bool|\NoResponse\Models\Shared\SocialProfile|array<mixed>>|null')]
@@ -312,13 +312,13 @@ class PhoneEnrichmentFields
      * @param  ?string  $firstCallAt
      * @param  ?string  $lastCallAt
      * @param  ?string  $matchedName
-     * @param  ?array<string|float|bool|\NoResponse\Models\Shared\AlternateName|array<mixed>>  $alternateNames
-     * @param  ?array<string|float|bool|\NoResponse\Models\Shared\NameCandidate|array<mixed>>  $nameCandidates
-     * @param  ?array<string|float|bool|\NoResponse\Models\Shared\Timezone|array<mixed>>  $timezones
-     * @param  ?array<string|float|bool|\NoResponse\Models\Shared\Email|array<mixed>>  $emails
-     * @param  ?array<string|float|bool|\NoResponse\Models\Shared\Website|array<mixed>>  $websites
-     * @param  ?array<string|float|bool|\NoResponse\Models\Shared\Location|array<mixed>>  $locations
-     * @param  ?array<string|float|bool|\NoResponse\Models\Shared\SocialProfile|array<mixed>>  $socialProfiles
+     * @param  array<string|float|bool|\NoResponse\Models\Shared\AlternateName|array<mixed>>|null  $alternateNames
+     * @param  array<string|float|bool|\NoResponse\Models\Shared\NameCandidate|array<mixed>>|null  $nameCandidates
+     * @param  array<string|float|bool|\NoResponse\Models\Shared\Timezone|array<mixed>>|null  $timezones
+     * @param  array<string|float|bool|\NoResponse\Models\Shared\Email|array<mixed>>|null  $emails
+     * @param  array<string|float|bool|\NoResponse\Models\Shared\Website|array<mixed>>|null  $websites
+     * @param  array<string|float|bool|\NoResponse\Models\Shared\Location|array<mixed>>|null  $locations
+     * @param  array<string|float|bool|\NoResponse\Models\Shared\SocialProfile|array<mixed>>|null  $socialProfiles
      * @param  ?int  $reportCount
      * @param  ?int  $tagCount
      * @param  ?int  $totalCalls

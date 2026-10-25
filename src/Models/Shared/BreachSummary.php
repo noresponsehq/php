@@ -45,10 +45,10 @@ class BreachSummary
     /**
      * The union of data kinds the matching tables held, without the values.
      *
-     * @var ?array<\NoResponse\Models\Shared\BreachExposed> $exposed
+     * @var array<\NoResponse\Models\Shared\BreachExposed|string>|null $exposed
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('exposed')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\BreachExposed>|null')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\BreachExposed|string>|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $exposed = null;
 
@@ -83,7 +83,7 @@ class BreachSummary
      * @param  ?int  $breachCount
      * @param  ?int  $firstYear
      * @param  ?int  $lastYear
-     * @param  ?array<\NoResponse\Models\Shared\BreachExposed>  $exposed
+     * @param  array<\NoResponse\Models\Shared\BreachExposed|string>|null  $exposed
      * @param  ?bool  $inCredentialLists
      * @param  ?bool  $recentPasswordExposure
      * @param  ?bool  $truncated

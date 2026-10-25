@@ -11,51 +11,51 @@ class Consistency
     /**
      * How a submitted identifier agrees with what the evidence holds for the other identifiers. unknown is a definite 'cannot tell' (for example a truncated or too-common breach result); absent means the comparison was not made.
      *
-     * @var ?\NoResponse\Models\Shared\ConsistencyValue $name
+     * @var \NoResponse\Models\Shared\ConsistencyValue|string|null $name
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('name')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?ConsistencyValue $name = null;
+    public ConsistencyValue|string|null $name = null;
 
     /**
      * How a submitted identifier agrees with what the evidence holds for the other identifiers. unknown is a definite 'cannot tell' (for example a truncated or too-common breach result); absent means the comparison was not made.
      *
-     * @var ?\NoResponse\Models\Shared\ConsistencyValue $phone
+     * @var \NoResponse\Models\Shared\ConsistencyValue|string|null $phone
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('phone')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?ConsistencyValue $phone = null;
+    public ConsistencyValue|string|null $phone = null;
 
     /**
      * How a submitted identifier agrees with what the evidence holds for the other identifiers. unknown is a definite 'cannot tell' (for example a truncated or too-common breach result); absent means the comparison was not made.
      *
-     * @var ?\NoResponse\Models\Shared\ConsistencyValue $ip
+     * @var \NoResponse\Models\Shared\ConsistencyValue|string|null $ip
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('ip')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ConsistencyValue|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?ConsistencyValue $ip = null;
+    public ConsistencyValue|string|null $ip = null;
 
     /**
      * IP country, phone country, breach countries and policy_context.region together.
      *
-     * @var ?\NoResponse\Models\Shared\Country $country
+     * @var \NoResponse\Models\Shared\Country|string|null $country
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('country')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Country|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Country|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?Country $country = null;
+    public Country|string|null $country = null;
 
     /**
-     * @param  ?\NoResponse\Models\Shared\ConsistencyValue  $name
-     * @param  ?\NoResponse\Models\Shared\ConsistencyValue  $phone
-     * @param  ?\NoResponse\Models\Shared\ConsistencyValue  $ip
-     * @param  ?\NoResponse\Models\Shared\Country  $country
+     * @param  \NoResponse\Models\Shared\ConsistencyValue|string|null  $name
+     * @param  \NoResponse\Models\Shared\ConsistencyValue|string|null  $phone
+     * @param  \NoResponse\Models\Shared\ConsistencyValue|string|null  $ip
+     * @param  \NoResponse\Models\Shared\Country|string|null  $country
      * @phpstan-pure
      */
-    public function __construct(?ConsistencyValue $name = null, ?ConsistencyValue $phone = null, ?ConsistencyValue $ip = null, ?Country $country = null)
+    public function __construct(ConsistencyValue|string|null $name = null, ConsistencyValue|string|null $phone = null, ConsistencyValue|string|null $ip = null, Country|string|null $country = null)
     {
         $this->name = $name;
         $this->phone = $phone;

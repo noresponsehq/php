@@ -5,8 +5,8 @@ management:
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 15.0.3
-  configChecksum: 03f5a7b58424897a3ed88589fd13dbde
+  releaseVersion: 7.1.0
+  configChecksum: 15c07844211e2021caa8c21b67b34bde
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -33,17 +33,17 @@ trackedFiles:
   composer.json:
     last_write_checksum: sha1:a53818cb2ac02a8c15c4baabb2a0e2de814e7b41
   docs/Models/Errors/AuthenticationError.md:
-    last_write_checksum: sha1:7dcaa4632d0f417bdff5dea933e3965b06605dbf
+    last_write_checksum: sha1:517edebaf41e3b7db18e073edecf81b72f5d661d
   docs/Models/Errors/BadRequestError.md:
-    last_write_checksum: sha1:ef1008f4f1ad415e6c92433f2dd5230556c8775d
+    last_write_checksum: sha1:ad94d15b091882ef08157bc07b95724435d1e047
   docs/Models/Errors/ConflictError.md:
-    last_write_checksum: sha1:081cb1634d40609ffb0b4670ce91d3b2172803a6
+    last_write_checksum: sha1:409d4335652332344e17919cac6b135ac14c75c0
   docs/Models/Errors/NotFoundError.md:
-    last_write_checksum: sha1:70463d9041c2c320a759d9876a90a4e3b174a238
+    last_write_checksum: sha1:414633f8eca6082408ebd6d7242ad3f88b058b4a
   docs/Models/Errors/PermissionDeniedError.md:
-    last_write_checksum: sha1:9a420ceeaac57d5a3635f84f0dc95f64ca7e761a
+    last_write_checksum: sha1:343d711ed08b250eff06ab8ee04cfd0f89f78c38
   docs/Models/Errors/RateLimitError.md:
-    last_write_checksum: sha1:9c81a4a5f18f8807019d1b1853a1a121a4799aec
+    last_write_checksum: sha1:41f87959675812751746bcbe8f1411dd6cab69d5
   docs/Models/Operations/CreateAssessmentRequest.md:
     last_write_checksum: sha1:ef6277d09e54c0d0ed840a02892ad9385ba7bd0c
   docs/Models/Operations/CreateAssessmentResponse.md:
@@ -73,11 +73,11 @@ trackedFiles:
   docs/Models/Operations/GetAccountResponse.md:
     last_write_checksum: sha1:6861214f62a224425065b82f6564d8fc711afa9f
   docs/Models/Operations/GetAssessmentRequest.md:
-    last_write_checksum: sha1:a6e5db3f70a8a975a79c92109c3c0edeb79dea63
+    last_write_checksum: sha1:98b264ac53e000c0c6b628e91997eefeed58380c
   docs/Models/Operations/GetAssessmentResponse.md:
     last_write_checksum: sha1:9c3551655a955903cb74e19a17cc593f46ad0ddd
   docs/Models/Operations/ListAccountAssessmentsRequest.md:
-    last_write_checksum: sha1:97e5ecc530c18bf1e2291777f91d6038829944cc
+    last_write_checksum: sha1:46bc1c5da7e1e7c356bfb5ac4e994ddb5617875c
   docs/Models/Operations/ListAccountAssessmentsResponse.md:
     last_write_checksum: sha1:fd362ed101e4174ed4915867c259aae49174ab8c
   docs/Models/Operations/ListAccountsRequest.md:
@@ -129,7 +129,7 @@ trackedFiles:
   docs/Models/Shared/AccountDecision.md:
     last_write_checksum: sha1:0bd853001e5424ad26f803382448068289677684
   docs/Models/Shared/AccountDecisionsByFlow.md:
-    last_write_checksum: sha1:837d6d150bd0c2ca5d9c4af9bde3599da6a646a3
+    last_write_checksum: sha1:0076e9dc6568ce8979e1b1e15b8a35e04ea88c2b
   docs/Models/Shared/AccountDeleted.md:
     last_write_checksum: sha1:685cb941cd9a7d5c83c4d0595608b537542dda12
   docs/Models/Shared/AccountDeletedEvent.md:
@@ -139,27 +139,27 @@ trackedFiles:
   docs/Models/Shared/AccountList.md:
     last_write_checksum: sha1:7e4aa1377d54278178807d094706a154b9f37337
   docs/Models/Shared/AccountRisk.md:
-    last_write_checksum: sha1:712a01d09f6ab79f2ddc7403fd12c70a83272269
+    last_write_checksum: sha1:7ca65197db0c3c77c9134fdf77e0636dc5c64fa5
   docs/Models/Shared/AccountRiskChanged.md:
     last_write_checksum: sha1:475734ebcc768ada853ef86a18e7813283765ddc
   docs/Models/Shared/AccountRiskChangedEvent.md:
     last_write_checksum: sha1:772e3eaa7ab6fa8b9e2cd826f81bee7f9ccdf8c7
   docs/Models/Shared/AccountRiskReason.md:
-    last_write_checksum: sha1:595c72b4cfda4afc6413862c7f1bb0228f0e6229
+    last_write_checksum: sha1:39aefcbf2436cb08e933f1efa1bd38b1d2d50910
   docs/Models/Shared/AlternateName.md:
     last_write_checksum: sha1:f570181d957d21d0af9792dabb2bef986d7df4be
   docs/Models/Shared/AlternateNameUnion.md:
     last_write_checksum: sha1:3f68c320e76262017431e96c1d1e472e827e5558
   docs/Models/Shared/Assessment.md:
-    last_write_checksum: sha1:4b954e0dfe9f472c2f887464eefbf1c1760ad9b9
+    last_write_checksum: sha1:6fa830bc46460b3ffe6d4ae582d76d6ae2a074f0
   docs/Models/Shared/AssessmentDeletion.md:
     last_write_checksum: sha1:1fe9ce86dc92d31e53f713bb27fa4454260ff657
   docs/Models/Shared/AssessmentDeletionAccount.md:
     last_write_checksum: sha1:ce2da11781850cab5adf0d0fef159eb992627aad
   docs/Models/Shared/AssessmentDetail.md:
-    last_write_checksum: sha1:046b389ad86c5d9926a2e7107d9c35d55ba021f3
+    last_write_checksum: sha1:9d42a1dcab0a838099fd2bfe0caa6ec2dd188623
   docs/Models/Shared/AssessmentDetailAuthContext.md:
-    last_write_checksum: sha1:006a6301bedd99428e7b8c048a5999be22d828a8
+    last_write_checksum: sha1:0d2fb39a9d6d08d778029b9cb57dbea4d36aa2b0
   docs/Models/Shared/AssessmentDetailTiming.md:
     last_write_checksum: sha1:a0b0c2d56d0d71e581dc18554b4820f2d6cf27ea
   docs/Models/Shared/AssessmentExpired.md:
@@ -167,13 +167,13 @@ trackedFiles:
   docs/Models/Shared/AssessmentList.md:
     last_write_checksum: sha1:7b05e535567e04c6c1eaef9757612121f11ec7f5
   docs/Models/Shared/AssessmentOutcome.md:
-    last_write_checksum: sha1:e242ca7b478eb38f1ac8f76c2ee31dfb664ffcef
+    last_write_checksum: sha1:99628149b5c20adb784cb5885484c3c4dcc059ff
   docs/Models/Shared/AssessmentOutcomeRequest.md:
-    last_write_checksum: sha1:41ffa5548555c34a381c2f30e6fea6be0d12fff7
+    last_write_checksum: sha1:576e8b7924d71fcd9c17bb2583f0e831f3acdefb
   docs/Models/Shared/AssessmentQuery.md:
-    last_write_checksum: sha1:9968c1130695390416a2d88b33ffb0ff887ef978
+    last_write_checksum: sha1:2ff0c5fd7806e7a262e205b4ac2d334fe9efb856
   docs/Models/Shared/AssessmentRequest.md:
-    last_write_checksum: sha1:44dceed5a591736b2e112264f8446c432ec8b472
+    last_write_checksum: sha1:0c12b3f448f38d50ccedb6b0b537b2ad425a5ed7
   docs/Models/Shared/AssessmentRequestClientContext.md:
     last_write_checksum: sha1:e07c326e89f4c86134658f2406ac866776a9514a
   docs/Models/Shared/AssessmentRequestIdentifiers.md:
@@ -189,7 +189,7 @@ trackedFiles:
   docs/Models/Shared/AssuranceLevel.md:
     last_write_checksum: sha1:7e20555ddd7c123498de1c88fa33e126d43304da
   docs/Models/Shared/AuthContext.md:
-    last_write_checksum: sha1:732ab5fd56db26d368c113c3f0ae9b600c78ba41
+    last_write_checksum: sha1:c243e038d8882f8d4c26b9776a6c93f246a13137
   docs/Models/Shared/AuthContextMfa.md:
     last_write_checksum: sha1:b746eb970cb53e7e28e6f8af528f0c1db76fdfb7
   docs/Models/Shared/AuthenticationErrorCode.md:
@@ -199,7 +199,7 @@ trackedFiles:
   docs/Models/Shared/Band.md:
     last_write_checksum: sha1:95e98a3b34ce84173047acb6af2b1047f164d029
   docs/Models/Shared/Breach.md:
-    last_write_checksum: sha1:42041e20b35b254952155695cc4448535ae7522c
+    last_write_checksum: sha1:492dbd097ec1b2604b0198f08e46aa4945f3d8c8
   docs/Models/Shared/BreachExposed.md:
     last_write_checksum: sha1:e9fa7e43e374e44512dacfe80064b03b41ad86d7
   docs/Models/Shared/BreachKind.md:
@@ -207,13 +207,13 @@ trackedFiles:
   docs/Models/Shared/BreachSelector.md:
     last_write_checksum: sha1:e547f8a679d796a0a7c20538fbdcbb6930b22029
   docs/Models/Shared/BreachSummary.md:
-    last_write_checksum: sha1:1544e890de8c9e8a8000ec6bb0dddca969da3716
+    last_write_checksum: sha1:037280dc4fe2ff404c9aaf9fd32f48ec6efe7bee
   docs/Models/Shared/Confidence.md:
     last_write_checksum: sha1:f08e63bacf4067016b159539e8b2c30049d01874
   docs/Models/Shared/ConflictErrorCode.md:
     last_write_checksum: sha1:998151e1a1127330d6f813c567b52b0626a90279
   docs/Models/Shared/Consistency.md:
-    last_write_checksum: sha1:5ee091fe3172fa6143acbc083d0802e8733d2835
+    last_write_checksum: sha1:5a2700a2447c7d9784cd38408778717d91571bc3
   docs/Models/Shared/ConsistencyValue.md:
     last_write_checksum: sha1:825d80c9fa6fcf667cc0fe60cc1f011502479f2e
   docs/Models/Shared/Country.md:
@@ -229,13 +229,13 @@ trackedFiles:
   docs/Models/Shared/EndpointVerificationEvent.md:
     last_write_checksum: sha1:f2409e7623f8eda2a3fb28ffd045a9a42d4a6154
   docs/Models/Shared/Enforcement.md:
-    last_write_checksum: sha1:9a7dd83be6603669bbb73238eb5ad71836eda8b9
+    last_write_checksum: sha1:9f544e93fb4791f659c4ace06c126c883d1b8028
   docs/Models/Shared/EnforcementAction.md:
     last_write_checksum: sha1:b1963f00d5f186ecfd27c917876af3137303d1f2
   docs/Models/Shared/EnforcementProvider.md:
     last_write_checksum: sha1:fa5dd5e839b26870d174e029840b65775ff52735
   docs/Models/Shared/EnforcementRequest.md:
-    last_write_checksum: sha1:3e13f2a47d49f58d9e58b5658ea83a58e52a0d12
+    last_write_checksum: sha1:874ad1b2932c060d7a5a6e15935feae1359b7228
   docs/Models/Shared/EnforcementState.md:
     last_write_checksum: sha1:cae8ed5d646e4ff68d0b6d4936b8b2c46b7da378
   docs/Models/Shared/EnforcementStatus.md:
@@ -257,9 +257,9 @@ trackedFiles:
   docs/Models/Shared/IncompleteReason.md:
     last_write_checksum: sha1:80fcf24cf1f84cc103287998bd50b3c031178c60
   docs/Models/Shared/IncompleteSource.md:
-    last_write_checksum: sha1:d2b97878ad54fb26506e20e60683b5ae7b3714a1
+    last_write_checksum: sha1:3e05f5012882c7fa9a8bfa2417b67c2c3390bbf6
   docs/Models/Shared/Integration.md:
-    last_write_checksum: sha1:4e781b29875a7f3661099749f2c7838c03d5fd18
+    last_write_checksum: sha1:128d4701eeae3da0ef1988539a8def26b2d6f32a
   docs/Models/Shared/IntegrationHookPoint.md:
     last_write_checksum: sha1:7c8f960795f15bbce377472e836ff6f5a1643552
   docs/Models/Shared/IntegrationList.md:
@@ -267,15 +267,15 @@ trackedFiles:
   docs/Models/Shared/IntegrationPlatform.md:
     last_write_checksum: sha1:b023488e85d0e36eb2e53bc85f86d674d49bdd5c
   docs/Models/Shared/IntegrationRequest.md:
-    last_write_checksum: sha1:98da40a272843a23500504c574945cd7907313e4
+    last_write_checksum: sha1:6dca74f4f4faad367044c365ca3a45ee3b5489da
   docs/Models/Shared/IntegrationRotationRequest.md:
     last_write_checksum: sha1:1f2982b287592c448ce056f8819d33f15002cd0f
   docs/Models/Shared/IpSummary.md:
-    last_write_checksum: sha1:e249b175409394369919974e0ffd47dc4c0fd8b4
+    last_write_checksum: sha1:2b9e261aadcb94859e740b1336a3b532418c6a57
   docs/Models/Shared/IpSummaryType.md:
     last_write_checksum: sha1:41b6a4c12e9fa6e401cd0ac4333585f9e28c80d0
   docs/Models/Shared/KeyRotation.md:
-    last_write_checksum: sha1:5b3cd21be6c5ccd21bd723f9419c575e1a727524
+    last_write_checksum: sha1:cef9a74e5377bb2bcd9425ab6dfc7254f2a9de26
   docs/Models/Shared/KeyRotationRequest.md:
     last_write_checksum: sha1:a04f2a4c2cd3a9978f73d1004081da84a5578215
   docs/Models/Shared/KeyUsageBatch.md:
@@ -321,7 +321,7 @@ trackedFiles:
   docs/Models/Shared/ResponseMode.md:
     last_write_checksum: sha1:720bd5975a9f4d095f692154f856f8ddd0043463
   docs/Models/Shared/Risk.md:
-    last_write_checksum: sha1:43935700c01dc8d8a92a6829955b661850c04cbd
+    last_write_checksum: sha1:b1f8d24414bd070251ea4c5a31b8956962014b32
   docs/Models/Shared/RiskConfidence.md:
     last_write_checksum: sha1:f971a9c941a964bd1ba3302002e7228d6baaa2d0
   docs/Models/Shared/RiskCoverage.md:
@@ -333,13 +333,13 @@ trackedFiles:
   docs/Models/Shared/RiskDetailsPhoneName.md:
     last_write_checksum: sha1:acec4962f85910326b794bd2087dfdb4aa3624fc
   docs/Models/Shared/RiskReason.md:
-    last_write_checksum: sha1:cd792150d31e5a2f2cd62ad0447b977cf5d240d3
+    last_write_checksum: sha1:a0fc4cf668472e13904633d7c4ba8d8082541da7
   docs/Models/Shared/RiskSummary.md:
     last_write_checksum: sha1:35e3b2ec4cc36a1dd50be85cfbbd6d89e5b86e95
   docs/Models/Shared/RiskSummaryEmail.md:
     last_write_checksum: sha1:7c37210374a395169bb0aedb68af7c24f69b4d03
   docs/Models/Shared/RiskSummaryPhone.md:
-    last_write_checksum: sha1:87f05a02d2a25e4ba9116ae4374d12c6721bd79f
+    last_write_checksum: sha1:e92839c0c112b1496b75a53b4e1391148fbb1c8d
   docs/Models/Shared/RiskSummaryUsername.md:
     last_write_checksum: sha1:abe16e41dfbaa72e5cdbece2871b34a1e389de0c
   docs/Models/Shared/Scope.md:
@@ -347,7 +347,7 @@ trackedFiles:
   docs/Models/Shared/Security.md:
     last_write_checksum: sha1:cdb5d1428a950f6aeb9e2e1403ace822e31abdf1
   docs/Models/Shared/Signal.md:
-    last_write_checksum: sha1:3bfdd2e021ab32750bfe63d982eecaa375aa7122
+    last_write_checksum: sha1:f8948a3710b301b3ec00ab95bc25fcaa45854f4c
   docs/Models/Shared/SignalOutcome.md:
     last_write_checksum: sha1:910b6f69735f27fe3edf99bc55178107cdc8bf05
   docs/Models/Shared/SigningKey.md:
@@ -367,13 +367,13 @@ trackedFiles:
   docs/Models/Shared/Transport.md:
     last_write_checksum: sha1:cb67a732050c2eedd6fc5a634b5311a5b503d38c
   docs/Models/Shared/WebhookDeliveryAttempt.md:
-    last_write_checksum: sha1:af3c1e1b9210234ded66cb6fc8a675179ec0b8ae
+    last_write_checksum: sha1:ebf9a44a8eede16a25c8baa80ece52f28fa81f95
   docs/Models/Shared/WebhookDeliveryAttemptStatus.md:
     last_write_checksum: sha1:66028ab2e9ae1ce5046c57e7c82db5b3648f4c9d
   docs/Models/Shared/WebhookDeliveryList.md:
     last_write_checksum: sha1:a2ef324eb5d9b1d33edab79592989ddf90965bfe
   docs/Models/Shared/WebhookEndpoint.md:
-    last_write_checksum: sha1:2265ea878bb2c388e1337d8f47234a71f381934a
+    last_write_checksum: sha1:18d1ab26fa5c390f4e5ca1d72132edc3a57e5427
   docs/Models/Shared/WebhookEndpointCreated.md:
     last_write_checksum: sha1:a32f65e5925073319b269722b570b49fe15d17a3
   docs/Models/Shared/WebhookEndpointDisabled.md:
@@ -383,7 +383,7 @@ trackedFiles:
   docs/Models/Shared/WebhookEndpointList.md:
     last_write_checksum: sha1:b8dcda9453e066d8935a5cc5cd187fcebe245add
   docs/Models/Shared/WebhookEndpointRequest.md:
-    last_write_checksum: sha1:62bc6778f78e3a43b85f473fb6907e805ab15519
+    last_write_checksum: sha1:bb013d79bcb1a703d0bb0bc1ed3e5833a93af410
   docs/Models/Shared/WebhookEndpointState.md:
     last_write_checksum: sha1:1c158e008b3eddb5004b53f6a964a80d4d23bed9
   docs/Models/Shared/WebhookEvent.md:
@@ -397,9 +397,9 @@ trackedFiles:
   docs/Models/Shared/WebhookReplayRequest.md:
     last_write_checksum: sha1:97bbe30c0e5e3a903301bba0428af795c5a81d6d
   docs/Models/Shared/WebhookTest.md:
-    last_write_checksum: sha1:b6cd726998bc73a77a4e1fbf2f38384a5a4e7e7c
+    last_write_checksum: sha1:6f69da7e6439b8b398cd702df7a201707b38f63c
   docs/Models/Shared/WebhookTestRequest.md:
-    last_write_checksum: sha1:83516cad7704a5812baeabf9ceb28f0dd0874411
+    last_write_checksum: sha1:62c2b37d5e4772643dff591d40ccb749090b4f69
   docs/Models/Shared/WebhookTestRequestEvent.md:
     last_write_checksum: sha1:d2e574f30f8403fb3ed26ce208ef942e65ca294b
   docs/Models/Shared/WebhookVerificationResponse.md:
@@ -413,9 +413,9 @@ trackedFiles:
   docs/Models/Shared/WorkspaceDeletedEvent.md:
     last_write_checksum: sha1:c3885a35edfc3308abdcd0f365c9191e764b232a
   docs/sdks/accounts/README.md:
-    last_write_checksum: sha1:d5972dc37e69bc58f24c5caa018e8590aeeb7248
+    last_write_checksum: sha1:a95d0d8b166b7c748a90084a458a18107e9b91d5
   docs/sdks/assessments/README.md:
-    last_write_checksum: sha1:9c5aa4fb161c34caaef53a28ea4511e201e9be75
+    last_write_checksum: sha1:789e5188a2dec2e6f9901188df810be5320c63a3
   docs/sdks/integrations/README.md:
     last_write_checksum: sha1:8f5fc93385658b078cd5d2303fc48d30e0cc0231
   docs/sdks/keys/README.md:
@@ -433,9 +433,9 @@ trackedFiles:
   rector.php:
     last_write_checksum: sha1:7864a4ae8ebfea6329d1a0eb047c070bf01a2ada
   src/Accounts.php:
-    last_write_checksum: sha1:c41bfa4cd4f2564cee2d3c66879cd2df8dbe8815
+    last_write_checksum: sha1:18450a760d8cb6242534fdb11cc1eee9b14d3bee
   src/Assessments.php:
-    last_write_checksum: sha1:0401bde41241fddf036e621420a5cd0598a0a4b2
+    last_write_checksum: sha1:9b6fa1ac70e31766c1865bd8f0e231929873a37a
   src/Hooks/AfterErrorContext.php:
     last_write_checksum: sha1:f1bfa05a3faedf129d634b9b23fdd301357cb306
   src/Hooks/AfterErrorHook.php:
@@ -475,29 +475,29 @@ trackedFiles:
   src/Models/Errors/APIStatusException.php:
     last_write_checksum: sha1:1bea9c341c24658ec411524aedb72052e77de2bc
   src/Models/Errors/AuthenticationError.php:
-    last_write_checksum: sha1:20efc241b254c15e4ba21730be4529ccaff2d27c
+    last_write_checksum: sha1:8d2b691cab306ef400cd1841e6d5ab1b38a1777f
   src/Models/Errors/AuthenticationException.php:
     last_write_checksum: sha1:447be5535d8efabe9deb95288331d693a0ecf8c5
   src/Models/Errors/BadRequestError.php:
-    last_write_checksum: sha1:e7672a7b83e54aca4652550b0b770cadc995078e
+    last_write_checksum: sha1:a028039676a5d8d45f2b9418a76dec533e9f3579
   src/Models/Errors/BadRequestException.php:
     last_write_checksum: sha1:71c79c94a967986ec14a36fad339a52b58629c49
   src/Models/Errors/ConflictError.php:
-    last_write_checksum: sha1:ad98f41fb5ae6b169227d588c55d98a0f1066324
+    last_write_checksum: sha1:0dce23f5805cba4716225068a4f83deb5ed4df63
   src/Models/Errors/ConflictException.php:
     last_write_checksum: sha1:eeabb7618a2ac4c288264678ab9a1d085a1fd282
   src/Models/Errors/NoResponseException.php:
     last_write_checksum: sha1:aa1fac60cf0dae9d4b23a273cdd0ba1b686e571f
   src/Models/Errors/NotFoundError.php:
-    last_write_checksum: sha1:55b69684b58693b935c3e780f2c6c5e7674631c3
+    last_write_checksum: sha1:a30371462a1ca4ee82e92a54b6dfad081b50cd45
   src/Models/Errors/NotFoundException.php:
     last_write_checksum: sha1:5652a622ae413146dc58485c9cb303cc618fc315
   src/Models/Errors/PermissionDeniedError.php:
-    last_write_checksum: sha1:27cf808383b48ac3528c5b533695454dbee068f6
+    last_write_checksum: sha1:6c8cdb5d615e22eedba096e20f66461f698325a6
   src/Models/Errors/PermissionDeniedException.php:
     last_write_checksum: sha1:7895dc2d5eb0c626d736f004cc9950b9515ceb52
   src/Models/Errors/RateLimitError.php:
-    last_write_checksum: sha1:431e8b19ba51704cf584d92166f2653f3f000700
+    last_write_checksum: sha1:0e0d1f0100131defe4e98b0249700f7216a51f44
   src/Models/Errors/RateLimitException.php:
     last_write_checksum: sha1:212f75de8841bcc52033d749a83ce3d1084590cf
   src/Models/Operations/CreateAssessmentRequest.php:
@@ -529,11 +529,11 @@ trackedFiles:
   src/Models/Operations/GetAccountResponse.php:
     last_write_checksum: sha1:9530a5522c3328cbf4be858def2bf7511cf0a5e7
   src/Models/Operations/GetAssessmentRequest.php:
-    last_write_checksum: sha1:131506598632d139f83767dc7c815bc1f89ac07a
+    last_write_checksum: sha1:6e51ff08593b5a1e1e33ac7bfec86303e49a9c8e
   src/Models/Operations/GetAssessmentResponse.php:
     last_write_checksum: sha1:37e79289a63ce57dea4408ad2d33a75a4fed2122
   src/Models/Operations/ListAccountAssessmentsRequest.php:
-    last_write_checksum: sha1:2bd12f32437a93f8aa4540269dbf68804cdf24fa
+    last_write_checksum: sha1:05f638a4fe264f00b577d72b3e582baade4351bf
   src/Models/Operations/ListAccountAssessmentsResponse.php:
     last_write_checksum: sha1:0f4ff9e57a2731d472b788ed4e7cd357cd85f886
   src/Models/Operations/ListAccountsRequest.php:
@@ -585,7 +585,7 @@ trackedFiles:
   src/Models/Shared/AccountDecision.php:
     last_write_checksum: sha1:133aca556021f56c99a659790ca11b5d68981f77
   src/Models/Shared/AccountDecisionsByFlow.php:
-    last_write_checksum: sha1:b3533d23eacc8a906c1420de971ea760cd94508b
+    last_write_checksum: sha1:6b56c87203c2819d35751ba148bff75678e9e094
   src/Models/Shared/AccountDeleted.php:
     last_write_checksum: sha1:56e82bf58de351f11a26674a7a2136b6d2a80811
   src/Models/Shared/AccountDeletedEvent.php:
@@ -595,25 +595,25 @@ trackedFiles:
   src/Models/Shared/AccountList.php:
     last_write_checksum: sha1:85ab12d2ea84ae36d38630fe1dbdac178c608d2c
   src/Models/Shared/AccountRisk.php:
-    last_write_checksum: sha1:99449e4b7e920fcb85392e0bdc0cc351de5f7ec0
+    last_write_checksum: sha1:cd8f78159f47376e49ae9cf408bdf15dfdfd3f77
   src/Models/Shared/AccountRiskChanged.php:
     last_write_checksum: sha1:b4cd6e4ff9a6686da2177f165e2ac5b6227b7f38
   src/Models/Shared/AccountRiskChangedEvent.php:
     last_write_checksum: sha1:59c8c7e54e36385df8ef266e13a6ec2a86bd4b17
   src/Models/Shared/AccountRiskReason.php:
-    last_write_checksum: sha1:25f74fc03d03e662f2f24ba4f332071db0791980
+    last_write_checksum: sha1:069b6527596ba70f1942a2fea776e1fbf1f9b9f4
   src/Models/Shared/AlternateName.php:
     last_write_checksum: sha1:429d42e3ab27dafc061516811dee1ed6379b6426
   src/Models/Shared/Assessment.php:
-    last_write_checksum: sha1:883af4e384e74b3dd36823b50176f115186c9042
+    last_write_checksum: sha1:054dd042a6bd6c9fb6797e3e75f6fe5f88943f01
   src/Models/Shared/AssessmentDeletion.php:
     last_write_checksum: sha1:4e54d74de3ec37b15f313302bb882d845c48c0f1
   src/Models/Shared/AssessmentDeletionAccount.php:
     last_write_checksum: sha1:98ae65e6c4f6a1584c917cac83a43e1e06ffe87a
   src/Models/Shared/AssessmentDetail.php:
-    last_write_checksum: sha1:ced1ba0f86fdcb40b402f1484eb136678a4a6e66
+    last_write_checksum: sha1:2357868d3b8973b58f777ef5e31cc24d73bc4326
   src/Models/Shared/AssessmentDetailAuthContext.php:
-    last_write_checksum: sha1:c32ce8addfa7b5f7f3b38ef9f2a84909c092d251
+    last_write_checksum: sha1:527efb64a2bcc08ca3446bd96e21eb0f7f9cf88d
   src/Models/Shared/AssessmentDetailTiming.php:
     last_write_checksum: sha1:3146d01ca0034fe089d692c0dfb8551605197227
   src/Models/Shared/AssessmentExpired.php:
@@ -621,13 +621,13 @@ trackedFiles:
   src/Models/Shared/AssessmentList.php:
     last_write_checksum: sha1:dfc41a568feeedc809c04f839e2b8fc70f6bbb7a
   src/Models/Shared/AssessmentOutcome.php:
-    last_write_checksum: sha1:d058bcdcdd4931881439f12be60eda1f543048bc
+    last_write_checksum: sha1:b747f55b74fb4c2a62a9c678be5f053669788a9e
   src/Models/Shared/AssessmentOutcomeRequest.php:
-    last_write_checksum: sha1:9b92878b246a2871037c6cce4379662edb8867ec
+    last_write_checksum: sha1:e9a0a5d6f0ca7d4344c248dd176a0e6205699523
   src/Models/Shared/AssessmentQuery.php:
-    last_write_checksum: sha1:48d9f0d5b209a65b7f40782118e6dee99055ad82
+    last_write_checksum: sha1:77b0ca292e232795b9ea943ff6e738d4c8310410
   src/Models/Shared/AssessmentRequest.php:
-    last_write_checksum: sha1:68f99620fe59f82d8a995327df49e3369cd7bbb2
+    last_write_checksum: sha1:88d1fc6f9d827b4996e2f4515252865671a63625
   src/Models/Shared/AssessmentRequestClientContext.php:
     last_write_checksum: sha1:421cb971fbb766149557fb34c1bf4859487e1cc2
   src/Models/Shared/AssessmentRequestIdentifiers.php:
@@ -641,7 +641,7 @@ trackedFiles:
   src/Models/Shared/AssuranceLevel.php:
     last_write_checksum: sha1:9d3ad75a71ad0b6e1cb7ba45de8f272095d0bf3f
   src/Models/Shared/AuthContext.php:
-    last_write_checksum: sha1:ade8d5620cb1bfcc37508f5e0c9ae1223bd81147
+    last_write_checksum: sha1:6dc0be01cd7dce94e326410ad7b48dee535a4642
   src/Models/Shared/AuthContextMfa.php:
     last_write_checksum: sha1:2be4f11bb2498fa0e05212cd6ecbe0b3beb4b148
   src/Models/Shared/AuthenticationErrorCode.php:
@@ -651,7 +651,7 @@ trackedFiles:
   src/Models/Shared/Band.php:
     last_write_checksum: sha1:18c6ea2fb03ebdfb3ed1e1055dbaa3ae9774bbf1
   src/Models/Shared/Breach.php:
-    last_write_checksum: sha1:59c9d629695edcd56e02e91164f69bb6f5881312
+    last_write_checksum: sha1:46a130159a510071b2d75134873704a8c95a6a38
   src/Models/Shared/BreachExposed.php:
     last_write_checksum: sha1:53c4236f4aff6bc2b1ceb01350717e03da7b091b
   src/Models/Shared/BreachKind.php:
@@ -659,13 +659,13 @@ trackedFiles:
   src/Models/Shared/BreachSelector.php:
     last_write_checksum: sha1:bd34700760515e78c09e629e49af040f600b8b17
   src/Models/Shared/BreachSummary.php:
-    last_write_checksum: sha1:5bf049563b9749562717c3741bc915616c1fe23f
+    last_write_checksum: sha1:87f08c7168111adec5a4995d62aea6d173c15aab
   src/Models/Shared/Confidence.php:
     last_write_checksum: sha1:d58b6c8ea1ca718b49d6f5698a3477ce7f180d82
   src/Models/Shared/ConflictErrorCode.php:
     last_write_checksum: sha1:b2d83b3372e1b235b07db1ff59394a77cfcae755
   src/Models/Shared/Consistency.php:
-    last_write_checksum: sha1:2aa2212a04d3248b6e764ad524ee3402cd070bf6
+    last_write_checksum: sha1:6134c248a34df0ae32fe8cc018a9bf6f117627dc
   src/Models/Shared/ConsistencyValue.php:
     last_write_checksum: sha1:f5262f7573ed593242db24ce727151ed94252d61
   src/Models/Shared/Country.php:
@@ -679,13 +679,13 @@ trackedFiles:
   src/Models/Shared/EndpointVerificationEvent.php:
     last_write_checksum: sha1:4a5c547f0567eb6f93833af4e3350852de0f5e51
   src/Models/Shared/Enforcement.php:
-    last_write_checksum: sha1:01cc758922989bcdee5182698b1090f8c720082c
+    last_write_checksum: sha1:5265688541df2cf19d4624e95b7bbc02ad6f2354
   src/Models/Shared/EnforcementAction.php:
     last_write_checksum: sha1:9579ba84101fb9caf450f67b15a1bc408833983d
   src/Models/Shared/EnforcementProvider.php:
     last_write_checksum: sha1:d73b690fdd90544b42daa4d18762b23e0b992018
   src/Models/Shared/EnforcementRequest.php:
-    last_write_checksum: sha1:d55289cb8188d0415494238393b23766ae174f6d
+    last_write_checksum: sha1:b3e2d1155e26b4b030e5754b6ff80070ea8ff3a4
   src/Models/Shared/EnforcementState.php:
     last_write_checksum: sha1:6b35e6b87a91f315fd401359d50977aa08e2d7d9
   src/Models/Shared/EnforcementStatus.php:
@@ -707,9 +707,9 @@ trackedFiles:
   src/Models/Shared/IncompleteReason.php:
     last_write_checksum: sha1:b3175285991f94881538930eb5097806a9490d91
   src/Models/Shared/IncompleteSource.php:
-    last_write_checksum: sha1:b6f73372b0f46e185c0c0cc5043838e760a5e60b
+    last_write_checksum: sha1:7456ee7015ec2ff87fe9cb2bea13531969d0c648
   src/Models/Shared/Integration.php:
-    last_write_checksum: sha1:9c5eed3cf7b387bba5dfb3f603d990601181330a
+    last_write_checksum: sha1:87f4a81e42000114cf82cab51e51ef4b991b0d8d
   src/Models/Shared/IntegrationHookPoint.php:
     last_write_checksum: sha1:e4d57ff0e2354925928dd4bab5a972367745302e
   src/Models/Shared/IntegrationList.php:
@@ -717,15 +717,15 @@ trackedFiles:
   src/Models/Shared/IntegrationPlatform.php:
     last_write_checksum: sha1:eaf054be32a14e2efd9afe868a4ced6457cd375a
   src/Models/Shared/IntegrationRequest.php:
-    last_write_checksum: sha1:53595be32e437a2fa7dc8428f2f287d9fc38c5f7
+    last_write_checksum: sha1:82253b64598616e2542f62eb62cb5cb612990445
   src/Models/Shared/IntegrationRotationRequest.php:
     last_write_checksum: sha1:1f3317e17e5a7a9a14ad9cdfd3ba35c0972483ef
   src/Models/Shared/IpSummary.php:
-    last_write_checksum: sha1:d304c48c5e699cc2f28c6b259e0a05991e6e9889
+    last_write_checksum: sha1:006bfb814b564925c1ea2dd9fe6fb827ca8ca7b8
   src/Models/Shared/IpSummaryType.php:
     last_write_checksum: sha1:03cae0010ef871a96530e5019ddad30bd1c25b77
   src/Models/Shared/KeyRotation.php:
-    last_write_checksum: sha1:33f390366f5f0fd582907786229a3e325923c447
+    last_write_checksum: sha1:7a34eeae7c41895c4bdf469684ea84bd003fb675
   src/Models/Shared/KeyRotationRequest.php:
     last_write_checksum: sha1:b13aff490fb5062073032fdd476099a4f29bf702
   src/Models/Shared/KeyUsageBatch.php:
@@ -751,7 +751,7 @@ trackedFiles:
   src/Models/Shared/PhoneEnrichment.php:
     last_write_checksum: sha1:76b06f47f09fa9b4d199681a768d99af3f863e3c
   src/Models/Shared/PhoneEnrichmentFields.php:
-    last_write_checksum: sha1:61c0b769c370b163303627bc3635416bffd7d3b5
+    last_write_checksum: sha1:3be034e981a02a9a15c49e185affde42c828ffe5
   src/Models/Shared/Platform.php:
     last_write_checksum: sha1:d77909ffe14e60738a3e74be5cec13bebf71e223
   src/Models/Shared/ProblemInvalidParam.php:
@@ -767,7 +767,7 @@ trackedFiles:
   src/Models/Shared/ResponseMode.php:
     last_write_checksum: sha1:28bb455b62659c7c24bd30506a70e47364ab4c44
   src/Models/Shared/Risk.php:
-    last_write_checksum: sha1:79b141abf37b7096f01ac4cab16189716fe59eb9
+    last_write_checksum: sha1:5489f2e08321f503ca86a7ed00a5347434c897dc
   src/Models/Shared/RiskConfidence.php:
     last_write_checksum: sha1:1350c6d1a775c8c244cfef02c557f11b84903290
   src/Models/Shared/RiskCoverage.php:
@@ -779,13 +779,13 @@ trackedFiles:
   src/Models/Shared/RiskDetailsPhoneName.php:
     last_write_checksum: sha1:5a5858d0613948b120f9675f84dc5a70732bba4e
   src/Models/Shared/RiskReason.php:
-    last_write_checksum: sha1:c94b7b8e2c4078d08e959434e432ba06bcabfc82
+    last_write_checksum: sha1:266e27ed501e1569d0da2fcc7dd71628ae0e63b8
   src/Models/Shared/RiskSummary.php:
     last_write_checksum: sha1:a274dee047d8697138eb0b30939a417198f23c37
   src/Models/Shared/RiskSummaryEmail.php:
     last_write_checksum: sha1:6a532cea7ac45a1c1bb125297514488b1141a19a
   src/Models/Shared/RiskSummaryPhone.php:
-    last_write_checksum: sha1:ded9ce98202009fc9b19a18489da5923ca374958
+    last_write_checksum: sha1:158e19355c987e343fec0f55713e85e3d8e30795
   src/Models/Shared/RiskSummaryUsername.php:
     last_write_checksum: sha1:0ae7db11e15dc6c59b56487f9da95daad991800d
   src/Models/Shared/Scope.php:
@@ -793,7 +793,7 @@ trackedFiles:
   src/Models/Shared/Security.php:
     last_write_checksum: sha1:ee7e944a0c28b077c8cfd8be5ee187f60c7ce171
   src/Models/Shared/Signal.php:
-    last_write_checksum: sha1:99243d7ff592b0da1e08939633be94176bac1d10
+    last_write_checksum: sha1:5dbed88f8f4899ab337080187064ddfb03948850
   src/Models/Shared/SignalOutcome.php:
     last_write_checksum: sha1:7d6e629d0977803bd24a6c2b00584dfe7b64ab89
   src/Models/Shared/SigningKey.php:
@@ -809,13 +809,13 @@ trackedFiles:
   src/Models/Shared/Transport.php:
     last_write_checksum: sha1:4766eef0f5351f384af5668bd32a0ee22fb2fb3e
   src/Models/Shared/WebhookDeliveryAttempt.php:
-    last_write_checksum: sha1:ac679edb829fe8af2fc0510d0493288b8b0b1e89
+    last_write_checksum: sha1:1328010a122210de128fd486f2806c886aa0be99
   src/Models/Shared/WebhookDeliveryAttemptStatus.php:
     last_write_checksum: sha1:eccb1ceb6689b3a0b04a733f6420f69e0b17d9f1
   src/Models/Shared/WebhookDeliveryList.php:
     last_write_checksum: sha1:d4f13d683ca176cfa942937ad1b87d49270f03af
   src/Models/Shared/WebhookEndpoint.php:
-    last_write_checksum: sha1:8a1d1103b6171eb820cab29c0e21425587eadbc4
+    last_write_checksum: sha1:13473b4399db111a5274cb31bcc7b257fd94e18d
   src/Models/Shared/WebhookEndpointCreated.php:
     last_write_checksum: sha1:3b1d107b969e4c0a510ade87d4c176e212688f77
   src/Models/Shared/WebhookEndpointDisabled.php:
@@ -825,7 +825,7 @@ trackedFiles:
   src/Models/Shared/WebhookEndpointList.php:
     last_write_checksum: sha1:7154ea4f2e4cdd0c7b85bf96ff559ab6cc7e7454
   src/Models/Shared/WebhookEndpointRequest.php:
-    last_write_checksum: sha1:03dab600d01e526afce69e48993bb3a664dbd02e
+    last_write_checksum: sha1:c0edc93f099d299157e70dba8df185054409b94c
   src/Models/Shared/WebhookEndpointState.php:
     last_write_checksum: sha1:05de50147b179f008e1ef3a52e90a5b2aee373b7
   src/Models/Shared/WebhookKeyRotation.php:
@@ -837,9 +837,9 @@ trackedFiles:
   src/Models/Shared/WebhookReplayRequest.php:
     last_write_checksum: sha1:121f9c832946b8e06accd5402123978cee45f72d
   src/Models/Shared/WebhookTest.php:
-    last_write_checksum: sha1:03fbdaeb87b387d690b732070c63c38de5fdfd54
+    last_write_checksum: sha1:08dc051993caacaf42a8fd994cf9e328105e4313
   src/Models/Shared/WebhookTestRequest.php:
-    last_write_checksum: sha1:03bb971771991eb4a269d8162145d6c4b4a64184
+    last_write_checksum: sha1:0bb60620c6bf42c89b935ed9bd4a9041557ec2d6
   src/Models/Shared/WebhookTestRequestEvent.php:
     last_write_checksum: sha1:384c4f127b317844fcc0cae06439615a26c5b26e
   src/Models/Shared/WebhookVerificationResponse.php:
@@ -1217,7 +1217,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:3077b7a946005a2dae6230a9678f43d662717a85
+    last_write_checksum: sha1:a9351987abf11b30d1ee06b8e002b2e557cd61fa
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
@@ -1285,7 +1285,7 @@ trackedFiles:
   src/Utils/ServerDetails.php:
     last_write_checksum: sha1:75d9cfb685166eb2bffed9d9a71fbea589043558
   src/Utils/UnionHandler.php:
-    last_write_checksum: sha1:3759bda814188a23dde6c1175303c5dceedf31e8
+    last_write_checksum: sha1:adf51725a01ecc6b3aae0e7efbb3a68dc4353c1c
   src/Utils/Utils.php:
     last_write_checksum: sha1:9a37c75aabd97be994c8b85ab1841b190032c8d3
   src/WebhookEndpoints.php:

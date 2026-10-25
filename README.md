@@ -34,6 +34,7 @@ Composer reads the version tags from https://github.com/noresponsehq/php/tags.
 
 require 'vendor/autoload.php';
 
+use NoResponse\Models\Shared\AccountDecision;
 use NoResponse\Models\Shared\AssessmentRequest;
 use NoResponse\Models\Shared\AssessmentRequestIdentifiers;
 use NoResponse\Models\Shared\Flow;
@@ -55,8 +56,11 @@ if ($assessment->account === null) {
     $assessment = Wait::wait($client, $assessment->id);
 }
 
-echo $assessment->account?->risk->decision->value; // allow, step_up, review or block
+$decision = $assessment->account?->risk->decision;
+echo $decision instanceof AccountDecision ? $decision->value : $decision; // allow, step_up, review or block
 ```
+
+A response enum such as `AccountDecision` or `ReasonCode` is typed `AccountDecision|string`: a known value is its enum case, and a value added after this release is the raw string, so an older SDK still reads the response.
 
 `account->risk->decision` is the decision for the request's `flow` and the value to act on. The assessment's own facts (`recommendation`, `risk`, `signals`, `assessmentVersion`) are under `detail`.
 
