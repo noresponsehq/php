@@ -50,4 +50,10 @@ enum ReasonCode: string
     case EmailDomainNonexistent = 'email_domain_nonexistent';
     case ForumSanctioned = 'forum_sanctioned';
     case PriorPaymentAbuse = 'prior_payment_abuse';
+    case IpHistoryMatch = 'ip_history_match';
+    case IdentityAttributeConflict = 'identity_attribute_conflict';
+    case ImpossibleIdentityAge = 'impossible_identity_age';
+    case BreachSharedIp = 'breach_shared_ip';
+    case NationalityMismatch = 'nationality_mismatch';
+    case MinorIdentity = 'minor_identity';
 }
