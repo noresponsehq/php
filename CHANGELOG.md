@@ -1,5 +1,9 @@
 # Changelog
 
+## 15.0.1
+
+No changes detected.
+
 ## 15.0.0
 
 * `sdk->assessments->create()`:  `response.account->risk->reasons[]->code` **Changed** (Breaking ⚠️)
