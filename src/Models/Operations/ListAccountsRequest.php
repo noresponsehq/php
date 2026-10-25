@@ -24,7 +24,7 @@ class ListAccountsRequest
     public ?int $limit = null;
 
     /**
-     * true lists only accounts with a decision other than allow for some flow and no applied enforcement at their current risk_version.
+     * true lists only accounts with no applied enforcement at their current risk_version that have a decision other than allow for some flow or a hold no later applied enforcement resolved.
      *
      * @var ?bool $unenforced
      */
