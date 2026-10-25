@@ -284,7 +284,7 @@ http_response_code(204);
 | `active` | `login` | `block` | `restrict`, `revoke_sessions` |
 | `restricted` | `login` | `allow` | `unrestrict`, only with `flows: ['login' => ['reinstate' => true]]` |
 
-Each action, or `none` when the decision needs nothing, is recorded with `accounts->recordEnforcement` at the `riskVersion` read; store `$result->riskVersion` and return it as `enforcedRiskVersion` so a replay is skipped. Nothing ever deletes a user: Clerk bans (unban reverses it), Auth0 sets `blocked`, and WorkOS, which has no block, sets the user's metadata `noresponse_state` (gate sign-in on it) and revokes every session. A refused action is recorded as failed and throws `ProviderActionException` (`provider`, `status`, `errorCode`): answer 5xx so the delivery is retried.
+Each action, or `none` when the decision needs nothing, is recorded with `accounts->recordEnforcement` at the `riskVersion` read; store `$result->riskVersion` and return it as `enforcedRiskVersion` so a replay is skipped. Nothing ever deletes a user: Clerk bans (unban reverses it), Auth0 sets `blocked`, and WorkOS, which has no block on a user, sets the user's metadata `noresponse_state` (gate sign-in on it) and revokes every session. A refused action is recorded as failed and throws `ProviderActionException` (`provider`, `status`, `errorCode`): answer 5xx so the delivery is retried.
 
 ```php
 use NoResponse\LateResults\AccountStateAnswer;
