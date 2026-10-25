@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.0.2
+
+No changes detected.
+
 ## 13.0.1
 
 * `sdk->assessments->create()`:  `response.account->risk->decision->enum(held)` **Added** (Breaking ⚠️)

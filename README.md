@@ -210,7 +210,6 @@ Verify the exact bytes you received, then act on the typed event. `$secrets` map
 ```php
 use NoResponse\Models\Shared\AccountDeletedEvent;
 use NoResponse\Models\Shared\AccountRiskChangedEvent;
-use NoResponse\Models\Shared\Assessment;
 use NoResponse\Models\Shared\AssessmentExpired;
 use NoResponse\Models\Shared\AssessmentUpdatedEvent;
 use NoResponse\Models\Shared\EndpointVerificationEvent;
@@ -241,13 +240,12 @@ if ($event instanceof AssessmentUpdatedEvent && $event->test === true) {
 } elseif ($event instanceof WebhookEndpointDisabledEvent) {
     // webhook_endpoint.disabled: $event->data->endpointId failed for 72 hours; fix it and verify it again
 } elseif ($event instanceof AccountRiskChangedEvent) {
-    // account.risk_changed: $event->data->account is the Account accounts->get returns, with its new
-    // decisionsByFlow; $event->data->previousDecisionsByFlow holds the decisions it replaced
+    // account.risk_changed, the one event to act on: a flow's decision changed, at
+    // $event->data->account->riskVersion. This verifier alone does not enforce it: use LateResults::handleRiskChange (below) as this endpoint's receiver.
 } elseif ($event->data instanceof AssessmentExpired) {
     // forget the assessment: GET now answers 404
-} elseif ($event->data instanceof Assessment) {
-    // keep the highest detail->assessmentVersion per assessment, then act on account?->risk->decision
 }
+// any other assessment.updated reports progress only: apply nothing
 http_response_code(204);
 ```
 
@@ -277,6 +275,8 @@ $result = LateResults::handleRiskChange($client, $payload, getallheaders(), [$ke
 ```
 
 `LateResults::enforceAccount` takes an account from `accounts->listChanged(unenforced: true)` to catch up on missed deliveries. For your own user store, `LateResults::customProvider(['restrict' => fn ($userId) => ..., 'revoke_sessions' => ...])` runs your callables.
+
+A held flow (workspace settings `admission: held`) answers `held` until its investigation completes or `hold_seconds` pass, and the handler records `none` for it. When the final decision arrives as `account.risk_changed`, an `onboarding` or `provisional` account fails onboarding or is refused activation on `review` or `block`. On `allow` the handler does nothing, so admit the account yourself from the result's account. See https://docs.noresponse.org/guides/late-results.
 
 ## Changes in 6.0.0
 
