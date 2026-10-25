@@ -1,10 +1,12 @@
-<img src="https://raw.githubusercontent.com/noresponsehq/.github/main/profile/sdk-header.png" alt="NoResponse" width="100%">
+<a href="https://noresponse.org"><img src="https://raw.githubusercontent.com/noresponsehq/.github/main/profile/sdk-header.png" alt="NoResponse · Identity Intelligence" width="100%"></a>
 
 # NoResponse for PHP
 
-The NoResponse client for PHP 8.2 and later. It assesses an account creation, login or purchase, polls a pending assessment, pages through an account's history, records what you later learned, rotates your API key and verifies webhooks. The client, webhook verification and the typed webhook events are generated from the NoResponse OpenAPI document; the wait helper is hand-written, and the auth adapters and late enforcement are rendered from shared tables.
+Assess sign-ups, logins and purchases with the NoResponse Identity Intelligence API.
 
-Keep the API key on your server.
+PHP 8.2+ · Composer.
+
+[Documentation](https://docs.noresponse.org/sdks/php) · [API reference](https://docs.noresponse.org/api-reference) · [Releases](https://github.com/noresponsehq/php/releases)
 
 ## Install
 
@@ -65,6 +67,19 @@ A response enum such as `AccountDecision` or `ReasonCode` is typed `AccountDecis
 `account->risk->decision` is the decision for the request's `flow` and the value to act on. The assessment's own facts (`recommendation`, `risk`, `signals`, `assessmentVersion`) are under `detail`.
 
 Every method returns an envelope: `result` holds the object and `headers` the response headers (`X-Request-ID`, `Retry-After`, `Idempotent-Replayed`).
+
+## Go further
+
+| Task | Guide |
+| --- | --- |
+| Configure this client and explore its methods | [PHP SDK guide](https://docs.noresponse.org/sdks/php) |
+| Act when an account's decision changes | [Late results](https://docs.noresponse.org/guides/late-results) |
+| Explore request and response fields | [API reference](https://docs.noresponse.org/api-reference) |
+
+<details>
+<summary><strong>SDK reference</strong> · configuration, methods, errors and webhooks</summary>
+
+[Configure the client](#configure-the-client) · [Assessments](#assessments) · [Keys](#keys) · [Errors](#errors) · [Retries](#retries) · [Issued keys](#issued-keys) · [Webhooks](#webhooks) · [Changes in 6.0.0](#changes-in-600) · [Changes since 2.0.0](#changes-since-200)
 
 ## Configure the client
 
@@ -308,4 +323,11 @@ Names that changed:
 
 `NoResponseClient::create($apiKey)` is new, a builder without a key reads `NORESPONSE_API_KEY`, `Event` has `test`, and each method's `@throws` lists every exception it throws. Three fixes ride along: with `RetryConfigNone` a connection failure throws a `GuzzleException` (it was a PHP `Error`), a retry config passed in `Options` now applies (it was replaced by the default), and 5xx responses are now retried (the status code pattern never matched).
 
-Issues: https://github.com/noresponsehq/php/issues. Quote `getRequestId()` when you write to us.
+</details>
+
+## Support
+
+[Open an issue](https://github.com/noresponsehq/php/issues) and include the request ID from the response or error.
+Keep API keys and personal data out of issues.
+
+[Apache-2.0](LICENSE).
