@@ -48,4 +48,6 @@ enum ReasonCode: string
     case YoungEmailDomain = 'young_email_domain';
     case EmailDomainNoMx = 'email_domain_no_mx';
     case EmailDomainNonexistent = 'email_domain_nonexistent';
+    case ForumSanctioned = 'forum_sanctioned';
+    case PriorPaymentAbuse = 'prior_payment_abuse';
 }

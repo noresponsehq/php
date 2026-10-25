@@ -47,3 +47,5 @@ A stable reason code. New codes may appear; ignore any you do not know.
 | `YoungEmailDomain`            | young_email_domain            |
 | `EmailDomainNoMx`             | email_domain_no_mx            |
 | `EmailDomainNonexistent`      | email_domain_nonexistent      |
+| `ForumSanctioned`             | forum_sanctioned              |
+| `PriorPaymentAbuse`           | prior_payment_abuse           |
