@@ -1,5 +1,12 @@
 # Changelog
 
+## 14.0.0
+
+* `sdk->assessments->create()`:  `response.detail->incompleteSources[]->lane->enum(domain)` **Added** (Breaking ⚠️)
+* `sdk->assessments->get()`:  `response.detail->incompleteSources[]->lane->enum(domain)` **Added** (Breaking ⚠️)
+* `sdk->assessments->query()`:  `response.items[]->incompleteSources[]->lane->enum(domain)` **Added** (Breaking ⚠️)
+* `sdk->accounts->listAssessments()`:  `response.items[]->incompleteSources[]->lane->enum(domain)` **Added** (Breaking ⚠️)
+
 ## 13.0.3
 
 No changes detected.

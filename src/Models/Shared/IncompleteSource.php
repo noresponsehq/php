@@ -9,7 +9,7 @@ namespace NoResponse\Models\Shared;
 class IncompleteSource
 {
     /**
-     * An evidence lane: accounts (account presence for email and username), phone, breach and ip.
+     * An evidence lane: accounts (account presence for email and username), phone, breach, domain (the email domain's registration) and ip.
      *
      * @var \NoResponse\Models\Shared\Lane $lane
      */
