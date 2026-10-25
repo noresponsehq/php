@@ -35,7 +35,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::Purchase,
+    flow: Shared\Flow::AccountCreation,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -120,7 +120,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::Purchase,
+    flow: Shared\Flow::AccountCreation,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -247,7 +247,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::Purchase,
+    flow: Shared\Flow::AccountCreation,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -412,7 +412,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::Purchase,
+    flow: Shared\Flow::AccountCreation,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -822,7 +822,7 @@ $sdk = NoResponse\NoResponseClient::builder()
     ->build();
 
 $body = new Shared\AssessmentOutcomeRequest(
-    outcome: Shared\Outcome::Legitimate,
+    outcome: Shared\Outcome::AccountTakeover,
     observedAt: '2026-10-14T09:04:30.000Z',
     externalRef: 'case-48213',
     notes: 'Chargeback filed two days after account creation.',

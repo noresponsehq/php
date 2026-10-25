@@ -9,4 +9,5 @@ namespace NoResponse\Models\Shared;
 enum PermissionDeniedErrorCode: string
 {
     case WorkspaceForbidden = 'workspace_forbidden';
+    case RoleForbidden = 'role_forbidden';
 }

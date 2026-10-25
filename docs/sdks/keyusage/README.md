@@ -75,15 +75,7 @@ $sdk = NoResponse\NoResponseClient::builder()
     ->build();
 
 $body = new Shared\KeyUsageBatchRequest(
-    events: [
-        new Shared\KeyUsageEvent(
-            keySha256: '2bdbf5c72f2a36df0ef40fb92203612274d4546f56dba946070a6a79c2401a1b',
-            ip: '203.0.113.24',
-            occurredAt: '2026-10-23T09:14:07.000Z',
-            userAgent: 'python-requests/2.32.3',
-            model: 'gpt-4o-mini',
-        ),
-    ],
+    events: [],
 );
 
 $response = $sdk->keyUsage->record(

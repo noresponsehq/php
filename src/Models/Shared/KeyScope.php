@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-enum Scope: string
+enum KeyScope: string
 {
     case Assess = 'assess';
     case History = 'history';
@@ -13,4 +13,5 @@ enum Scope: string
     case Webhooks = 'webhooks';
     case Detailed = 'detailed';
     case Integrations = 'integrations';
+    case Management = 'management';
 }

@@ -7,6 +7,9 @@ Your own API keys.
 ### Available Operations
 
 * [rotate](#rotate) - Rotate the API key that signs the request.
+* [create](#create) - Create an API key.
+* [list](#list) - List API keys.
+* [revoke](#revoke) - Revoke an API key.
 
 ## rotate
 
@@ -105,6 +108,247 @@ if ($response->keyRotation !== null) {
 ### Response
 
 **[?Operations\RotateApiKeyResponse](../../Models/Operations/RotateApiKeyResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## create
+
+Creates an API key in the environment of the key that signs the request, with scopes that key holds itself, and returns its secret once in key. Requires the management scope; the new key may hold it too. A scope the signing key lacks answers 403 workspace_forbidden, and the other environment 404 not_found. An environment holds at most 100 keys that authenticate (409 key_limit_reached). created_by is the signing key's prefix. Not idempotent: a retry after a lost answer creates a second key, which you can list and revoke.
+
+### Example Usage: key
+
+<!-- UsageSnippet language="php" operationID="createKey" method="post" path="/v1/workspaces/{workspace_id}/keys" example="key" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\KeyRequest(
+    environment: Shared\KeyEnvironment::Live,
+    scopes: [
+        Shared\KeyRequestScope::Delete,
+    ],
+);
+
+$response = $sdk->keys->create(
+    workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    body: $body
+
+);
+
+if ($response->key !== null) {
+    // handle response
+}
+```
+### Example Usage: live
+
+<!-- UsageSnippet language="php" operationID="createKey" method="post" path="/v1/workspaces/{workspace_id}/keys" example="live" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\KeyRequest(
+    environment: Shared\KeyEnvironment::Live,
+    scopes: [
+        Shared\KeyRequestScope::Assess,
+    ],
+);
+
+$response = $sdk->keys->create(
+    workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    body: $body
+
+);
+
+if ($response->key !== null) {
+    // handle response
+}
+```
+### Example Usage: test
+
+<!-- UsageSnippet language="php" operationID="createKey" method="post" path="/v1/workspaces/{workspace_id}/keys" example="test" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\KeyRequest(
+    environment: Shared\KeyEnvironment::Test,
+    scopes: [
+        Shared\KeyRequestScope::Assess,
+        Shared\KeyRequestScope::History,
+        Shared\KeyRequestScope::Webhooks,
+    ],
+);
+
+$response = $sdk->keys->create(
+    workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    body: $body
+
+);
+
+if ($response->key !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                          | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        | Example                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `workspaceId`                                                                                                                      | *string*                                                                                                                           | :heavy_check_mark:                                                                                                                 | Your workspace id, as each key lists it in workspace_id. Another workspace, a malformed id and a test environment's id answer 404. | tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                     |
+| `body`                                                                                                                             | [Shared\KeyRequest](../../Models/Shared/KeyRequest.md)                                                                             | :heavy_check_mark:                                                                                                                 | N/A                                                                                                                                |                                                                                                                                    |
+
+### Response
+
+**[?Operations\CreateKeyResponse](../../Models/Operations/CreateKeyResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## list
+
+Lists the keys of the signing key's environment, newest first, at most 200, revoked and expired keys included, without secrets: each key's id, prefix, scopes, status, and who created and revoked it. Requires the management scope. Read-only and safe to retry.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="listKeys" method="get" path="/v1/workspaces/{workspace_id}/keys" example="list" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$response = $sdk->keys->list(
+    workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
+);
+
+if ($response->keyList !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                          | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        | Example                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `workspaceId`                                                                                                                      | *string*                                                                                                                           | :heavy_check_mark:                                                                                                                 | Your workspace id, as each key lists it in workspace_id. Another workspace, a malformed id and a test environment's id answer 404. | tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                     |
+
+### Response
+
+**[?Operations\ListKeysResponse](../../Models/Operations/ListKeysResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## revoke
+
+Revokes a key of the signing key's environment at once: its next request answers 401. Requires the management scope. A key of the other environment or of another workspace answers 404 not_found. A key cannot revoke itself (409 self_revocation): rotate it with keys.rotate, or revoke it with another management key. Revoking a revoked key changes nothing and answers the key as it was revoked, so a retry is safe.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="revokeKey" method="delete" path="/v1/workspaces/{workspace_id}/keys/{key_id}" example="key" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$response = $sdk->keys->revoke(
+    workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    keyId: '01JA2ZE4K5M6N7P8Q9R0S1T2V3'
+
+);
+
+if ($response->key !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                          | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        | Example                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `workspaceId`                                                                                                                      | *string*                                                                                                                           | :heavy_check_mark:                                                                                                                 | Your workspace id, as each key lists it in workspace_id. Another workspace, a malformed id and a test environment's id answer 404. | tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                     |
+| `keyId`                                                                                                                            | *string*                                                                                                                           | :heavy_check_mark:                                                                                                                 | The key's id. A key of another workspace answers 404, as does a key of the other environment to an API key.                        | 01JA2ZE4K5M6N7P8Q9R0S1T2V3                                                                                                         |
+
+### Response
+
+**[?Operations\RevokeKeyResponse](../../Models/Operations/RevokeKeyResponse.md)**
 
 ### Errors
 

@@ -1,4 +1,4 @@
-# Scope
+# KeyScope
 
 
 ## Values
@@ -11,3 +11,4 @@
 | `Webhooks`     | webhooks       |
 | `Detailed`     | detailed       |
 | `Integrations` | integrations   |
+| `Management`   | management     |
