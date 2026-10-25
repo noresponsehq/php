@@ -10,4 +10,5 @@ enum IntegrationPlatform: string
 {
     case Workos = 'workos';
     case Auth0 = 'auth0';
+    case Supabase = 'supabase';
 }
