@@ -1,5 +1,14 @@
 # Changelog
 
+## 15.0.0
+
+* `sdk->assessments->create()`:  `response.account->risk->reasons[]->code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->get()`:  `response.account->risk->reasons[]->code` **Changed** (Breaking ⚠️)
+* `sdk->assessments->query()`:  `response.items[]->risk->reasons[]->code` **Changed** (Breaking ⚠️)
+* `sdk->accounts->listChanged()`:  `response.items[]->risk->reasons[]->code` **Changed** (Breaking ⚠️)
+* `sdk->accounts->get()`:  `response.risk->reasons[]->code` **Changed** (Breaking ⚠️)
+* `sdk->accounts->listAssessments()`:  `response.items[]->risk->reasons[]->code` **Changed** (Breaking ⚠️)
+
 ## 14.0.0
 
 * `sdk->assessments->create()`:  `response.detail->incompleteSources[]->lane->enum(domain)` **Added** (Breaking ⚠️)
