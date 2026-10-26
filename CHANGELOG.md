@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.2.8
+
+* `sdk->assessments->create()`:  `response` **Changed**
+* `sdk->assessments->get()`:  `response` **Changed**
+* `sdk->assessments->query()`:  `response.items[]->risk` **Changed**
+* `sdk->accounts->listChanged()`:  `response.items[]->risk->reasons[]` **Changed**
+* `sdk->accounts->get()`:  `response.risk->reasons[]` **Changed**
+* `sdk->accounts->listAssessments()`:  `response.items[]->risk` **Changed**
+
 ## 7.2.7
 
 * `sdk->assessments->create()`:  `response.account->risk->reasons[]->code` **Changed**

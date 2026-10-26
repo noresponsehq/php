@@ -39,15 +39,27 @@ class RiskDetails
     public ?array $breachNames = null;
 
     /**
+     * The identity's dated footprint events, newest first, at most 100: the year and month, what happened (created, last_active, breached), the site, its category, the kind of evidence and the identifier it belongs to. No breach value: dates are coarsened to the month.
+     *
+     * @var ?array<\NoResponse\Models\Shared\RiskDetailsEvent> $events
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('events')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RiskDetailsEvent>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $events = null;
+
+    /**
      * @param  ?array<\NoResponse\Models\Shared\RiskDetailsPhoneName>  $phoneNames
      * @param  ?array<\NoResponse\Models\Shared\Breach>  $breaches
      * @param  ?array<\NoResponse\Models\Shared\RiskDetailsBreachName>  $breachNames
+     * @param  ?array<\NoResponse\Models\Shared\RiskDetailsEvent>  $events
      * @phpstan-pure
      */
-    public function __construct(?array $phoneNames = null, ?array $breaches = null, ?array $breachNames = null)
+    public function __construct(?array $phoneNames = null, ?array $breaches = null, ?array $breachNames = null, ?array $events = null)
     {
         $this->phoneNames = $phoneNames;
         $this->breaches = $breaches;
         $this->breachNames = $breachNames;
+        $this->events = $events;
     }
 }

@@ -57,7 +57,7 @@ final class OpenEnumTest extends TestCase
         $account = $assessment->account;
         $this->assertNotNull($account);
         $this->assertSame(self::UNKNOWN, $account->risk->reasons[0]->code);
-        $this->assertSame(ReasonCode::BreachCooccurrence, $account->risk->reasons[1]->code);
+        $this->assertSame(ReasonCode::AgedIdentity, $account->risk->reasons[1]->code);
         $this->assertSame(self::UNKNOWN, $account->risk->decision);
         $this->assertSame(self::UNKNOWN, $account->decisionsByFlow->login);
         $this->assertSame(AccountDecision::Allow, $account->decisionsByFlow->purchase);

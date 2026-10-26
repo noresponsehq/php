@@ -1,0 +1,11 @@
+# Impact
+
+
+## Values
+
+| Name     | Value    |
+| -------- | -------- |
+| `None`   | none     |
+| `Low`    | low      |
+| `Medium` | medium   |
+| `High`   | high     |

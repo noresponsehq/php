@@ -1,0 +1,15 @@
+# FootprintTimeline
+
+One identifier's dated footprint across every source: the first and last year any event was seen, the years between them, the latest year a source dated activity (omitted when none did), how many distinct sites and which kinds of evidence saw it.
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `firstSeenYear`                                                                | *int*                                                                          | :heavy_check_mark:                                                             | N/A                                                                            |
+| `lastSeenYear`                                                                 | *int*                                                                          | :heavy_check_mark:                                                             | N/A                                                                            |
+| `spanYears`                                                                    | *int*                                                                          | :heavy_check_mark:                                                             | N/A                                                                            |
+| `lastActiveYear`                                                               | *?int*                                                                         | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `sites`                                                                        | *int*                                                                          | :heavy_check_mark:                                                             | N/A                                                                            |
+| `families`                                                                     | array<[Shared\FootprintFamily\|string](../../Models/Shared/FootprintFamily.md)> | :heavy_check_mark:                                                             | N/A                                                                            |

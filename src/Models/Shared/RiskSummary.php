@@ -56,19 +56,31 @@ class RiskSummary
     public ?Consistency $consistency = null;
 
     /**
+     * How long and how widely the signup's email and username have existed, and how far independent sources agree on the person behind them, in years and counts only. families are the kinds of evidence that found either identifier. Omitted when nothing found them: a footprint lookup that failed makes no claim, and absence is no_digital_footprint's to state.
+     *
+     * @var ?\NoResponse\Models\Shared\Footprint $footprint
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('footprint')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Footprint|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?Footprint $footprint = null;
+
+    /**
      * @param  ?\NoResponse\Models\Shared\RiskSummaryPhone  $phone
      * @param  ?\NoResponse\Models\Shared\RiskSummaryEmail  $email
      * @param  ?\NoResponse\Models\Shared\RiskSummaryUsername  $username
      * @param  ?\NoResponse\Models\Shared\IpSummary  $ip
      * @param  ?\NoResponse\Models\Shared\Consistency  $consistency
+     * @param  ?\NoResponse\Models\Shared\Footprint  $footprint
      * @phpstan-pure
      */
-    public function __construct(?RiskSummaryPhone $phone = null, ?RiskSummaryEmail $email = null, ?RiskSummaryUsername $username = null, ?IpSummary $ip = null, ?Consistency $consistency = null)
+    public function __construct(?RiskSummaryPhone $phone = null, ?RiskSummaryEmail $email = null, ?RiskSummaryUsername $username = null, ?IpSummary $ip = null, ?Consistency $consistency = null, ?Footprint $footprint = null)
     {
         $this->phone = $phone;
         $this->email = $email;
         $this->username = $username;
         $this->ip = $ip;
         $this->consistency = $consistency;
+        $this->footprint = $footprint;
     }
 }
