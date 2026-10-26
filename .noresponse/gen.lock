@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 5dfd3f9ae618c781e2a9c1e91e7afc6c
+  docChecksum: dc2cb31db8f445996d1fab231a43230e
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 8.0.0
-  configChecksum: ba37e0967530d439abcfe82882e92028
+  releaseVersion: 8.0.1
+  configChecksum: c3c0e1bab75e6d59450b587866431213
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -493,9 +493,9 @@ trackedFiles:
   docs/sdks/accounts/README.md:
     last_write_checksum: sha1:b4dd7da42195d43bdcbe93a6fab11d034ac8ed01
   docs/sdks/assessments/README.md:
-    last_write_checksum: sha1:df5fc7f49653e521673c4b6da37e72b30245d1b7
+    last_write_checksum: sha1:3e077e3a5a18cff7acadf98e725e2b54f3813bbc
   docs/sdks/integrations/README.md:
-    last_write_checksum: sha1:11a97365682f99a26e0a5a366d5192392749f71a
+    last_write_checksum: sha1:0430271613dc1b2d2b95ee76fee078d1a67348da
   docs/sdks/keys/README.md:
     last_write_checksum: sha1:faf1794a14d25408ab1288c92099117a64b03d2d
   docs/sdks/keyusage/README.md:
@@ -1373,7 +1373,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:545d39de24736c0e38feab4f16a297159a4baf1b
+    last_write_checksum: sha1:e38a0c31175ccd513f9ebd1f0be43eb57e37d959
   src/Settings.php:
     last_write_checksum: sha1:07207df62f49fafccdda462e4dca839f56bfdcf2
   src/Utils/BigDecimalHandler.php:

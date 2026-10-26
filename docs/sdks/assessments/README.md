@@ -951,7 +951,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $request = new Shared\AssessmentQuery(
     accountId: 'acct_7f3a9c',
-    cursor: 'eyJvIjoyMH0',
+    cursor: null,
 );
 
 $responses = $sdk->assessments->query(

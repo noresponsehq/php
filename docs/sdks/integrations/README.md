@@ -63,7 +63,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $request = new Shared\IntegrationRequest(
     platform: Shared\IntegrationPlatform::Supabase,
-    signingSecret: 'v1,whsec_dGVzdC1zdXBhYmFzZS1ob29rLXNlY3JldC1ub3QtcmVhbA==',
+    signingSecret: null,
 );
 
 $response = $sdk->integrations->create(
@@ -97,7 +97,7 @@ $request = new Shared\IntegrationRequest(
         Shared\IntegrationHookPoint::PreRegistration,
         Shared\IntegrationHookPoint::PostLogin,
     ],
-    signingSecret: 'wos_action_secret_k3Yx8pQ2mN7vR4tW',
+    signingSecret: null,
 );
 
 $response = $sdk->integrations->create(
@@ -282,7 +282,7 @@ $sdk = NoResponse\NoResponseClient::builder()
     ->build();
 
 $body = new Shared\IntegrationRotationRequest(
-    signingSecret: 'wos_action_secret_Z9cD1eF5gH0jL4sP',
+    signingSecret: null,
 );
 
 $response = $sdk->integrations->rotate(
