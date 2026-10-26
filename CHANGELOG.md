@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.3.0
+
+No changes detected.
+
 ## 7.2.8
 
 * `sdk->assessments->create()`:  `response` **Changed**

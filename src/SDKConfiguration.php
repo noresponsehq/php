@@ -22,11 +22,11 @@ class SDKConfiguration
 
     public string $openapiDocVersion = '1';
 
-    public string $sdkVersion = '7.2.8';
+    public string $sdkVersion = '7.3.0';
 
     public string $genVersion = 'internal';
 
-    public string $userAgent = 'noresponse-sdk/php 7.2.8 internal 1 noresponse/noresponse-php';
+    public string $userAgent = 'noresponse-sdk/php 7.3.0 internal 1 noresponse/noresponse-php';
 
     public ?RetryConfig $retryConfig = null;
 
