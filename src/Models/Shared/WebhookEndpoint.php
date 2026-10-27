@@ -68,6 +68,33 @@ class WebhookEndpoint
     public ?string $verifiedAt = null;
 
     /**
+     * The first failed delivery attempt of the endpoint's current failure streak. Absent while its latest attempt succeeded, before any attempt failed, and after it is verified again.
+     *
+     * @var ?string $failingSince
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('failing_since')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $failingSince = null;
+
+    /**
+     * The latest failed delivery attempt of the current failure streak; present exactly when failing_since is. A failure more than 2 hours after it starts a new streak.
+     *
+     * @var ?string $lastFailureAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('last_failure_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $lastFailureAt = null;
+
+    /**
+     * When the endpoint was disabled after failing continuously for 72 hours, as in the webhook_endpoint.disabled event. Present while state is disabled; absent before and after it is verified again.
+     *
+     * @var ?string $disabledAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('disabled_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $disabledAt = null;
+
+    /**
      * @param  string  $endpointId
      * @param  string  $url
      * @param  \NoResponse\Models\Shared\WebhookEndpointState|string  $state
@@ -75,9 +102,12 @@ class WebhookEndpoint
      * @param  string  $createdAt
      * @param  array<\NoResponse\Models\Shared\SigningKey>  $signingKeys
      * @param  ?string  $verifiedAt
+     * @param  ?string  $failingSince
+     * @param  ?string  $lastFailureAt
+     * @param  ?string  $disabledAt
      * @phpstan-pure
      */
-    public function __construct(string $endpointId, string $url, WebhookEndpointState|string $state, ResponseMode|string $responseMode, string $createdAt, array $signingKeys, ?string $verifiedAt = null)
+    public function __construct(string $endpointId, string $url, WebhookEndpointState|string $state, ResponseMode|string $responseMode, string $createdAt, array $signingKeys, ?string $verifiedAt = null, ?string $failingSince = null, ?string $lastFailureAt = null, ?string $disabledAt = null)
     {
         $this->endpointId = $endpointId;
         $this->url = $url;
@@ -86,5 +116,8 @@ class WebhookEndpoint
         $this->createdAt = $createdAt;
         $this->signingKeys = $signingKeys;
         $this->verifiedAt = $verifiedAt;
+        $this->failingSince = $failingSince;
+        $this->lastFailureAt = $lastFailureAt;
+        $this->disabledAt = $disabledAt;
     }
 }
