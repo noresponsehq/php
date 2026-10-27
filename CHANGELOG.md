@@ -1,5 +1,51 @@
 # Changelog
 
+## 8.1.2
+
+* `sdk->lists->list()`: **Added**
+* `sdk->lists->create()`: **Added**
+* `sdk->lists->delete()`: **Added**
+* `sdk->assessments->create()`: 
+  *  `response` **Changed**
+  *  `error.code` **Changed**
+* `sdk->assessments->get()`: 
+  *  `response` **Changed**
+  *  `error.code` **Changed**
+* `sdk->assessments->delete()`:  `error.code` **Changed**
+* `sdk->assessments->recordOutcome()`:  `error.code` **Changed**
+* `sdk->assessments->query()`: 
+  *  `response.items[]->risk->reasons[]` **Changed**
+  *  `error.code` **Changed**
+* `sdk->accounts->listChanged()`: 
+  *  `response.items[]->risk->reasons[]` **Changed**
+  *  `error.code` **Changed**
+* `sdk->accounts->get()`: 
+  *  `response.risk->reasons[]` **Changed**
+  *  `error.code` **Changed**
+* `sdk->accounts->delete()`:  `error.code` **Changed**
+* `sdk->accounts->listAssessments()`: 
+  *  `response.items[]->risk->reasons[]` **Changed**
+  *  `error.code` **Changed**
+* `sdk->accounts->recordEnforcement()`:  `error.code` **Changed**
+* `sdk->keyusage->record()`:  `error.code` **Changed**
+* `sdk->keys->rotate()`:  `error.code` **Changed**
+* `sdk->keys->create()`:  `error.code` **Changed**
+* `sdk->keys->list()`:  `error.code` **Changed**
+* `sdk->keys->revoke()`:  `error.code` **Changed**
+* `sdk->integrations->create()`:  `error.code` **Changed**
+* `sdk->integrations->list()`:  `error.code` **Changed**
+* `sdk->integrations->delete()`:  `error.code` **Changed**
+* `sdk->integrations->rotate()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->list()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->create()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->delete()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->rotateSigningKey()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->sendTestEvent()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->listDeliveries()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->replayDelivery()`:  `error.code` **Changed**
+* `sdk->settings->get()`:  `error.code` **Changed**
+* `sdk->settings->update()`:  `error.code` **Changed**
+
 ## 8.1.1
 
 * `sdk->webhookendpoints->list()`:  `response.items[]` **Changed**

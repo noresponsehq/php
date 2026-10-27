@@ -44,17 +44,28 @@ class AccountRiskReason
     public ReasonIdentifier|string|null $identifier = null;
 
     /**
+     * The list entry a list_match reason applied. No other reason carries it.
+     *
+     * @var ?string $listEntryId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('list_entry_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $listEntryId = null;
+
+    /**
      * @param  \NoResponse\Models\Shared\ReasonCode|string  $code
      * @param  \NoResponse\Models\Shared\Direction|string  $direction
      * @param  \NoResponse\Models\Shared\Impact|string  $impact
      * @param  \NoResponse\Models\Shared\ReasonIdentifier|string|null  $identifier
+     * @param  ?string  $listEntryId
      * @phpstan-pure
      */
-    public function __construct(ReasonCode|string $code, Direction|string $direction, Impact|string $impact, ReasonIdentifier|string|null $identifier = null)
+    public function __construct(ReasonCode|string $code, Direction|string $direction, Impact|string $impact, ReasonIdentifier|string|null $identifier = null, ?string $listEntryId = null)
     {
         $this->code = $code;
         $this->direction = $direction;
         $this->impact = $impact;
         $this->identifier = $identifier;
+        $this->listEntryId = $listEntryId;
     }
 }

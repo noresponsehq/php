@@ -16,4 +16,6 @@ enum ConflictErrorCode: string
     case RiskVersionAhead = 'risk_version_ahead';
     case KeyLimitReached = 'key_limit_reached';
     case SelfRevocation = 'self_revocation';
+    case ListEntryExists = 'list_entry_exists';
+    case ListLimitReached = 'list_limit_reached';
 }

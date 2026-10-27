@@ -45,6 +45,7 @@ enum ReasonCode: string
     case PriorAbuseLink = 'prior_abuse_link';
     case TestScenario = 'test_scenario';
     case SharedApiKey = 'shared_api_key';
+    case ListMatch = 'list_match';
     case YoungEmailDomain = 'young_email_domain';
     case EmailDomainNoMx = 'email_domain_no_mx';
     case EmailDomainNonexistent = 'email_domain_nonexistent';

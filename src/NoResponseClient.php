@@ -57,6 +57,8 @@ class NoResponseClient
 
     public Settings $settings;
 
+    public Lists $lists;
+
     /**
      * Returns a new instance of the SDK builder used to configure and create the SDK instance.
      *
@@ -90,6 +92,7 @@ class NoResponseClient
         $this->integrations = new Integrations($this->sdkConfiguration);
         $this->webhookEndpoints = new WebhookEndpoints($this->sdkConfiguration);
         $this->settings = new Settings($this->sdkConfiguration);
+        $this->lists = new Lists($this->sdkConfiguration);
         $this->initHooks();
 
     }

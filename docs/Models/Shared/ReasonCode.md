@@ -44,6 +44,7 @@ A stable reason code. New codes may appear; ignore any you do not know.
 | `PriorAbuseLink`              | prior_abuse_link              |
 | `TestScenario`                | test_scenario                 |
 | `SharedApiKey`                | shared_api_key                |
+| `ListMatch`                   | list_match                    |
 | `YoungEmailDomain`            | young_email_domain            |
 | `EmailDomainNoMx`             | email_domain_no_mx            |
 | `EmailDomainNonexistent`      | email_domain_nonexistent      |
