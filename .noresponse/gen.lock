@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 19d4e387d4782013afccb09535354c31
+  docChecksum: 1fcd1c2b78dd9f25b478332fb877c7dc
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 8.0.3
-  configChecksum: 67117dd50175d0d21181b0eeb9c201c5
+  releaseVersion: 8.1.0
+  configChecksum: 41313ef2340cc3cbe1f68fbd530cd44a
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -163,9 +163,9 @@ trackedFiles:
   docs/Models/Shared/AccountRisk.md:
     last_write_checksum: sha1:5ddb75f4f19b5d8577ea0df6f16036185f749004
   docs/Models/Shared/AccountRiskChanged.md:
-    last_write_checksum: sha1:475734ebcc768ada853ef86a18e7813283765ddc
+    last_write_checksum: sha1:b88627256e1c708e2afa376b7b88808b6590a9c2
   docs/Models/Shared/AccountRiskChangedEvent.md:
-    last_write_checksum: sha1:772e3eaa7ab6fa8b9e2cd826f81bee7f9ccdf8c7
+    last_write_checksum: sha1:e7cca99e652ff983d5d666fd49145814dce648be
   docs/Models/Shared/AccountRiskReason.md:
     last_write_checksum: sha1:4af209a30990c89978e6b63e5b27f3c52047f446
   docs/Models/Shared/Admission.md:
@@ -697,9 +697,9 @@ trackedFiles:
   src/Models/Shared/AccountRisk.php:
     last_write_checksum: sha1:71747f5ec13cdfd660f154833a0c3b9e17e7eb25
   src/Models/Shared/AccountRiskChanged.php:
-    last_write_checksum: sha1:b4cd6e4ff9a6686da2177f165e2ac5b6227b7f38
+    last_write_checksum: sha1:60584cad63fe19cc701c2e76584c60f946d1d19d
   src/Models/Shared/AccountRiskChangedEvent.php:
-    last_write_checksum: sha1:59c8c7e54e36385df8ef266e13a6ec2a86bd4b17
+    last_write_checksum: sha1:3b14d2af34fcb8049e16e504ce0d03708e259eb7
   src/Models/Shared/AccountRiskReason.php:
     last_write_checksum: sha1:2d8a67591d7bd565aacf265ce0f3890cfb4e1c0b
   src/Models/Shared/Admission.php:
@@ -1373,7 +1373,7 @@ trackedFiles:
   src/NoResponseClientBuilder.php:
     last_write_checksum: sha1:99c83099b0668080a53db303f872b74774f80780
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:4454935fa808dc637e54b3f2fcb1fdc70c05d333
+    last_write_checksum: sha1:cad4d308dfbab69a9441ac60e0ec196c217346f1
   src/Settings.php:
     last_write_checksum: sha1:07207df62f49fafccdda462e4dca839f56bfdcf2
   src/Utils/BigDecimalHandler.php:

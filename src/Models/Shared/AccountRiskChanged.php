@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** AccountRiskChanged - The account's decision for at least one flow changed. account is the account as GET /v1/accounts/{account_id} answers it for the revision that made the change: its new score, decision, reasons and decisions_by_flow, and the assessment the risk comes from. previous_decisions_by_flow are the decisions it replaced, so account.decisions_by_flow differs from them for at least one flow. On the account's first decision, previous_decisions_by_flow is allow for every flow. Events of one account are not ordered: account.risk_version orders them, so keep the account with the highest risk_version and ignore an event whose account is older than the one held. */
+/** AccountRiskChanged - The account's decision for at least one flow changed. account is the account as GET /v1/accounts/{account_id} answers it for the revision that made the change: its new score, decision, reasons and decisions_by_flow, and the assessment the risk comes from. previous_decisions_by_flow are the decisions it replaced, so account.decisions_by_flow differs from them for at least one flow, and previous_risk_version is the risk_version they were announced at. On the account's first event no decision was announced before: previous_risk_version is absent and previous_decisions_by_flow is allow for every flow, the decisions an account has before its first event. Events of one account are not ordered: account.risk_version orders them, so keep the account with the highest risk_version and ignore an event whose account is older than the one held. */
 class AccountRiskChanged
 {
     /**
@@ -27,13 +27,24 @@ class AccountRiskChanged
     public AccountDecisionsByFlow $previousDecisionsByFlow;
 
     /**
+     * The account's risk_version when previous_decisions_by_flow were announced, always lower than account.risk_version. Absent on the account's first event, when no decision was announced before, and on the first event after the account was deleted.
+     *
+     * @var ?int $previousRiskVersion
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('previous_risk_version')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $previousRiskVersion = null;
+
+    /**
      * @param  \NoResponse\Models\Shared\Account  $account
      * @param  \NoResponse\Models\Shared\AccountDecisionsByFlow  $previousDecisionsByFlow
+     * @param  ?int  $previousRiskVersion
      * @phpstan-pure
      */
-    public function __construct(Account $account, AccountDecisionsByFlow $previousDecisionsByFlow)
+    public function __construct(Account $account, AccountDecisionsByFlow $previousDecisionsByFlow, ?int $previousRiskVersion = null)
     {
         $this->account = $account;
         $this->previousDecisionsByFlow = $previousDecisionsByFlow;
+        $this->previousRiskVersion = $previousRiskVersion;
     }
 }
