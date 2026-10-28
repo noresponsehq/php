@@ -18,4 +18,5 @@ enum ConflictErrorCode: string
     case SelfRevocation = 'self_revocation';
     case ListEntryExists = 'list_entry_exists';
     case ListLimitReached = 'list_limit_reached';
+    case ListEntryTooBroad = 'list_entry_too_broad';
 }
