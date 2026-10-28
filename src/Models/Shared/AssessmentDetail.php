@@ -99,6 +99,16 @@ class AssessmentDetail
     public AssessmentDetailTiming $timing;
 
     /**
+     * The identifiers an assessment was sent: each member of the request's identifiers object exactly as received, before the server normalised it (the email domain keeps its case, the name its Unicode form). A member the request did not send is absent. NoResponse keeps them encrypted under the workspace's own key, does not index or log them, and deletes them with the assessment: on DELETE of the assessment or its account, at its expires_at, and with the workspace.
+     *
+     * @var ?\NoResponse\Models\Shared\SentIdentifiers $identifiers
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('identifiers')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\SentIdentifiers|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?SentIdentifiers $identifiers = null;
+
+    /**
      * An optional provider correlation id, echoed back. It is not an idempotency key. Refuses an exact-shape JWT or a bare 40, 64 or 128 character hex digest; a UUID is accepted.
      *
      * @var ?string $requestId
@@ -186,6 +196,7 @@ class AssessmentDetail
      * @param  string  $updatedAt
      * @param  string  $expiresAt
      * @param  \NoResponse\Models\Shared\AssessmentDetailTiming  $timing
+     * @param  ?\NoResponse\Models\Shared\SentIdentifiers  $identifiers
      * @param  ?string  $requestId
      * @param  \NoResponse\Models\Shared\Recommendation|string|null  $recommendation
      * @param  ?\NoResponse\Models\Shared\Risk  $risk
@@ -194,7 +205,7 @@ class AssessmentDetail
      * @param  ?\NoResponse\Models\Shared\AssessmentDetailAuthContext  $authContext
      * @phpstan-pure
      */
-    public function __construct(string $assessmentId, string $accountId, Status|string $status, Confidence|string $confidence, array $incompleteSources, string $policyVersion, int $assessmentVersion, string $createdAt, string $updatedAt, string $expiresAt, AssessmentDetailTiming $timing, ?string $requestId = null, Recommendation|string|null $recommendation = null, ?Risk $risk = null, ?array $signals = null, ?string $assessmentUrl = null, ?AssessmentDetailAuthContext $authContext = null, string $schemaVersion = '1', string $policyBasis = 'heuristic_unvalidated')
+    public function __construct(string $assessmentId, string $accountId, Status|string $status, Confidence|string $confidence, array $incompleteSources, string $policyVersion, int $assessmentVersion, string $createdAt, string $updatedAt, string $expiresAt, AssessmentDetailTiming $timing, ?SentIdentifiers $identifiers = null, ?string $requestId = null, Recommendation|string|null $recommendation = null, ?Risk $risk = null, ?array $signals = null, ?string $assessmentUrl = null, ?AssessmentDetailAuthContext $authContext = null, string $schemaVersion = '1', string $policyBasis = 'heuristic_unvalidated')
     {
         $this->assessmentId = $assessmentId;
         $this->accountId = $accountId;
@@ -207,6 +218,7 @@ class AssessmentDetail
         $this->updatedAt = $updatedAt;
         $this->expiresAt = $expiresAt;
         $this->timing = $timing;
+        $this->identifiers = $identifiers;
         $this->requestId = $requestId;
         $this->recommendation = $recommendation;
         $this->risk = $risk;
