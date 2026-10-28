@@ -81,14 +81,24 @@ class AssessmentSearchRequest
     public ResponseMode|string|null $responseMode = null;
 
     /**
-     * The decision of the assessment's latest stored revision: block when its stored risk.block is true, otherwise its recommendation. This is not the account's current decision or held-admission state. Combined with recommendation using AND.
+     * An assessment's own decision: block when its stored risk.block is true, otherwise its recommendation. It is not the account's decision or held-admission state.
      *
-     * @var ?\NoResponse\Models\Shared\Decision $decision
+     * @var \NoResponse\Models\Shared\Decision|string|null $decision
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('decision')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Decision|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Decision|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?Decision $decision = null;
+    public Decision|string|null $decision = null;
+
+    /**
+     * Which answer of each assessment the filters describe: latest, the latest stored revision, or first, the first answer, as served when the assessment was first answered (POST /v1/assessments/aggregate counts first answers). A cell of an aggregate drills down to POST /v1/assessments/search with the same filters, revision first and the cell's bucket as from and to.
+     *
+     * @var ?\NoResponse\Models\Shared\AnswerRevision $revision
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('revision')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AnswerRevision|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?AnswerRevision $revision = null;
 
     /**
      *
@@ -108,10 +118,11 @@ class AssessmentSearchRequest
      * @param  ?int  $limit
      * @param  ?string  $cursor
      * @param  \NoResponse\Models\Shared\ResponseMode|string|null  $responseMode
-     * @param  ?\NoResponse\Models\Shared\Decision  $decision
+     * @param  \NoResponse\Models\Shared\Decision|string|null  $decision
+     * @param  ?\NoResponse\Models\Shared\AnswerRevision  $revision
      * @phpstan-pure
      */
-    public function __construct(string $from, string $to, ?string $accountId = null, Flow|string|null $flow = null, Status|string|null $status = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, ?Decision $decision = null, ?int $limit = 20)
+    public function __construct(string $from, string $to, ?string $accountId = null, Flow|string|null $flow = null, Status|string|null $status = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, Decision|string|null $decision = null, ?AnswerRevision $revision = null, ?int $limit = 20)
     {
         $this->from = $from;
         $this->to = $to;
@@ -122,6 +133,7 @@ class AssessmentSearchRequest
         $this->cursor = $cursor;
         $this->responseMode = $responseMode;
         $this->decision = $decision;
+        $this->revision = $revision;
         $this->limit = $limit;
     }
 }

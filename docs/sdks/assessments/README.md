@@ -11,6 +11,7 @@ Assessments of account creation, login and purchase.
 * [delete](#delete) - Delete one assessment.
 * [recordOutcome](#recordoutcome) - Report what was later learned about an assessed account.
 * [query](#query) - Page through one account's unexpired assessments.
+* [aggregate](#aggregate) - Count assessments by time, decision and reason
 * [search](#search) - Search assessments across this environment
 * [retrieveVersion](#retrieveversion) - Retrieve an exact assessment revision
 * [bindAccount](#bindaccount) - Bind a provisional signup account
@@ -978,6 +979,64 @@ foreach ($responses as $response) {
 ### Response
 
 **[?Operations\QueryAccountAssessmentsResponse](../../Models/Operations/QueryAccountAssessmentsResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## aggregate
+
+Count this environment's assessments created in [from,to) by hour, day or week, grouped by up to two of decision, flow, recommendation, band, reason, lane, country, asn and list_match. Each assessment counts once, by its first answer; late results do not count it again and appear in late_flips. Optional metrics add a score histogram per flow and late account decision changes. from and to start a bucket and cover at most 366 days (31 for hour buckets) inside the retention period. The filters are search's and describe the first answer: send them to search with revision first to list a cell's assessments. Counts hold no identifier, stay when an assessment or account is deleted, and report reasons by code and impact band. No Idempotency-Key.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="aggregateAssessments" method="post" path="/v1/assessments/aggregate" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$request = new Shared\AssessmentAggregateRequest(
+    from: '2026-10-19T00:00:00Z',
+    to: '2026-10-26T00:00:00Z',
+    bucket: Shared\Bucket::Week,
+);
+
+$response = $sdk->assessments->aggregate(
+    request: $request
+);
+
+if ($response->assessmentAggregate !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Shared\AssessmentAggregateRequest](../../Models/Shared/AssessmentAggregateRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+
+### Response
+
+**[?Operations\AggregateAssessmentsResponse](../../Models/Operations/AggregateAssessmentsResponse.md)**
 
 ### Errors
 
