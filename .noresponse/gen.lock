@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: fc0d2c351b07f0ce06bb220ee98aacda
+  docChecksum: 89bd11cd5c21ca333ca63a685726e0f9
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 8.4.0
-  configChecksum: 416d6d4ce0cf483a3e571360a3a6e69c
+  releaseVersion: 8.4.1
+  configChecksum: 92830d8cefa168fc17d11da0b8e04a11
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -533,7 +533,7 @@ trackedFiles:
   docs/Models/Shared/RiskCoverage.md:
     last_write_checksum: sha1:b8fac8aeb799017352412576d5065a1fb8662a33
   docs/Models/Shared/RiskDetails.md:
-    last_write_checksum: sha1:9af878217f11ec76fa620c3fba148a34c5247f6e
+    last_write_checksum: sha1:b1a4bdaaeabc5b3378cada49ec9a425c33f7371f
   docs/Models/Shared/RiskDetailsBreachName.md:
     last_write_checksum: sha1:8142135610c98606132efda3114a519ce8e8b24c
   docs/Models/Shared/RiskDetailsEvent.md:
@@ -1205,7 +1205,7 @@ trackedFiles:
   src/Models/Shared/RiskCoverage.php:
     last_write_checksum: sha1:f45534386f6087dae5d7bfae8b92317c5571b15f
   src/Models/Shared/RiskDetails.php:
-    last_write_checksum: sha1:d2c91aa391e3ee230fb488f5b66d692aa0272eb4
+    last_write_checksum: sha1:96000c36dcce6a6ff82945c087dc43e4c2572b82
   src/Models/Shared/RiskDetailsBreachName.php:
     last_write_checksum: sha1:9e22780c3acda896d859dfb670e3e005ad5cc452
   src/Models/Shared/RiskDetailsEvent.php:
@@ -1665,7 +1665,7 @@ trackedFiles:
   src/Requests.php:
     last_write_checksum: sha1:cc566f18891766ed82a6e86c2ad0390268548667
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:c483e7cff3513a7df0a0706c9c50ea7bbf5670ba
+    last_write_checksum: sha1:70d6621bb3c74ef7bf7360e45c68213aea9827f4
   src/Settings.php:
     last_write_checksum: sha1:07207df62f49fafccdda462e4dca839f56bfdcf2
   src/Utils/BigDecimalHandler.php:
