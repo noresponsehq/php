@@ -57,4 +57,5 @@ enum ReasonCode: string
     case BreachSharedIp = 'breach_shared_ip';
     case NationalityMismatch = 'nationality_mismatch';
     case MinorIdentity = 'minor_identity';
+    case ReportedAccountAbuse = 'reported_account_abuse';
 }

@@ -57,6 +57,8 @@ class NoResponseClient
 
     public Settings $settings;
 
+    public Requests $requests;
+
     public Lists $lists;
 
     /**
@@ -92,6 +94,7 @@ class NoResponseClient
         $this->integrations = new Integrations($this->sdkConfiguration);
         $this->webhookEndpoints = new WebhookEndpoints($this->sdkConfiguration);
         $this->settings = new Settings($this->sdkConfiguration);
+        $this->requests = new Requests($this->sdkConfiguration);
         $this->lists = new Lists($this->sdkConfiguration);
         $this->initHooks();
 

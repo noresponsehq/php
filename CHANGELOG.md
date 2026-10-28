@@ -1,5 +1,62 @@
 # Changelog
 
+## 8.2.0
+
+* `sdk->assessments->search()`: **Added**
+* `sdk->assessments->retrieveVersion()`: **Added**
+* `sdk->assessments->bindAccount()`: **Added**
+* `sdk->accounts->recordOutcome()`: **Added**
+* `sdk->accounts->listOutcomes()`: **Added**
+* `sdk->accounts->retrieveDecision()`: **Added**
+* `sdk->accounts->associateCredential()`: **Added**
+* `sdk->accounts->listCredentials()`: **Added**
+* `sdk->accounts->retireCredential()`: **Added**
+* `sdk->accounts->export()`: **Added**
+* `sdk->requests->list()`: **Added**
+* `sdk->assessments->create()`: 
+  *  `response.account->risk->reasons[]->code->enum(reportedAccountAbuse)` **Added**
+  *  `error.code` **Changed**
+* `sdk->assessments->get()`: 
+  *  `response.account->risk->reasons[]->code->enum(reportedAccountAbuse)` **Added**
+  *  `error.code` **Changed**
+* `sdk->assessments->delete()`:  `error.code` **Changed**
+* `sdk->assessments->recordOutcome()`:  `error.code` **Changed**
+* `sdk->assessments->query()`: 
+  *  `response.items[]->risk->reasons[]->code->enum(reportedAccountAbuse)` **Added**
+  *  `error.code` **Changed**
+* `sdk->accounts->listChanged()`: 
+  *  `response.items[]->risk->reasons[]->code->enum(reportedAccountAbuse)` **Added**
+  *  `error.code` **Changed**
+* `sdk->accounts->get()`: 
+  *  `response.risk->reasons[]->code->enum(reportedAccountAbuse)` **Added**
+  *  `error.code` **Changed**
+* `sdk->accounts->delete()`:  `error.code` **Changed**
+* `sdk->accounts->listAssessments()`: 
+  *  `response.items[]->risk->reasons[]->code->enum(reportedAccountAbuse)` **Added**
+  *  `error.code` **Changed**
+* `sdk->accounts->recordEnforcement()`:  `error.code` **Changed**
+* `sdk->keyusage->record()`:  `error.code` **Changed**
+* `sdk->keys->rotate()`:  `error.code` **Changed**
+* `sdk->keys->create()`:  `error.code` **Changed**
+* `sdk->keys->list()`:  `error.code` **Changed**
+* `sdk->keys->revoke()`:  `error.code` **Changed**
+* `sdk->integrations->create()`:  `error.code` **Changed**
+* `sdk->integrations->list()`:  `error.code` **Changed**
+* `sdk->integrations->delete()`:  `error.code` **Changed**
+* `sdk->integrations->rotate()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->list()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->create()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->delete()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->rotateSigningKey()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->sendTestEvent()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->listDeliveries()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->replayDelivery()`:  `error.code` **Changed**
+* `sdk->settings->get()`:  `error.code` **Changed**
+* `sdk->settings->update()`:  `error.code` **Changed**
+* `sdk->lists->list()`:  `error.code` **Changed**
+* `sdk->lists->create()`:  `error.code` **Changed**
+* `sdk->lists->delete()`:  `error.code` **Changed**
+
 ## 8.1.3
 
 * `sdk->assessments->create()`:  `error.code->enum(listEntryTooBroad)` **Added**
