@@ -44,6 +44,16 @@ class AggregateBucket
     public ?array $scoreHistogram = null;
 
     /**
+     * With metric score_outcomes: the score_histogram's first answers whose assessment has a reported outcome, by its latest. A bin's count less its score_outcomes is the first answers with none reported.
+     *
+     * @var ?array<\NoResponse\Models\Shared\AggregateScoreOutcome> $scoreOutcomes
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('score_outcomes')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\AggregateScoreOutcome>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $scoreOutcomes = null;
+
+    /**
      * $lateFlips
      *
      * @var ?array<\NoResponse\Models\Shared\AggregateLateFlip> $lateFlips
@@ -58,15 +68,17 @@ class AggregateBucket
      * @param  ?int  $count
      * @param  ?array<\NoResponse\Models\Shared\AggregateGroup>  $groups
      * @param  ?array<\NoResponse\Models\Shared\AggregateScoreCount>  $scoreHistogram
+     * @param  ?array<\NoResponse\Models\Shared\AggregateScoreOutcome>  $scoreOutcomes
      * @param  ?array<\NoResponse\Models\Shared\AggregateLateFlip>  $lateFlips
      * @phpstan-pure
      */
-    public function __construct(string $start, ?int $count = null, ?array $groups = null, ?array $scoreHistogram = null, ?array $lateFlips = null)
+    public function __construct(string $start, ?int $count = null, ?array $groups = null, ?array $scoreHistogram = null, ?array $scoreOutcomes = null, ?array $lateFlips = null)
     {
         $this->start = $start;
         $this->count = $count;
         $this->groups = $groups;
         $this->scoreHistogram = $scoreHistogram;
+        $this->scoreOutcomes = $scoreOutcomes;
         $this->lateFlips = $lateFlips;
     }
 }

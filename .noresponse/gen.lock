@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 18f2e015965354ad6b12af4beeedd05d
+  docChecksum: fc0d2c351b07f0ce06bb220ee98aacda
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 8.3.0
-  configChecksum: 921889144079efda7ee83ba0f7bb7c8e
+  releaseVersion: 8.4.0
+  configChecksum: 416d6d4ce0cf483a3e571360a3a6e69c
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -245,7 +245,7 @@ trackedFiles:
   docs/Models/Shared/Admission.md:
     last_write_checksum: sha1:02f721d833d69fa20b64284360092bd402ccf72c
   docs/Models/Shared/AggregateBucket.md:
-    last_write_checksum: sha1:c01cad5e03ce19214e4bbca45ef8d703effbd4d9
+    last_write_checksum: sha1:224d7b9369044fd4fc22e78b2fd7821450bd1021
   docs/Models/Shared/AggregateDimension.md:
     last_write_checksum: sha1:333176db6671f237163a8cec4be338fbc53f39ca
   docs/Models/Shared/AggregateGroup.md:
@@ -254,6 +254,8 @@ trackedFiles:
     last_write_checksum: sha1:45e9a8b5b550a785232f85f27bc949da6e2adaeb
   docs/Models/Shared/AggregateScoreCount.md:
     last_write_checksum: sha1:19490d28d667416ddaaffbe9efcdfc8080847bcc
+  docs/Models/Shared/AggregateScoreOutcome.md:
+    last_write_checksum: sha1:f99eb81abd7604e1a175acc9dea9c96810d760b8
   docs/Models/Shared/Agreement.md:
     last_write_checksum: sha1:6fbfdcc8a0fb0dfb5c080df95afd8d6a3340c696
   docs/Models/Shared/AlternateName.md:
@@ -267,11 +269,11 @@ trackedFiles:
   docs/Models/Shared/AssessmentAggregate.md:
     last_write_checksum: sha1:3cb33c691c8e1757ff68c179710ad87f55e6c01c
   docs/Models/Shared/AssessmentAggregateMetric.md:
-    last_write_checksum: sha1:841031836dad42df307f97eca266a888992f652a
+    last_write_checksum: sha1:b068faee48af9a58d1cd828650dc6127dde17036
   docs/Models/Shared/AssessmentAggregateRequest.md:
-    last_write_checksum: sha1:303700fabc9a4030bb691c9696d27690b489bbe4
+    last_write_checksum: sha1:ed53466f5aa88ea43524151ea514e85a511d6bfc
   docs/Models/Shared/AssessmentAggregateRequestMetric.md:
-    last_write_checksum: sha1:f3e35d472d916ac2bd8c76e6177d522e48e11710
+    last_write_checksum: sha1:d44156d59c36f9eeb477d6ebf05763baabc445d8
   docs/Models/Shared/AssessmentDeletion.md:
     last_write_checksum: sha1:1fe9ce86dc92d31e53f713bb27fa4454260ff657
   docs/Models/Shared/AssessmentDeletionAccount.md:
@@ -633,7 +635,7 @@ trackedFiles:
   docs/sdks/accounts/README.md:
     last_write_checksum: sha1:1329860023b9993722b2fa1a40bd1420451be335
   docs/sdks/assessments/README.md:
-    last_write_checksum: sha1:dfacc56bee0637ee532d03ad3883bb8923d132e8
+    last_write_checksum: sha1:4e93d65f2633e3df306f91ae06977f03881a4a3d
   docs/sdks/integrations/README.md:
     last_write_checksum: sha1:0430271613dc1b2d2b95ee76fee078d1a67348da
   docs/sdks/keys/README.md:
@@ -659,7 +661,7 @@ trackedFiles:
   src/Accounts.php:
     last_write_checksum: sha1:b65bda7a701c76fe913c5506dacca1f362ba9c14
   src/Assessments.php:
-    last_write_checksum: sha1:f40acb88670dae4b54b01289f8de523609852e0f
+    last_write_checksum: sha1:99774d3c3396b19efc88c97b62a6e7551c2d33cb
   src/Hooks/AfterErrorContext.php:
     last_write_checksum: sha1:f1bfa05a3faedf129d634b9b23fdd301357cb306
   src/Hooks/AfterErrorHook.php:
@@ -925,7 +927,7 @@ trackedFiles:
   src/Models/Shared/Admission.php:
     last_write_checksum: sha1:ddd0f081bd07873e66f62bac7df959625b2d4be9
   src/Models/Shared/AggregateBucket.php:
-    last_write_checksum: sha1:90338c01c5b41506ed3de2c1db03df1225f7dea2
+    last_write_checksum: sha1:fd1235e2efde121d89cebe6ce558953a7174dd25
   src/Models/Shared/AggregateDimension.php:
     last_write_checksum: sha1:c3f0576caea8b87f908dc60779b16b10451b6eda
   src/Models/Shared/AggregateGroup.php:
@@ -934,6 +936,8 @@ trackedFiles:
     last_write_checksum: sha1:457fea315574aa8ceb256f6763343a7f35c2b448
   src/Models/Shared/AggregateScoreCount.php:
     last_write_checksum: sha1:bb11af45e90faf778f39cf29b4d13dd271c5afb8
+  src/Models/Shared/AggregateScoreOutcome.php:
+    last_write_checksum: sha1:4d7db9c243b780266d748509ee425723d4fc9a37
   src/Models/Shared/Agreement.php:
     last_write_checksum: sha1:9249946da1250ffa52dbe710f0519d0b2d8ef2f2
   src/Models/Shared/AlternateName.php:
@@ -945,11 +949,11 @@ trackedFiles:
   src/Models/Shared/AssessmentAggregate.php:
     last_write_checksum: sha1:a989d0e15fb99e68e99079a59e69dd50fac84313
   src/Models/Shared/AssessmentAggregateMetric.php:
-    last_write_checksum: sha1:51e5c5ee4808c6b7d113441f7f2c0cf4498563e4
+    last_write_checksum: sha1:246614ec3d2f8e27632060874bc286ed6fc9a6ac
   src/Models/Shared/AssessmentAggregateRequest.php:
-    last_write_checksum: sha1:bcc3b36c5921b8eb47f194c9d906a154aed68358
+    last_write_checksum: sha1:4b2115ac29b0f3b1d6507803195c4face091f8e5
   src/Models/Shared/AssessmentAggregateRequestMetric.php:
-    last_write_checksum: sha1:91cb56c9f433f95b2f1306f1b61000ce27da00d8
+    last_write_checksum: sha1:10e6bf3fdc95ae8878ef416cb9c28b69c7dfb414
   src/Models/Shared/AssessmentDeletion.php:
     last_write_checksum: sha1:4e54d74de3ec37b15f313302bb882d845c48c0f1
   src/Models/Shared/AssessmentDeletionAccount.php:
@@ -1661,7 +1665,7 @@ trackedFiles:
   src/Requests.php:
     last_write_checksum: sha1:cc566f18891766ed82a6e86c2ad0390268548667
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:cf11f5807233457768d85f5d42b161371dd7a211
+    last_write_checksum: sha1:c483e7cff3513a7df0a0706c9c50ea7bbf5670ba
   src/Settings.php:
     last_write_checksum: sha1:07207df62f49fafccdda462e4dca839f56bfdcf2
   src/Utils/BigDecimalHandler.php:

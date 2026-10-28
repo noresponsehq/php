@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.4.0
+
+* `sdk->assessments->aggregate()`: 
+  *  `request->metrics[]->enum(scoreOutcomes)` **Added**
+  *  `response` **Changed**
+
 ## 8.3.0
 
 * `sdk->assessments->aggregate()`: **Added**
