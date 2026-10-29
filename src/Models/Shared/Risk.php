@@ -59,7 +59,7 @@ class Risk
     public array $reasons;
 
     /**
-     * Sources counted by state, not named.
+     * Counts of planned source-identifier pairs by evidence outcome, deduplicated across signals and incomplete entries. These counts do not measure identity agreement or prove that processing is still running. A lane that was not searched is not an answered source.
      *
      * @var \NoResponse\Models\Shared\RiskCoverage $coverage
      */

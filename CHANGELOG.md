@@ -1,5 +1,26 @@
 # Changelog
 
+## 9.4.2
+
+* `sdk->assessments->create()`:  `response.account->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->assessments->get()`:  `response.account->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->assessments->query()`:  `response.items[]->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->assessments->aggregate()`: 
+  *  `request->reason->enum(noEmailMatches)` **Added**
+  *  `response.buckets[]->groups[]->reason->enum(noEmailMatches)` **Added**
+* `sdk->assessments->search()`: 
+  *  `request->reason->enum(noEmailMatches)` **Added**
+  *  `response.items[]->detail->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->assessments->retrieveVersion()`:  `response.detail->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->accounts->listChanged()`:  `response.items[]->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->accounts->get()`:  `response.risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->accounts->listAssessments()`:  `response.items[]->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->accounts->retrieveDecision()`:  `response.account->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->accounts->export()`:  `response.assessments[]->detail->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->accounts->listDecisions()`:  `response.items[]->account->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->accounts->search()`:  `response.items[]->latest->detail->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+* `sdk->requests->list()`:  `response.items[]->decision->account->risk->reasons[]->code->enum(noEmailMatches)` **Added**
+
 ## 9.4.1
 
 * `sdk->accounts->search()`: **Added**

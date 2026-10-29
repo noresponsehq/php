@@ -12,6 +12,7 @@ enum ReasonCode: string
     case VoipNumber = 'voip_number';
     case DisposableEmail = 'disposable_email';
     case NewEmail = 'new_email';
+    case NoEmailMatches = 'no_email_matches';
     case SpamReports = 'spam_reports';
     case FraudFlag = 'fraud_flag';
     case IdentityMismatch = 'identity_mismatch';
