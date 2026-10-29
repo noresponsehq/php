@@ -33,6 +33,16 @@ class AccountDirectoryPageItem
     public int $assessments;
 
     /**
+     * Present for needs_action searches. outcome means a current review/block decision lacks a retained effective outcome; review means a retained open or in-progress review. Both can apply.
+     *
+     * @var array<\NoResponse\Models\Shared\WaitingFor|string>|null $waitingFor
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('waiting_for')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\WaitingFor|string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $waitingFor = null;
+
+    /**
      * Body of the 200 answer to GET /v1/accounts/{account_id}: the one current risk of one of the calling workspace's accounts. It is the risk of the account's latest assessment that has a decision (status complete or partial), by created_at and then assessment_id, scored exactly as GET /v1/assessments/{assessment_id} scores that assessment, plus the account's own reason shared_api_key when a key issued to the account was used from many IP addresses or countries (POST /v1/key_usage/batches). Its assessments are the account's history (GET /v1/accounts/{account_id}/assessments).
      *
      * @var ?\NoResponse\Models\Shared\Account $current
@@ -46,14 +56,16 @@ class AccountDirectoryPageItem
      * @param  string  $accountId
      * @param  \NoResponse\Models\Shared\AssessmentRevision  $latest
      * @param  int  $assessments
+     * @param  array<\NoResponse\Models\Shared\WaitingFor|string>|null  $waitingFor
      * @param  ?\NoResponse\Models\Shared\Account  $current
      * @phpstan-pure
      */
-    public function __construct(string $accountId, AssessmentRevision $latest, int $assessments, ?Account $current = null)
+    public function __construct(string $accountId, AssessmentRevision $latest, int $assessments, ?array $waitingFor = null, ?Account $current = null)
     {
         $this->accountId = $accountId;
         $this->latest = $latest;
         $this->assessments = $assessments;
+        $this->waitingFor = $waitingFor;
         $this->current = $current;
     }
 }

@@ -8,6 +8,15 @@ namespace NoResponse\Models\Shared;
 class Filter
 {
     /**
+     * Only reviews of this exact account in the authenticated workspace and environment. Applied before pagination.
+     *
+     * @var ?string $accountId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('account_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $accountId = null;
+
+    /**
      *
      * @var \NoResponse\Models\Shared\ReviewStatus|string|null $status
      */
@@ -50,6 +59,7 @@ class Filter
     public ?string $assigneePrincipalId = null;
 
     /**
+     * @param  ?string  $accountId
      * @param  \NoResponse\Models\Shared\ReviewStatus|string|null  $status
      * @param  \NoResponse\Models\Shared\Priority|string|null  $priority
      * @param  ?string  $assignee
@@ -57,8 +67,9 @@ class Filter
      * @param  ?string  $assigneePrincipalId
      * @phpstan-pure
      */
-    public function __construct(ReviewStatus|string|null $status = null, Priority|string|null $priority = null, ?string $assignee = null, ?bool $unassigned = null, ?string $assigneePrincipalId = null)
+    public function __construct(?string $accountId = null, ReviewStatus|string|null $status = null, Priority|string|null $priority = null, ?string $assignee = null, ?bool $unassigned = null, ?string $assigneePrincipalId = null)
     {
+        $this->accountId = $accountId;
         $this->status = $status;
         $this->priority = $priority;
         $this->assignee = $assignee;

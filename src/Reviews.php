@@ -2056,7 +2056,7 @@ class Reviews
     /**
      * List retained account reviews.
      *
-     * List retained investigation reviews using filters and an authenticated cursor.
+     * List retained investigation reviews using filters and an authenticated cursor. Optional account_id selects one exact account in this environment before pagination. All filters are bound into the cursor.
      *
      * @param  \NoResponse\Models\Operations\ListReviewsRequest  $request
      * @return \NoResponse\Models\Operations\ListReviewsResponse
@@ -2163,6 +2163,7 @@ class Reviews
                             assignee: $request != null ? $request->assignee : null,
                             unassigned: $request != null ? $request->unassigned : null,
                             assigneePrincipalId: $request != null ? $request->assigneePrincipalId : null,
+                            accountId: $request != null ? $request->accountId : null,
                         ),
                     );
                 };
@@ -2249,7 +2250,7 @@ class Reviews
     /**
      * List retained account reviews.
      *
-     * List retained investigation reviews using filters and an authenticated cursor.
+     * List retained investigation reviews using filters and an authenticated cursor. Optional account_id selects one exact account in this environment before pagination. All filters are bound into the cursor.
      *
      * @param  \NoResponse\Models\Operations\ListReviewsRequest  $request
      * @return \Generator<\NoResponse\Models\Operations\ListReviewsResponse>

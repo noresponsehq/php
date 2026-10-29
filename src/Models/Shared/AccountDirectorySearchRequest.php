@@ -36,6 +36,15 @@ class AccountDirectorySearchRequest
     public ?string $cursor = null;
 
     /**
+     * Select accounts with a retained open or in-progress review, or a current review/block account decision with no retained effective account outcome. The server applies this filter before counting and pagination. Requires reviews.read as well as history.read for console members; API keys additionally require management.
+     *
+     * @var ?bool $needsAction
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('needs_action')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $needsAction = null;
+
+    /**
      *
      * @var ?int $limit
      */
@@ -44,17 +53,19 @@ class AccountDirectorySearchRequest
     public ?int $limit = null;
 
     /**
+     * @param  ?bool  $needsAction
      * @param  ?string  $accountId
      * @param  ?string  $email
      * @param  ?int  $limit
      * @param  ?string  $cursor
      * @phpstan-pure
      */
-    public function __construct(?string $accountId = null, ?string $email = null, ?string $cursor = null, ?int $limit = 25)
+    public function __construct(?string $accountId = null, ?string $email = null, ?string $cursor = null, ?bool $needsAction = false, ?int $limit = 25)
     {
         $this->accountId = $accountId;
         $this->email = $email;
         $this->cursor = $cursor;
+        $this->needsAction = $needsAction;
         $this->limit = $limit;
     }
 }

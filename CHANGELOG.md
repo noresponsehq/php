@@ -1,5 +1,20 @@
 # Changelog
 
+## 9.4.3
+
+* `sdk->accounts->search()`: 
+  *  `request->needsAction` **Added**
+  *  `response.items[]->waitingFor` **Added**
+* `sdk->reviews->list()`: 
+  *  `request->accountId` **Added**
+* `sdk->reviews->listViews()`:  `response.items[]->filter->accountId` **Added**
+* `sdk->reviews->createView()`: 
+  *  `request.body->filter->accountId` **Added**
+  *  `response.filter->accountId` **Added**
+* `sdk->reviews->updateView()`: 
+  *  `request.body->filter->accountId` **Added**
+  *  `response.filter->accountId` **Added**
+
 ## 9.4.2
 
 * `sdk->assessments->create()`:  `response.account->risk->reasons[]->code->enum(noEmailMatches)` **Added**
