@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: d02f37f6e9f00337e79cc7ca35fd5c66
+  docChecksum: d7960ad1875c2dd07815f4dd7615b514
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 9.0.0
-  configChecksum: 79da74c7ec4fa80876eaecbec9a0b740
+  releaseVersion: 9.1.0
+  configChecksum: a2b7b6c2348468627766f03f11c76817
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -606,6 +606,8 @@ trackedFiles:
     last_write_checksum: sha1:5a2700a2447c7d9784cd38408778717d91571bc3
   docs/Models/Shared/ConsistencyValue.md:
     last_write_checksum: sha1:825d80c9fa6fcf667cc0fe60cc1f011502479f2e
+  docs/Models/Shared/ConsoleLookups.md:
+    last_write_checksum: sha1:8321216368433c495a79c989eae858e6a7cc6a46
   docs/Models/Shared/Cost.md:
     last_write_checksum: sha1:bf838fd1fb59aa2145bd8c4746bb2a85593795b5
   docs/Models/Shared/Country.md:
@@ -1059,7 +1061,7 @@ trackedFiles:
   docs/Models/Shared/Transport.md:
     last_write_checksum: sha1:cb67a732050c2eedd6fc5a634b5311a5b503d38c
   docs/Models/Shared/Usage.md:
-    last_write_checksum: sha1:a5fe9ebd3bb0086234176db54f3f3e8488622350
+    last_write_checksum: sha1:a67d4549c695d6005bd687ac259b88808b733128
   docs/Models/Shared/UsageCount.md:
     last_write_checksum: sha1:60c5b46ae0f32fb9836fad453c593a3b416ae115
   docs/Models/Shared/UsageCountDepth.md:
@@ -1151,7 +1153,7 @@ trackedFiles:
   docs/sdks/settings/README.md:
     last_write_checksum: sha1:eea6969ade37b556e71436dcc85dd77322f15cd3
   docs/sdks/usage/README.md:
-    last_write_checksum: sha1:47d07151a108a3b0824269bc79a480bf0d29e379
+    last_write_checksum: sha1:c43d13a30de1c17e22d17b3b61bb0e22f4c9dba1
   docs/sdks/webhookendpoints/README.md:
     last_write_checksum: sha1:65256ef74bd579431cef8cd5624ad5c059c03345
   docs/sdks/workspaceoperations/README.md:
@@ -1800,6 +1802,8 @@ trackedFiles:
     last_write_checksum: sha1:6134c248a34df0ae32fe8cc018a9bf6f117627dc
   src/Models/Shared/ConsistencyValue.php:
     last_write_checksum: sha1:f5262f7573ed593242db24ce727151ed94252d61
+  src/Models/Shared/ConsoleLookups.php:
+    last_write_checksum: sha1:cd0119c51be7446377688a6a740ef93ff1df8c5d
   src/Models/Shared/Cost.php:
     last_write_checksum: sha1:95639508ace9438feccaa29c581d4dd7d98fbc59
   src/Models/Shared/Country.php:
@@ -2243,7 +2247,7 @@ trackedFiles:
   src/Models/Shared/Transport.php:
     last_write_checksum: sha1:4766eef0f5351f384af5668bd32a0ee22fb2fb3e
   src/Models/Shared/Usage.php:
-    last_write_checksum: sha1:769d2e4d0c1f8e4e23b4eb4ee130c3f7ca10f992
+    last_write_checksum: sha1:21afe65f6568e7f0308c46873d43698094546ccb
   src/Models/Shared/UsageCount.php:
     last_write_checksum: sha1:3552672690dd853be943561318618a7c89cb6048
   src/Models/Shared/UsageCountDepth.php:
@@ -2671,11 +2675,11 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:22ef6731f774a21f2e885dbba8173f64fae40a4e
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:f93cc2bc2116d34cb694f168f2cda5f637992c8b
+    last_write_checksum: sha1:e9191fd44a9361cdbd437691eec4e5a32f19e93c
   src/Settings.php:
     last_write_checksum: sha1:b86ae82f44239f3c44ffd0cbc8d00e5a56f651a8
   src/Usage.php:
-    last_write_checksum: sha1:300dada594d4169985b119ccb08a67ca1f34196a
+    last_write_checksum: sha1:1e7cb03120c73e7d742f3b573576464775848d6e
   src/Utils/BigDecimalHandler.php:
     last_write_checksum: sha1:595bd0d4592b9a30ddfd7f6951a712c10da2bdc4
   src/Utils/BigIntHandler.php:
@@ -3966,7 +3970,7 @@ examples:
           workspace_id: "tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       responses:
         "200":
-          application/json: {"workspace_id": "tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "from": "2026-10-22", "to": "2026-10-23", "items": [{"environment": "live", "day": "2026-10-22", "metric": "assessments", "flow": "login", "depth": "quick", "count": 412}, {"environment": "live", "day": "2026-10-22", "metric": "assessments", "flow": "account_creation", "depth": "full", "count": 96}, {"environment": "live", "day": "2026-10-22", "metric": "webhook_deliveries", "count": 508}, {"environment": "live", "day": "2026-10-23", "metric": "assessments", "flow": "account_creation", "depth": "full", "count": 101}, {"environment": "live", "day": "2026-10-23", "metric": "key_usage_events", "count": 2330}, {"environment": "test", "day": "2026-10-23", "metric": "assessments", "flow": "purchase", "depth": "full", "count": 7}]}
+          application/json: {"workspace_id": "tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "from": "2026-10-22", "to": "2026-10-23", "items": [{"environment": "live", "day": "2026-10-22", "metric": "assessments", "flow": "login", "depth": "quick", "count": 412}, {"environment": "live", "day": "2026-10-22", "metric": "assessments", "flow": "account_creation", "depth": "full", "count": 96}, {"environment": "live", "day": "2026-10-22", "metric": "webhook_deliveries", "count": 508}, {"environment": "live", "day": "2026-10-23", "metric": "assessments", "flow": "account_creation", "depth": "full", "count": 101}, {"environment": "live", "day": "2026-10-23", "metric": "key_usage_events", "count": 2330}, {"environment": "test", "day": "2026-10-23", "metric": "assessments", "flow": "purchase", "depth": "full", "count": 7}], "console_lookups": {"used": 12, "limit": 50, "resets_at": "2026-10-24T00:00:00.000Z"}}
   createInvite:
     open:
       parameters:

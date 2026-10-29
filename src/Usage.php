@@ -45,7 +45,7 @@ class Usage
     /**
      * Read a workspace's usage.
      *
-     * Read daily usage units for the environments you can access. These counts are unpriced.
+     * Read daily usage units for the environments you can access. These counts are unpriced. With live access it also returns the daily console lookup cap: used, limit and resets_at.
      *
      * @param  string  $workspaceId
      * @param  ?string  $from
