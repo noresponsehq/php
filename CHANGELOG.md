@@ -1,5 +1,14 @@
 # Changelog
 
+## 9.4.4
+
+* `sdk->assessments->search()`: 
+  *  `request->identifier` **Added**
+  *  `response.items[]->matchedIdentifier` **Added**
+* `sdk->accounts->search()`: 
+  *  `request->identifier` **Added**
+  *  `response.items[]->matchedIdentifier` **Added**
+
 ## 9.4.3
 
 * `sdk->accounts->search()`: 

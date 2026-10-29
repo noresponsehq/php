@@ -53,19 +53,31 @@ class AccountDirectoryPageItem
     public ?Account $current = null;
 
     /**
+     * Why this result matched a typed identifier search. value is the original value submitted in assessment_id. Provenance records a customer submission, not a source discovery or verified ownership. Equality is deterministic and has no inferred confidence score. An account result names its newest retained matching assessment, which can differ from latest.
+     *
+     * @var ?\NoResponse\Models\Shared\IdentifierMatch $matchedIdentifier
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('matched_identifier')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IdentifierMatch|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?IdentifierMatch $matchedIdentifier = null;
+
+    /**
      * @param  string  $accountId
      * @param  \NoResponse\Models\Shared\AssessmentRevision  $latest
      * @param  int  $assessments
      * @param  array<\NoResponse\Models\Shared\WaitingFor|string>|null  $waitingFor
      * @param  ?\NoResponse\Models\Shared\Account  $current
+     * @param  ?\NoResponse\Models\Shared\IdentifierMatch  $matchedIdentifier
      * @phpstan-pure
      */
-    public function __construct(string $accountId, AssessmentRevision $latest, int $assessments, ?array $waitingFor = null, ?Account $current = null)
+    public function __construct(string $accountId, AssessmentRevision $latest, int $assessments, ?array $waitingFor = null, ?Account $current = null, ?IdentifierMatch $matchedIdentifier = null)
     {
         $this->accountId = $accountId;
         $this->latest = $latest;
         $this->assessments = $assessments;
         $this->waitingFor = $waitingFor;
         $this->current = $current;
+        $this->matchedIdentifier = $matchedIdentifier;
     }
 }

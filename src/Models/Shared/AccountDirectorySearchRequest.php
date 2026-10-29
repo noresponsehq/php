@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** AccountDirectorySearchRequest - Bounded distinct-account search for a single authenticated workspace/environment. Email matches any retained admitted assessment of an account, using assessment search's canonical mailbox rules. No assessment history download is required. */
+/** AccountDirectorySearchRequest - Bounded distinct-account search for one authenticated workspace/environment. identifier matches any retained admitted assessment of an account, including historical submitted values. email preserves the legacy canonical-mailbox filter. identifier and email cannot be combined. All other filters combine using AND. Typed identifier search uses stable opaque account order; ordinary and legacy email searches retain newest-seen ordering. Pages are live, not a cross-page snapshot. Requires history or investigate authority and identifier-read permission for identifier or email filtering. */
 class AccountDirectorySearchRequest
 {
     /**
@@ -36,6 +36,16 @@ class AccountDirectorySearchRequest
     public ?string $cursor = null;
 
     /**
+     * One customer-submitted identifier. Defaults to exact comparison of the original submitted value. canonical uses the supported identifier normalisation without an ownership claim: email preserves local-part case, NFC-normalises it and lowercases the domain without removing dots or tags; phone uses international E.164 without extensions or an inferred region; username uses NFC and Unicode case folding within the customer namespace. mailbox is email-only and explicitly selects existing list rules: case-insensitive, remove +tag, and ignore local-part dots at gmail.com and googlemail.com; googlemail.com maps to gmail.com. Username requires namespace customer. Email and phone forbid namespace. Source-discovered identifiers and platform handles are not searched. Unsupported kinds, namespaces, modes and invalid values return 400. Search equality does not establish verified ownership or merge accounts.
+     *
+     * @var ?\NoResponse\Models\Shared\IdentifierSearch $identifier
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('identifier')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IdentifierSearch|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?IdentifierSearch $identifier = null;
+
+    /**
      * Select accounts with a retained open or in-progress review, or a current review/block account decision with no retained effective account outcome. The server applies this filter before counting and pagination. Requires reviews.read as well as history.read for console members; API keys additionally require management.
      *
      * @var ?bool $needsAction
@@ -58,13 +68,15 @@ class AccountDirectorySearchRequest
      * @param  ?string  $email
      * @param  ?int  $limit
      * @param  ?string  $cursor
+     * @param  ?\NoResponse\Models\Shared\IdentifierSearch  $identifier
      * @phpstan-pure
      */
-    public function __construct(?string $accountId = null, ?string $email = null, ?string $cursor = null, ?bool $needsAction = false, ?int $limit = 25)
+    public function __construct(?string $accountId = null, ?string $email = null, ?string $cursor = null, ?IdentifierSearch $identifier = null, ?bool $needsAction = false, ?int $limit = 25)
     {
         $this->accountId = $accountId;
         $this->email = $email;
         $this->cursor = $cursor;
+        $this->identifier = $identifier;
         $this->needsAction = $needsAction;
         $this->limit = $limit;
     }

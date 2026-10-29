@@ -63,6 +63,16 @@ class AssessmentSearchItem
     public Decision|string|null $firstDecision = null;
 
     /**
+     * Why this result matched a typed identifier search. value is the original value submitted in assessment_id. Provenance records a customer submission, not a source discovery or verified ownership. Equality is deterministic and has no inferred confidence score. An account result names its newest retained matching assessment, which can differ from latest.
+     *
+     * @var ?\NoResponse\Models\Shared\IdentifierMatch $matchedIdentifier
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('matched_identifier')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IdentifierMatch|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?IdentifierMatch $matchedIdentifier = null;
+
+    /**
      * Version of the body shape.
      *
      * @var string $schemaVersion
@@ -78,9 +88,10 @@ class AssessmentSearchItem
      * @param  \NoResponse\Models\Shared\Depth|string  $depth
      * @param  \NoResponse\Models\Shared\AssessmentDetail  $detail
      * @param  \NoResponse\Models\Shared\Decision|string|null  $firstDecision
+     * @param  ?\NoResponse\Models\Shared\IdentifierMatch  $matchedIdentifier
      * @phpstan-pure
      */
-    public function __construct(string $id, Status|string $status, Flow|string $flow, Depth|string $depth, AssessmentDetail $detail, Decision|string|null $firstDecision = null, string $schemaVersion = '1')
+    public function __construct(string $id, Status|string $status, Flow|string $flow, Depth|string $depth, AssessmentDetail $detail, Decision|string|null $firstDecision = null, ?IdentifierMatch $matchedIdentifier = null, string $schemaVersion = '1')
     {
         $this->id = $id;
         $this->status = $status;
@@ -88,6 +99,7 @@ class AssessmentSearchItem
         $this->depth = $depth;
         $this->detail = $detail;
         $this->firstDecision = $firstDecision;
+        $this->matchedIdentifier = $matchedIdentifier;
         $this->schemaVersion = $schemaVersion;
     }
 }
