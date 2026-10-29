@@ -1,0 +1,59 @@
+<?php
+
+declare(strict_types=1);
+
+namespace NoResponse\Models\Shared;
+
+
+class AccountDirectoryPageItem
+{
+    /**
+     * Your own opaque identifier for the account being checked, scoped to your workspace. Use an id you mint, with no direct identifier (email, phone, name or national id) in it. '|' is accepted so an Auth0 user id such as 'auth0|64abc' passes unchanged; '@', '+', '$' and whitespace are refused by the pattern, as is an exact-shape JWT; a hex digest such as a SHA-256 is allowed, because hashing an internal id is a common pseudonymous scheme. A value such as '07700900123' or 'jane.doe.gmail.com' cannot be told apart from an opaque id. It travels in bodies, and in a URL only as the path segment of GET /v1/accounts/{account_id} and its /assessments. An assessment requested by a provider hook at pre_registration, which has no account yet, carries the server-issued account_id pre: followed by its assessment_id.
+     *
+     * @var string $accountId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('account_id')]
+    public string $accountId;
+
+    /**
+     * Retrieve a retained assessment version with its original decision, policy, flow and depth. This response excludes the current account decision. Current retention and response-mode permissions still apply.
+     *
+     * @var \NoResponse\Models\Shared\AssessmentRevision $latest
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('latest')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentRevision')]
+    public AssessmentRevision $latest;
+
+    /**
+     * Count of admitted retained assessments belonging to this account, not just the returned page.
+     *
+     * @var int $assessments
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('assessments')]
+    public int $assessments;
+
+    /**
+     * Body of the 200 answer to GET /v1/accounts/{account_id}: the one current risk of one of the calling workspace's accounts. It is the risk of the account's latest assessment that has a decision (status complete or partial), by created_at and then assessment_id, scored exactly as GET /v1/assessments/{assessment_id} scores that assessment, plus the account's own reason shared_api_key when a key issued to the account was used from many IP addresses or countries (POST /v1/key_usage/batches). Its assessments are the account's history (GET /v1/accounts/{account_id}/assessments).
+     *
+     * @var ?\NoResponse\Models\Shared\Account $current
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('current')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Account|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?Account $current = null;
+
+    /**
+     * @param  string  $accountId
+     * @param  \NoResponse\Models\Shared\AssessmentRevision  $latest
+     * @param  int  $assessments
+     * @param  ?\NoResponse\Models\Shared\Account  $current
+     * @phpstan-pure
+     */
+    public function __construct(string $accountId, AssessmentRevision $latest, int $assessments, ?Account $current = null)
+    {
+        $this->accountId = $accountId;
+        $this->latest = $latest;
+        $this->assessments = $assessments;
+        $this->current = $current;
+    }
+}
