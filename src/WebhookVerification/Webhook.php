@@ -26,6 +26,7 @@ final class Webhook
         'workspace.deleted' => \NoResponse\Models\Shared\WorkspaceDeletedEvent::class,
         'webhook_endpoint.disabled' => \NoResponse\Models\Shared\WebhookEndpointDisabledEvent::class,
         'account.risk_changed' => \NoResponse\Models\Shared\AccountRiskChangedEvent::class,
+        'audit.event' => \NoResponse\Models\Shared\AuditEventEvent::class,
     ];
 
     /**
@@ -49,7 +50,7 @@ final class Webhook
         array $secrets,
         int $toleranceSeconds = self::DEFAULT_TOLERANCE_SECONDS,
         ?int $now = null,
-    ): \NoResponse\Models\Shared\AssessmentUpdatedEvent|\NoResponse\Models\Shared\EndpointVerificationEvent|\NoResponse\Models\Shared\AccountDeletedEvent|\NoResponse\Models\Shared\WorkspaceDeletedEvent|\NoResponse\Models\Shared\WebhookEndpointDisabledEvent|\NoResponse\Models\Shared\AccountRiskChangedEvent {
+    ): \NoResponse\Models\Shared\AssessmentUpdatedEvent|\NoResponse\Models\Shared\EndpointVerificationEvent|\NoResponse\Models\Shared\AccountDeletedEvent|\NoResponse\Models\Shared\WorkspaceDeletedEvent|\NoResponse\Models\Shared\WebhookEndpointDisabledEvent|\NoResponse\Models\Shared\AccountRiskChangedEvent|\NoResponse\Models\Shared\AuditEventEvent {
         $values = self::headerValues($headers);
         $id = $values['NR-Webhook-Id'];
         $timestamp = $values['NR-Webhook-Timestamp'];
@@ -100,7 +101,7 @@ final class Webhook
         } catch (\Throwable) {
             throw new WebhookVerificationException(WebhookVerificationException::INVALID_PAYLOAD, 'the body is not a known webhook event');
         }
-        if (! $event instanceof \NoResponse\Models\Shared\AssessmentUpdatedEvent && ! $event instanceof \NoResponse\Models\Shared\EndpointVerificationEvent && ! $event instanceof \NoResponse\Models\Shared\AccountDeletedEvent && ! $event instanceof \NoResponse\Models\Shared\WorkspaceDeletedEvent && ! $event instanceof \NoResponse\Models\Shared\WebhookEndpointDisabledEvent && ! $event instanceof \NoResponse\Models\Shared\AccountRiskChangedEvent) {
+        if (! $event instanceof \NoResponse\Models\Shared\AssessmentUpdatedEvent && ! $event instanceof \NoResponse\Models\Shared\EndpointVerificationEvent && ! $event instanceof \NoResponse\Models\Shared\AccountDeletedEvent && ! $event instanceof \NoResponse\Models\Shared\WorkspaceDeletedEvent && ! $event instanceof \NoResponse\Models\Shared\WebhookEndpointDisabledEvent && ! $event instanceof \NoResponse\Models\Shared\AccountRiskChangedEvent && ! $event instanceof \NoResponse\Models\Shared\AuditEventEvent) {
             throw new WebhookVerificationException(WebhookVerificationException::INVALID_PAYLOAD, 'the body is not a known webhook event');
         }
 

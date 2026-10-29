@@ -22,4 +22,14 @@ enum ConflictErrorCode: string
     case ListEntryExists = 'list_entry_exists';
     case ListLimitReached = 'list_limit_reached';
     case ListEntryTooBroad = 'list_entry_too_broad';
+    case PolicyVersionConflict = 'policy_version_conflict';
+    case ReviewVersionConflict = 'review_version_conflict';
+    case ReviewExists = 'review_exists';
+    case ReviewLimitReached = 'review_limit_reached';
+    case ExportConflict = 'export_conflict';
+    case EvaluationConflict = 'evaluation_conflict';
+    case EvaluationNoProposal = 'evaluation_no_proposal';
+    case EvaluationLimitReached = 'evaluation_limit_reached';
+    case AlreadyMember = 'already_member';
+    case MemberLimitReached = 'member_limit_reached';
 }

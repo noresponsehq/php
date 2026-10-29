@@ -23,6 +23,10 @@ class ListRequestDiagnosticsResponse
     public Shared\RequestDiagnosticPage $result;
 
     /**
+     * @var \Closure(string): ?ListRequestDiagnosticsResponse $next
+     */
+    public \Closure $next;
+    /**
      * @param  array<string, array<string>>  $headers
      * @param  \NoResponse\Models\Shared\RequestDiagnosticPage  $result
      * @phpstan-pure
@@ -31,5 +35,18 @@ class ListRequestDiagnosticsResponse
     {
         $this->headers = $headers;
         $this->result = $result;
+    }
+    /**
+     * @param  string  $name
+     * @param  array<mixed>  $args
+     * @return ?ListRequestDiagnosticsResponse
+     */
+    public function __call($name, $args): ?ListRequestDiagnosticsResponse
+    {
+        if ($name === 'next') {
+            return call_user_func_array($this->next, $args);
+        }
+
+        return null;
     }
 }

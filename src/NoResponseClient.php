@@ -32,6 +32,11 @@ class NoResponseClient
      */
     public Accounts $accounts;
 
+    /**
+     * Usage of keys issued to your accounts.
+     *
+     * @var KeyUsage $$keyUsage
+     */
     public KeyUsage $keyUsage;
 
     /**
@@ -55,11 +60,84 @@ class NoResponseClient
      */
     public WebhookEndpoints $webhookEndpoints;
 
+    /**
+     * Scoped workspace membership automation.
+     *
+     * @var Members $$members
+     */
+    public Members $members;
+
+    /**
+     * Durable audit history, retention and delivery.
+     *
+     * @var Audit $$audit
+     */
+    public Audit $audit;
+
+    /**
+     * Recorded usage for your environment.
+     *
+     * @var Usage $$usage
+     */
+    public Usage $usage;
+
+    /**
+     * Workspace-bound invitation lifecycle.
+     *
+     * @var Invites $$invites
+     */
+    public Invites $invites;
+
+    /**
+     * Environment policy, history and previews.
+     *
+     * @var Settings $$settings
+     */
     public Settings $settings;
 
+    /**
+     * Retained request diagnostics and operational summaries.
+     *
+     * @var Requests $$requests
+     */
     public Requests $requests;
 
+    /**
+     * List entries, previews and durable changes.
+     *
+     * @var Lists $$lists
+     */
     public Lists $lists;
+
+    /**
+     * Collaborative review cases, comments and linked subjects.
+     *
+     * @var Reviews $$reviews
+     */
+    public Reviews $reviews;
+
+    /**
+     * Durable deletion receipts.
+     *
+     * @var Erasures $$erasures
+     */
+    public Erasures $erasures;
+
+    /**
+     * Bounded customer export jobs and encrypted artifacts.
+     *
+     * @var Exports $$exports
+     */
+    public Exports $exports;
+
+    /**
+     * Frozen policy evaluation evidence and reviewed publication.
+     *
+     * @var Evaluations $$evaluations
+     */
+    public Evaluations $evaluations;
+
+    public WorkspaceOperations $workspaceOperations;
 
     /**
      * Returns a new instance of the SDK builder used to configure and create the SDK instance.
@@ -93,9 +171,18 @@ class NoResponseClient
         $this->keys = new Keys($this->sdkConfiguration);
         $this->integrations = new Integrations($this->sdkConfiguration);
         $this->webhookEndpoints = new WebhookEndpoints($this->sdkConfiguration);
+        $this->members = new Members($this->sdkConfiguration);
+        $this->audit = new Audit($this->sdkConfiguration);
+        $this->usage = new Usage($this->sdkConfiguration);
+        $this->invites = new Invites($this->sdkConfiguration);
         $this->settings = new Settings($this->sdkConfiguration);
         $this->requests = new Requests($this->sdkConfiguration);
         $this->lists = new Lists($this->sdkConfiguration);
+        $this->reviews = new Reviews($this->sdkConfiguration);
+        $this->erasures = new Erasures($this->sdkConfiguration);
+        $this->exports = new Exports($this->sdkConfiguration);
+        $this->evaluations = new Evaluations($this->sdkConfiguration);
+        $this->workspaceOperations = new WorkspaceOperations($this->sdkConfiguration);
         $this->initHooks();
 
     }

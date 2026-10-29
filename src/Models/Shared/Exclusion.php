@@ -13,4 +13,5 @@ enum Exclusion: string
     case CrossCustomerData = 'cross_customer_data';
     case LegacyOutcomeNotes = 'legacy_outcome_notes';
     case UncapturedHistoricalDecisions = 'uncaptured_historical_decisions';
+    case InvestigatorReviewsRequireReviewExport = 'investigator_reviews_require_review_export';
 }

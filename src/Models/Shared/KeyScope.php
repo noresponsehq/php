@@ -14,4 +14,14 @@ enum KeyScope: string
     case Detailed = 'detailed';
     case Integrations = 'integrations';
     case Management = 'management';
+    case Audit = 'audit';
+    case Usage = 'usage';
+    case Investigate = 'investigate';
+    case Evidence = 'evidence';
+    case Exports = 'exports';
+    case AuditManage = 'audit_manage';
+    case Settings = 'settings';
+    case PolicyPublish = 'policy_publish';
+    case Members = 'members';
+    case MembersManage = 'members_manage';
 }

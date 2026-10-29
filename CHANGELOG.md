@@ -1,5 +1,139 @@
 # Changelog
 
+## 9.0.0
+
+* `sdk->accounts->listOutcomes()`: 
+  *  `response.items[]->actor` **Changed** (Breaking ⚠️)
+  *  `error.code` **Changed**
+* `sdk->accounts->recordOutcome()`: 
+  *  `response.actor` **Changed** (Breaking ⚠️)
+  *  `error.code` **Changed**
+* `sdk->accounts->export()`: 
+  *  `response` **Changed** (Breaking ⚠️)
+  *  `error.code` **Changed**
+* `sdk->keys->create()`: 
+  *  `request.body` **Changed**
+  *  `response` **Changed** (Breaking ⚠️)
+  *  `error.code` **Changed**
+* `sdk->accounts->listEnforcements()`: **Added**
+* `sdk->accounts->listDecisions()`: **Added**
+* `sdk->webhookendpoints->aggregate()`: **Added**
+* `sdk->members->list()`: **Added**
+* `sdk->members->remove()`: **Added**
+* `sdk->members->update()`: **Added**
+* `sdk->audit->list()`: **Added**
+* `sdk->audit->getRetention()`: **Added**
+* `sdk->audit->updateRetention()`: **Added**
+* `sdk->audit->listStreams()`: **Added**
+* `sdk->audit->configureStream()`: **Added**
+* `sdk->audit->removeStream()`: **Added**
+* `sdk->audit->replayStream()`: **Added**
+* `sdk->usage->get()`: **Added**
+* `sdk->invites->list()`: **Added**
+* `sdk->invites->create()`: **Added**
+* `sdk->invites->revoke()`: **Added**
+* `sdk->invites->resend()`: **Added**
+* `sdk->settings->listHistory()`: **Added**
+* `sdk->settings->restore()`: **Added**
+* `sdk->settings->preview()`: **Added**
+* `sdk->requests->aggregate()`: **Added**
+* `sdk->lists->preview()`: **Added**
+* `sdk->lists->change()`: **Added**
+* `sdk->lists->getChange()`: **Added**
+* `sdk->reviews->list()`: **Added**
+* `sdk->reviews->create()`: **Added**
+* `sdk->reviews->get()`: **Added**
+* `sdk->reviews->update()`: **Added**
+* `sdk->reviews->resolve()`: **Added**
+* `sdk->reviews->listComments()`: **Added**
+* `sdk->reviews->comment()`: **Added**
+* `sdk->reviews->listResolutions()`: **Added**
+* `sdk->reviews->listViews()`: **Added**
+* `sdk->reviews->createView()`: **Added**
+* `sdk->reviews->deleteView()`: **Added**
+* `sdk->reviews->updateView()`: **Added**
+* `sdk->reviews->export()`: **Added**
+* `sdk->reviews->listSubjects()`: **Added**
+* `sdk->reviews->addSubject()`: **Added**
+* `sdk->reviews->deleteSubject()`: **Added**
+* `sdk->erasures->get()`: **Added**
+* `sdk->exports->list()`: **Added**
+* `sdk->exports->create()`: **Added**
+* `sdk->exports->get()`: **Added**
+* `sdk->exports->cancel()`: **Added**
+* `sdk->exports->retry()`: **Added**
+* `sdk->exports->downloadChunk()`: **Added**
+* `sdk->evaluations->list()`: **Added**
+* `sdk->evaluations->create()`: **Added**
+* `sdk->evaluations->get()`: **Added**
+* `sdk->evaluations->getResult()`: **Added**
+* `sdk->evaluations->cancel()`: **Added**
+* `sdk->evaluations->publish()`: **Added**
+* `sdk->workspaceoperations->summarize()`: **Added**
+* `sdk->assessments->create()`:  `error.code` **Changed**
+* `sdk->assessments->get()`:  `error.code` **Changed**
+* `sdk->assessments->delete()`: 
+  *  `response.erasureId` **Added**
+  *  `error.code` **Changed**
+* `sdk->assessments->recordOutcome()`:  `error.code` **Changed**
+* `sdk->assessments->query()`:  `error.code` **Changed**
+* `sdk->assessments->aggregate()`: 
+  *  `request` **Changed**
+  *  `response` **Changed**
+  *  `error.code` **Changed**
+* `sdk->assessments->search()`: 
+  *  `request` **Changed**
+  *  `error.code` **Changed**
+* `sdk->assessments->retrieveVersion()`:  `error.code` **Changed**
+* `sdk->assessments->bindAccount()`:  `error.code` **Changed**
+* `sdk->accounts->listChanged()`:  `error.code` **Changed**
+* `sdk->accounts->get()`:  `error.code` **Changed**
+* `sdk->accounts->delete()`: 
+  *  `response.erasureId` **Added**
+  *  `error.code` **Changed**
+* `sdk->accounts->listAssessments()`:  `error.code` **Changed**
+* `sdk->accounts->recordEnforcement()`:  `error.code` **Changed**
+* `sdk->accounts->retrieveDecision()`:  `error.code` **Changed**
+* `sdk->accounts->listCredentials()`:  `error.code` **Changed**
+* `sdk->accounts->associateCredential()`:  `error.code` **Changed**
+* `sdk->accounts->retireCredential()`:  `error.code` **Changed**
+* `sdk->keyusage->record()`:  `error.code` **Changed**
+* `sdk->keys->rotate()`:  `error.code` **Changed**
+* `sdk->keys->list()`: 
+  *  `response.items[]` **Changed**
+  *  `error.code` **Changed**
+* `sdk->keys->revoke()`: 
+  *  `response` **Changed**
+  *  `error.code` **Changed**
+* `sdk->integrations->list()`:  `error.code` **Changed**
+* `sdk->integrations->create()`:  `error.code` **Changed**
+* `sdk->integrations->delete()`:  `error.code` **Changed**
+* `sdk->integrations->rotate()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->list()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->create()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->delete()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->rotateSigningKey()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->sendTestEvent()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->listDeliveries()`:  `error.code` **Changed**
+* `sdk->webhookendpoints->replayDelivery()`:  `error.code` **Changed**
+* `sdk->settings->get()`:  `error.code` **Changed**
+* `sdk->settings->update()`: 
+  *  `request.body` **Changed**
+  *  `error.code` **Changed**
+* `sdk->requests->list()`: 
+  *  `request->apiKeyId` **Added**
+  *  `response.items[]->apiKeyId` **Added**
+  *  `error.code` **Changed**
+* `sdk->lists->list()`: 
+  *  `request` **Changed**
+  *  `response` **Changed**
+  *  `error.code` **Changed**
+* `sdk->lists->create()`: 
+  *  `request.body->expiresAt` **Added**
+  *  `response.expiresAt` **Added**
+  *  `error.code` **Changed**
+* `sdk->lists->delete()`:  `error.code` **Changed**
+
 ## 8.4.1
 
 No changes detected.

@@ -97,6 +97,15 @@ class RequestDiagnostic
     public ?DecisionReceipt $decision = null;
 
     /**
+     * Public authenticated API key identifier. Absent for member requests and older unattributed diagnostics.
+     *
+     * @var ?string $apiKeyId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('api_key_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $apiKeyId = null;
+
+    /**
      * @param  string  $id
      * @param  string  $requestId
      * @param  string  $route
@@ -109,9 +118,10 @@ class RequestDiagnostic
      * @param  bool  $writeComplete
      * @param  ?string  $errorCode
      * @param  ?\NoResponse\Models\Shared\DecisionReceipt  $decision
+     * @param  ?string  $apiKeyId
      * @phpstan-pure
      */
-    public function __construct(string $id, string $requestId, string $route, int $httpStatus, int $durationMs, string $startedAt, string $completedAt, string $expiresAt, bool $idempotentReplayed, bool $writeComplete, ?string $errorCode = null, ?DecisionReceipt $decision = null)
+    public function __construct(string $id, string $requestId, string $route, int $httpStatus, int $durationMs, string $startedAt, string $completedAt, string $expiresAt, bool $idempotentReplayed, bool $writeComplete, ?string $errorCode = null, ?DecisionReceipt $decision = null, ?string $apiKeyId = null)
     {
         $this->id = $id;
         $this->requestId = $requestId;
@@ -125,5 +135,6 @@ class RequestDiagnostic
         $this->writeComplete = $writeComplete;
         $this->errorCode = $errorCode;
         $this->decision = $decision;
+        $this->apiKeyId = $apiKeyId;
     }
 }

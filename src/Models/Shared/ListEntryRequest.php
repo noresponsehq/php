@@ -44,17 +44,28 @@ class ListEntryRequest
     public ?string $note = null;
 
     /**
+     * Optional expiry. An expired entry stops matching immediately; bounded maintenance removes it and propagates account risk changes.
+     *
+     * @var ?string $expiresAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('expires_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $expiresAt = null;
+
+    /**
      * @param  \NoResponse\Models\Shared\ListEntryKind|string  $kind
      * @param  string  $value
      * @param  \NoResponse\Models\Shared\ListEntryAction|string  $action
      * @param  ?string  $note
+     * @param  ?string  $expiresAt
      * @phpstan-pure
      */
-    public function __construct(ListEntryKind|string $kind, string $value, ListEntryAction|string $action, ?string $note = null)
+    public function __construct(ListEntryKind|string $kind, string $value, ListEntryAction|string $action, ?string $note = null, ?string $expiresAt = null)
     {
         $this->kind = $kind;
         $this->value = $value;
         $this->action = $action;
         $this->note = $note;
+        $this->expiresAt = $expiresAt;
     }
 }

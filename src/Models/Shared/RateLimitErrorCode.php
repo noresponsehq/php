@@ -9,4 +9,6 @@ namespace NoResponse\Models\Shared;
 enum RateLimitErrorCode: string
 {
     case RateLimited = 'rate_limited';
+    case AssessmentBudgetExhausted = 'assessment_budget_exhausted';
+    case ExportLimitReached = 'export_limit_reached';
 }

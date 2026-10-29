@@ -27,8 +27,7 @@ $response = $sdk->assessments->create(
 
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 <!-- End SDK Example Usage [usage] -->

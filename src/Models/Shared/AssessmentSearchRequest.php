@@ -102,6 +102,89 @@ class AssessmentSearchRequest
 
     /**
      *
+     * @var \NoResponse\Models\Shared\Band|string|null $band
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('band')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Band|string|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public Band|string|null $band = null;
+
+    /**
+     * A stable reason code. New codes may appear; ignore any you do not know.
+     *
+     * @var \NoResponse\Models\Shared\ReasonCode|string|null $reason
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('reason')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ReasonCode|string|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ReasonCode|string|null $reason = null;
+
+    /**
+     * The selected reason's served impact band. Requires reason.
+     *
+     * @var \NoResponse\Models\Shared\Impact|string|null $impact
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('impact')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Impact|string|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public Impact|string|null $impact = null;
+
+    /**
+     * An evidence lane: accounts (account presence for email and username), phone, breach, domain (the email domain's registration) and ip.
+     *
+     * @var \NoResponse\Models\Shared\Lane|string|null $lane
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('lane')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Lane|string|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public Lane|string|null $lane = null;
+
+    /**
+     *
+     * @var ?string $country
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('country')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $country = null;
+
+    /**
+     *
+     * @var ?int $asn
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('asn')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $asn = null;
+
+    /**
+     * Inclusive lower score bound. Pending answers without a score do not match.
+     *
+     * @var ?int $scoreMin
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('score_min')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $scoreMin = null;
+
+    /**
+     * Inclusive upper score bound, at least score_min when both are supplied.
+     *
+     * @var ?int $scoreMax
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('score_max')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $scoreMax = null;
+
+    /**
+     * The list action captured at the first answer. Requires revision first. Older answers without captured list state do not match, including none.
+     *
+     * @var ?\NoResponse\Models\Shared\ListMatch $listMatch
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('list_match')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ListMatch|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?ListMatch $listMatch = null;
+
+    /**
+     *
      * @var ?int $limit
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('limit')]
@@ -120,9 +203,18 @@ class AssessmentSearchRequest
      * @param  \NoResponse\Models\Shared\ResponseMode|string|null  $responseMode
      * @param  \NoResponse\Models\Shared\Decision|string|null  $decision
      * @param  ?\NoResponse\Models\Shared\AnswerRevision  $revision
+     * @param  \NoResponse\Models\Shared\Band|string|null  $band
+     * @param  \NoResponse\Models\Shared\ReasonCode|string|null  $reason
+     * @param  \NoResponse\Models\Shared\Impact|string|null  $impact
+     * @param  \NoResponse\Models\Shared\Lane|string|null  $lane
+     * @param  ?string  $country
+     * @param  ?int  $asn
+     * @param  ?int  $scoreMin
+     * @param  ?int  $scoreMax
+     * @param  ?\NoResponse\Models\Shared\ListMatch  $listMatch
      * @phpstan-pure
      */
-    public function __construct(string $from, string $to, ?string $accountId = null, Flow|string|null $flow = null, Status|string|null $status = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, Decision|string|null $decision = null, ?AnswerRevision $revision = null, ?int $limit = 20)
+    public function __construct(string $from, string $to, ?string $accountId = null, Flow|string|null $flow = null, Status|string|null $status = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, Decision|string|null $decision = null, ?AnswerRevision $revision = null, Band|string|null $band = null, ReasonCode|string|null $reason = null, Impact|string|null $impact = null, Lane|string|null $lane = null, ?string $country = null, ?int $asn = null, ?int $scoreMin = null, ?int $scoreMax = null, ?ListMatch $listMatch = null, ?int $limit = 20)
     {
         $this->from = $from;
         $this->to = $to;
@@ -134,6 +226,15 @@ class AssessmentSearchRequest
         $this->responseMode = $responseMode;
         $this->decision = $decision;
         $this->revision = $revision;
+        $this->band = $band;
+        $this->reason = $reason;
+        $this->impact = $impact;
+        $this->lane = $lane;
+        $this->country = $country;
+        $this->asn = $asn;
+        $this->scoreMin = $scoreMin;
+        $this->scoreMax = $scoreMax;
+        $this->listMatch = $listMatch;
         $this->limit = $limit;
     }
 }

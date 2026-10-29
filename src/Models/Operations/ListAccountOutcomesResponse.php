@@ -23,6 +23,10 @@ class ListAccountOutcomesResponse
     public Shared\AccountOutcomePage $result;
 
     /**
+     * @var \Closure(string): ?ListAccountOutcomesResponse $next
+     */
+    public \Closure $next;
+    /**
      * @param  array<string, array<string>>  $headers
      * @param  \NoResponse\Models\Shared\AccountOutcomePage  $result
      * @phpstan-pure
@@ -31,5 +35,18 @@ class ListAccountOutcomesResponse
     {
         $this->headers = $headers;
         $this->result = $result;
+    }
+    /**
+     * @param  string  $name
+     * @param  array<mixed>  $args
+     * @return ?ListAccountOutcomesResponse
+     */
+    public function __call($name, $args): ?ListAccountOutcomesResponse
+    {
+        if ($name === 'next') {
+            return call_user_func_array($this->next, $args);
+        }
+
+        return null;
     }
 }

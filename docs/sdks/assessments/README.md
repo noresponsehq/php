@@ -39,7 +39,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::Purchase,
+    flow: Shared\Flow::AccountCreation,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -77,7 +77,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: true,
+        verified: false,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -101,9 +101,8 @@ $response = $sdk->assessments->create(
 
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: detailed
 
@@ -124,7 +123,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::Purchase,
+    flow: Shared\Flow::AccountCreation,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -162,7 +161,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: true,
+        verified: false,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -186,9 +185,8 @@ $response = $sdk->assessments->create(
 
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: full
 
@@ -228,9 +226,8 @@ $response = $sdk->assessments->create(
 
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: login
 
@@ -251,7 +248,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::Purchase,
+    flow: Shared\Flow::AccountCreation,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -289,7 +286,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: true,
+        verified: false,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -313,9 +310,8 @@ $response = $sdk->assessments->create(
 
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: minimal
 
@@ -348,9 +344,8 @@ $response = $sdk->assessments->create(
 
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: name_and_ip
 
@@ -393,9 +388,8 @@ $response = $sdk->assessments->create(
 
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: partial
 
@@ -416,7 +410,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::Purchase,
+    flow: Shared\Flow::AccountCreation,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -454,7 +448,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: true,
+        verified: false,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -478,9 +472,8 @@ $response = $sdk->assessments->create(
 
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -532,9 +525,8 @@ $response = $sdk->assessments->get(
     assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: detailed
 
@@ -558,9 +550,8 @@ $response = $sdk->assessments->get(
     assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: login
 
@@ -584,9 +575,8 @@ $response = $sdk->assessments->get(
     assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: partial
 
@@ -610,9 +600,8 @@ $response = $sdk->assessments->get(
     assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: pending
 
@@ -636,9 +625,8 @@ $response = $sdk->assessments->get(
     assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: pending_known_account
 
@@ -662,9 +650,8 @@ $response = $sdk->assessments->get(
     assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
-if ($response->assessment !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -716,9 +703,8 @@ $response = $sdk->assessments->delete(
     assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
-if ($response->assessmentDeletion !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: next
 
@@ -742,9 +728,8 @@ $response = $sdk->assessments->delete(
     assessmentId: 'asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
-if ($response->assessmentDeletion !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -804,9 +789,8 @@ $response = $sdk->assessments->recordOutcome(
 
 );
 
-if ($response->assessmentOutcome !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: recorded
 
@@ -826,7 +810,7 @@ $sdk = NoResponse\NoResponseClient::builder()
     ->build();
 
 $body = new Shared\AssessmentOutcomeRequest(
-    outcome: Shared\Outcome::AccountTakeover,
+    outcome: Shared\Outcome::Unknown,
     observedAt: '2026-10-14T09:04:30.000Z',
     externalRef: 'case-48213',
     notes: 'Chargeback filed two days after account creation.',
@@ -839,9 +823,8 @@ $response = $sdk->assessments->recordOutcome(
 
 );
 
-if ($response->assessmentOutcome !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: withdrawn
 
@@ -871,9 +854,8 @@ $response = $sdk->assessments->recordOutcome(
 
 );
 
-if ($response->assessmentOutcome !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -931,9 +913,8 @@ $responses = $sdk->assessments->query(
 
 
 foreach ($responses as $response) {
-    if ($response->statusCode === 200) {
-        // handle response
-    }
+    $result = $response->result;
+    // handle response
 }
 ```
 ### Example Usage: page
@@ -964,9 +945,8 @@ $responses = $sdk->assessments->query(
 
 
 foreach ($responses as $response) {
-    if ($response->statusCode === 200) {
-        // handle response
-    }
+    $result = $response->result;
+    // handle response
 }
 ```
 
@@ -1017,15 +997,15 @@ $request = new Shared\AssessmentAggregateRequest(
     from: '2026-10-19T00:00:00Z',
     to: '2026-10-26T00:00:00Z',
     bucket: Shared\Bucket::Week,
+    country: 'GB',
 );
 
 $response = $sdk->assessments->aggregate(
     request: $request
 );
 
-if ($response->assessmentAggregate !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -1076,15 +1056,15 @@ $request = new Shared\AssessmentSearchRequest(
     to: '2026-01-02T00:00:00Z',
     accountId: 'acct_7f3a9c',
     cursor: 'eyJ0IjoxNzY3MjI1NjAwMDAwMDAwLCJpIjoiYXNtX2V4YW1wbGUiLCJlIjoxNzY3MjI5MjAwfQ',
+    country: 'GB',
 );
 
 $response = $sdk->assessments->search(
     request: $request
 );
 
-if ($response->assessmentSearchPage !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -1137,9 +1117,8 @@ $response = $sdk->assessments->retrieveVersion(
 
 );
 
-if ($response->assessmentRevision !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -1197,9 +1176,8 @@ $response = $sdk->assessments->bindAccount(
 
 );
 
-if ($response->accountBinding !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters

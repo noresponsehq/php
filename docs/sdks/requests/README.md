@@ -2,9 +2,12 @@
 
 ## Overview
 
+Retained request diagnostics and operational summaries.
+
 ### Available Operations
 
 * [list](#list) - Search request diagnostics
+* [aggregate](#aggregate) - Summarise retained request attempts
 
 ## list
 
@@ -32,11 +35,13 @@ $request = new Operations\ListRequestDiagnosticsRequest(
     to: '2026-10-22T00:00:00Z',
 );
 
-$response = $sdk->requests->list(
+$responses = $sdk->requests->list(
     request: $request
 );
 
-if ($response->requestDiagnosticPage !== null) {
+
+foreach ($responses as $response) {
+    $result = $response->result;
     // handle response
 }
 ```
@@ -50,6 +55,64 @@ if ($response->requestDiagnosticPage !== null) {
 ### Response
 
 **[?Operations\ListRequestDiagnosticsResponse](../../Models/Operations/ListRequestDiagnosticsResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## aggregate
+
+Count all retained matching request attempts and latency samples within seven days. Capture is best effort.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="aggregateRequests" method="post" path="/v1/requests/aggregate" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$request = new Shared\RequestAggregateRequest(
+    from: '2026-01-01T00:00:00Z',
+    to: '2026-01-01T00:00:00Z',
+    route: 'POST /v1/assessments',
+    apiKeyId: '01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+);
+
+$response = $sdk->requests->aggregate(
+    request: $request
+);
+
+$result = $response->result;
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Shared\RequestAggregateRequest](../../Models/Shared/RequestAggregateRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+
+### Response
+
+**[?Operations\AggregateRequestsResponse](../../Models/Operations/AggregateRequestsResponse.md)**
 
 ### Errors
 

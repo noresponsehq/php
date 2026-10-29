@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace NoResponse\Models\Operations;
+
+use NoResponse\Models\Shared;
+use NoResponse\Utils\NoResponseMetadata;
+class ListAuditStreamsResponse
+{
+    /**
+     * $headers
+     *
+     * @var array<string, array<string>> $headers
+     */
+    public array $headers;
+
+    /**
+     *
+     * @var \NoResponse\Models\Shared\AuditStreamList $result
+     */
+    #[NoResponseMetadata('')]
+    public Shared\AuditStreamList $result;
+
+    /**
+     * @param  array<string, array<string>>  $headers
+     * @param  \NoResponse\Models\Shared\AuditStreamList  $result
+     * @phpstan-pure
+     */
+    public function __construct(Shared\AuditStreamList $result, ?array $headers = [])
+    {
+        $this->headers = $headers;
+        $this->result = $result;
+    }
+}

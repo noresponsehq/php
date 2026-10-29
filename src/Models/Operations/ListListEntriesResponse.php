@@ -23,6 +23,10 @@ class ListListEntriesResponse
     public Shared\ListEntryList $result;
 
     /**
+     * @var \Closure(string): ?ListListEntriesResponse $next
+     */
+    public \Closure $next;
+    /**
      * @param  array<string, array<string>>  $headers
      * @param  \NoResponse\Models\Shared\ListEntryList  $result
      * @phpstan-pure
@@ -31,5 +35,18 @@ class ListListEntriesResponse
     {
         $this->headers = $headers;
         $this->result = $result;
+    }
+    /**
+     * @param  string  $name
+     * @param  array<mixed>  $args
+     * @return ?ListListEntriesResponse
+     */
+    public function __call($name, $args): ?ListListEntriesResponse
+    {
+        if ($name === 'next') {
+            return call_user_func_array($this->next, $args);
+        }
+
+        return null;
     }
 }

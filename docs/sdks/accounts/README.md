@@ -11,6 +11,7 @@ Your accounts, each with one current risk, and their assessment history.
 * [delete](#delete) - Erase an account and its history.
 * [listAssessments](#listassessments) - Page through one account's unexpired assessments.
 * [recordEnforcement](#recordenforcement) - Record what you did to an account in your identity provider.
+* [listEnforcements](#listenforcements) - Page through account enforcements
 * [recordOutcome](#recordoutcome) - Record or correct an account outcome
 * [listOutcomes](#listoutcomes) - List retained account feedback
 * [retrieveDecision](#retrievedecision) - Retrieve an exact historical account decision
@@ -18,6 +19,7 @@ Your accounts, each with one current risk, and their assessment history.
 * [listCredentials](#listcredentials) - List issued credential associations
 * [retireCredential](#retirecredential) - Retire an issued credential association
 * [export](#export) - Export an account
+* [listDecisions](#listdecisions) - Page through recorded account decisions
 
 ## listChanged
 
@@ -47,9 +49,8 @@ $response = $sdk->accounts->listChanged(
 
 );
 
-if ($response->accountList !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: page
 
@@ -75,9 +76,8 @@ $response = $sdk->accounts->listChanged(
 
 );
 
-if ($response->accountList !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -130,9 +130,8 @@ $response = $sdk->accounts->get(
     accountId: 'acct_7f3a9c'
 );
 
-if ($response->account !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: current
 
@@ -156,9 +155,8 @@ $response = $sdk->accounts->get(
     accountId: 'acct_7f3a9c'
 );
 
-if ($response->account !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -209,9 +207,8 @@ $response = $sdk->accounts->delete(
     accountId: 'acct_7f3a9c'
 );
 
-if ($response->accountDeletion !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: repeat
 
@@ -235,9 +232,8 @@ $response = $sdk->accounts->delete(
     accountId: 'acct_7f3a9c'
 );
 
-if ($response->accountDeletion !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -292,9 +288,8 @@ $responses = $sdk->accounts->listAssessments(
 
 
 foreach ($responses as $response) {
-    if ($response->statusCode === 200) {
-        // handle response
-    }
+    $result = $response->result;
+    // handle response
 }
 ```
 
@@ -359,9 +354,8 @@ $response = $sdk->accounts->recordEnforcement(
 
 );
 
-if ($response->enforcement !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: failed
 
@@ -396,9 +390,8 @@ $response = $sdk->accounts->recordEnforcement(
 
 );
 
-if ($response->enforcement !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -411,6 +404,65 @@ if ($response->enforcement !== null) {
 ### Response
 
 **[?Operations\RecordEnforcementResponse](../../Models/Operations/RecordEnforcementResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## listEnforcements
+
+List retained enforcement reports for one account with an authenticated cursor.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="listAccountEnforcements" method="get" path="/v1/accounts/{account_id}/enforcements" example="page" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$responses = $sdk->accounts->listEnforcements(
+    accountId: 'acct_7f3a9c',
+    limit: 20
+
+);
+
+
+foreach ($responses as $response) {
+    $result = $response->result;
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                          | Type                                                                                                                                                                                                               | Required                                                                                                                                                                                                           | Description                                                                                                                                                                                                        | Example                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `accountId`                                                                                                                                                                                                        | *string*                                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                                 | The account_id the workspace sends with its assessments, as one path segment (percent-encode '\|' and ':' if the client requires it). A value that does not match the account_id shape answers 400 invalid_request. | acct_7f3a9c                                                                                                                                                                                                        |
+| `limit`                                                                                                                                                                                                            | *?int*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                 | Items per page.                                                                                                                                                                                                    |                                                                                                                                                                                                                    |
+| `cursor`                                                                                                                                                                                                           | *?string*                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                 | next_cursor from the previous page, unchanged.                                                                                                                                                                     |                                                                                                                                                                                                                    |
+
+### Response
+
+**[?Operations\ListAccountEnforcementsResponse](../../Models/Operations/ListAccountEnforcementsResponse.md)**
 
 ### Errors
 
@@ -459,9 +511,8 @@ $response = $sdk->accounts->recordOutcome(
 
 );
 
-if ($response->accountOutcome !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -510,13 +561,15 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 
 
-$response = $sdk->accounts->listOutcomes(
+$responses = $sdk->accounts->listOutcomes(
     accountId: 'acct_7f3a9c',
     limit: 20
 
 );
 
-if ($response->accountOutcomePage !== null) {
+
+foreach ($responses as $response) {
+    $result = $response->result;
     // handle response
 }
 ```
@@ -573,9 +626,8 @@ $response = $sdk->accounts->retrieveDecision(
 
 );
 
-if ($response->accountDecisionSnapshot !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -632,9 +684,8 @@ $response = $sdk->accounts->associateCredential(
 
 );
 
-if ($response->credentialAssociation !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -682,13 +733,15 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 
 
-$response = $sdk->accounts->listCredentials(
+$responses = $sdk->accounts->listCredentials(
     accountId: 'acct_7f3a9c',
     limit: 20
 
 );
 
-if ($response->credentialPage !== null) {
+
+foreach ($responses as $response) {
+    $result = $response->result;
     // handle response
 }
 ```
@@ -745,9 +798,8 @@ $response = $sdk->accounts->retireCredential(
 
 );
 
-if ($response->credentialAssociation !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -799,9 +851,8 @@ $response = $sdk->accounts->export(
     accountId: 'acct_7f3a9c'
 );
 
-if ($response->accountExport !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -814,6 +865,65 @@ if ($response->accountExport !== null) {
 ### Response
 
 **[?Operations\ExportAccountResponse](../../Models/Operations/ExportAccountResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## listDecisions
+
+List retained immutable risk decisions for one account with an authenticated cursor.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="listAccountDecisions" method="get" path="/v1/accounts/{account_id}/decisions" example="page" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$responses = $sdk->accounts->listDecisions(
+    accountId: 'acct_7f3a9c',
+    limit: 20
+
+);
+
+
+foreach ($responses as $response) {
+    $result = $response->result;
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                          | Type                                                                                                                                                                                                               | Required                                                                                                                                                                                                           | Description                                                                                                                                                                                                        | Example                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `accountId`                                                                                                                                                                                                        | *string*                                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                                 | The account_id the workspace sends with its assessments, as one path segment (percent-encode '\|' and ':' if the client requires it). A value that does not match the account_id shape answers 400 invalid_request. | acct_7f3a9c                                                                                                                                                                                                        |
+| `limit`                                                                                                                                                                                                            | *?int*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                 | Items per page.                                                                                                                                                                                                    |                                                                                                                                                                                                                    |
+| `cursor`                                                                                                                                                                                                           | *?string*                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                 | next_cursor from the previous page, unchanged.                                                                                                                                                                     |                                                                                                                                                                                                                    |
+
+### Response
+
+**[?Operations\ListAccountDecisionsResponse](../../Models/Operations/ListAccountDecisionsResponse.md)**
 
 ### Errors
 

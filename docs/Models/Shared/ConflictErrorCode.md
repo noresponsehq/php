@@ -21,3 +21,13 @@ Machine codes an HTTP 409 answer can carry.
 | `ListEntryExists`              | list_entry_exists              |
 | `ListLimitReached`             | list_limit_reached             |
 | `ListEntryTooBroad`            | list_entry_too_broad           |
+| `PolicyVersionConflict`        | policy_version_conflict        |
+| `ReviewVersionConflict`        | review_version_conflict        |
+| `ReviewExists`                 | review_exists                  |
+| `ReviewLimitReached`           | review_limit_reached           |
+| `ExportConflict`               | export_conflict                |
+| `EvaluationConflict`           | evaluation_conflict            |
+| `EvaluationNoProposal`         | evaluation_no_proposal         |
+| `EvaluationLimitReached`       | evaluation_limit_reached       |
+| `AlreadyMember`                | already_member                 |
+| `MemberLimitReached`           | member_limit_reached           |

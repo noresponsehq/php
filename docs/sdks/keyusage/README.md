@@ -2,6 +2,8 @@
 
 ## Overview
 
+Usage of keys issued to your accounts.
+
 ### Available Operations
 
 * [record](#record) - Report requests made with API keys your platform issued.
@@ -53,9 +55,8 @@ $response = $sdk->keyUsage->record(
 
 );
 
-if ($response->keyUsageBatch !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: recorded
 
@@ -84,9 +85,8 @@ $response = $sdk->keyUsage->record(
 
 );
 
-if ($response->keyUsageBatch !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters

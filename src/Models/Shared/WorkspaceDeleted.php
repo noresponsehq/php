@@ -17,13 +17,12 @@ class WorkspaceDeleted
     public string $workspaceId;
 
     /**
-     * The environment whose endpoints receive this event: live, or test for the workspace's test environment.
      *
-     * @var \NoResponse\Models\Shared\Environment $environment
+     * @var \NoResponse\Models\Shared\AuditSettingsEnvironment|string $environment
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('environment')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Environment')]
-    public Environment $environment;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AuditSettingsEnvironment|string')]
+    public AuditSettingsEnvironment|string $environment;
 
     /**
      * When the deletion took effect, equal to deleted_at in the DELETE answer.
@@ -35,11 +34,11 @@ class WorkspaceDeleted
 
     /**
      * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\Environment  $environment
+     * @param  \NoResponse\Models\Shared\AuditSettingsEnvironment|string  $environment
      * @param  string  $deletedAt
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, Environment $environment, string $deletedAt)
+    public function __construct(string $workspaceId, AuditSettingsEnvironment|string $environment, string $deletedAt)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;

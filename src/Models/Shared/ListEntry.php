@@ -84,6 +84,15 @@ class ListEntry
     public ?string $note = null;
 
     /**
+     * Optional expiry. An expired entry stops matching immediately; bounded maintenance removes it and propagates account risk changes.
+     *
+     * @var ?string $expiresAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('expires_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $expiresAt = null;
+
+    /**
      * @param  string  $id
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
@@ -93,9 +102,10 @@ class ListEntry
      * @param  string  $createdAt
      * @param  string  $createdBy
      * @param  ?string  $note
+     * @param  ?string  $expiresAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $workspaceId, KeyEnvironment|string $environment, ListEntryKind|string $kind, string $value, ListEntryAction|string $action, string $createdAt, string $createdBy, ?string $note = null)
+    public function __construct(string $id, string $workspaceId, KeyEnvironment|string $environment, ListEntryKind|string $kind, string $value, ListEntryAction|string $action, string $createdAt, string $createdBy, ?string $note = null, ?string $expiresAt = null)
     {
         $this->id = $id;
         $this->workspaceId = $workspaceId;
@@ -106,5 +116,6 @@ class ListEntry
         $this->createdAt = $createdAt;
         $this->createdBy = $createdBy;
         $this->note = $note;
+        $this->expiresAt = $expiresAt;
     }
 }

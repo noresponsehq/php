@@ -23,13 +23,13 @@ class FlowSettings
     public int $review;
 
     /**
-     * The depth a request for this flow that names none is served at. Defaults: full for account_creation and purchase, quick for login.
+     * assessments only.
      *
-     * @var \NoResponse\Models\Shared\DefaultDepth|string $defaultDepth
+     * @var \NoResponse\Models\Shared\UsageCountDepth|string $defaultDepth
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('default_depth')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\DefaultDepth|string')]
-    public DefaultDepth|string $defaultDepth;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\UsageCountDepth|string')]
+    public UsageCountDepth|string $defaultDepth;
 
     /**
      * true while this flow has no thresholds of its own and uses account_creation's, the default for login and purchase. Always false for signup.
@@ -77,7 +77,7 @@ class FlowSettings
     /**
      * @param  int  $stepUp
      * @param  int  $review
-     * @param  \NoResponse\Models\Shared\DefaultDepth|string  $defaultDepth
+     * @param  \NoResponse\Models\Shared\UsageCountDepth|string  $defaultDepth
      * @param  bool  $inheritsAccountCreation
      * @param  \NoResponse\Models\Shared\Admission|string  $admission
      * @param  int  $holdSeconds
@@ -85,7 +85,7 @@ class FlowSettings
      * @param  ?int  $block
      * @phpstan-pure
      */
-    public function __construct(int $stepUp, int $review, DefaultDepth|string $defaultDepth, bool $inheritsAccountCreation, Admission|string $admission, int $holdSeconds, OnExpiry|string $onExpiry, ?int $block = null)
+    public function __construct(int $stepUp, int $review, UsageCountDepth|string $defaultDepth, bool $inheritsAccountCreation, Admission|string $admission, int $holdSeconds, OnExpiry|string $onExpiry, ?int $block = null)
     {
         $this->stepUp = $stepUp;
         $this->review = $review;

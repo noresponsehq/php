@@ -8,6 +8,7 @@ use NoResponse\Models\Shared\AccountDeletedEvent;
 use NoResponse\Models\Shared\AccountRiskChangedEvent;
 use NoResponse\Models\Shared\Assessment;
 use NoResponse\Models\Shared\AssessmentUpdatedEvent;
+use NoResponse\Models\Shared\AuditEventEvent;
 use NoResponse\Models\Shared\EndpointVerificationEvent;
 use NoResponse\Models\Shared\WebhookEndpointDisabledEvent;
 use NoResponse\Models\Shared\WorkspaceDeletedEvent;
@@ -27,6 +28,7 @@ final class WebhookVectorTest extends TestCase
         'workspace.deleted' => WorkspaceDeletedEvent::class,
         'webhook_endpoint.disabled' => WebhookEndpointDisabledEvent::class,
         'account.risk_changed' => AccountRiskChangedEvent::class,
+        'audit.event' => AuditEventEvent::class,
     ];
 
     /** @return array{payload: string, headers: array<string, string>, key_id: string, secret_utf8: string, timestamp: string} */

@@ -1,0 +1,56 @@
+<?php
+
+declare(strict_types=1);
+
+namespace NoResponse\Models\Operations;
+
+use NoResponse\Models\Shared;
+use NoResponse\Utils\NoResponseMetadata;
+class ChangeListsRequest
+{
+    /**
+     * Your workspace id, as each key lists it in workspace_id. Another workspace, a malformed id and a test environment's id answer 404.
+     *
+     * @var string $workspaceId
+     */
+    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=workspace_id')]
+    public string $workspaceId;
+
+    /**
+     * The environment: live or test. Each has its own settings. Any other value answers 400. An API key reads and changes only its own environment's; the other answers 404.
+     *
+     * @var \NoResponse\Models\Shared\KeyEnvironment|string $environment
+     */
+    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=environment')]
+    public Shared\KeyEnvironment|string $environment;
+
+    /**
+     *
+     * @var \NoResponse\Models\Shared\ListBulkRequest $body
+     */
+    #[NoResponseMetadata('request:mediaType=application/json')]
+    public Shared\ListBulkRequest $body;
+
+    /**
+     * Opaque client key, 16 to 128 characters of [A-Za-z0-9._:-] (a UUID or ULID fits). Scoped to the workspace principal and bound to the canonical body for 24 hours. Optional: the SDK generates a UUID when you omit it and sends the same key on every retry of the call.
+     *
+     * @var ?string $idempotencyKey
+     */
+    #[NoResponseMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    public ?string $idempotencyKey = null;
+
+    /**
+     * @param  string  $workspaceId
+     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
+     * @param  \NoResponse\Models\Shared\ListBulkRequest  $body
+     * @param  ?string  $idempotencyKey
+     * @phpstan-pure
+     */
+    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, Shared\ListBulkRequest $body, ?string $idempotencyKey = null)
+    {
+        $this->workspaceId = $workspaceId;
+        $this->environment = $environment;
+        $this->body = $body;
+        $this->idempotencyKey = $idempotencyKey;
+    }
+}

@@ -13,6 +13,7 @@ Your webhook endpoints: register, list, rotate signing keys, send test events an
 * [sendTestEvent](#sendtestevent) - Send a test event to an endpoint.
 * [listDeliveries](#listdeliveries) - List an endpoint's delivery attempts.
 * [replayDelivery](#replaydelivery) - Send one delivery again.
+* [aggregate](#aggregate) - Summarise retained webhook attempts and delivery queue
 
 ## list
 
@@ -40,9 +41,8 @@ $response = $sdk->webhookEndpoints->list(
 
 );
 
-if ($response->webhookEndpointList !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Response
@@ -90,9 +90,8 @@ $response = $sdk->webhookEndpoints->create(
     request: $request
 );
 
-if ($response->webhookEndpointCreated !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: detailed
 
@@ -120,9 +119,8 @@ $response = $sdk->webhookEndpoints->create(
     request: $request
 );
 
-if ($response->webhookEndpointCreated !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: standard
 
@@ -149,9 +147,8 @@ $response = $sdk->webhookEndpoints->create(
     request: $request
 );
 
-if ($response->webhookEndpointCreated !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -202,9 +199,7 @@ $response = $sdk->webhookEndpoints->delete(
     endpointId: 'whe_01JA2ZD0E1F2G3H4J5K6M7N8P9'
 );
 
-if ($response->statusCode === 200) {
-    // handle response
-}
+// The request completed successfully.
 ```
 
 ### Parameters
@@ -258,9 +253,8 @@ $response = $sdk->webhookEndpoints->rotateSigningKey(
 
 );
 
-if ($response->webhookKeyRotation !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: rotated
 
@@ -287,9 +281,8 @@ $response = $sdk->webhookEndpoints->rotateSigningKey(
 
 );
 
-if ($response->webhookKeyRotation !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -346,9 +339,8 @@ $response = $sdk->webhookEndpoints->sendTestEvent(
 
 );
 
-if ($response->webhookTest !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: verification
 
@@ -377,9 +369,8 @@ $response = $sdk->webhookEndpoints->sendTestEvent(
 
 );
 
-if ($response->webhookTest !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -435,9 +426,8 @@ $responses = $sdk->webhookEndpoints->listDeliveries(
 
 
 foreach ($responses as $response) {
-    if ($response->statusCode === 200) {
-        // handle response
-    }
+    $result = $response->result;
+    // handle response
 }
 ```
 
@@ -495,9 +485,8 @@ $response = $sdk->webhookEndpoints->replayDelivery(
 
 );
 
-if ($response->webhookReplay !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: replay
 
@@ -525,9 +514,8 @@ $response = $sdk->webhookEndpoints->replayDelivery(
 
 );
 
-if ($response->webhookReplay !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -541,6 +529,63 @@ if ($response->webhookReplay !== null) {
 ### Response
 
 **[?Operations\ReplayWebhookDeliveryResponse](../../Models/Operations/ReplayWebhookDeliveryResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## aggregate
+
+Count retained webhook delivery attempts within thirty days and report current retained queue state.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="aggregateWebhooks" method="post" path="/v1/webhooks/aggregate" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$request = new Shared\WebhookAggregateRequest(
+    from: '2026-01-01T00:00:00Z',
+    to: '2026-01-01T00:00:00Z',
+    endpointId: 'whe_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+);
+
+$response = $sdk->webhookEndpoints->aggregate(
+    request: $request
+);
+
+$result = $response->result;
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Shared\WebhookAggregateRequest](../../Models/Shared/WebhookAggregateRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+
+### Response
+
+**[?Operations\AggregateWebhooksResponse](../../Models/Operations/AggregateWebhooksResponse.md)**
 
 ### Errors
 

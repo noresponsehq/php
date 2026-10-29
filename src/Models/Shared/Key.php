@@ -76,7 +76,7 @@ class Key
     public ?string $createdBy = null;
 
     /**
-     * When a rotated key stops authenticating (POST /v1/keys/rotate). Absent for a key with no end.
+     * The earlier of the explicit lifetime and any rotation overlap. Rotation preserves the original lifetime.
      *
      * @var ?string $expiresAt
      */
@@ -111,6 +111,60 @@ class Key
     public ?string $key = null;
 
     /**
+     * The optional display name supplied for this API key. Preserved on rotation.
+     *
+     * @var ?string $name
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('name')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $name = null;
+
+    /**
+     * Optional operational purpose, at most 200 printable characters without leading or trailing whitespace. Do not put secrets or personal data here. Preserved on rotation and included in the creation request fingerprint; omitted for older credentials.
+     *
+     * @var ?string $purpose
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('purpose')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $purpose = null;
+
+    /**
+     *
+     * @var \NoResponse\Models\Shared\KeyKind|string|null $kind
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('kind')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\KeyKind|string|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public KeyKind|string|null $kind = null;
+
+    /**
+     * The issuing member's external identity for a personal key. Personal ownership is fixed and the key is revoked when that member loses authority. Service keys belong to the workspace and omit this field.
+     *
+     * @var ?string $ownerUserId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('owner_user_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $ownerUserId = null;
+
+    /**
+     * Replacement public key identifier, or legacy when the successor predates recorded lineage. This field excludes the secret.
+     *
+     * @var ?string $rotatedTo
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('rotated_to')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $rotatedTo = null;
+
+    /**
+     * Latest recorded authenticated request observation, updated at most once per minute. Capture is best effort after the response and includes authenticated requests refused by authorization or rate limits. Absence means unknown and does not prove the key was unused. It is independent of diagnostic retention and resets on the replacement key after rotation. This field retains no raw IP or user-agent.
+     *
+     * @var ?string $lastUsedAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('last_used_at')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $lastUsedAt = null;
+
+    /**
      * @param  string  $id
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
@@ -123,9 +177,15 @@ class Key
      * @param  ?string  $revokedAt
      * @param  ?string  $revokedBy
      * @param  ?string  $key
+     * @param  ?string  $name
+     * @param  ?string  $purpose
+     * @param  \NoResponse\Models\Shared\KeyKind|string|null  $kind
+     * @param  ?string  $ownerUserId
+     * @param  ?string  $rotatedTo
+     * @param  ?string  $lastUsedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $workspaceId, KeyEnvironment|string $environment, string $prefix, array $scopes, KeyStatus|string $status, string $createdAt, ?string $createdBy = null, ?string $expiresAt = null, ?string $revokedAt = null, ?string $revokedBy = null, ?string $key = null)
+    public function __construct(string $id, string $workspaceId, KeyEnvironment|string $environment, string $prefix, array $scopes, KeyStatus|string $status, string $createdAt, ?string $createdBy = null, ?string $expiresAt = null, ?string $revokedAt = null, ?string $revokedBy = null, ?string $key = null, ?string $name = null, ?string $purpose = null, KeyKind|string|null $kind = null, ?string $ownerUserId = null, ?string $rotatedTo = null, ?string $lastUsedAt = null)
     {
         $this->id = $id;
         $this->workspaceId = $workspaceId;
@@ -139,5 +199,11 @@ class Key
         $this->revokedAt = $revokedAt;
         $this->revokedBy = $revokedBy;
         $this->key = $key;
+        $this->name = $name;
+        $this->purpose = $purpose;
+        $this->kind = $kind;
+        $this->ownerUserId = $ownerUserId;
+        $this->rotatedTo = $rotatedTo;
+        $this->lastUsedAt = $lastUsedAt;
     }
 }

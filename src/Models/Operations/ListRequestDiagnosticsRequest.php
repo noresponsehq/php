@@ -56,6 +56,14 @@ class ListRequestDiagnosticsRequest
     public ?string $cursor = null;
 
     /**
+     * Filter by the public authenticated API key identifier; older unattributed rows do not match.
+     *
+     * @var ?string $apiKeyId
+     */
+    #[NoResponseMetadata('queryParam:style=form,explode=true,name=api_key_id')]
+    public ?string $apiKeyId = null;
+
+    /**
      * Optional filter or paging parameter.
      *
      * @var ?int $limit
@@ -71,9 +79,10 @@ class ListRequestDiagnosticsRequest
      * @param  ?int  $status
      * @param  ?int  $limit
      * @param  ?string  $cursor
+     * @param  ?string  $apiKeyId
      * @phpstan-pure
      */
-    public function __construct(string $from, string $to, ?string $requestId = null, ?string $route = null, ?int $status = null, ?string $cursor = null, ?int $limit = 50)
+    public function __construct(string $from, string $to, ?string $requestId = null, ?string $route = null, ?int $status = null, ?string $cursor = null, ?string $apiKeyId = null, ?int $limit = 50)
     {
         $this->from = $from;
         $this->to = $to;
@@ -81,6 +90,7 @@ class ListRequestDiagnosticsRequest
         $this->route = $route;
         $this->status = $status;
         $this->cursor = $cursor;
+        $this->apiKeyId = $apiKeyId;
         $this->limit = $limit;
     }
 }

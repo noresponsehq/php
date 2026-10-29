@@ -1,0 +1,13 @@
+# PolicyEvaluationPublishRequest
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `expectedPolicyVersion`                                          | *int*                                                            | :heavy_check_mark:                                               | N/A                                                              |                                                                  |
+| `manifestSha256`                                                 | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa |
+| `inputSha256`                                                    | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa |
+| `resultSha256`                                                   | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa |
+| `candidate`                                                      | [Shared\Thresholds](../../Models/Shared/Thresholds.md)           | :heavy_check_mark:                                               | N/A                                                              |                                                                  |
+| `changeReason`                                                   | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | Reviewed the proposal and its capture coverage.                  |

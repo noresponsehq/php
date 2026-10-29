@@ -67,6 +67,16 @@ class AssessmentAggregate
     public array $buckets;
 
     /**
+     * Captured in the same database snapshot as the counts. Capture start times describe when counting began, not the earliest creation time counted: an older assessment may first answer later. Older outcomes are not inferred to be absent. Erased detail cannot be returned by drill-down even while its anonymous count remains.
+     *
+     * @var ?\NoResponse\Models\Shared\AssessmentAggregateCoverage $coverage
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('coverage')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AssessmentAggregateCoverage|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?AssessmentAggregateCoverage $coverage = null;
+
+    /**
      * Version of the body shape.
      *
      * @var string $schemaVersion
@@ -93,9 +103,10 @@ class AssessmentAggregate
      * @param  bool  $groupsTruncated
      * @param  array<\NoResponse\Models\Shared\AggregateBucket>  $buckets
      * @param  ?int  $retentionDays
+     * @param  ?\NoResponse\Models\Shared\AssessmentAggregateCoverage  $coverage
      * @phpstan-pure
      */
-    public function __construct(string $from, string $to, Bucket|string $bucket, array $groupBy, array $metrics, bool $groupsTruncated, array $buckets, string $schemaVersion = '1', ?int $retentionDays = 365)
+    public function __construct(string $from, string $to, Bucket|string $bucket, array $groupBy, array $metrics, bool $groupsTruncated, array $buckets, ?AssessmentAggregateCoverage $coverage = null, string $schemaVersion = '1', ?int $retentionDays = 365)
     {
         $this->from = $from;
         $this->to = $to;
@@ -104,6 +115,7 @@ class AssessmentAggregate
         $this->metrics = $metrics;
         $this->groupsTruncated = $groupsTruncated;
         $this->buckets = $buckets;
+        $this->coverage = $coverage;
         $this->schemaVersion = $schemaVersion;
         $this->retentionDays = $retentionDays;
     }

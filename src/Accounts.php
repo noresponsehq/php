@@ -1123,7 +1123,7 @@ class Accounts
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function listCredentials(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): Operations\ListAccountCredentialsResponse
+    private function listCredentialsIndividual(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): Operations\ListAccountCredentialsResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -1197,6 +1197,27 @@ class Accounts
                     result: $result,
                     headers: $httpResponse->getHeaders()
                 );
+                $sdk = $this;
+
+                $response->next = function () use ($sdk, $responseData, $request): ?Operations\ListAccountCredentialsResponse {
+                    $jsonObject = new \JsonPath\JsonObject($responseData);
+                    $nextCursor = $jsonObject->get('$.next_cursor');
+                    if ($nextCursor == null) {
+                        return null;
+                    } else {
+                        $nextCursor = $nextCursor[0];
+                        if ($nextCursor == null || (is_string($nextCursor) && trim($nextCursor) === '')) {
+                            return null;
+                        }
+                    }
+
+                    return $sdk->listCredentialsIndividual(
+                        accountId: $request != null ? $request->accountId : '',
+                        limit: $request != null ? $request->limit : null,
+                        cursor: $nextCursor,
+                    );
+                };
+
 
                 return $response;
             } else {
@@ -1276,16 +1297,15 @@ class Accounts
             throw new \NoResponse\Models\Errors\APIStatusException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
-
     /**
-     * List retained account feedback
+     * List issued credential associations
      *
-     * List retained account reports, newest first. The page-level effective outcome id names the current report. Each receipt preserves the effective report and risk version from its original write. Page with the returned cursor.
+     * Retained credential associations, ordered by id. Page with the authenticated cursor. Associations are removed on account erasure.
      *
      * @param  string  $accountId
      * @param  ?int  $limit
      * @param  ?string  $cursor
-     * @return \NoResponse\Models\Operations\ListAccountOutcomesResponse
+     * @return \Generator<\NoResponse\Models\Operations\ListAccountCredentialsResponse>
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
      * @throws \NoResponse\Models\Errors\PermissionDeniedException
@@ -1295,7 +1315,34 @@ class Accounts
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function listOutcomes(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): Operations\ListAccountOutcomesResponse
+    public function listCredentials(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): \Generator
+    {
+        $res = $this->listCredentialsIndividual($accountId, $limit, $cursor, $options);
+        while ($res !== null) {
+            yield $res;
+            $res = $res->next($res);
+        }
+    }
+
+    /**
+     * Page through recorded account decisions
+     *
+     * List retained immutable risk decisions for one account with an authenticated cursor.
+     *
+     * @param  string  $accountId
+     * @param  ?int  $limit
+     * @param  ?string  $cursor
+     * @return \NoResponse\Models\Operations\ListAccountDecisionsResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
+     * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function listDecisionsIndividual(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): Operations\ListAccountDecisionsResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -1324,21 +1371,21 @@ class Accounts
                 '5XX',
             ];
         }
-        $request = new Operations\ListAccountOutcomesRequest(
+        $request = new Operations\ListAccountDecisionsRequest(
             accountId: $accountId,
             limit: $limit,
             cursor: $cursor,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/accounts/{account_id}/outcomes', Operations\ListAccountOutcomesRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/accounts/{account_id}/decisions', Operations\ListAccountDecisionsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
-        $qp = Utils\Utils::getQueryParams(Operations\ListAccountOutcomesRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(Operations\ListAccountDecisionsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url, $httpOptions['headers']);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'listAccountOutcomes', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'listAccountDecisions', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -1363,12 +1410,33 @@ class Accounts
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Shared\AccountOutcomePage', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Shared\AccountDecisionList', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $result = $obj;
-                $response = new Operations\ListAccountOutcomesResponse(
+                $response = new Operations\ListAccountDecisionsResponse(
                     result: $result,
                     headers: $httpResponse->getHeaders()
                 );
+                $sdk = $this;
+
+                $response->next = function () use ($sdk, $responseData, $request): ?Operations\ListAccountDecisionsResponse {
+                    $jsonObject = new \JsonPath\JsonObject($responseData);
+                    $nextCursor = $jsonObject->get('$.next_cursor');
+                    if ($nextCursor == null) {
+                        return null;
+                    } else {
+                        $nextCursor = $nextCursor[0];
+                        if ($nextCursor == null || (is_string($nextCursor) && trim($nextCursor) === '')) {
+                            return null;
+                        }
+                    }
+
+                    return $sdk->listDecisionsIndividual(
+                        accountId: $request != null ? $request->accountId : '',
+                        limit: $request != null ? $request->limit : null,
+                        cursor: $nextCursor,
+                    );
+                };
+
 
                 return $response;
             } else {
@@ -1446,6 +1514,470 @@ class Accounts
             throw new \NoResponse\Models\Errors\APIStatusException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         } else {
             throw new \NoResponse\Models\Errors\APIStatusException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+    /**
+     * Page through recorded account decisions
+     *
+     * List retained immutable risk decisions for one account with an authenticated cursor.
+     *
+     * @param  string  $accountId
+     * @param  ?int  $limit
+     * @param  ?string  $cursor
+     * @return \Generator<\NoResponse\Models\Operations\ListAccountDecisionsResponse>
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
+     * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listDecisions(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): \Generator
+    {
+        $res = $this->listDecisionsIndividual($accountId, $limit, $cursor, $options);
+        while ($res !== null) {
+            yield $res;
+            $res = $res->next($res);
+        }
+    }
+
+    /**
+     * Page through account enforcements
+     *
+     * List retained enforcement reports for one account with an authenticated cursor.
+     *
+     * @param  string  $accountId
+     * @param  ?int  $limit
+     * @param  ?string  $cursor
+     * @return \NoResponse\Models\Operations\ListAccountEnforcementsResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
+     * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function listEnforcementsIndividual(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): Operations\ListAccountEnforcementsResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        }
+        if ($retryConfig === null) {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 8000,
+                exponent: 2,
+                maxElapsedTimeMs: 30000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '408',
+                '429',
+                '5XX',
+            ];
+        }
+        $request = new Operations\ListAccountEnforcementsRequest(
+            accountId: $accountId,
+            limit: $limit,
+            cursor: $cursor,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/accounts/{account_id}/enforcements', Operations\ListAccountEnforcementsRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+
+        $qp = Utils\Utils::getQueryParams(Operations\ListAccountEnforcementsRequest::class, $request, $urlOverride);
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url, $httpOptions['headers']);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'listAccountEnforcements', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Shared\AccountEnforcementList', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $result = $obj;
+                $response = new Operations\ListAccountEnforcementsResponse(
+                    result: $result,
+                    headers: $httpResponse->getHeaders()
+                );
+                $sdk = $this;
+
+                $response->next = function () use ($sdk, $responseData, $request): ?Operations\ListAccountEnforcementsResponse {
+                    $jsonObject = new \JsonPath\JsonObject($responseData);
+                    $nextCursor = $jsonObject->get('$.next_cursor');
+                    if ($nextCursor == null) {
+                        return null;
+                    } else {
+                        $nextCursor = $nextCursor[0];
+                        if ($nextCursor == null || (is_string($nextCursor) && trim($nextCursor) === '')) {
+                            return null;
+                        }
+                    }
+
+                    return $sdk->listEnforcementsIndividual(
+                        accountId: $request != null ? $request->accountId : '',
+                        limit: $request != null ? $request->limit : null,
+                        cursor: $nextCursor,
+                    );
+                };
+
+
+                return $response;
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\BadRequestError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\AuthenticationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['403'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\PermissionDeniedError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['404'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\NotFoundError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['409'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\ConflictError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['429'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\RateLimitError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \NoResponse\Models\Errors\APIStatusException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \NoResponse\Models\Errors\APIStatusException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \NoResponse\Models\Errors\APIStatusException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+    /**
+     * Page through account enforcements
+     *
+     * List retained enforcement reports for one account with an authenticated cursor.
+     *
+     * @param  string  $accountId
+     * @param  ?int  $limit
+     * @param  ?string  $cursor
+     * @return \Generator<\NoResponse\Models\Operations\ListAccountEnforcementsResponse>
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
+     * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listEnforcements(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): \Generator
+    {
+        $res = $this->listEnforcementsIndividual($accountId, $limit, $cursor, $options);
+        while ($res !== null) {
+            yield $res;
+            $res = $res->next($res);
+        }
+    }
+
+    /**
+     * List retained account feedback
+     *
+     * List retained account reports, newest first. The page-level effective outcome id names the current report. Each receipt preserves the effective report and risk version from its original write. Page with the returned cursor.
+     *
+     * @param  string  $accountId
+     * @param  ?int  $limit
+     * @param  ?string  $cursor
+     * @return \NoResponse\Models\Operations\ListAccountOutcomesResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
+     * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function listOutcomesIndividual(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): Operations\ListAccountOutcomesResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        }
+        if ($retryConfig === null) {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 8000,
+                exponent: 2,
+                maxElapsedTimeMs: 30000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '408',
+                '429',
+                '5XX',
+            ];
+        }
+        $request = new Operations\ListAccountOutcomesRequest(
+            accountId: $accountId,
+            limit: $limit,
+            cursor: $cursor,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/accounts/{account_id}/outcomes', Operations\ListAccountOutcomesRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+
+        $qp = Utils\Utils::getQueryParams(Operations\ListAccountOutcomesRequest::class, $request, $urlOverride);
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url, $httpOptions['headers']);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'listAccountOutcomes', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Shared\AccountOutcomePage', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $result = $obj;
+                $response = new Operations\ListAccountOutcomesResponse(
+                    result: $result,
+                    headers: $httpResponse->getHeaders()
+                );
+                $sdk = $this;
+
+                $response->next = function () use ($sdk, $responseData, $request): ?Operations\ListAccountOutcomesResponse {
+                    $jsonObject = new \JsonPath\JsonObject($responseData);
+                    $nextCursor = $jsonObject->get('$.next_cursor');
+                    if ($nextCursor == null) {
+                        return null;
+                    } else {
+                        $nextCursor = $nextCursor[0];
+                        if ($nextCursor == null || (is_string($nextCursor) && trim($nextCursor) === '')) {
+                            return null;
+                        }
+                    }
+
+                    return $sdk->listOutcomesIndividual(
+                        accountId: $request != null ? $request->accountId : '',
+                        limit: $request != null ? $request->limit : null,
+                        cursor: $nextCursor,
+                    );
+                };
+
+
+                return $response;
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\BadRequestError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\AuthenticationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['403'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\PermissionDeniedError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['404'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\NotFoundError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['409'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\ConflictError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['429'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\RateLimitError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \NoResponse\Models\Errors\APIStatusException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \NoResponse\Models\Errors\APIStatusException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \NoResponse\Models\Errors\APIStatusException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+    /**
+     * List retained account feedback
+     *
+     * List retained account reports, newest first. The page-level effective outcome id names the current report. Each receipt preserves the effective report and risk version from its original write. Page with the returned cursor.
+     *
+     * @param  string  $accountId
+     * @param  ?int  $limit
+     * @param  ?string  $cursor
+     * @return \Generator<\NoResponse\Models\Operations\ListAccountOutcomesResponse>
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
+     * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listOutcomes(string $accountId, ?int $limit = null, ?string $cursor = null, ?Options $options = null): \Generator
+    {
+        $res = $this->listOutcomesIndividual($accountId, $limit, $cursor, $options);
+        while ($res !== null) {
+            yield $res;
+            $res = $res->next($res);
         }
     }
 

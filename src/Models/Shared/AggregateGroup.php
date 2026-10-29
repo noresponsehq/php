@@ -46,7 +46,6 @@ class AggregateGroup
     public Recommendation|string|null $recommendation = null;
 
     /**
-     * low 0-29, medium 30-59, high 60-84, critical 85-100.
      *
      * @var \NoResponse\Models\Shared\Band|string|null $band
      */
@@ -56,14 +55,14 @@ class AggregateGroup
     public Band|string|null $band = null;
 
     /**
-     * The action of the list entry that decided the account.
+     * The list action captured with the first answer. none means no matching entry was found. For retained_first_answers an absent field means the older assessment did not capture list state; this remains a separate group.
      *
-     * @var \NoResponse\Models\Shared\ListMatch|string|null $listMatch
+     * @var \NoResponse\Models\Shared\AggregateGroupListMatch|string|null $listMatch
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('list_match')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ListMatch|string|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AggregateGroupListMatch|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ListMatch|string|null $listMatch = null;
+    public AggregateGroupListMatch|string|null $listMatch = null;
 
     /**
      * A stable reason code. New codes may appear; ignore any you do not know.
@@ -76,6 +75,7 @@ class AggregateGroup
     public ReasonCode|string|null $reason = null;
 
     /**
+     * The selected reason's served impact band. Requires reason.
      *
      * @var \NoResponse\Models\Shared\Impact|string|null $impact
      */
@@ -116,7 +116,7 @@ class AggregateGroup
      * @param  \NoResponse\Models\Shared\Flow|string|null  $flow
      * @param  \NoResponse\Models\Shared\Recommendation|string|null  $recommendation
      * @param  \NoResponse\Models\Shared\Band|string|null  $band
-     * @param  \NoResponse\Models\Shared\ListMatch|string|null  $listMatch
+     * @param  \NoResponse\Models\Shared\AggregateGroupListMatch|string|null  $listMatch
      * @param  \NoResponse\Models\Shared\ReasonCode|string|null  $reason
      * @param  \NoResponse\Models\Shared\Impact|string|null  $impact
      * @param  \NoResponse\Models\Shared\Lane|string|null  $lane
@@ -124,7 +124,7 @@ class AggregateGroup
      * @param  ?int  $asn
      * @phpstan-pure
      */
-    public function __construct(int $count, Decision|string|null $decision = null, Flow|string|null $flow = null, Recommendation|string|null $recommendation = null, Band|string|null $band = null, ListMatch|string|null $listMatch = null, ReasonCode|string|null $reason = null, Impact|string|null $impact = null, Lane|string|null $lane = null, ?string $country = null, ?int $asn = null)
+    public function __construct(int $count, Decision|string|null $decision = null, Flow|string|null $flow = null, Recommendation|string|null $recommendation = null, Band|string|null $band = null, AggregateGroupListMatch|string|null $listMatch = null, ReasonCode|string|null $reason = null, Impact|string|null $impact = null, Lane|string|null $lane = null, ?string $country = null, ?int $asn = null)
     {
         $this->count = $count;
         $this->decision = $decision;

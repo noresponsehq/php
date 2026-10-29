@@ -40,9 +40,8 @@ $response = $sdk->integrations->create(
     request: $request
 );
 
-if ($response->integration !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: supabase
 
@@ -70,9 +69,8 @@ $response = $sdk->integrations->create(
     request: $request
 );
 
-if ($response->integration !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: workos
 
@@ -104,9 +102,8 @@ $response = $sdk->integrations->create(
     request: $request
 );
 
-if ($response->integration !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters
@@ -157,9 +154,8 @@ $response = $sdk->integrations->list(
 
 );
 
-if ($response->integrationList !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Response
@@ -204,9 +200,7 @@ $response = $sdk->integrations->delete(
     integrationId: 'int_01JA2Z8K6Q4V7W9XBCDEFGHJKM'
 );
 
-if ($response->statusCode === 200) {
-    // handle response
-}
+// The request completed successfully.
 ```
 
 ### Parameters
@@ -260,9 +254,8 @@ $response = $sdk->integrations->rotate(
 
 );
 
-if ($response->integration !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 ### Example Usage: workos
 
@@ -291,9 +284,8 @@ $response = $sdk->integrations->rotate(
 
 );
 
-if ($response->integration !== null) {
-    // handle response
-}
+$result = $response->result;
+// handle response
 ```
 
 ### Parameters

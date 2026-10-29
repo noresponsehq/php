@@ -59,3 +59,12 @@ Shared\WebhookEndpointDisabledEvent $value = /* values here */
 Shared\AccountRiskChangedEvent $value = /* values here */
 ```
 
+### `Shared\AuditEventEvent`
+
+```php
+/**
+* @var \NoResponse\Models\Shared\AuditEventEvent
+*/
+Shared\AuditEventEvent $value = /* values here */
+```
+

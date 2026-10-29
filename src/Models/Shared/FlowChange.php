@@ -25,14 +25,14 @@ class FlowChange
     public ?int $review = null;
 
     /**
-     * The depth a request for this flow that names none is served at. Defaults: full for account_creation and purchase, quick for login.
+     * assessments only.
      *
-     * @var \NoResponse\Models\Shared\DefaultDepth|string|null $defaultDepth
+     * @var \NoResponse\Models\Shared\UsageCountDepth|string|null $defaultDepth
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('default_depth')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\DefaultDepth|string|null')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\UsageCountDepth|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public DefaultDepth|string|null $defaultDepth = null;
+    public UsageCountDepth|string|null $defaultDepth = null;
 
     /**
      * Login or purchase only: drop the flow's own thresholds so it uses account_creation's again. Not combined with step_up, review or block. Send true; false is refused.
@@ -94,7 +94,7 @@ class FlowChange
     /**
      * @param  ?int  $stepUp
      * @param  ?int  $review
-     * @param  \NoResponse\Models\Shared\DefaultDepth|string|null  $defaultDepth
+     * @param  \NoResponse\Models\Shared\UsageCountDepth|string|null  $defaultDepth
      * @param  ?bool  $inheritsAccountCreation
      * @param  ?bool  $inheritsSignup
      * @param  \NoResponse\Models\Shared\Admission|string|null  $admission
@@ -103,7 +103,7 @@ class FlowChange
      * @param  ?int  $block
      * @phpstan-pure
      */
-    public function __construct(?int $stepUp = null, ?int $review = null, DefaultDepth|string|null $defaultDepth = null, ?bool $inheritsAccountCreation = null, ?bool $inheritsSignup = null, Admission|string|null $admission = null, ?int $holdSeconds = null, OnExpiry|string|null $onExpiry = null, ?int $block = null)
+    public function __construct(?int $stepUp = null, ?int $review = null, UsageCountDepth|string|null $defaultDepth = null, ?bool $inheritsAccountCreation = null, ?bool $inheritsSignup = null, Admission|string|null $admission = null, ?int $holdSeconds = null, OnExpiry|string|null $onExpiry = null, ?int $block = null)
     {
         $this->stepUp = $stepUp;
         $this->review = $review;

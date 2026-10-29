@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** ListEntryList - GET /v1/workspaces/{workspace_id}/lists/{environment}: every entry of the environment's list, newest first. An environment holds at most 10,000 entries. */
+/** ListEntryList - Newest first. Without a query, returns every active entry for compatibility. With limit or cursor, returns up to 100 entries and an authenticated workspace/environment-bound cursor. Expired entries are omitted. */
 class ListEntryList
 {
     /**
@@ -18,11 +18,21 @@ class ListEntryList
     public array $items;
 
     /**
+     *
+     * @var ?string $nextCursor
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('next_cursor')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $nextCursor = null;
+
+    /**
      * @param  array<\NoResponse\Models\Shared\ListEntry>  $items
+     * @param  ?string  $nextCursor
      * @phpstan-pure
      */
-    public function __construct(array $items)
+    public function __construct(array $items, ?string $nextCursor = null)
     {
         $this->items = $items;
+        $this->nextCursor = $nextCursor;
     }
 }

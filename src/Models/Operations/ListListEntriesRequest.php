@@ -25,13 +25,31 @@ class ListListEntriesRequest
     public Shared\KeyEnvironment|string $environment;
 
     /**
+     *
+     * @var ?int $limit
+     */
+    #[NoResponseMetadata('queryParam:style=form,explode=true,name=limit')]
+    public ?int $limit = null;
+
+    /**
+     *
+     * @var ?string $cursor
+     */
+    #[NoResponseMetadata('queryParam:style=form,explode=true,name=cursor')]
+    public ?string $cursor = null;
+
+    /**
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
+     * @param  ?int  $limit
+     * @param  ?string  $cursor
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment)
+    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, ?int $limit = null, ?string $cursor = null)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;
+        $this->limit = $limit;
+        $this->cursor = $cursor;
     }
 }

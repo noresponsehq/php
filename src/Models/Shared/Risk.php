@@ -16,7 +16,6 @@ class Risk
     public int $score;
 
     /**
-     * low 0-29, medium 30-59, high 60-84, critical 85-100.
      *
      * @var \NoResponse\Models\Shared\Band|string $band
      */

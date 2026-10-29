@@ -1,0 +1,11 @@
+# CustomerExportList
+
+List exports for one collection.
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `items`                                                               | array<[Shared\CustomerExport](../../Models/Shared/CustomerExport.md)> | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
+| `nextCursor`                                                          | *?string*                                                             | :heavy_minus_sign:                                                    | N/A                                                                   | eyJwYWdlIjoyfQ                                                        |

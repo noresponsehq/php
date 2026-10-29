@@ -12,7 +12,7 @@ use Psr\Http\Message\RequestInterface;
  */
 final class IdempotencyKeyHook implements BeforeRequestHook
 {
-    private const OPERATIONS = ['createAssessment', 'recordAssessmentOutcome'];
+    private const OPERATIONS = ['createAssessment', 'recordAssessmentOutcome', 'recordKeyUsage', 'recordAccountOutcome', 'changeLists', 'createPolicyEvaluation'];
 
     public function beforeRequest(BeforeRequestContext $context, RequestInterface $request): RequestInterface
     {

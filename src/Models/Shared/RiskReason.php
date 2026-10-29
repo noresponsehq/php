@@ -26,6 +26,7 @@ class RiskReason
     public Direction|string $direction;
 
     /**
+     * The selected reason's served impact band. Requires reason.
      *
      * @var \NoResponse\Models\Shared\Impact|string $impact
      */

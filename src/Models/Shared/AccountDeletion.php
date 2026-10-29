@@ -33,6 +33,15 @@ class AccountDeletion
     public string $deletedAt;
 
     /**
+     * Receipt for GET /v1/erasures/{erasure_id}, when durable storage issued one.
+     *
+     * @var ?string $erasureId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('erasure_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $erasureId = null;
+
+    /**
      * Version of the body shape.
      *
      * @var string $schemaVersion
@@ -53,13 +62,15 @@ class AccountDeletion
      * @param  bool  $deleted
      * @param  int  $assessmentsDeleted
      * @param  string  $deletedAt
+     * @param  ?string  $erasureId
      * @phpstan-pure
      */
-    public function __construct(string $id, int $assessmentsDeleted, string $deletedAt, string $schemaVersion = '1', bool $deleted = true)
+    public function __construct(string $id, int $assessmentsDeleted, string $deletedAt, ?string $erasureId = null, string $schemaVersion = '1', bool $deleted = true)
     {
         $this->id = $id;
         $this->assessmentsDeleted = $assessmentsDeleted;
         $this->deletedAt = $deletedAt;
+        $this->erasureId = $erasureId;
         $this->schemaVersion = $schemaVersion;
         $this->deleted = $deleted;
     }

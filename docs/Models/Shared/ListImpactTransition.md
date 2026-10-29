@@ -1,0 +1,10 @@
+# ListImpactTransition
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `from`                                                                                    | [Shared\ListImpactTransitionFrom\|string](../../Models/Shared/ListImpactTransitionFrom.md) | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `to`                                                                                      | [Shared\ListImpactTransitionFrom\|string](../../Models/Shared/ListImpactTransitionFrom.md) | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `count`                                                                                   | *int*                                                                                     | :heavy_check_mark:                                                                        | N/A                                                                                       |

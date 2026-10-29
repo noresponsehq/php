@@ -23,6 +23,10 @@ class ListAccountCredentialsResponse
     public Shared\CredentialPage $result;
 
     /**
+     * @var \Closure(string): ?ListAccountCredentialsResponse $next
+     */
+    public \Closure $next;
+    /**
      * @param  array<string, array<string>>  $headers
      * @param  \NoResponse\Models\Shared\CredentialPage  $result
      * @phpstan-pure
@@ -31,5 +35,18 @@ class ListAccountCredentialsResponse
     {
         $this->headers = $headers;
         $this->result = $result;
+    }
+    /**
+     * @param  string  $name
+     * @param  array<mixed>  $args
+     * @return ?ListAccountCredentialsResponse
+     */
+    public function __call($name, $args): ?ListAccountCredentialsResponse
+    {
+        if ($name === 'next') {
+            return call_user_func_array($this->next, $args);
+        }
+
+        return null;
     }
 }
