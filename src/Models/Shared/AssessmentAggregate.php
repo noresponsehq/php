@@ -23,7 +23,7 @@ class AssessmentAggregate
     public string $to;
 
     /**
-     * The period each count covers, in UTC; a week starts on Monday.
+     * The period each count covers: an hour, or a day or a week (from Monday) in time_zone. Hour buckets are whole UTC hours in any time zone.
      *
      * @var \NoResponse\Models\Shared\Bucket|string $bucket
      */
@@ -48,6 +48,14 @@ class AssessmentAggregate
     #[\NoResponse\Serializer\Annotation\SerializedName('metrics')]
     #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\AssessmentAggregateMetric|string>')]
     public array $metrics;
+
+    /**
+     * The time zone whose local midnight started each day and week bucket, as requested; UTC when the request named none.
+     *
+     * @var string $timeZone
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('time_zone')]
+    public string $timeZone;
 
     /**
      * true when more groups had counts than limit allowed.
@@ -100,19 +108,21 @@ class AssessmentAggregate
      * @param  \NoResponse\Models\Shared\Bucket|string  $bucket
      * @param  array<\NoResponse\Models\Shared\AggregateDimension|string>  $groupBy
      * @param  array<\NoResponse\Models\Shared\AssessmentAggregateMetric|string>  $metrics
+     * @param  string  $timeZone
      * @param  bool  $groupsTruncated
      * @param  array<\NoResponse\Models\Shared\AggregateBucket>  $buckets
      * @param  ?int  $retentionDays
      * @param  ?\NoResponse\Models\Shared\AssessmentAggregateCoverage  $coverage
      * @phpstan-pure
      */
-    public function __construct(string $from, string $to, Bucket|string $bucket, array $groupBy, array $metrics, bool $groupsTruncated, array $buckets, ?AssessmentAggregateCoverage $coverage = null, string $schemaVersion = '1', ?int $retentionDays = 365)
+    public function __construct(string $from, string $to, Bucket|string $bucket, array $groupBy, array $metrics, string $timeZone, bool $groupsTruncated, array $buckets, ?AssessmentAggregateCoverage $coverage = null, string $schemaVersion = '1', ?int $retentionDays = 365)
     {
         $this->from = $from;
         $this->to = $to;
         $this->bucket = $bucket;
         $this->groupBy = $groupBy;
         $this->metrics = $metrics;
+        $this->timeZone = $timeZone;
         $this->groupsTruncated = $groupsTruncated;
         $this->buckets = $buckets;
         $this->coverage = $coverage;

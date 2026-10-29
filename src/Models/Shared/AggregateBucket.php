@@ -8,6 +8,7 @@ namespace NoResponse\Models\Shared;
 class AggregateBucket
 {
     /**
+     * The bucket's first instant, in UTC. A day or week bucket in a time zone starts at local midnight there, so in Asia/Tokyo a day starts at 15:00Z the day before.
      *
      * @var string $start
      */
