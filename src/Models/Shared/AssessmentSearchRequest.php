@@ -32,6 +32,15 @@ class AssessmentSearchRequest
     public ?string $accountId = null;
 
     /**
+     * Assessments of every account that one of its retained admitted assessments sent this mailbox as identifiers.email, matched as lists match an email entry: case-insensitive, a +tag removed and, at gmail.com and googlemail.com, the dots of the local part ignored. Only assessments stored since email list matching began carry the mailbox. An address that is not a valid mailbox is refused with 400.
+     *
+     * @var ?string $email
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('email')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $email = null;
+
+    /**
      * The event an assessment is made for: account_creation (a user creates an account), login (a user returns to an existing account) or purchase (a payment or a credit grant). The account's risk is reported with the decision for this flow.
      *
      * @var \NoResponse\Models\Shared\Flow|string|null $flow
@@ -184,6 +193,15 @@ class AssessmentSearchRequest
     public ?ListMatch $listMatch = null;
 
     /**
+     * true returns only assessments whose latest stored revision's decision differs from their first answer's decision (see decision); false only the others. An assessment whose first answer or latest revision has no decision yet is not changed. Cannot be combined with revision first.
+     *
+     * @var ?bool $changed
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('changed')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $changed = null;
+
+    /**
      *
      * @var ?int $limit
      */
@@ -195,6 +213,7 @@ class AssessmentSearchRequest
      * @param  string  $from
      * @param  string  $to
      * @param  ?string  $accountId
+     * @param  ?string  $email
      * @param  \NoResponse\Models\Shared\Flow|string|null  $flow
      * @param  \NoResponse\Models\Shared\Status|string|null  $status
      * @param  \NoResponse\Models\Shared\Recommendation|string|null  $recommendation
@@ -212,13 +231,15 @@ class AssessmentSearchRequest
      * @param  ?int  $scoreMin
      * @param  ?int  $scoreMax
      * @param  ?\NoResponse\Models\Shared\ListMatch  $listMatch
+     * @param  ?bool  $changed
      * @phpstan-pure
      */
-    public function __construct(string $from, string $to, ?string $accountId = null, Flow|string|null $flow = null, Status|string|null $status = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, Decision|string|null $decision = null, ?AnswerRevision $revision = null, Band|string|null $band = null, ReasonCode|string|null $reason = null, Impact|string|null $impact = null, Lane|string|null $lane = null, ?string $country = null, ?int $asn = null, ?int $scoreMin = null, ?int $scoreMax = null, ?ListMatch $listMatch = null, ?int $limit = 20)
+    public function __construct(string $from, string $to, ?string $accountId = null, ?string $email = null, Flow|string|null $flow = null, Status|string|null $status = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, Decision|string|null $decision = null, ?AnswerRevision $revision = null, Band|string|null $band = null, ReasonCode|string|null $reason = null, Impact|string|null $impact = null, Lane|string|null $lane = null, ?string $country = null, ?int $asn = null, ?int $scoreMin = null, ?int $scoreMax = null, ?ListMatch $listMatch = null, ?bool $changed = null, ?int $limit = 20)
     {
         $this->from = $from;
         $this->to = $to;
         $this->accountId = $accountId;
+        $this->email = $email;
         $this->flow = $flow;
         $this->status = $status;
         $this->recommendation = $recommendation;
@@ -235,6 +256,7 @@ class AssessmentSearchRequest
         $this->scoreMin = $scoreMin;
         $this->scoreMax = $scoreMax;
         $this->listMatch = $listMatch;
+        $this->changed = $changed;
         $this->limit = $limit;
     }
 }
