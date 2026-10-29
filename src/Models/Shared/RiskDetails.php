@@ -29,7 +29,7 @@ class RiskDetails
     public ?array $breaches = null;
 
     /**
-     * Names found next to the identifiers in breach records, merged, with the number of distinct tables each was seen in.
+     * Names found next to the identifiers in breach records, merged, with the number of distinct tables each was seen in and the sites of those tables.
      *
      * @var ?array<\NoResponse\Models\Shared\RiskDetailsBreachName> $breachNames
      */
