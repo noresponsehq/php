@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** AssessmentSearchRequest - Search retained assessments created in [from,to), at most 366 days. identifier matches the submitted value of each returned assessment directly. The legacy email filter keeps its account-wide mailbox semantics and cannot be combined with identifier. Other filters combine using AND and describe assessment decisions, separate from current account decisions. Results use newest-created order with an assessment-ID tie break and are live, not a snapshot across pages. Requires history or investigate authority; identifier/email filtering also requires identifier-read permission. Detailed response mode additionally requires detailed permission. No Idempotency-Key. */
+/** AssessmentSearchRequest - Search retained assessments created in [from,to), at most 366 days. identifier matches the submitted value of each returned assessment directly. The legacy email filter keeps its account-wide mailbox semantics and cannot be combined with identifier. Other filters combine using AND and describe assessment decisions, separate from current account decisions. Results use newest-created order with an assessment-ID tie break and are live, not a snapshot across pages. Requires history or investigate authority; identifier, identifier_expression and email filtering also require identifier-read permission. Detailed response mode additionally requires detailed permission. No Idempotency-Key. identifier_expression requires scope assessment and matches the complete expression within each returned submission; account scope returns 400 invalid_request. At most 8 raw terms and 3 group levels. Mutually exclusive with identifier and email. */
 class AssessmentSearchRequest
 {
     /**
@@ -71,7 +71,7 @@ class AssessmentSearchRequest
     public Recommendation|string|null $recommendation = null;
 
     /**
-     * Opaque, expiring cursor bound to this environment, operation and every filter. Keep the filters unchanged.
+     * Opaque, expiring cursor bound to workspace, environment, operation and all filters, including expression scope, ordered structure and original term values. Keep grouping, operand order, matching modes and values unchanged; an omitted match is equivalent to exact. The page limit may change.
      *
      * @var ?string $cursor
      */
@@ -212,6 +212,16 @@ class AssessmentSearchRequest
     public ?IdentifierSearch $identifier = null;
 
     /**
+     * A bounded AND/OR expression over submitted identifiers. Required scope assessment means the entire expression must match one retained assessment. Scope account permits each term to match a different retained assessment of the same account and is accepted only by account search. Exactly one of term, and or or is allowed at every node. Groups contain 2 to 8 operands, with at most 3 nested group levels and 8 raw term occurrences over the entire expression. A root term is allowed. Duplicate terms with the same kind, match rule, namespace and normalized comparison are idempotent, but count toward the raw limit. Match rules default to exact and preserve the existing identifier contract. Only retained submitted identifiers can satisfy a term. Unknown fields, unsupported scopes and malformed or oversized expressions return 400 invalid_request.
+     *
+     * @var ?\NoResponse\Models\Shared\IdentifierExpression $identifierExpression
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('identifier_expression')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IdentifierExpression|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?IdentifierExpression $identifierExpression = null;
+
+    /**
      *
      * @var ?int $limit
      */
@@ -243,9 +253,10 @@ class AssessmentSearchRequest
      * @param  ?\NoResponse\Models\Shared\ListMatch  $listMatch
      * @param  ?bool  $changed
      * @param  ?\NoResponse\Models\Shared\IdentifierSearch  $identifier
+     * @param  ?\NoResponse\Models\Shared\IdentifierExpression  $identifierExpression
      * @phpstan-pure
      */
-    public function __construct(string $from, string $to, ?string $accountId = null, ?string $email = null, Flow|string|null $flow = null, Status|string|null $status = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, Decision|string|null $decision = null, ?AnswerRevision $revision = null, Band|string|null $band = null, ReasonCode|string|null $reason = null, Impact|string|null $impact = null, Lane|string|null $lane = null, ?string $country = null, ?int $asn = null, ?int $scoreMin = null, ?int $scoreMax = null, ?ListMatch $listMatch = null, ?bool $changed = null, ?IdentifierSearch $identifier = null, ?int $limit = 20)
+    public function __construct(string $from, string $to, ?string $accountId = null, ?string $email = null, Flow|string|null $flow = null, Status|string|null $status = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, Decision|string|null $decision = null, ?AnswerRevision $revision = null, Band|string|null $band = null, ReasonCode|string|null $reason = null, Impact|string|null $impact = null, Lane|string|null $lane = null, ?string $country = null, ?int $asn = null, ?int $scoreMin = null, ?int $scoreMax = null, ?ListMatch $listMatch = null, ?bool $changed = null, ?IdentifierSearch $identifier = null, ?IdentifierExpression $identifierExpression = null, ?int $limit = 20)
     {
         $this->from = $from;
         $this->to = $to;
@@ -269,6 +280,7 @@ class AssessmentSearchRequest
         $this->listMatch = $listMatch;
         $this->changed = $changed;
         $this->identifier = $identifier;
+        $this->identifierExpression = $identifierExpression;
         $this->limit = $limit;
     }
 }

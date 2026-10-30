@@ -63,15 +63,26 @@ class AccountDirectoryPageItem
     public ?IdentifierMatch $matchedIdentifier = null;
 
     /**
+     * Present only for identifier_expression. All satisfied unique terms, ordered by term_index, with original submitted values and retained assessment witnesses. A duplicate normalized term appears once at its first raw leaf index. The legacy single identifier filter instead returns matched_identifier.
+     *
+     * @var ?array<\NoResponse\Models\Shared\IdentifierTermMatch> $matchedIdentifiers
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('matched_identifiers')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\IdentifierTermMatch>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $matchedIdentifiers = null;
+
+    /**
      * @param  string  $accountId
      * @param  \NoResponse\Models\Shared\AssessmentRevision  $latest
      * @param  int  $assessments
      * @param  array<\NoResponse\Models\Shared\WaitingFor|string>|null  $waitingFor
      * @param  ?\NoResponse\Models\Shared\Account  $current
      * @param  ?\NoResponse\Models\Shared\IdentifierMatch  $matchedIdentifier
+     * @param  ?array<\NoResponse\Models\Shared\IdentifierTermMatch>  $matchedIdentifiers
      * @phpstan-pure
      */
-    public function __construct(string $accountId, AssessmentRevision $latest, int $assessments, ?array $waitingFor = null, ?Account $current = null, ?IdentifierMatch $matchedIdentifier = null)
+    public function __construct(string $accountId, AssessmentRevision $latest, int $assessments, ?array $waitingFor = null, ?Account $current = null, ?IdentifierMatch $matchedIdentifier = null, ?array $matchedIdentifiers = null)
     {
         $this->accountId = $accountId;
         $this->latest = $latest;
@@ -79,5 +90,6 @@ class AccountDirectoryPageItem
         $this->waitingFor = $waitingFor;
         $this->current = $current;
         $this->matchedIdentifier = $matchedIdentifier;
+        $this->matchedIdentifiers = $matchedIdentifiers;
     }
 }

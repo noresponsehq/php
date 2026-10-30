@@ -73,6 +73,16 @@ class AssessmentSearchItem
     public ?IdentifierMatch $matchedIdentifier = null;
 
     /**
+     * Present only for identifier_expression. All satisfied unique terms, ordered by term_index, with original submitted values and retained assessment witnesses. A duplicate normalized term appears once at its first raw leaf index. The legacy single identifier filter instead returns matched_identifier.
+     *
+     * @var ?array<\NoResponse\Models\Shared\IdentifierTermMatch> $matchedIdentifiers
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('matched_identifiers')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\IdentifierTermMatch>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $matchedIdentifiers = null;
+
+    /**
      * Version of the body shape.
      *
      * @var string $schemaVersion
@@ -89,9 +99,10 @@ class AssessmentSearchItem
      * @param  \NoResponse\Models\Shared\AssessmentDetail  $detail
      * @param  \NoResponse\Models\Shared\Decision|string|null  $firstDecision
      * @param  ?\NoResponse\Models\Shared\IdentifierMatch  $matchedIdentifier
+     * @param  ?array<\NoResponse\Models\Shared\IdentifierTermMatch>  $matchedIdentifiers
      * @phpstan-pure
      */
-    public function __construct(string $id, Status|string $status, Flow|string $flow, Depth|string $depth, AssessmentDetail $detail, Decision|string|null $firstDecision = null, ?IdentifierMatch $matchedIdentifier = null, string $schemaVersion = '1')
+    public function __construct(string $id, Status|string $status, Flow|string $flow, Depth|string $depth, AssessmentDetail $detail, Decision|string|null $firstDecision = null, ?IdentifierMatch $matchedIdentifier = null, ?array $matchedIdentifiers = null, string $schemaVersion = '1')
     {
         $this->id = $id;
         $this->status = $status;
@@ -100,6 +111,7 @@ class AssessmentSearchItem
         $this->detail = $detail;
         $this->firstDecision = $firstDecision;
         $this->matchedIdentifier = $matchedIdentifier;
+        $this->matchedIdentifiers = $matchedIdentifiers;
         $this->schemaVersion = $schemaVersion;
     }
 }
