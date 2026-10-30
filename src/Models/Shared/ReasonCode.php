@@ -50,6 +50,14 @@ enum ReasonCode: string
     case YoungEmailDomain = 'young_email_domain';
     case EmailDomainNoMx = 'email_domain_no_mx';
     case EmailDomainNonexistent = 'email_domain_nonexistent';
+    case GoogleAccountMissing = 'google_account_missing';
+    case GoogleEmptyAccount = 'google_empty_account';
+    case GoogleActiveProfile = 'google_active_profile';
+    case GoogleAgedAccount = 'google_aged_account';
+    case GoogleNameMatch = 'google_name_match';
+    case GoogleNameMismatch = 'google_name_mismatch';
+    case GoogleCountryMatch = 'google_country_match';
+    case GoogleCountryMismatch = 'google_country_mismatch';
     case ForumSanctioned = 'forum_sanctioned';
     case PriorPaymentAbuse = 'prior_payment_abuse';
     case IpHistoryMatch = 'ip_history_match';

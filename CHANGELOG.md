@@ -1,5 +1,33 @@
 # Changelog
 
+## 9.5.5
+
+* `sdk->assessments->create()`:  `response.account->risk->reasons[]->code` **Changed**
+* `sdk->assessments->get()`:  `response.account->risk->reasons[]->code` **Changed**
+* `sdk->assessments->query()`:  `response.items[]->risk->reasons[]->code` **Changed**
+* `sdk->assessments->aggregate()`: 
+  *  `request->reason` **Changed**
+  *  `response.buckets[]->groups[]->reason` **Changed**
+* `sdk->assessments->search()`: 
+  *  `request->reason` **Changed**
+  *  `response.items[]->detail->risk->reasons[]->code` **Changed**
+* `sdk->assessments->retrieveVersion()`:  `response.detail->risk->reasons[]->code` **Changed**
+* `sdk->accounts->listChanged()`:  `response.items[]->risk->reasons[]->code` **Changed**
+* `sdk->accounts->get()`:  `response.risk->reasons[]->code` **Changed**
+* `sdk->accounts->listAssessments()`:  `response.items[]->risk->reasons[]->code` **Changed**
+* `sdk->accounts->retrieveDecision()`:  `response.account->risk->reasons[]->code` **Changed**
+* `sdk->accounts->export()`:  `response.assessments[]->detail->risk->reasons[]->code` **Changed**
+* `sdk->accounts->listDecisions()`:  `response.items[]->account->risk->reasons[]->code` **Changed**
+* `sdk->accounts->search()`:  `response.items[]->latest->detail->risk->reasons[]->code` **Changed**
+* `sdk->settings->get()`:  `response.refusedSources[]->enum(google)` **Added**
+* `sdk->settings->update()`: 
+  *  `request.body->refusedSources[]->enum(google)` **Added**
+  *  `response.refusedSources[]->enum(google)` **Added**
+* `sdk->settings->listHistory()`:  `response.items[]->settings->refusedSources[]->enum(google)` **Added**
+* `sdk->settings->restore()`:  `response.refusedSources[]->enum(google)` **Added**
+* `sdk->requests->list()`:  `response.items[]->decision->account->risk->reasons[]->code` **Changed**
+* `sdk->evaluations->publish()`:  `response.refusedSources[]->enum(google)` **Added**
+
 ## 9.5.4
 
 * `sdk->assessments->create()`:  `response.detail->risk->details->accounts` **Added**
