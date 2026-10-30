@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.5.2
+
+* `sdk->accounts->listLinked()`: **Added**
+
 ## 9.5.1
 
 * `sdk->assessments->create()`:  `error.code` **Changed**

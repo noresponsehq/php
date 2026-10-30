@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 81fa3a270133340a25ced0adc4e0af17
+  docChecksum: c78cff4c22595ccaf1be0825a9bf87d6
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 9.5.1
-  configChecksum: 7e6c806b3e736becf4d965a08836583f
+  releaseVersion: 9.5.2
+  configChecksum: 638c132bf04a6e1cf4837f40887a5856
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -260,6 +260,10 @@ trackedFiles:
     last_write_checksum: sha1:6b70e32bb716c6ee344ff6bf9775d6fad6e33cac
   docs/Models/Operations/ListKeysResponse.md:
     last_write_checksum: sha1:2fe20c2d01d632be0e29de458d58688803286a12
+  docs/Models/Operations/ListLinkedAccountsRequest.md:
+    last_write_checksum: sha1:2917b4e761748375a688b0726e099d3e0a50aaa2
+  docs/Models/Operations/ListLinkedAccountsResponse.md:
+    last_write_checksum: sha1:875e61a809147a327cb6f45cac0c27d4888196b9
   docs/Models/Operations/ListListEntriesRequest.md:
     last_write_checksum: sha1:654413d25aa521385935f91fed9bbf7958c0b657
   docs/Models/Operations/ListListEntriesResponse.md:
@@ -425,21 +429,21 @@ trackedFiles:
   docs/Models/Shared/Account.md:
     last_write_checksum: sha1:cfc80acf29b2949093f37ff65ff77c6365062f79
   docs/Models/Shared/AccountBinding.md:
-    last_write_checksum: sha1:b667bfecd605c9b78cef6113e1330ab29091043a
+    last_write_checksum: sha1:08f2143fce13eb99685385b9a373da1f4f28b7a5
   docs/Models/Shared/AccountBindingActor.md:
     last_write_checksum: sha1:1bba9a64a28d623ae474c5157af67ce9983b92bb
   docs/Models/Shared/AccountBindingRequest.md:
-    last_write_checksum: sha1:b799648f10999782cb4b4c7ab14b19c832a4172b
+    last_write_checksum: sha1:d253b002c240615607882e9adc3d234ee13457d4
   docs/Models/Shared/AccountDecision.md:
     last_write_checksum: sha1:0bd853001e5424ad26f803382448068289677684
   docs/Models/Shared/AccountDecisionList.md:
-    last_write_checksum: sha1:0f840b65775f7539fec260466b5a920914971e12
+    last_write_checksum: sha1:31b2fafc70402a144e45bfe2d78f3547d3b84e0c
   docs/Models/Shared/AccountDecisionSnapshot.md:
     last_write_checksum: sha1:5d57f33ea2fd83c59289fc16756805a9d09461b3
   docs/Models/Shared/AccountDecisionsByFlow.md:
     last_write_checksum: sha1:0076e9dc6568ce8979e1b1e15b8a35e04ea88c2b
   docs/Models/Shared/AccountDeleted.md:
-    last_write_checksum: sha1:685cb941cd9a7d5c83c4d0595608b537542dda12
+    last_write_checksum: sha1:c36e8cc99523a7496123b283fe1d66d69997a393
   docs/Models/Shared/AccountDeletedEvent.md:
     last_write_checksum: sha1:d634ec02351c3666c2ffa61750f892b77eed77e1
   docs/Models/Shared/AccountDeletion.md:
@@ -447,23 +451,23 @@ trackedFiles:
   docs/Models/Shared/AccountDirectoryPage.md:
     last_write_checksum: sha1:4b5ec6c812e6ff77e7ddb54d762d398cea16ef7f
   docs/Models/Shared/AccountDirectoryPageItem.md:
-    last_write_checksum: sha1:475ec3d728756eb07a311fe97074a3ece9d63a2f
+    last_write_checksum: sha1:319e5b271b44a714fb188025e809afae1f05a8e3
   docs/Models/Shared/AccountDirectorySearchRequest.md:
-    last_write_checksum: sha1:e19a631324ea531611eea17da6ad7018daea0eff
+    last_write_checksum: sha1:5ca95b8e8a4c29b58cbc8ba5e7584ea3ef555c73
   docs/Models/Shared/AccountEnforcementList.md:
-    last_write_checksum: sha1:4a8f153bff276bd9e8bfd1ed788b3b5fe16de76a
+    last_write_checksum: sha1:71c8c7f1c8e8f170f4c2cae6b148540aaa1c5580
   docs/Models/Shared/AccountExport.md:
-    last_write_checksum: sha1:922d5200a5de79dbbb0676618d6f35a233af6be1
+    last_write_checksum: sha1:fed5d9d9c322ea66f37e1b2dff664b47070656e3
   docs/Models/Shared/AccountList.md:
     last_write_checksum: sha1:7e4aa1377d54278178807d094706a154b9f37337
   docs/Models/Shared/AccountOutcome.md:
-    last_write_checksum: sha1:98af997c995b1335e6d5325e02ee0d6bc129d185
+    last_write_checksum: sha1:245b14b0badf14a983e6a3a5b228b991787faac0
   docs/Models/Shared/AccountOutcomeActor.md:
     last_write_checksum: sha1:99be58a9c96ab569ed8d5e5ea20b50072eb09071
   docs/Models/Shared/AccountOutcomeActorType.md:
     last_write_checksum: sha1:18154d644e1642f5391a23e9902be5fe3dbadf9d
   docs/Models/Shared/AccountOutcomePage.md:
-    last_write_checksum: sha1:38d18002eabea644e2fb7e82c29036c5e9334f25
+    last_write_checksum: sha1:bcf2e068cc69eb4ce54c9385d5c8606ba46b83e3
   docs/Models/Shared/AccountOutcomeRequest.md:
     last_write_checksum: sha1:6904f4b0ad94d1fe10ff4a1ac980452d29fa376f
   docs/Models/Shared/AccountRisk.md:
@@ -519,23 +523,23 @@ trackedFiles:
   docs/Models/Shared/AssessmentDeletionAccount.md:
     last_write_checksum: sha1:ce2da11781850cab5adf0d0fef159eb992627aad
   docs/Models/Shared/AssessmentDetail.md:
-    last_write_checksum: sha1:2f49b447ddcbc63510c34026453f7a01691c92c3
+    last_write_checksum: sha1:b7665136da20e54d7fad11a488dbcdfcc9b40530
   docs/Models/Shared/AssessmentDetailAuthContext.md:
     last_write_checksum: sha1:0d2fb39a9d6d08d778029b9cb57dbea4d36aa2b0
   docs/Models/Shared/AssessmentDetailTiming.md:
     last_write_checksum: sha1:a0b0c2d56d0d71e581dc18554b4820f2d6cf27ea
   docs/Models/Shared/AssessmentExpired.md:
-    last_write_checksum: sha1:6eca9aab56acbddbf5d26636a5faa57650eb892c
+    last_write_checksum: sha1:a3a0c5d4ac79bc0c2f79f5986da3ab616d265f56
   docs/Models/Shared/AssessmentList.md:
-    last_write_checksum: sha1:7b05e535567e04c6c1eaef9757612121f11ec7f5
+    last_write_checksum: sha1:7e29de34eaaa3d1ce90efe793553ed2b60f63536
   docs/Models/Shared/AssessmentOutcome.md:
     last_write_checksum: sha1:99628149b5c20adb784cb5885484c3c4dcc059ff
   docs/Models/Shared/AssessmentOutcomeRequest.md:
     last_write_checksum: sha1:576e8b7924d71fcd9c17bb2583f0e831f3acdefb
   docs/Models/Shared/AssessmentQuery.md:
-    last_write_checksum: sha1:2ff0c5fd7806e7a262e205b4ac2d334fe9efb856
+    last_write_checksum: sha1:287cfce72d29518893c4348f9c64f3d17e90d5df
   docs/Models/Shared/AssessmentRequest.md:
-    last_write_checksum: sha1:0c12b3f448f38d50ccedb6b0b537b2ad425a5ed7
+    last_write_checksum: sha1:a031fa04e871dd9d79cea68984357cff4c0d6ae5
   docs/Models/Shared/AssessmentRequestClientContext.md:
     last_write_checksum: sha1:e07c326e89f4c86134658f2406ac866776a9514a
   docs/Models/Shared/AssessmentRequestIdentifiers.md:
@@ -551,7 +555,7 @@ trackedFiles:
   docs/Models/Shared/AssessmentSearchPage.md:
     last_write_checksum: sha1:f7eb451983523a6ff1f8d3090e86b87ad5e5f99b
   docs/Models/Shared/AssessmentSearchRequest.md:
-    last_write_checksum: sha1:12d6d19c8b46fd284c411f65cd4db02dd2a06d76
+    last_write_checksum: sha1:ccad4d310569ec8a3eb5f6883091b006b2e41172
   docs/Models/Shared/AssessmentUpdatedData.md:
     last_write_checksum: sha1:7656ca0f6f5c5a0d69e5fc31dda74b4ad8364871
   docs/Models/Shared/AssessmentUpdatedEvent.md:
@@ -625,13 +629,13 @@ trackedFiles:
   docs/Models/Shared/Coverage.md:
     last_write_checksum: sha1:09e90d2098907b114a9ebd35ad1e38c03233ca89
   docs/Models/Shared/CredentialAssociation.md:
-    last_write_checksum: sha1:e4a5ef9927e6b131396ed1208d8bee951f810da7
+    last_write_checksum: sha1:c59f0568b74720b0bc8db0d70b71ede63f9ed361
   docs/Models/Shared/CredentialAssociationActor.md:
     last_write_checksum: sha1:b08f27b6895c4ead745b206358505d824a9a3dd6
   docs/Models/Shared/CredentialAssociationRetiredBy.md:
     last_write_checksum: sha1:395467fa2adffc3fb8369a58ad1333fc47f89b67
   docs/Models/Shared/CredentialPage.md:
-    last_write_checksum: sha1:d84233ebbec4005621bcba3af4cddc8a6fe26203
+    last_write_checksum: sha1:bdb9e4f2b40aabf86c2ec786012fa516a1c36659
   docs/Models/Shared/CredentialRequest.md:
     last_write_checksum: sha1:8b638b588685e5d0bc6f25fc9743aca7ffe150f7
   docs/Models/Shared/CustomerExport.md:
@@ -643,7 +647,7 @@ trackedFiles:
   docs/Models/Shared/CustomerExportList.md:
     last_write_checksum: sha1:32deb18fc62144c636a2fd21c5c2edcadc2d8c8b
   docs/Models/Shared/CustomerExportRequest.md:
-    last_write_checksum: sha1:8d45682a26fd037b944ee63f1cb54e9a648bd296
+    last_write_checksum: sha1:c6abf64bb1207ea2f331f876130a4f7e463b8989
   docs/Models/Shared/CustomerExportRequestFilter.md:
     last_write_checksum: sha1:08f43f1ac6fc695e721d449505705d45cc422ae0
   docs/Models/Shared/CustomerExportRequestFilterOutcome.md:
@@ -748,6 +752,8 @@ trackedFiles:
     last_write_checksum: sha1:571a6280a1a9f519755b1b5bc79ec8318b650120
   docs/Models/Shared/IdentifierSearchKind.md:
     last_write_checksum: sha1:0de44aa789a813fb62cb8463a718e03bfbe35161
+  docs/Models/Shared/IdentifierSubmission.md:
+    last_write_checksum: sha1:8f91839b237639ecb412c5540bcec3e2159534f0
   docs/Models/Shared/IdentifierTermMatch.md:
     last_write_checksum: sha1:c738e31b43901cbb06b8851f5f57b899e9054f02
   docs/Models/Shared/Impact.md:
@@ -822,6 +828,10 @@ trackedFiles:
     last_write_checksum: sha1:2f1872ae92c04bfdf71bb0681bb2bd349878e063
   docs/Models/Shared/LineType.md:
     last_write_checksum: sha1:abb7cf26f74bc39565501a2b86a06905a190c375
+  docs/Models/Shared/LinkedAccount.md:
+    last_write_checksum: sha1:882fae29cbc6487e1be9c064a5328730bf775bf2
+  docs/Models/Shared/LinkedAccountPage.md:
+    last_write_checksum: sha1:e0edb73c9a6a469e25e0ea63f62fc6e1429d90b9
   docs/Models/Shared/ListBulkRequest.md:
     last_write_checksum: sha1:f846e8708558e4ca9763a814dde948c7fdd1eff5
   docs/Models/Shared/ListChange.md:
@@ -985,7 +995,7 @@ trackedFiles:
   docs/Models/Shared/ResultStatus.md:
     last_write_checksum: sha1:04f8d3f56605611b1ff9739cc45002f90922f926
   docs/Models/Shared/Review.md:
-    last_write_checksum: sha1:c1eb31bfdca3f7a7756951ca5db850fe097e8121
+    last_write_checksum: sha1:6caf7894da85dd5371e48f564ead3e978b614677
   docs/Models/Shared/ReviewComment.md:
     last_write_checksum: sha1:54a084785f1faed3365d919daaaf3840f1d339a7
   docs/Models/Shared/ReviewCommentList.md:
@@ -993,7 +1003,7 @@ trackedFiles:
   docs/Models/Shared/ReviewCommentRequest.md:
     last_write_checksum: sha1:49ab1b9ee41f36272a5971fd10944e3e8a50ab54
   docs/Models/Shared/ReviewCreateRequest.md:
-    last_write_checksum: sha1:fe1e5a8590d5bc744fb2d93848de6e15a6356a42
+    last_write_checksum: sha1:402692c77f91a9c539e28a459c0fa93fd9c0e861
   docs/Models/Shared/ReviewList.md:
     last_write_checksum: sha1:b2b85e67dbe54f4e3faa8780830cfc11ff928fc0
   docs/Models/Shared/ReviewResolutionList.md:
@@ -1070,6 +1080,8 @@ trackedFiles:
     last_write_checksum: sha1:4803e725f608efe2cbbaeba40efe11711572135c
   docs/Models/Shared/SettingsRequestFlows.md:
     last_write_checksum: sha1:b9a40e1739101e3582abd5176918b675fb37d464
+  docs/Models/Shared/SharedIdentifier.md:
+    last_write_checksum: sha1:84657cd005206afff233b9b0337a655adeced003
   docs/Models/Shared/Signal.md:
     last_write_checksum: sha1:f8948a3710b301b3ec00ab95bc25fcaa45854f4c
   docs/Models/Shared/SignalOutcome.md:
@@ -1161,7 +1173,7 @@ trackedFiles:
   docs/Models/Shared/WorkspaceOperationsSummaryRequest.md:
     last_write_checksum: sha1:e5764ee1880e8da429e7f44257f89400e9c4a31f
   docs/sdks/accounts/README.md:
-    last_write_checksum: sha1:cd82a41be7be1914b0feda5b2efb8d973317a4d6
+    last_write_checksum: sha1:7bbf6d71a0015f1ed16febc439a096035d0f41ba
   docs/sdks/assessments/README.md:
     last_write_checksum: sha1:af9e946d00f1a51727c82eecc0a7f9500383ed29
   docs/sdks/audit/README.md:
@@ -1205,7 +1217,7 @@ trackedFiles:
   rector.php:
     last_write_checksum: sha1:7864a4ae8ebfea6329d1a0eb047c070bf01a2ada
   src/Accounts.php:
-    last_write_checksum: sha1:69d68c70e16ddaee87e302ad317fd1eeba9d2a8a
+    last_write_checksum: sha1:2609dffc87dafe0d234ce6c32058c48a5c1f1b26
   src/Assessments.php:
     last_write_checksum: sha1:165a9478daebd43357ff8eeedf2610b7c7b355de
   src/Audit.php:
@@ -1500,6 +1512,10 @@ trackedFiles:
     last_write_checksum: sha1:f8a5b51e535e937dbd946c522727d674bae0af35
   src/Models/Operations/ListKeysResponse.php:
     last_write_checksum: sha1:9ec197a9f53148f55cacab35403cc94a42ad522b
+  src/Models/Operations/ListLinkedAccountsRequest.php:
+    last_write_checksum: sha1:dffe33835646cc3e6eb76e0a351a72ac74d12c68
+  src/Models/Operations/ListLinkedAccountsResponse.php:
+    last_write_checksum: sha1:68f9f7a856d6626daf929416f05313945af65818
   src/Models/Operations/ListListEntriesRequest.php:
     last_write_checksum: sha1:ff987d6eab848379a71b54d62804a9110a24537b
   src/Models/Operations/ListListEntriesResponse.php:
@@ -1665,21 +1681,21 @@ trackedFiles:
   src/Models/Shared/Account.php:
     last_write_checksum: sha1:149f0ba8978a9fd457475909e7cf17b80675939d
   src/Models/Shared/AccountBinding.php:
-    last_write_checksum: sha1:24ddbec565aaaed0e70ff345998c88464247a719
+    last_write_checksum: sha1:6940a936c40bf15df606801b46be6820b996c4d8
   src/Models/Shared/AccountBindingActor.php:
     last_write_checksum: sha1:180582c5e688b9671a06f6c845e952b072fdf61c
   src/Models/Shared/AccountBindingRequest.php:
-    last_write_checksum: sha1:a63a7f947a35b374fc637d8555841869b0dac9b8
+    last_write_checksum: sha1:e07fca988fe531a6157f6f49305b9625fcfa1e6d
   src/Models/Shared/AccountDecision.php:
     last_write_checksum: sha1:133aca556021f56c99a659790ca11b5d68981f77
   src/Models/Shared/AccountDecisionList.php:
-    last_write_checksum: sha1:c39af3854a60e42760dadc59a6f8d548d3faa471
+    last_write_checksum: sha1:d38bf3a9cb43905e1d374c4ded0c4b71ff02dcee
   src/Models/Shared/AccountDecisionSnapshot.php:
     last_write_checksum: sha1:a314b2f9e0c81fe36e5ea44599f947d3db340e55
   src/Models/Shared/AccountDecisionsByFlow.php:
     last_write_checksum: sha1:6b56c87203c2819d35751ba148bff75678e9e094
   src/Models/Shared/AccountDeleted.php:
-    last_write_checksum: sha1:56e82bf58de351f11a26674a7a2136b6d2a80811
+    last_write_checksum: sha1:f9b9820a1408bb26f0e269419d54cf39379d90ba
   src/Models/Shared/AccountDeletedEvent.php:
     last_write_checksum: sha1:5ca80116a43b04eebfe22118aa2276fe130fa458
   src/Models/Shared/AccountDeletion.php:
@@ -1687,23 +1703,23 @@ trackedFiles:
   src/Models/Shared/AccountDirectoryPage.php:
     last_write_checksum: sha1:891af6cfb0b5774a8d2b3cfda1d52efc603f68f2
   src/Models/Shared/AccountDirectoryPageItem.php:
-    last_write_checksum: sha1:f80ef306cbda060880ba6a34a9f083b1603e3708
+    last_write_checksum: sha1:a5f5dcd612ce829c319f29fe5fd16db81892360a
   src/Models/Shared/AccountDirectorySearchRequest.php:
-    last_write_checksum: sha1:d578d598e83ece913df1c95b7635e8c9429c0f5d
+    last_write_checksum: sha1:180fbaa37d751387713b4cda4d44c6b674890a3a
   src/Models/Shared/AccountEnforcementList.php:
-    last_write_checksum: sha1:a11430bf09c61a2ac065649f5a12fc4ffd5b14b2
+    last_write_checksum: sha1:c3e49fdc60b471b913df4249b452acc8bed7ee8c
   src/Models/Shared/AccountExport.php:
-    last_write_checksum: sha1:a81d58be24067b662af75b68a718be40541ad821
+    last_write_checksum: sha1:a6243d308696e20b2cf041fb070acecfb86e3186
   src/Models/Shared/AccountList.php:
     last_write_checksum: sha1:85ab12d2ea84ae36d38630fe1dbdac178c608d2c
   src/Models/Shared/AccountOutcome.php:
-    last_write_checksum: sha1:a343e64453d2a38ffb1a7de95b395621b42bc297
+    last_write_checksum: sha1:3abab18b7e681a267987346bab695900f252c701
   src/Models/Shared/AccountOutcomeActor.php:
     last_write_checksum: sha1:c632617fc4e406358c97919e465c12803dbefbff
   src/Models/Shared/AccountOutcomeActorType.php:
     last_write_checksum: sha1:1d736fca5b5d08396b2ba9ea5244e0036cf5e205
   src/Models/Shared/AccountOutcomePage.php:
-    last_write_checksum: sha1:4cb5ada428b441c8d8a3c15716ca9625904a5e3f
+    last_write_checksum: sha1:583a405d386ef37e270aec7f7810abf50f5b0675
   src/Models/Shared/AccountOutcomeRequest.php:
     last_write_checksum: sha1:1de6906d0299f5582a904b4b3a7b497098d3390c
   src/Models/Shared/AccountRisk.php:
@@ -1755,23 +1771,23 @@ trackedFiles:
   src/Models/Shared/AssessmentDeletionAccount.php:
     last_write_checksum: sha1:98ae65e6c4f6a1584c917cac83a43e1e06ffe87a
   src/Models/Shared/AssessmentDetail.php:
-    last_write_checksum: sha1:df2aba923364814597ef162addb7bcd5760fbf8f
+    last_write_checksum: sha1:1ce16d33a21200f3aa18a1a6c349289982f676a6
   src/Models/Shared/AssessmentDetailAuthContext.php:
     last_write_checksum: sha1:527efb64a2bcc08ca3446bd96e21eb0f7f9cf88d
   src/Models/Shared/AssessmentDetailTiming.php:
     last_write_checksum: sha1:3146d01ca0034fe089d692c0dfb8551605197227
   src/Models/Shared/AssessmentExpired.php:
-    last_write_checksum: sha1:a56585f8d27dd09558881cb816b86ef0dc65157e
+    last_write_checksum: sha1:33bcf3c1476a92aa6dcd774754bd28ce3aa57479
   src/Models/Shared/AssessmentList.php:
-    last_write_checksum: sha1:dfc41a568feeedc809c04f839e2b8fc70f6bbb7a
+    last_write_checksum: sha1:e4490e55f37d711ed40d7c07ad2958d309cf1347
   src/Models/Shared/AssessmentOutcome.php:
     last_write_checksum: sha1:b747f55b74fb4c2a62a9c678be5f053669788a9e
   src/Models/Shared/AssessmentOutcomeRequest.php:
     last_write_checksum: sha1:e9a0a5d6f0ca7d4344c248dd176a0e6205699523
   src/Models/Shared/AssessmentQuery.php:
-    last_write_checksum: sha1:77b0ca292e232795b9ea943ff6e738d4c8310410
+    last_write_checksum: sha1:599aa792103feed7e724d689dd212173ef384791
   src/Models/Shared/AssessmentRequest.php:
-    last_write_checksum: sha1:88d1fc6f9d827b4996e2f4515252865671a63625
+    last_write_checksum: sha1:49ec454727640ad61316814c6ee3cb997d80a355
   src/Models/Shared/AssessmentRequestClientContext.php:
     last_write_checksum: sha1:421cb971fbb766149557fb34c1bf4859487e1cc2
   src/Models/Shared/AssessmentRequestIdentifiers.php:
@@ -1787,7 +1803,7 @@ trackedFiles:
   src/Models/Shared/AssessmentSearchPage.php:
     last_write_checksum: sha1:a2f8a41135fa8094d8945df37425cd956219889d
   src/Models/Shared/AssessmentSearchRequest.php:
-    last_write_checksum: sha1:3d93da675eb43620e70444f4c0d9ad0f0a1d5709
+    last_write_checksum: sha1:96ed4bf2c5397dd808845d3712b47a82ab5509b4
   src/Models/Shared/AssessmentUpdatedEvent.php:
     last_write_checksum: sha1:7acff4c56d371aed2929ab1fc9afa9e22bf0e81f
   src/Models/Shared/AssuranceLevel.php:
@@ -1859,13 +1875,13 @@ trackedFiles:
   src/Models/Shared/Coverage.php:
     last_write_checksum: sha1:2485a70683c7c5ad3d922022564e78daed4d974f
   src/Models/Shared/CredentialAssociation.php:
-    last_write_checksum: sha1:358baf02253fb042e0f4a6e7ed9f417bd29edc02
+    last_write_checksum: sha1:df2c7f203b19eca79d306424932d60a7edc5bd62
   src/Models/Shared/CredentialAssociationActor.php:
     last_write_checksum: sha1:7c0d77dff7612558eec730a77d50e074f98007f6
   src/Models/Shared/CredentialAssociationRetiredBy.php:
     last_write_checksum: sha1:b062ed4152fb6070ec3c431f2602ec6977ad302b
   src/Models/Shared/CredentialPage.php:
-    last_write_checksum: sha1:4920ce868b7798cf6601da641980cfcd73aba7cc
+    last_write_checksum: sha1:97ba45b54cfcfb7670401e5238acd0ac5b45c2b1
   src/Models/Shared/CredentialRequest.php:
     last_write_checksum: sha1:910134f0ef29ffb007507029ea4665c5a91fb5bc
   src/Models/Shared/CustomerExport.php:
@@ -1877,7 +1893,7 @@ trackedFiles:
   src/Models/Shared/CustomerExportList.php:
     last_write_checksum: sha1:4a2ba63ec8494279ccef49e3cd9e376c10c00857
   src/Models/Shared/CustomerExportRequest.php:
-    last_write_checksum: sha1:5236794441c96954d91cfa5efa5b37c99dd13330
+    last_write_checksum: sha1:337cb32889b9ce5c9a3d77eacce8052228672d2e
   src/Models/Shared/CustomerExportRequestFilter.php:
     last_write_checksum: sha1:ad13d4ac9e9825e0592cc7e0d557f1b8d39d3927
   src/Models/Shared/CustomerExportRequestFilterOutcome.php:
@@ -1980,6 +1996,8 @@ trackedFiles:
     last_write_checksum: sha1:828854fa6a953c4ab23f0a82517dc256c11621a0
   src/Models/Shared/IdentifierSearchKind.php:
     last_write_checksum: sha1:f9fb0d0c6b75141e9209a6d2d0da57a5c9add1dc
+  src/Models/Shared/IdentifierSubmission.php:
+    last_write_checksum: sha1:b1f64ffd39e121efe00d34a40ed024e9265681df
   src/Models/Shared/IdentifierTermMatch.php:
     last_write_checksum: sha1:fd88e22df689abf67783ebc9c757530111bd88b4
   src/Models/Shared/Impact.php:
@@ -2054,6 +2072,10 @@ trackedFiles:
     last_write_checksum: sha1:5ae7e12f250049fd3894cc24f0419eea3064129c
   src/Models/Shared/LineType.php:
     last_write_checksum: sha1:f5720b44fcb5bfb4db7d5c5bdfcd0c8e7db36207
+  src/Models/Shared/LinkedAccount.php:
+    last_write_checksum: sha1:75edac11996a542fd45b5164ba1c6f5ce1580eaa
+  src/Models/Shared/LinkedAccountPage.php:
+    last_write_checksum: sha1:6ab71354c5e03116981786654c0dedef8f31d769
   src/Models/Shared/ListBulkRequest.php:
     last_write_checksum: sha1:432f1a5584fb649816223317d69520c41b4e43e4
   src/Models/Shared/ListChange.php:
@@ -2213,7 +2235,7 @@ trackedFiles:
   src/Models/Shared/ResultStatus.php:
     last_write_checksum: sha1:69f32af5f95cfd8451eacca44d3e99524908bd85
   src/Models/Shared/Review.php:
-    last_write_checksum: sha1:0002f46e199c135bcdce547c75e8df019142108a
+    last_write_checksum: sha1:30d6683ea21f313321dd88cd651687e9a3c347d2
   src/Models/Shared/ReviewComment.php:
     last_write_checksum: sha1:47f190bfd9433c97275ec27668a5fdeb3fa61eff
   src/Models/Shared/ReviewCommentList.php:
@@ -2221,7 +2243,7 @@ trackedFiles:
   src/Models/Shared/ReviewCommentRequest.php:
     last_write_checksum: sha1:b5fbe2f135e6c011ca25ad90aef013c0fa38e441
   src/Models/Shared/ReviewCreateRequest.php:
-    last_write_checksum: sha1:9a00c2712e4aed0df230981f68242f080a51a565
+    last_write_checksum: sha1:ebf44233e28ed79da68ab9f2d617a150853248e7
   src/Models/Shared/ReviewList.php:
     last_write_checksum: sha1:60946e93704cce242944c537c8f888b2c9e89fde
   src/Models/Shared/ReviewResolutionList.php:
@@ -2298,6 +2320,8 @@ trackedFiles:
     last_write_checksum: sha1:2600e418eea7dacc6870f3cc05876b7a14e90c5c
   src/Models/Shared/SettingsRequestFlows.php:
     last_write_checksum: sha1:53ad6b52402d7b1146e723e97fba08b0caf67afe
+  src/Models/Shared/SharedIdentifier.php:
+    last_write_checksum: sha1:ecf2e4b16fa0d3e5b5eb1ce758f436511b7d29f7
   src/Models/Shared/Signal.php:
     last_write_checksum: sha1:5dbed88f8f4899ab337080187064ddfb03948850
   src/Models/Shared/SignalOutcome.php:
@@ -2751,7 +2775,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:2a1dc0183fd1aced3a2f4b8dc19d5cfbbbdecfab
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:3f18b958d6e6699ab5e142e638a77ff893401e58
+    last_write_checksum: sha1:b6955bb603ed757127b2a30e4ed980d779fafe88
   src/Settings.php:
     last_write_checksum: sha1:b86ae82f44239f3c44ffd0cbc8d00e5a56f651a8
   src/Usage.php:
@@ -3214,6 +3238,28 @@ examples:
       responses:
         "200":
           application/json: {"schema_version": "1", "account_id": "acct_7f3a9c", "items": [{"schema_version": "1", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-14-0001", "status": "complete", "recommendation": "step_up", "confidence": "medium", "signals": [{"type": "account_presence", "identifier": "email", "outcome": "found", "source_id": "github", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKN", "observed_at": "2026-10-14T09:00:00.210Z", "last_checked_at": "2026-10-14T09:00:00.210Z", "freshness": "fresh"}, {"type": "account_presence", "identifier": "username", "outcome": "not_found", "source_id": "gitlab", "last_checked_at": "2026-10-14T09:00:00.190Z", "freshness": "fresh"}, {"type": "breach_exposure", "identifier": "email", "outcome": "found", "source_id": "breach.corpus", "evidence_ref": "evr_01JA2Z8K6Q4V7W9XBCDEFGHJKP", "observed_at": "2025-03-02T00:00:00Z", "last_checked_at": "2026-10-14T09:00:00.150Z", "freshness": "stale"}], "incomplete_sources": [], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-14T09:00:00.000Z", "updated_at": "2026-10-14T09:00:00.412Z", "expires_at": "2027-10-14T09:00:00.000Z", "timing": {"deadline_ms": 300, "elapsed_ms": 287}}, {"schema_version": "1", "assessment_id": "asm_01JA2Z9Y3R5T6V7W8X9ZABCDEF", "account_id": "acct_7f3a9c", "request_id": "req-2026-10-01-0007", "status": "complete", "recommendation": "allow", "confidence": "high", "signals": [{"type": "account_presence", "identifier": "username", "outcome": "not_found", "source_id": "gitlab", "last_checked_at": "2026-10-14T09:00:00.190Z", "freshness": "fresh"}], "incomplete_sources": [], "policy_version": "heuristic-2026-10.1", "policy_basis": "heuristic_unvalidated", "assessment_version": 2, "created_at": "2026-10-01T12:00:00Z", "updated_at": "2026-10-01T12:00:05Z", "expires_at": "2027-10-01T12:00:00.000Z", "timing": {"deadline_ms": 300, "elapsed_ms": 287}}], "next_cursor": "eyJiIjoiY2hrXzAxIn0", "retention_days": 365}
+  listLinkedAccounts:
+    noresponse-default-list-linked-accounts:
+      parameters:
+        path:
+          account_id: "acct_7f3a9c"
+        query:
+          limit: 25
+      responses:
+        "200":
+          application/json: {"schema_version": "1", "account_id": "acct_7f3a9c", "items": [{"account_id": "acct_91b2d4", "shared_identifiers": [{"kind": "email", "match_basis": "mailbox", "provenance": "submitted", "account": {"value": "jane.doe@gmail.com", "assessment_id": "asm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "submitted_at": "2026-10-14T09:00:00.412Z"}, "linked_account": {"value": "janedoe+2@gmail.com", "assessment_id": "asm_01JA3B1C2D3E4F5G6H7J8K9M0N", "submitted_at": "2026-10-20T17:42:10.006Z"}}]}], "total": 1, "total_capped": false}
+        "400":
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 400, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "invalid_idempotency_key", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+        "401":
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 401, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "unauthorized", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+        "403":
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 403, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "role_forbidden", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+        "404":
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 404, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "not_found", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+        "409":
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 409, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "too_many_integrations", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
+        "429":
+          application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 429, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "rate_limited", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
   recordEnforcement:
     failed:
       parameters:

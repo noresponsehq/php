@@ -10,6 +10,7 @@ Your accounts, each with one current risk, and their assessment history.
 * [get](#get) - Read an account's one current risk.
 * [delete](#delete) - Erase an account and its history.
 * [listAssessments](#listassessments) - Page through one account's unexpired assessments.
+* [listLinked](#listlinked) - List accounts that share a submitted identifier with this account.
 * [recordEnforcement](#recordenforcement) - Record what you did to an account in your identity provider.
 * [listEnforcements](#listenforcements) - Page through account enforcements
 * [recordOutcome](#recordoutcome) - Record or correct an account outcome
@@ -306,6 +307,65 @@ foreach ($responses as $response) {
 ### Response
 
 **[?Operations\ListAccountAssessmentsResponse](../../Models/Operations/ListAccountAssessmentsResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## listLinked
+
+Lists the other accounts in this environment whose retained assessments submitted an email, phone or customer-namespace username that one of this account's retained assessments also submitted. Matching uses the identifier search rules: exact, canonical and, for email, mailbox. Each linked account names one entry per shared kind, at the strictest basis that links the two accounts, with the original value, assessment_id and submitted_at of each account's newest retained submission of it. Only customer-submitted identifiers link accounts; source-discovered identifiers do not. Expired, deleted and erased assessments link nothing. The account itself is not listed, and an account with no retained submissions answers 200 with empty items. A shared identifier is not verified ownership. Totals are exact below 10000 and capped at 10000. The cursor is opaque, expiring and bound to your workspace, environment and the account; a tampered or expired cursor answers 400 invalid_cursor. Requires the history scope, or investigate with evidence. Read-only and safe to retry.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="listLinkedAccounts" method="get" path="/v1/accounts/{account_id}/linked_accounts" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+
+
+$responses = $sdk->accounts->listLinked(
+    accountId: 'acct_7f3a9c',
+    limit: 25
+
+);
+
+
+foreach ($responses as $response) {
+    $result = $response->result;
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                          | Type                                                                                                                                                                                                               | Required                                                                                                                                                                                                           | Description                                                                                                                                                                                                        | Example                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `accountId`                                                                                                                                                                                                        | *string*                                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                                 | The account_id the workspace sends with its assessments, as one path segment (percent-encode '\|' and ':' if the client requires it). A value that does not match the account_id shape answers 400 invalid_request. | acct_7f3a9c                                                                                                                                                                                                        |
+| `limit`                                                                                                                                                                                                            | *?int*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                 | Linked accounts per page.                                                                                                                                                                                          |                                                                                                                                                                                                                    |
+| `cursor`                                                                                                                                                                                                           | *?string*                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                 | next_cursor from the previous page, unchanged.                                                                                                                                                                     |                                                                                                                                                                                                                    |
+
+### Response
+
+**[?Operations\ListLinkedAccountsResponse](../../Models/Operations/ListLinkedAccountsResponse.md)**
 
 ### Errors
 
