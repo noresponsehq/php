@@ -39,7 +39,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::AccountCreation,
+    flow: Shared\Flow::Login,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -123,7 +123,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::AccountCreation,
+    flow: Shared\Flow::Login,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -248,7 +248,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::AccountCreation,
+    flow: Shared\Flow::Login,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',
@@ -410,7 +410,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\AssessmentRequest(
     accountId: 'acct_7f3a9c',
-    flow: Shared\Flow::AccountCreation,
+    flow: Shared\Flow::Login,
     identifiers: new Shared\AssessmentRequestIdentifiers(
         email: 'new.user@example.com',
         username: 'new.user',

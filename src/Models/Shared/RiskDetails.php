@@ -49,17 +49,29 @@ class RiskDetails
     public ?array $events = null;
 
     /**
+     * Every online-account search of the email or username: the platform, what the search came to and, for an account found, what the platform returned beside it. Found first, then not found, then searches that failed or are still running, each by platform name; at most 64. A failed or running search keeps its own outcome and is not reported as not_found.
+     *
+     * @var ?array<\NoResponse\Models\Shared\OnlineAccount> $accounts
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('accounts')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\OnlineAccount>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $accounts = null;
+
+    /**
      * @param  ?array<\NoResponse\Models\Shared\RiskDetailsPhoneName>  $phoneNames
      * @param  ?array<\NoResponse\Models\Shared\Breach>  $breaches
      * @param  ?array<\NoResponse\Models\Shared\RiskDetailsBreachName>  $breachNames
      * @param  ?array<\NoResponse\Models\Shared\RiskDetailsEvent>  $events
+     * @param  ?array<\NoResponse\Models\Shared\OnlineAccount>  $accounts
      * @phpstan-pure
      */
-    public function __construct(?array $phoneNames = null, ?array $breaches = null, ?array $breachNames = null, ?array $events = null)
+    public function __construct(?array $phoneNames = null, ?array $breaches = null, ?array $breachNames = null, ?array $events = null, ?array $accounts = null)
     {
         $this->phoneNames = $phoneNames;
         $this->breaches = $breaches;
         $this->breachNames = $breachNames;
         $this->events = $events;
+        $this->accounts = $accounts;
     }
 }
