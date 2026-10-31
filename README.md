@@ -272,6 +272,8 @@ http_response_code(204);
 
 ### Late results
 
+Deliveries can overlap. Give `$withAccountLock` a lock on the account that all your workers share. Store the result's risk version inside it. Without the lock, an old decision can undo a newer one. [Overlapping deliveries](https://docs.noresponse.org/guides/late-results#overlapping-deliveries) says what the lock must do.
+
 `account.risk_changed` only wakes your handler. `LateResults::handleRiskChange` verifies the delivery, reads the account's current risk with `accounts->get` (the event's own decision, and an event older than what you already enforced, change nothing), asks your `getAccountState` callable where the account is in your flow, and acts on the decision of that state's flow:
 
 | State | Flow | Decision | Actions |

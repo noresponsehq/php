@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 1c0c85bf53622f6b8a9297531d187973
+  docChecksum: efa481662dc68444660371b2d91f39d8
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 10.0.0
-  configChecksum: 34246e4f0eb3c66845e335e217b588cb
+  releaseVersion: 10.0.1
+  configChecksum: f404e76994849f19094f4c14388d2276
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -1195,7 +1195,7 @@ trackedFiles:
   docs/sdks/evaluations/README.md:
     last_write_checksum: sha1:579c3c23d3e98157953b7b544e0804c5aee77c3f
   docs/sdks/exports/README.md:
-    last_write_checksum: sha1:ccb0f4cc6e1529714c332c09eb0a83da4c54c2ff
+    last_write_checksum: sha1:37a74050f72915c491d9805bf893e4f957d2124b
   docs/sdks/integrations/README.md:
     last_write_checksum: sha1:ef8d5910b4f8fc98b998fa0b7b26bf62fbda6099
   docs/sdks/invites/README.md:
@@ -1205,7 +1205,7 @@ trackedFiles:
   docs/sdks/keyusage/README.md:
     last_write_checksum: sha1:19c12f60ead0f4b1894e561e96f6e54cb53e03bf
   docs/sdks/lists/README.md:
-    last_write_checksum: sha1:74e67642ef9803ccb84aa483f5bb24789b20ef2e
+    last_write_checksum: sha1:1f47b38ea29836995d32767317eaa02939ef5908
   docs/sdks/members/README.md:
     last_write_checksum: sha1:53549e55945030423ee6f3655df7741261eb2d8c
   docs/sdks/requests/README.md:
@@ -1239,7 +1239,7 @@ trackedFiles:
   src/Evaluations.php:
     last_write_checksum: sha1:73b6a82ca13042c3a8055d1c1b9de77be2c39454
   src/Exports.php:
-    last_write_checksum: sha1:ef9f2c88614f16de40f389e3cd038cf1c789498f
+    last_write_checksum: sha1:b385cc2d8db707b7b7c1d23f7f845b6a413f151b
   src/Hooks/AfterErrorContext.php:
     last_write_checksum: sha1:f1bfa05a3faedf129d634b9b23fdd301357cb306
   src/Hooks/AfterErrorHook.php:
@@ -1279,7 +1279,7 @@ trackedFiles:
   src/Keys.php:
     last_write_checksum: sha1:4179b74537d93b4973206775d2551b85f83ab4e7
   src/Lists.php:
-    last_write_checksum: sha1:5b3abd2b272d75e65cce00a58c3eef71b7234582
+    last_write_checksum: sha1:4f0524fa75ebc06079456b6c53c9397552d130f1
   src/Members.php:
     last_write_checksum: sha1:a0acb1955d09fbff4d9b67b2c60df0c75519e91d
   src/Models/Errors/APIStatusException.php:
@@ -2799,7 +2799,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:4afbf716fbdab1871a2593f16eaaeada50f95f38
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:e63f672bcb09e4935341602aa17c7ccbea8efe99
+    last_write_checksum: sha1:883a289bd2fb7bf50c5cdeef42455c4489d27e1f
   src/Settings.php:
     last_write_checksum: sha1:b86ae82f44239f3c44ffd0cbc8d00e5a56f651a8
   src/Usage.php:

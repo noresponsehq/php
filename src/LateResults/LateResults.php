@@ -64,6 +64,7 @@ final class LateResults
      * @param  array<string, string>  $secrets
      * @param  callable(Account): ?AccountStateAnswer  $getAccountState  The account's state in your flow; null for an account you do not hold.
      * @param  array<string, array{reinstate?: bool}>  $flows  Per flow: reinstate lifts a restriction once the decision is allow again (off by default).
+     * @param  (callable(string, callable(): EnforcementResult): mixed)|null  $withAccountLock  Serializes enforcement of one account across your workers. Hold an exclusive lock on the account id, call the callable, store the result's riskVersion and any state change, then release the lock. An exception must propagate. Inside the lock the handler reads the account's risk and your state again, so a stale event or listed account cannot undo a newer decision. Without it, overlapping calls can act on an old decision after a newer one.
      */
     public static function handleRiskChange(
         NoResponseClient $client,
@@ -75,27 +76,25 @@ final class LateResults
         array $flows = [],
         int $toleranceSeconds = Webhook::DEFAULT_TOLERANCE_SECONDS,
         ?int $now = null,
+        ?callable $withAccountLock = null,
     ): EnforcementResult {
         $event = Webhook::constructEvent($payload, $headers, $secrets, $toleranceSeconds, $now);
         if (! $event instanceof AccountRiskChangedEvent || $event->test === true) {
             return new EnforcementResult(event: $event, skipped: 'not_actionable');
         }
-        try {
-            $account = $client->accounts->get($event->data->account->id)->result;
-        } catch (NotFoundException) {
-            return new EnforcementResult(event: $event, skipped: 'account_gone');
-        }
-        $result = self::enforceAccount($client, $account, $provider, $getAccountState, $flows);
+        $result = self::underAccountLock($client, $event->data->account->id, $provider, $getAccountState, $flows, $withAccountLock);
 
         return new EnforcementResult($event, $result->account, $result->state, $result->riskVersion, $result->skipped, $result->enforcements);
     }
 
     /**
-     * Enforce one account as read: the account a handler fetched, or one from
-     * accounts->listChanged(unenforced: true) when catching up.
+     * Enforce one account: the account a handler fetched, or one from
+     * accounts->listChanged(unenforced: true) when catching up. With $withAccountLock
+     * the account is read again inside the lock; without it the account is enforced as given.
      *
      * @param  callable(Account): ?AccountStateAnswer  $getAccountState
      * @param  array<string, array{reinstate?: bool}>  $flows
+     * @param  (callable(string, callable(): EnforcementResult): mixed)|null  $withAccountLock  As for handleRiskChange.
      */
     public static function enforceAccount(
         NoResponseClient $client,
@@ -103,6 +102,58 @@ final class LateResults
         ActionProvider $provider,
         callable $getAccountState,
         array $flows = [],
+        ?callable $withAccountLock = null,
+    ): EnforcementResult {
+        return $withAccountLock !== null
+            ? self::underAccountLock($client, $account->id, $provider, $getAccountState, $flows, $withAccountLock)
+            : self::enforceAsRead($client, $account, $provider, $getAccountState, $flows);
+    }
+
+    /**
+     * Read the account's current risk and enforce it, inside $withAccountLock when you gave one.
+     *
+     * @param  callable(Account): ?AccountStateAnswer  $getAccountState
+     * @param  array<string, array{reinstate?: bool}>  $flows
+     * @param  (callable(string, callable(): EnforcementResult): mixed)|null  $withAccountLock
+     */
+    private static function underAccountLock(
+        NoResponseClient $client,
+        string $accountId,
+        ActionProvider $provider,
+        callable $getAccountState,
+        array $flows,
+        ?callable $withAccountLock,
+    ): EnforcementResult {
+        $enforce = function () use ($client, $accountId, $provider, $getAccountState, $flows): EnforcementResult {
+            try {
+                $account = $client->accounts->get($accountId)->result;
+            } catch (NotFoundException) {
+                return new EnforcementResult(skipped: 'account_gone');
+            }
+
+            return self::enforceAsRead($client, $account, $provider, $getAccountState, $flows);
+        };
+        if ($withAccountLock === null) {
+            return $enforce();
+        }
+        $result = null;
+        $withAccountLock($accountId, function () use ($enforce, &$result): EnforcementResult {
+            return $result = $enforce();
+        });
+
+        return $result ?? throw new \RuntimeException('withAccountLock returned without running enforce');
+    }
+
+    /**
+     * @param  callable(Account): ?AccountStateAnswer  $getAccountState
+     * @param  array<string, array{reinstate?: bool}>  $flows
+     */
+    private static function enforceAsRead(
+        NoResponseClient $client,
+        Account $account,
+        ActionProvider $provider,
+        callable $getAccountState,
+        array $flows,
     ): EnforcementResult {
         $answer = $getAccountState($account);
         if ($answer === null) {

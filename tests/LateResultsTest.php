@@ -231,4 +231,75 @@ final class LateResultsTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         LateResults::identityProvider($name, $token);
     }
+
+    /** @return array{int, array<string, mixed>, object} */
+    private static function vectorNamed(string $name): array
+    {
+        foreach (self::vectors()['cases'] as $index => $case) {
+            if ($case['name'] === $name) {
+                return [$index, $case, self::vectorObjects()->cases[$index]];
+            }
+        }
+        throw new \LogicException($name);
+    }
+
+    public function test_with_account_lock_covers_the_read_the_provider_change_and_the_record(): void
+    {
+        $v = self::vectors();
+        [, $vector, $objects] = self::vectorNamed('workos_restricted_allow_reinstates_when_opted_in');
+        [$http, $done] = $this->transcript($objects->exchanges);
+        $provider = LateResults::identityProvider($vector['provider'], $v['provider_token'], http: $http);
+        [$raw, $headers] = self::sign($objects->event);
+        $stateReads = 0;
+        $seen = [];
+        $result = LateResults::handleRiskChange(
+            self::client($http), $raw, $headers, [$v['key_id'] => $v['secret_utf8']], $provider,
+            function (Account $account) use ($vector, &$stateReads): AccountStateAnswer {
+                $stateReads++;
+
+                return new AccountStateAnswer('restricted', $vector['state']['user_id']);
+            },
+            ['login' => ['reinstate' => true]], now: $v['now'],
+            withAccountLock: function (string $accountId, callable $enforce) use ($vector, &$stateReads, &$seen): void {
+                $this->assertSame($vector['event']['data']['account']['id'], $accountId);
+                $seen[] = $stateReads;
+                $seen[] = count($enforce()->enforcements);
+                $seen[] = $stateReads;
+            },
+        );
+        $done();
+        $this->assertSame([0, 1, 1], $seen);
+        $this->assertSame(['unrestrict'], array_map(fn ($e) => $e->action, $result->enforcements));
+        $this->assertSame($vector['event']['id'], $result->event->id);
+    }
+
+    public function test_under_with_account_lock_enforce_account_acts_on_the_current_risk(): void
+    {
+        $v = self::vectors();
+        [, $vector, $objects] = self::vectorNamed('restricted_account_records_none');
+        $first = json_decode(json_encode($objects->exchanges[0], JSON_THROW_ON_ERROR), false, 512, JSON_THROW_ON_ERROR);
+        $first->response->body->risk_version = 1;
+        $first->response->body->decisions_by_flow->login = 'allow';
+        [$http, $done] = $this->transcript([$first, ...$objects->exchanges]);
+        $client = self::client($http);
+        $stale = $client->accounts->get($vector['event']['data']['account']['id'])->result;
+        $provider = LateResults::identityProvider($vector['provider'], $v['provider_token'], http: $http);
+        $result = LateResults::enforceAccount(
+            $client, $stale, $provider, fn (Account $account) => new AccountStateAnswer('restricted'),
+            ['login' => ['reinstate' => true]], withAccountLock: fn (string $id, callable $enforce) => $enforce(),
+        );
+        $done();
+        $this->assertSame(['none'], array_map(fn ($e) => $e->action, $result->enforcements));
+    }
+
+    public function test_a_with_account_lock_that_does_not_run_enforce_fails(): void
+    {
+        $v = self::vectors();
+        [, $vector, $objects] = self::vectorNamed('restricted_account_records_none');
+        [$http] = $this->transcript($objects->exchanges);
+        $client = self::client($http);
+        $account = $client->accounts->get($vector['event']['data']['account']['id'])->result;
+        $this->expectExceptionMessage('without running enforce');
+        LateResults::enforceAccount($client, $account, LateResults::customProvider([]), fn (Account $a) => null, withAccountLock: fn (string $id, callable $enforce) => null);
+    }
 }
