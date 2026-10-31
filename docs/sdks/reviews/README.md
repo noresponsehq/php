@@ -22,10 +22,11 @@ Collaborative review cases, comments and linked subjects.
 * [listSubjects](#listsubjects) - List retained subjects linked to a review.
 * [addSubject](#addsubject) - Link retained tenant-local evidence to an investigation.
 * [deleteSubject](#deletesubject) - Remove a linked subject using the current review version.
+* [query](#query) - Query retained reviews without identifiers in URLs.
 
 ## list
 
-List retained investigation reviews using filters and an authenticated cursor. Optional account_id selects one exact account in this environment before pagination. All filters are bound into the cursor.
+List retained investigation reviews using filters and an authenticated cursor. Use reviews.query to filter by account_id in a JSON body. All filters are bound into the cursor.
 
 ### Example Usage
 
@@ -1003,6 +1004,69 @@ $result = $response->result;
 ### Response
 
 **[?Operations\DeleteReviewSubjectResponse](../../Models/Operations/DeleteReviewSubjectResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## query
+
+Query retained investigation reviews using a JSON body, including an exact account_id filter. All filters are bound into the cursor.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="queryReviews" method="post" path="/v1/workspaces/{workspace_id}/reviews/{environment}/query" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\ReviewQueryRequest(
+    accountId: 'acct_7f3a9c',
+    assignee: 'usr_customer_admin',
+    assigneePrincipalId: 'mem_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    cursor: 'eyJvIjoyMH0',
+);
+
+$response = $sdk->reviews->query(
+    workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    environment: Shared\KeyEnvironment::Live,
+    body: $body
+
+);
+
+$result = $response->result;
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                              | Type                                                                                                                                                                   | Required                                                                                                                                                               | Description                                                                                                                                                            | Example                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `workspaceId`                                                                                                                                                          | *string*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                     | Your workspace id, as each key lists it in workspace_id. Another workspace, a malformed id and a test environment's id answer 404.                                     | tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                                                         |
+| `environment`                                                                                                                                                          | [Shared\KeyEnvironment\|string](../../Models/Shared/KeyEnvironment.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                     | The environment: live or test. Each has its own settings. Any other value answers 400. An API key reads and changes only its own environment's; the other answers 404. |                                                                                                                                                                        |
+| `body`                                                                                                                                                                 | [Shared\ReviewQueryRequest](../../Models/Shared/ReviewQueryRequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                     | N/A                                                                                                                                                                    |                                                                                                                                                                        |
+
+### Response
+
+**[?Operations\QueryReviewsResponse](../../Models/Operations/QueryReviewsResponse.md)**
 
 ### Errors
 

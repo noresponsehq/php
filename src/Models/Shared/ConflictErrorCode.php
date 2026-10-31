@@ -32,4 +32,5 @@ enum ConflictErrorCode: string
     case EvaluationLimitReached = 'evaluation_limit_reached';
     case AlreadyMember = 'already_member';
     case MemberLimitReached = 'member_limit_reached';
+    case AggregateErasedData = 'aggregate_erased_data';
 }

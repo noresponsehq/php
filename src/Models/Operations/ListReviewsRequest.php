@@ -68,14 +68,6 @@ class ListReviewsRequest
     public ?string $assigneePrincipalId = null;
 
     /**
-     * Only reviews of this exact account in the authenticated workspace and environment. Applied before pagination and bound into the cursor.
-     *
-     * @var ?string $accountId
-     */
-    #[NoResponseMetadata('queryParam:style=form,explode=true,name=account_id')]
-    public ?string $accountId = null;
-
-    /**
      *
      * @var ?int $limit
      */
@@ -92,10 +84,9 @@ class ListReviewsRequest
      * @param  ?string  $assignee
      * @param  ?bool  $unassigned
      * @param  ?string  $assigneePrincipalId
-     * @param  ?string  $accountId
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, ?string $cursor = null, Shared\ReviewStatus|string|null $status = null, Shared\Priority|string|null $priority = null, ?string $assignee = null, ?bool $unassigned = null, ?string $assigneePrincipalId = null, ?string $accountId = null, ?int $limit = 50)
+    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, ?string $cursor = null, Shared\ReviewStatus|string|null $status = null, Shared\Priority|string|null $priority = null, ?string $assignee = null, ?bool $unassigned = null, ?string $assigneePrincipalId = null, ?int $limit = 50)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;
@@ -105,7 +96,6 @@ class ListReviewsRequest
         $this->assignee = $assignee;
         $this->unassigned = $unassigned;
         $this->assigneePrincipalId = $assigneePrincipalId;
-        $this->accountId = $accountId;
         $this->limit = $limit;
     }
 }

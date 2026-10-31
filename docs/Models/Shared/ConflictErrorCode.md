@@ -31,3 +31,4 @@ Machine codes an HTTP 409 answer can carry.
 | `EvaluationLimitReached`       | evaluation_limit_reached       |
 | `AlreadyMember`                | already_member                 |
 | `MemberLimitReached`           | member_limit_reached           |
+| `AggregateErasedData`          | aggregate_erased_data          |
