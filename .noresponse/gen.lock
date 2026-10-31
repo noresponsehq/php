@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 4318c172ac9e1e5cc4866f362dbfef78
+  docChecksum: e432b2c7dea808d52e96f8912c7c10db
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 10.0.6
-  configChecksum: 488d2bcf6332492a1c7d2140ebbfc3b6
+  releaseVersion: 10.0.7
+  configChecksum: a3f9fbf33d66e334cdd3655bb48657dc
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -457,7 +457,7 @@ trackedFiles:
   docs/Models/Shared/AccountDirectoryPageItem.md:
     last_write_checksum: sha1:319e5b271b44a714fb188025e809afae1f05a8e3
   docs/Models/Shared/AccountDirectorySearchRequest.md:
-    last_write_checksum: sha1:5ca95b8e8a4c29b58cbc8ba5e7584ea3ef555c73
+    last_write_checksum: sha1:ca3b00c01ea3232f7bb74a285b39d4f803728067
   docs/Models/Shared/AccountEnforcementList.md:
     last_write_checksum: sha1:71c8c7f1c8e8f170f4c2cae6b148540aaa1c5580
   docs/Models/Shared/AccountExport.md:
@@ -1143,7 +1143,7 @@ trackedFiles:
   docs/Models/Shared/WebhookAggregateRequest.md:
     last_write_checksum: sha1:ccc65b698a13ea0cb9ff5d596e26b24b837f49f4
   docs/Models/Shared/WebhookDeliveryAttempt.md:
-    last_write_checksum: sha1:00feec6c8012f3fbe038393ce95c4c66dadf9ea7
+    last_write_checksum: sha1:766ad21846756bbe52e02d8407ae26bc5052b8d4
   docs/Models/Shared/WebhookDeliveryAttemptStatus.md:
     last_write_checksum: sha1:66028ab2e9ae1ce5046c57e7c82db5b3648f4c9d
   docs/Models/Shared/WebhookDeliveryList.md:
@@ -1729,7 +1729,7 @@ trackedFiles:
   src/Models/Shared/AccountDirectoryPageItem.php:
     last_write_checksum: sha1:a5f5dcd612ce829c319f29fe5fd16db81892360a
   src/Models/Shared/AccountDirectorySearchRequest.php:
-    last_write_checksum: sha1:180fbaa37d751387713b4cda4d44c6b674890a3a
+    last_write_checksum: sha1:dc047be94ee868e54f5ac9ea0a0446c3b11a6857
   src/Models/Shared/AccountEnforcementList.php:
     last_write_checksum: sha1:c3e49fdc60b471b913df4249b452acc8bed7ee8c
   src/Models/Shared/AccountExport.php:
@@ -2399,7 +2399,7 @@ trackedFiles:
   src/Models/Shared/WebhookAggregateRequest.php:
     last_write_checksum: sha1:f8b6c33a0da67860d27167955cb9ca21973b916e
   src/Models/Shared/WebhookDeliveryAttempt.php:
-    last_write_checksum: sha1:a14ee9bc568bc61d73daa8664672875bbcd0e947
+    last_write_checksum: sha1:9108bd76c6759d3adf342163af5f52915e8c104c
   src/Models/Shared/WebhookDeliveryAttemptStatus.php:
     last_write_checksum: sha1:eccb1ceb6689b3a0b04a733f6420f69e0b17d9f1
   src/Models/Shared/WebhookDeliveryList.php:
@@ -2815,7 +2815,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:4afbf716fbdab1871a2593f16eaaeada50f95f38
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:9fa2e95a71d27bce58cfc75efe9bd16ccb541935
+    last_write_checksum: sha1:73c4f566803e1830537399575a79352e35b25e56
   src/Settings.php:
     last_write_checksum: sha1:b86ae82f44239f3c44ffd0cbc8d00e5a56f651a8
   src/Usage.php:
@@ -3887,7 +3887,7 @@ examples:
           limit: 20
       responses:
         "200":
-          application/json: {"endpoint_id": "whe_01JA2ZD0E1F2G3H4J5K6M7N8P9", "items": [{"event_id": "evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2", "event_type": "assessment.updated", "attempt": 1, "replay": true, "status": "delivered", "response_code": 200, "latency_ms": 184, "attempted_at": "2026-10-22T10:15:02.118Z"}, {"event_id": "evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2", "event_type": "assessment.updated", "attempt": 2, "replay": false, "status": "failed", "response_code": 500, "failure": "non_2xx", "latency_ms": 96, "attempted_at": "2026-10-22T09:00:31.402Z"}, {"event_id": "evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2", "event_type": "assessment.updated", "attempt": 1, "replay": false, "status": "failed", "failure": "timeout", "latency_ms": 5000, "attempted_at": "2026-10-22T09:00:00.951Z"}], "next_cursor": "AQAAAABpG1CXAAYqJ2gK4cQAx1dJ2Hk3Q6CjhYbJ9xU8Pz0qRkL1n3VbW2c"}
+          application/json: {"endpoint_id": "whe_01JA2ZD0E1F2G3H4J5K6M7N8P9", "items": [{"event_id": "evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2", "event_type": "assessment.updated", "assessment_id": "asm_01JA2ZD3K4M5N6P7Q8R9S0T1V3", "attempt": 1, "replay": true, "status": "delivered", "response_code": 200, "latency_ms": 184, "attempted_at": "2026-10-22T10:15:02.118Z"}, {"event_id": "evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2", "event_type": "assessment.updated", "attempt": 2, "replay": false, "status": "failed", "response_code": 500, "failure": "non_2xx", "latency_ms": 96, "attempted_at": "2026-10-22T09:00:31.402Z"}, {"event_id": "evt_01JA2ZD3K4M5N6P7Q8R9S0T1V2", "event_type": "assessment.updated", "attempt": 1, "replay": false, "status": "failed", "failure": "timeout", "latency_ms": 5000, "attempted_at": "2026-10-22T09:00:00.951Z"}], "next_cursor": "AQAAAABpG1CXAAYqJ2gK4cQAx1dJ2Hk3Q6CjhYbJ9xU8Pz0qRkL1n3VbW2c"}
   replayWebhookDelivery:
     empty:
       parameters:

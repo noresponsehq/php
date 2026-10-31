@@ -65,6 +65,24 @@ class WebhookDeliveryAttempt
     public string $attemptedAt;
 
     /**
+     * The assessment an assessment.updated event reported, while that assessment is held. Absent on every other event, on a test event and on a notice that the assessment was erased or expired.
+     *
+     * @var ?string $assessmentId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('assessment_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $assessmentId = null;
+
+    /**
+     * The account an account.risk_changed event reported. Absent on every other event.
+     *
+     * @var ?string $accountId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('account_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $accountId = null;
+
+    /**
      * The HTTP status the endpoint answered. Absent when no response was read.
      *
      * @var ?int $responseCode
@@ -91,11 +109,13 @@ class WebhookDeliveryAttempt
      * @param  \NoResponse\Models\Shared\WebhookDeliveryAttemptStatus|string  $status
      * @param  int  $latencyMs
      * @param  string  $attemptedAt
+     * @param  ?string  $assessmentId
+     * @param  ?string  $accountId
      * @param  ?int  $responseCode
      * @param  \NoResponse\Models\Shared\Failure|string|null  $failure
      * @phpstan-pure
      */
-    public function __construct(string $eventId, string $eventType, int $attempt, bool $replay, WebhookDeliveryAttemptStatus|string $status, int $latencyMs, string $attemptedAt, ?int $responseCode = null, Failure|string|null $failure = null)
+    public function __construct(string $eventId, string $eventType, int $attempt, bool $replay, WebhookDeliveryAttemptStatus|string $status, int $latencyMs, string $attemptedAt, ?string $assessmentId = null, ?string $accountId = null, ?int $responseCode = null, Failure|string|null $failure = null)
     {
         $this->eventId = $eventId;
         $this->eventType = $eventType;
@@ -104,6 +124,8 @@ class WebhookDeliveryAttempt
         $this->status = $status;
         $this->latencyMs = $latencyMs;
         $this->attemptedAt = $attemptedAt;
+        $this->assessmentId = $assessmentId;
+        $this->accountId = $accountId;
         $this->responseCode = $responseCode;
         $this->failure = $failure;
     }

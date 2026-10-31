@@ -27,6 +27,15 @@ class AccountDirectorySearchRequest
     public ?string $email = null;
 
     /**
+     * Every account that one of its retained admitted assessments sent an email of this domain or its subdomains, matched as lists match an email_domain entry and with the same identifier-read permission as email. A value that is not a registrable domain is refused with 400. Mutually exclusive with email, identifier and identifier_expression.
+     *
+     * @var ?string $emailDomain
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('email_domain')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $emailDomain = null;
+
+    /**
      * Opaque, expiring cursor bound to workspace, environment, operation and all filters, including expression scope, ordered structure and original term values. Keep grouping, operand order, matching modes and values unchanged; an omitted match is equivalent to exact. The page limit may change.
      *
      * @var ?string $cursor
@@ -76,16 +85,18 @@ class AccountDirectorySearchRequest
      * @param  ?bool  $needsAction
      * @param  ?string  $accountId
      * @param  ?string  $email
+     * @param  ?string  $emailDomain
      * @param  ?int  $limit
      * @param  ?string  $cursor
      * @param  ?\NoResponse\Models\Shared\IdentifierSearch  $identifier
      * @param  ?\NoResponse\Models\Shared\IdentifierExpression  $identifierExpression
      * @phpstan-pure
      */
-    public function __construct(?string $accountId = null, ?string $email = null, ?string $cursor = null, ?IdentifierSearch $identifier = null, ?IdentifierExpression $identifierExpression = null, ?bool $needsAction = false, ?int $limit = 25)
+    public function __construct(?string $accountId = null, ?string $email = null, ?string $emailDomain = null, ?string $cursor = null, ?IdentifierSearch $identifier = null, ?IdentifierExpression $identifierExpression = null, ?bool $needsAction = false, ?int $limit = 25)
     {
         $this->accountId = $accountId;
         $this->email = $email;
+        $this->emailDomain = $emailDomain;
         $this->cursor = $cursor;
         $this->identifier = $identifier;
         $this->identifierExpression = $identifierExpression;

@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.0.7
+
+* `sdk->accounts->search()`: 
+  *  `request->emailDomain` **Added**
+* `sdk->webhookendpoints->listDeliveries()`:  `response.items[]` **Changed**
+
 ## 10.0.6
 
 * `sdk->assessments->create()`:  `error.code->enum(ownerInvitePending)` **Added**
