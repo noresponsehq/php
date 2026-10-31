@@ -67,4 +67,6 @@ enum ReasonCode: string
     case NationalityMismatch = 'nationality_mismatch';
     case MinorIdentity = 'minor_identity';
     case ReportedAccountAbuse = 'reported_account_abuse';
+    case BreachCityMatch = 'breach_city_match';
+    case BreachCityMismatch = 'breach_city_mismatch';
 }
