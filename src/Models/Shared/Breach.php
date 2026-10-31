@@ -80,6 +80,16 @@ class Breach
     public ?array $exposed = null;
 
     /**
+     * What this table's rows record against the matched email or username: the tables behind the forum_sanctioned and prior_payment_abuse reasons. Absent when the rows record none, for a table matched on an IP address, and from an answer stored before it was recorded.
+     *
+     * @var array<\NoResponse\Models\Shared\BreachConduct|string>|null $conduct
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('conduct')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\BreachConduct|string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $conduct = null;
+
+    /**
      * @param  string  $name
      * @param  \NoResponse\Models\Shared\BreachKind|string  $kind
      * @param  \NoResponse\Models\Shared\BreachSelector|string  $matchedOn
@@ -88,9 +98,10 @@ class Breach
      * @param  ?int  $year
      * @param  ?int  $month
      * @param  array<\NoResponse\Models\Shared\BreachExposed|string>|null  $exposed
+     * @param  array<\NoResponse\Models\Shared\BreachConduct|string>|null  $conduct
      * @phpstan-pure
      */
-    public function __construct(string $name, BreachKind|string $kind, BreachSelector|string $matchedOn, ?string $domain = null, ?string $category = null, ?int $year = null, ?int $month = null, ?array $exposed = null)
+    public function __construct(string $name, BreachKind|string $kind, BreachSelector|string $matchedOn, ?string $domain = null, ?string $category = null, ?int $year = null, ?int $month = null, ?array $exposed = null, ?array $conduct = null)
     {
         $this->name = $name;
         $this->kind = $kind;
@@ -100,5 +111,6 @@ class Breach
         $this->year = $year;
         $this->month = $month;
         $this->exposed = $exposed;
+        $this->conduct = $conduct;
     }
 }

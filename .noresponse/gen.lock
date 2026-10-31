@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 54d1acbb500238af426d95e3e5b654c0
+  docChecksum: 14cd5efdc869a93d469f9cdeec2db439
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 10.0.2
-  configChecksum: 4e0856de6d52d48eb58ac0968fc4b9bf
+  releaseVersion: 10.0.3
+  configChecksum: c0fe10d5643aaf0be0ef75b8114a18b2
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -607,7 +607,9 @@ trackedFiles:
   docs/Models/Shared/Band.md:
     last_write_checksum: sha1:5cbe99d879a3175b9859e940812c28684fa21a6e
   docs/Models/Shared/Breach.md:
-    last_write_checksum: sha1:2afc38773fed57b094aaca8f9837113d717c319f
+    last_write_checksum: sha1:e6438e398c4f319ed03d081c9095a75e998a0b38
+  docs/Models/Shared/BreachConduct.md:
+    last_write_checksum: sha1:635331503bced12968004ff1671db5a290582c03
   docs/Models/Shared/BreachExposed.md:
     last_write_checksum: sha1:e9fa7e43e374e44512dacfe80064b03b41ad86d7
   docs/Models/Shared/BreachKind.md:
@@ -1869,7 +1871,9 @@ trackedFiles:
   src/Models/Shared/Band.php:
     last_write_checksum: sha1:5db9e3b0bb06b1b0455c427ca66c8abf9da58707
   src/Models/Shared/Breach.php:
-    last_write_checksum: sha1:ea9d27f5bd59b02c9350e217d611276a4302b0d4
+    last_write_checksum: sha1:8c83dcd2732f373cb6e117d68fba3e717349f9e9
+  src/Models/Shared/BreachConduct.php:
+    last_write_checksum: sha1:d858959d1a24e2cd54fa5e4b4b8d975cb3af928b
   src/Models/Shared/BreachExposed.php:
     last_write_checksum: sha1:53c4236f4aff6bc2b1ceb01350717e03da7b091b
   src/Models/Shared/BreachKind.php:
@@ -2807,7 +2811,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:4afbf716fbdab1871a2593f16eaaeada50f95f38
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:3d6c3237b45ec6f75953dc7f23652a1a433e6fff
+    last_write_checksum: sha1:98531c46219a5121a395263812f05ae486702487
   src/Settings.php:
     last_write_checksum: sha1:b86ae82f44239f3c44ffd0cbc8d00e5a56f651a8
   src/Usage.php:
