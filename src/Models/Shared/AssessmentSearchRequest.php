@@ -61,6 +61,16 @@ class AssessmentSearchRequest
     public Status|string|null $status = null;
 
     /**
+     * api (the default) searches the assessments your integration sent. lookup searches the assessments your team ran by hand on the console's Lookup page. The API sets an assessment's origin from the credential that sent it. A lookup is not in any other list, count, webhook event or account.
+     *
+     * @var ?\NoResponse\Models\Shared\Origin $origin
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('origin')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Origin|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?Origin $origin = null;
+
+    /**
      * The recommended action: allow, step_up or review. Your application applies it.
      *
      * @var \NoResponse\Models\Shared\Recommendation|string|null $recommendation
@@ -236,6 +246,7 @@ class AssessmentSearchRequest
      * @param  ?string  $email
      * @param  \NoResponse\Models\Shared\Flow|string|null  $flow
      * @param  \NoResponse\Models\Shared\Status|string|null  $status
+     * @param  ?\NoResponse\Models\Shared\Origin  $origin
      * @param  \NoResponse\Models\Shared\Recommendation|string|null  $recommendation
      * @param  ?int  $limit
      * @param  ?string  $cursor
@@ -256,7 +267,7 @@ class AssessmentSearchRequest
      * @param  ?\NoResponse\Models\Shared\IdentifierExpression  $identifierExpression
      * @phpstan-pure
      */
-    public function __construct(string $from, string $to, ?string $accountId = null, ?string $email = null, Flow|string|null $flow = null, Status|string|null $status = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, Decision|string|null $decision = null, ?AnswerRevision $revision = null, Band|string|null $band = null, ReasonCode|string|null $reason = null, Impact|string|null $impact = null, Lane|string|null $lane = null, ?string $country = null, ?int $asn = null, ?int $scoreMin = null, ?int $scoreMax = null, ?ListMatch $listMatch = null, ?bool $changed = null, ?IdentifierSearch $identifier = null, ?IdentifierExpression $identifierExpression = null, ?int $limit = 20)
+    public function __construct(string $from, string $to, ?string $accountId = null, ?string $email = null, Flow|string|null $flow = null, Status|string|null $status = null, ?Origin $origin = null, Recommendation|string|null $recommendation = null, ?string $cursor = null, ResponseMode|string|null $responseMode = null, Decision|string|null $decision = null, ?AnswerRevision $revision = null, Band|string|null $band = null, ReasonCode|string|null $reason = null, Impact|string|null $impact = null, Lane|string|null $lane = null, ?string $country = null, ?int $asn = null, ?int $scoreMin = null, ?int $scoreMax = null, ?ListMatch $listMatch = null, ?bool $changed = null, ?IdentifierSearch $identifier = null, ?IdentifierExpression $identifierExpression = null, ?int $limit = 20)
     {
         $this->from = $from;
         $this->to = $to;
@@ -264,6 +275,7 @@ class AssessmentSearchRequest
         $this->email = $email;
         $this->flow = $flow;
         $this->status = $status;
+        $this->origin = $origin;
         $this->recommendation = $recommendation;
         $this->cursor = $cursor;
         $this->responseMode = $responseMode;
