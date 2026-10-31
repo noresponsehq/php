@@ -77,7 +77,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: false,
+        verified: true,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -161,7 +161,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: false,
+        verified: true,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -286,7 +286,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: false,
+        verified: true,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',
@@ -448,7 +448,7 @@ $body = new Shared\AssessmentRequest(
         sessionCreatedAt: '2026-10-14T08:57:00.000Z',
         authTime: '2026-10-14T08:55:00.000Z',
         accountCreatedAt: '2026-10-14T08:56:00.000Z',
-        verified: false,
+        verified: true,
         mfa: new Shared\AuthContextMfa(
             methods: [
                 'totp',

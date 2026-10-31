@@ -86,6 +86,24 @@ class Risk
     public ?int $blockThreshold = null;
 
     /**
+     * The score at which this answer's flow starts to recommend step_up. Absent from an answer stored before it was recorded.
+     *
+     * @var ?int $stepUpThreshold
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('step_up_threshold')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $stepUpThreshold = null;
+
+    /**
+     * The score at which this answer's flow starts to recommend review. An answer nothing answered recommends review below it, with confidence unavailable. Absent from an answer stored before it was recorded.
+     *
+     * @var ?int $reviewThreshold
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('review_threshold')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $reviewThreshold = null;
+
+    /**
      * A few typed facts per identifier. Every fact is optional: absent means the evidence did not answer and makes no claim, while false or 0 is a definite answer. Lanes that do not exist yet leave their members absent.
      *
      * @var ?\NoResponse\Models\Shared\RiskSummary $summary
@@ -124,11 +142,13 @@ class Risk
      * @param  \NoResponse\Models\Shared\RiskCoverage  $coverage
      * @param  ?bool  $block
      * @param  ?int  $blockThreshold
+     * @param  ?int  $stepUpThreshold
+     * @param  ?int  $reviewThreshold
      * @param  ?\NoResponse\Models\Shared\RiskSummary  $summary
      * @param  ?\NoResponse\Models\Shared\RiskDetails  $details
      * @phpstan-pure
      */
-    public function __construct(int $score, Band|string $band, Recommendation|string $recommendation, RiskConfidence|string $confidence, string $policyVersion, array $reasons, RiskCoverage $coverage, ?bool $block = null, ?int $blockThreshold = null, ?RiskSummary $summary = null, ?RiskDetails $details = null, string $policyBasis = 'heuristic_unvalidated')
+    public function __construct(int $score, Band|string $band, Recommendation|string $recommendation, RiskConfidence|string $confidence, string $policyVersion, array $reasons, RiskCoverage $coverage, ?bool $block = null, ?int $blockThreshold = null, ?int $stepUpThreshold = null, ?int $reviewThreshold = null, ?RiskSummary $summary = null, ?RiskDetails $details = null, string $policyBasis = 'heuristic_unvalidated')
     {
         $this->score = $score;
         $this->band = $band;
@@ -139,6 +159,8 @@ class Risk
         $this->coverage = $coverage;
         $this->block = $block;
         $this->blockThreshold = $blockThreshold;
+        $this->stepUpThreshold = $stepUpThreshold;
+        $this->reviewThreshold = $reviewThreshold;
         $this->summary = $summary;
         $this->details = $details;
         $this->policyBasis = $policyBasis;

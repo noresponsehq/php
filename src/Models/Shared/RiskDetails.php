@@ -59,19 +59,31 @@ class RiskDetails
     public ?array $accounts = null;
 
     /**
+     * What an identity_attribute_conflict reason weighed: each attribute the records disagree on and the sites reporting it. Absent when the reason did not fire, and on an answer stored before conflicts were recorded. No value is served.
+     *
+     * @var ?array<\NoResponse\Models\Shared\RiskDetailsAttributeConflict> $attributeConflicts
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('attribute_conflicts')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RiskDetailsAttributeConflict>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $attributeConflicts = null;
+
+    /**
      * @param  ?array<\NoResponse\Models\Shared\RiskDetailsPhoneName>  $phoneNames
      * @param  ?array<\NoResponse\Models\Shared\Breach>  $breaches
      * @param  ?array<\NoResponse\Models\Shared\RiskDetailsBreachName>  $breachNames
      * @param  ?array<\NoResponse\Models\Shared\RiskDetailsEvent>  $events
      * @param  ?array<\NoResponse\Models\Shared\OnlineAccount>  $accounts
+     * @param  ?array<\NoResponse\Models\Shared\RiskDetailsAttributeConflict>  $attributeConflicts
      * @phpstan-pure
      */
-    public function __construct(?array $phoneNames = null, ?array $breaches = null, ?array $breachNames = null, ?array $events = null, ?array $accounts = null)
+    public function __construct(?array $phoneNames = null, ?array $breaches = null, ?array $breachNames = null, ?array $events = null, ?array $accounts = null, ?array $attributeConflicts = null)
     {
         $this->phoneNames = $phoneNames;
         $this->breaches = $breaches;
         $this->breachNames = $breachNames;
         $this->events = $events;
         $this->accounts = $accounts;
+        $this->attributeConflicts = $attributeConflicts;
     }
 }
