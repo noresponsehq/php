@@ -68,3 +68,30 @@ Shared\AccountRiskChangedEvent $value = /* values here */
 Shared\AuditEventEvent $value = /* values here */
 ```
 
+### `Shared\ScreeningCompletedEvent`
+
+```php
+/**
+* @var \NoResponse\Models\Shared\ScreeningCompletedEvent
+*/
+Shared\ScreeningCompletedEvent $value = /* values here */
+```
+
+### `Shared\AttendeeFlaggedEvent`
+
+```php
+/**
+* @var \NoResponse\Models\Shared\AttendeeFlaggedEvent
+*/
+Shared\AttendeeFlaggedEvent $value = /* values here */
+```
+
+### `Shared\AttendeeDecidedEvent`
+
+```php
+/**
+* @var \NoResponse\Models\Shared\AttendeeDecidedEvent
+*/
+Shared\AttendeeDecidedEvent $value = /* values here */
+```
+

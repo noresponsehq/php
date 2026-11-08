@@ -232,7 +232,10 @@ use NoResponse\Models\Shared\AccountDeletedEvent;
 use NoResponse\Models\Shared\AccountRiskChangedEvent;
 use NoResponse\Models\Shared\AssessmentExpired;
 use NoResponse\Models\Shared\AssessmentUpdatedEvent;
+use NoResponse\Models\Shared\AttendeeDecidedEvent;
+use NoResponse\Models\Shared\AttendeeFlaggedEvent;
 use NoResponse\Models\Shared\EndpointVerificationEvent;
+use NoResponse\Models\Shared\ScreeningCompletedEvent;
 use NoResponse\Models\Shared\WebhookEndpointDisabledEvent;
 use NoResponse\Models\Shared\WorkspaceDeletedEvent;
 use NoResponse\WebhookVerification\Webhook;
@@ -259,6 +262,12 @@ if ($event instanceof AssessmentUpdatedEvent && $event->test === true) {
     // workspace.deleted: the workspace is deleted, the last event this endpoint receives
 } elseif ($event instanceof WebhookEndpointDisabledEvent) {
     // webhook_endpoint.disabled: $event->data->endpointId failed for 72 hours; fix it and verify it again
+} elseif ($event instanceof ScreeningCompletedEvent) {
+    // screening.completed: counts by band, no footprint and partial coverage; it names no attendee
+} elseif ($event instanceof AttendeeFlaggedEvent) {
+    // attendee.flagged: the attendee's highest band and match state, never what was posted
+} elseif ($event instanceof AttendeeDecidedEvent) {
+    // attendee.decided: cleared, watch or escalated; keep the latest decidedAt per attendee
 } elseif ($event instanceof AccountRiskChangedEvent) {
     // account.risk_changed, the one event to act on: a flow's decision changed, at
     // $event->data->account->riskVersion. This verifier alone does not enforce it: use LateResults::handleRiskChange (below) as this endpoint's receiver.
@@ -269,7 +278,7 @@ if ($event instanceof AssessmentUpdatedEvent && $event->test === true) {
 http_response_code(204);
 ```
 
-`constructEvent` returns one of six typed events from `NoResponse\Models\Shared`: `AssessmentUpdatedEvent` (data `Assessment` or `AssessmentExpired`), `EndpointVerificationEvent`, `AccountDeletedEvent`, `WorkspaceDeletedEvent`, `WebhookEndpointDisabledEvent` and `AccountRiskChangedEvent`. It throws `WebhookVerificationException` for a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id, a bad signature or a body that is not a known event; `$e->errorCode` is one of its constants (`MISSING_HEADER`, `DUPLICATE_HEADER`, `INVALID_TIMESTAMP`, `UNKNOWN_KEY`, `INVALID_SIGNATURE`, `INVALID_PAYLOAD`). Deliveries are at least once: deduplicate on `$event->id`. `$event->test` is true only on an `assessment.updated` event sent by `sendTestEvent`, whose data is a fixed example assessment.
+`constructEvent` returns one of ten typed events from `NoResponse\Models\Shared`: `AssessmentUpdatedEvent` (data `Assessment` or `AssessmentExpired`), `EndpointVerificationEvent`, `AccountDeletedEvent`, `WorkspaceDeletedEvent`, `WebhookEndpointDisabledEvent`, `AccountRiskChangedEvent`, `AuditEventEvent`, `ScreeningCompletedEvent`, `AttendeeFlaggedEvent` and `AttendeeDecidedEvent`. It throws `WebhookVerificationException` for a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id, a bad signature or a body that is not a known event; `$e->errorCode` is one of its constants (`MISSING_HEADER`, `DUPLICATE_HEADER`, `INVALID_TIMESTAMP`, `UNKNOWN_KEY`, `INVALID_SIGNATURE`, `INVALID_PAYLOAD`). Deliveries are at least once: deduplicate on `$event->id`. `$event->test` is true only on an `assessment.updated` event sent by `sendTestEvent`, whose data is a fixed example assessment.
 
 ### Late results
 
