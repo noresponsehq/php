@@ -34,4 +34,7 @@ enum ConflictErrorCode: string
     case MemberLimitReached = 'member_limit_reached';
     case OwnerInvitePending = 'owner_invite_pending';
     case AggregateErasedData = 'aggregate_erased_data';
+    case EventConflict = 'event_conflict';
+    case EventLimitReached = 'event_limit_reached';
+    case ScreeningUnavailable = 'screening_unavailable';
 }

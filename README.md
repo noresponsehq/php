@@ -74,6 +74,7 @@ Every method returns an envelope: `result` holds the object and `headers` the re
 | --- | --- |
 | Configure this client and explore its methods | [PHP SDK guide](https://docs.noresponse.org/sdks/php) |
 | Act when an account's decision changes | [Late results](https://docs.noresponse.org/guides/late-results) |
+| Screen an event's attendees and record decisions | [Events and screenings](https://docs.noresponse.org/reference/events) |
 | Explore request and response fields | [API reference](https://docs.noresponse.org/api-reference) |
 
 <details>
