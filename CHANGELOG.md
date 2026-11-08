@@ -1,5 +1,143 @@
 # Changelog
 
+## 10.0.11
+
+* `sdk->assessments->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->assessments->get()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->assessments->delete()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->assessments->recordOutcome()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->assessments->query()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->assessments->aggregate()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->assessments->search()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->assessments->retrieveVersion()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->assessments->bindAccount()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->listChanged()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->get()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->delete()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->listAssessments()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->listLinked()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->listEnforcements()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->recordEnforcement()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->listOutcomes()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->recordOutcome()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->retrieveDecision()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->listCredentials()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->associateCredential()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->retireCredential()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->export()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->listDecisions()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->accounts->search()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->keyusage->record()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->keys->rotate()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->keys->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->keys->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->keys->revoke()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->integrations->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->integrations->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->integrations->delete()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->integrations->rotate()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->webhookendpoints->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->webhookendpoints->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->webhookendpoints->delete()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->webhookendpoints->rotateSigningKey()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->webhookendpoints->sendTestEvent()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->webhookendpoints->listDeliveries()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->webhookendpoints->replayDelivery()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->webhookendpoints->aggregate()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->members->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->members->remove()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->members->update()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->audit->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->audit->getRetention()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->audit->updateRetention()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->audit->listStreams()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->audit->configureStream()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->audit->removeStream()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->audit->replayStream()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->usage->get()`: 
+  *  `response.items[]->metric->enum(screenings)` **Added**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->invites->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->invites->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->invites->revoke()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->invites->resend()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->settings->get()`: 
+  *  `response.screeningDailyCap` **Added**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->settings->update()`: 
+  *  `request.body->screeningDailyCap` **Added**
+  *  `response.screeningDailyCap` **Added**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->settings->listHistory()`: 
+  *  `response.items[]->settings->screeningDailyCap` **Added**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->settings->restore()`: 
+  *  `response.screeningDailyCap` **Added**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->settings->preview()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->requests->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->requests->aggregate()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->lists->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->lists->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->lists->delete()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->lists->preview()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->lists->change()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->lists->getChange()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->get()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->update()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->resolve()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->listComments()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->comment()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->listResolutions()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->listViews()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->createView()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->deleteView()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->updateView()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->export()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->listSubjects()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->addSubject()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->deleteSubject()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->reviews->query()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->erasures->get()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->exports->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->exports->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->exports->get()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->exports->cancel()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->exports->retry()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->exports->downloadChunk()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->evaluations->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->evaluations->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->evaluations->get()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->evaluations->getResult()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->evaluations->cancel()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->evaluations->publish()`: 
+  *  `response.screeningDailyCap` **Added**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->workspaceoperations->summarize()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->list()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->create()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->get()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->delete()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->update()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->listAttendees()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->addAttendees()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->getAttendee()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->reviewAttendee()`:  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->listScreenings()`: 
+  *  `response.items[]` **Changed**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->startScreening()`: 
+  *  `response` **Changed**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->getScreening()`: 
+  *  `response` **Changed**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+* `sdk->events->cancelScreening()`: 
+  *  `response` **Changed**
+  *  `error.code->enum(screeningCapExceeded)` **Added**
+
 ## 10.0.10
 
 * `sdk->events->list()`: **Added**

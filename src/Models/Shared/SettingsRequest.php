@@ -54,19 +54,30 @@ class SettingsRequest
     public ?string $changeReason = null;
 
     /**
+     * Replaces the daily screening cap, in minor units of USD; null removes the cap. Needs settings.write only, like retention_days.
+     *
+     * @var ?int $screeningDailyCap
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('screening_daily_cap')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $screeningDailyCap = null;
+
+    /**
      * @param  ?int  $retentionDays
      * @param  array<\NoResponse\Models\Shared\SourceId|string>|null  $refusedSources
      * @param  ?\NoResponse\Models\Shared\SettingsRequestFlows  $flows
      * @param  ?int  $expectedPolicyVersion
      * @param  ?string  $changeReason
+     * @param  ?int  $screeningDailyCap
      * @phpstan-pure
      */
-    public function __construct(?int $retentionDays = null, ?array $refusedSources = null, ?SettingsRequestFlows $flows = null, ?int $expectedPolicyVersion = null, ?string $changeReason = null)
+    public function __construct(?int $retentionDays = null, ?array $refusedSources = null, ?SettingsRequestFlows $flows = null, ?int $expectedPolicyVersion = null, ?string $changeReason = null, ?int $screeningDailyCap = null)
     {
         $this->retentionDays = $retentionDays;
         $this->refusedSources = $refusedSources;
         $this->flows = $flows;
         $this->expectedPolicyVersion = $expectedPolicyVersion;
         $this->changeReason = $changeReason;
+        $this->screeningDailyCap = $screeningDailyCap;
     }
 }

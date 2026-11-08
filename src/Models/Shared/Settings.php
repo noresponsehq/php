@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** Settings - One environment's settings: how long its assessments are kept, and for each flow the risk thresholds that decide it and the depth a request that names none is served at, and the sources it refuses. Live and test each have their own. A flow without thresholds of its own uses account_creation's (inherits_account_creation). Every change is recorded in the audit log as settings.updated, with who made it. */
+/** Settings - One environment's settings: how long its assessments are kept, and for each flow the risk thresholds that decide it and the depth a request that names none is served at, the sources it refuses, and the daily cap on screening spend. Live and test each have their own. A flow without thresholds of its own uses account_creation's (inherits_account_creation). Every change is recorded in the audit log as settings.updated, with who made it. */
 class Settings
 {
     /**
@@ -77,6 +77,14 @@ class Settings
     public ?string $updatedAt = null;
 
     /**
+     * The most the environment's screenings may spend in one UTC day, in minor units of USD (cents), 0 to 100000000; null is no cap. Default 50000. A screening whose estimated_spend exceeds the cap less the day's recorded spend and what open screenings may still spend answers 409 screening_cap_exceeded.
+     *
+     * @var ?int $screeningDailyCap
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('screening_daily_cap')]
+    public ?int $screeningDailyCap;
+
+    /**
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  int  $retentionDays
@@ -85,9 +93,10 @@ class Settings
      * @param  array<\NoResponse\Models\Shared\SourceId|string>  $refusedSources
      * @param  ?string  $updatedBy
      * @param  ?string  $updatedAt
+     * @param  ?int  $screeningDailyCap
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, KeyEnvironment|string $environment, int $retentionDays, int $policyVersion, SettingsFlows $flows, array $refusedSources, ?string $updatedBy = null, ?string $updatedAt = null)
+    public function __construct(string $workspaceId, KeyEnvironment|string $environment, int $retentionDays, int $policyVersion, SettingsFlows $flows, array $refusedSources, ?string $updatedBy = null, ?string $updatedAt = null, ?int $screeningDailyCap = null)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;
@@ -97,5 +106,6 @@ class Settings
         $this->refusedSources = $refusedSources;
         $this->updatedBy = $updatedBy;
         $this->updatedAt = $updatedAt;
+        $this->screeningDailyCap = $screeningDailyCap;
     }
 }

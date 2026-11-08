@@ -36,5 +36,6 @@ enum ConflictErrorCode: string
     case AggregateErasedData = 'aggregate_erased_data';
     case EventConflict = 'event_conflict';
     case EventLimitReached = 'event_limit_reached';
+    case ScreeningCapExceeded = 'screening_cap_exceeded';
     case ScreeningUnavailable = 'screening_unavailable';
 }

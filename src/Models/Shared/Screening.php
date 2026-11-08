@@ -109,6 +109,22 @@ class Screening
     public int $attendeesFailed;
 
     /**
+     * What the screening was estimated to cost when it started, in minor units of USD (cents): its attendees at its depth and platforms. Until the screening finishes, what it has not yet spent counts against the environment's screening_daily_cap.
+     *
+     * @var int $estimatedSpend
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('estimated_spend')]
+    public int $estimatedSpend;
+
+    /**
+     * What the attendees it has screened recorded, in minor units of USD. Each counts toward the UTC day it was recorded on; a failed attendee records nothing.
+     *
+     * @var int $spent
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('spent')]
+    public int $spent;
+
+    /**
      *
      * @var ?string $startedAt
      */
@@ -147,12 +163,14 @@ class Screening
      * @param  int  $attendeesDone
      * @param  int  $attendeesFlagged
      * @param  int  $attendeesFailed
+     * @param  int  $estimatedSpend
+     * @param  int  $spent
      * @param  ?string  $startedAt
      * @param  ?string  $finishedAt
      * @param  ?string  $errorCode
      * @phpstan-pure
      */
-    public function __construct(string $id, string $eventId, AuditSettingsEnvironment|string $environment, ScreeningStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $requestedBy, string $createdAt, string $expiresAt, int $attendeesTotal, int $attendeesDone, int $attendeesFlagged, int $attendeesFailed, ?string $startedAt = null, ?string $finishedAt = null, ?string $errorCode = null)
+    public function __construct(string $id, string $eventId, AuditSettingsEnvironment|string $environment, ScreeningStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $requestedBy, string $createdAt, string $expiresAt, int $attendeesTotal, int $attendeesDone, int $attendeesFlagged, int $attendeesFailed, int $estimatedSpend, int $spent, ?string $startedAt = null, ?string $finishedAt = null, ?string $errorCode = null)
     {
         $this->id = $id;
         $this->eventId = $eventId;
@@ -167,6 +185,8 @@ class Screening
         $this->attendeesDone = $attendeesDone;
         $this->attendeesFlagged = $attendeesFlagged;
         $this->attendeesFailed = $attendeesFailed;
+        $this->estimatedSpend = $estimatedSpend;
+        $this->spent = $spent;
         $this->startedAt = $startedAt;
         $this->finishedAt = $finishedAt;
         $this->errorCode = $errorCode;

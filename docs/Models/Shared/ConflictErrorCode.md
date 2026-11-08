@@ -35,4 +35,5 @@ Machine codes an HTTP 409 answer can carry.
 | `AggregateErasedData`          | aggregate_erased_data          |
 | `EventConflict`                | event_conflict                 |
 | `EventLimitReached`            | event_limit_reached            |
+| `ScreeningCapExceeded`         | screening_cap_exceeded         |
 | `ScreeningUnavailable`         | screening_unavailable          |
