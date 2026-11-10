@@ -56,6 +56,14 @@ class ListAttendeesRequest
     public ?Shared\ListAttendeesDecision $decision = null;
 
     /**
+     * Only attendees with this role; unstated for attendees whose role was not given.
+     *
+     * @var ?\NoResponse\Models\Shared\ListAttendeesRole $role
+     */
+    #[NoResponseMetadata('queryParam:style=form,explode=true,name=role')]
+    public ?Shared\ListAttendeesRole $role = null;
+
+    /**
      * At most this many attendees.
      *
      * @var ?int $limit
@@ -71,9 +79,10 @@ class ListAttendeesRequest
      * @param  ?string  $after
      * @param  ?\NoResponse\Models\Shared\ListAttendeesBand  $band
      * @param  ?\NoResponse\Models\Shared\ListAttendeesDecision  $decision
+     * @param  ?\NoResponse\Models\Shared\ListAttendeesRole  $role
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $eventId, ?string $after = null, ?Shared\ListAttendeesBand $band = null, ?Shared\ListAttendeesDecision $decision = null, ?int $limit = 100)
+    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $eventId, ?string $after = null, ?Shared\ListAttendeesBand $band = null, ?Shared\ListAttendeesDecision $decision = null, ?Shared\ListAttendeesRole $role = null, ?int $limit = 100)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;
@@ -81,6 +90,7 @@ class ListAttendeesRequest
         $this->after = $after;
         $this->band = $band;
         $this->decision = $decision;
+        $this->role = $role;
         $this->limit = $limit;
     }
 }

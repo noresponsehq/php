@@ -72,6 +72,16 @@ class AttendeeIdentity
     public ?array $handles = null;
 
     /**
+     * The attendee's role at the event: guest (a ticket holder), crew, vendor or press. Leave it out when you do not know it: an attendee without one has no role, not guest. A later row naming the same attendee replaces it, and a change of role alone keeps the attendee's screening results.
+     *
+     * @var \NoResponse\Models\Shared\AttendeeRole|string|null $role
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('role')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AttendeeRole|string|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public AttendeeRole|string|null $role = null;
+
+    /**
      * @param  string  $name
      * @param  ?string  $externalId
      * @param  ?string  $email
@@ -79,9 +89,10 @@ class AttendeeIdentity
      * @param  ?string  $company
      * @param  ?string  $city
      * @param  ?array<\NoResponse\Models\Shared\Handle>  $handles
+     * @param  \NoResponse\Models\Shared\AttendeeRole|string|null  $role
      * @phpstan-pure
      */
-    public function __construct(string $name, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null)
+    public function __construct(string $name, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, AttendeeRole|string|null $role = null)
     {
         $this->name = $name;
         $this->externalId = $externalId;
@@ -90,5 +101,6 @@ class AttendeeIdentity
         $this->company = $company;
         $this->city = $city;
         $this->handles = $handles;
+        $this->role = $role;
     }
 }

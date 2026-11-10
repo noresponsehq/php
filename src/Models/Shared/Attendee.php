@@ -127,6 +127,16 @@ class Attendee
     public ?array $handles = null;
 
     /**
+     * The attendee's role at the event: guest (a ticket holder), crew, vendor or press. Leave it out when you do not know it: an attendee without one has no role, not guest. A later row naming the same attendee replaces it, and a change of role alone keeps the attendee's screening results.
+     *
+     * @var \NoResponse\Models\Shared\AttendeeRole|string|null $role
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('role')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AttendeeRole|string|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public AttendeeRole|string|null $role = null;
+
+    /**
      * The most severe finding's band, or null when nothing was flagged.
      *
      * @var \NoResponse\Models\Shared\HighestBand|string|null $highestBand
@@ -199,6 +209,7 @@ class Attendee
      * @param  ?string  $company
      * @param  ?string  $city
      * @param  ?array<\NoResponse\Models\Shared\Handle>  $handles
+     * @param  \NoResponse\Models\Shared\AttendeeRole|string|null  $role
      * @param  \NoResponse\Models\Shared\HighestBand|string|null  $highestBand
      * @param  \NoResponse\Models\Shared\AttendeeDecision|string|null  $decision
      * @param  ?string  $decisionNote
@@ -208,7 +219,7 @@ class Attendee
      * @param  ?string  $screenedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $eventId, string $name, MatchState|string $matchState, ScreeningCoverage $coverage, string $createdAt, string $updatedAt, ScreeningSpend $spend, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, HighestBand|string|null $highestBand = null, AttendeeDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
+    public function __construct(string $id, string $eventId, string $name, MatchState|string $matchState, ScreeningCoverage $coverage, string $createdAt, string $updatedAt, ScreeningSpend $spend, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, AttendeeRole|string|null $role = null, HighestBand|string|null $highestBand = null, AttendeeDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
     {
         $this->id = $id;
         $this->eventId = $eventId;
@@ -224,6 +235,7 @@ class Attendee
         $this->company = $company;
         $this->city = $city;
         $this->handles = $handles;
+        $this->role = $role;
         $this->highestBand = $highestBand;
         $this->decision = $decision;
         $this->decisionNote = $decisionNote;

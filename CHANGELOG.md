@@ -1,5 +1,15 @@
 # Changelog
 
+## 10.0.14
+
+* `sdk->events->listAttendees()`: 
+  *  `request->role` **Added**
+  *  `response.items[]->role` **Added**
+* `sdk->events->addAttendees()`: 
+  *  `request->body->attendees[]->role` **Added**
+* `sdk->events->getAttendee()`:  `response.attendee->role` **Added**
+* `sdk->events->reviewAttendee()`:  `response.role` **Added**
+
 ## 10.0.13
 
 * `sdk->events->listAttendees()`:  `response.items[]` **Changed**
