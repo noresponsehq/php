@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.0.21
+
+* `sdk->events->listAttendees()`:  `response.items[]->noProfileToCheck` **Added**
+* `sdk->events->getAttendee()`:  `response` **Changed**
+* `sdk->events->reviewAttendee()`:  `response.noProfileToCheck` **Added**
+
 ## 10.0.20
 
 * `sdk->events->listAttendees()`:  `response.items[]->coverage->notAnalysedByReason` **Added**

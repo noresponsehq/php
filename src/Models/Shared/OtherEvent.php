@@ -47,13 +47,22 @@ class OtherEvent
     public array $matchedOn;
 
     /**
-     * How sure the latest screening is that it found the attendee's accounts. unscreened until a screening reaches the attendee.
+     * How sure the latest screening is that it found the attendee's accounts. unscreened until a screening reaches the attendee, and after one that had no profile to check (no_profile_to_check).
      *
      * @var \NoResponse\Models\Shared\MatchState|string $matchState
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('match_state')]
     #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\MatchState|string')]
     public MatchState|string $matchState;
+
+    /**
+     * true when that attendee's latest screening had no profile to check (see the attendee's no_profile_to_check). Left out otherwise.
+     *
+     * @var ?bool $noProfileToCheck
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('no_profile_to_check')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $noProfileToCheck = null;
 
     /**
      * That attendee's most severe band at that event, or null.
@@ -98,13 +107,14 @@ class OtherEvent
      * @param  string  $attendeeId
      * @param  array<\NoResponse\Models\Shared\MatchedOn|string>  $matchedOn
      * @param  \NoResponse\Models\Shared\MatchState|string  $matchState
+     * @param  ?bool  $noProfileToCheck
      * @param  \NoResponse\Models\Shared\HighestBand|string|null  $highestBand
      * @param  \NoResponse\Models\Shared\AttendeeDecision|string|null  $decision
      * @param  ?string  $decidedBy
      * @param  ?string  $decidedAt
      * @phpstan-pure
      */
-    public function __construct(string $eventId, string $eventName, string $eventStartsAt, string $attendeeId, array $matchedOn, MatchState|string $matchState, HighestBand|string|null $highestBand = null, AttendeeDecision|string|null $decision = null, ?string $decidedBy = null, ?string $decidedAt = null)
+    public function __construct(string $eventId, string $eventName, string $eventStartsAt, string $attendeeId, array $matchedOn, MatchState|string $matchState, ?bool $noProfileToCheck = null, HighestBand|string|null $highestBand = null, AttendeeDecision|string|null $decision = null, ?string $decidedBy = null, ?string $decidedAt = null)
     {
         $this->eventId = $eventId;
         $this->eventName = $eventName;
@@ -112,6 +122,7 @@ class OtherEvent
         $this->attendeeId = $attendeeId;
         $this->matchedOn = $matchedOn;
         $this->matchState = $matchState;
+        $this->noProfileToCheck = $noProfileToCheck;
         $this->highestBand = $highestBand;
         $this->decision = $decision;
         $this->decidedBy = $decidedBy;

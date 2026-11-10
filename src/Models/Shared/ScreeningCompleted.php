@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** ScreeningCompleted - A screening of an event finished. It counts only the attendees this screening set out to reach, not who they are: read the roster with GET /v1/workspaces/{workspace_id}/events/{environment}/{event_id}/attendees, filtered by band, to act on them. attendees_screened + partial_coverage = attendees_total, attendees_flagged is the sum of by_band, and no_footprint counts screened attendees with no flag whose accounts were not found. A cancelled screening sends no event. */
+/** ScreeningCompleted - A screening of an event finished. It counts only the attendees this screening set out to reach, not who they are: read the roster with GET /v1/workspaces/{workspace_id}/events/{environment}/{event_id}/attendees, filtered by band, to act on them. attendees_screened + partial_coverage = attendees_total, attendees_flagged is the sum of by_band, no_footprint counts screened attendees with no flag whose accounts were not found, and no_profile_to_check those the screening had nothing to look up for on any requested platform. A cancelled screening sends no event. */
 class ScreeningCompleted
 {
     /**
@@ -100,6 +100,15 @@ class ScreeningCompleted
     public ?string $errorCode = null;
 
     /**
+     * Screened attendees with no profile to check: the list gave nothing to look up on any requested platform, such as no handle, so nobody looked for a profile (no_profile_to_check on the attendee). Not in no_footprint, and not partial: nothing failed. Their lookups are on their reports.
+     *
+     * @var ?int $noProfileToCheck
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('no_profile_to_check')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $noProfileToCheck = null;
+
+    /**
      * @param  string  $screeningId
      * @param  string  $eventId
      * @param  \NoResponse\Models\Shared\ScreeningCompletedStatus  $status
@@ -111,9 +120,10 @@ class ScreeningCompleted
      * @param  int  $partialCoverage
      * @param  string  $finishedAt
      * @param  ?string  $errorCode
+     * @param  ?int  $noProfileToCheck
      * @phpstan-pure
      */
-    public function __construct(string $screeningId, string $eventId, ScreeningCompletedStatus $status, int $attendeesTotal, int $attendeesScreened, int $attendeesFlagged, ScreeningCompletedByBand $byBand, int $noFootprint, int $partialCoverage, string $finishedAt, ?string $errorCode = null)
+    public function __construct(string $screeningId, string $eventId, ScreeningCompletedStatus $status, int $attendeesTotal, int $attendeesScreened, int $attendeesFlagged, ScreeningCompletedByBand $byBand, int $noFootprint, int $partialCoverage, string $finishedAt, ?string $errorCode = null, ?int $noProfileToCheck = null)
     {
         $this->screeningId = $screeningId;
         $this->eventId = $eventId;
@@ -126,5 +136,6 @@ class ScreeningCompleted
         $this->partialCoverage = $partialCoverage;
         $this->finishedAt = $finishedAt;
         $this->errorCode = $errorCode;
+        $this->noProfileToCheck = $noProfileToCheck;
     }
 }

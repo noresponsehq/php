@@ -31,7 +31,7 @@ class Attendee
     public string $name;
 
     /**
-     * How sure the latest screening is that it found the attendee's accounts. unscreened until a screening reaches the attendee.
+     * How sure the latest screening is that it found the attendee's accounts. unscreened until a screening reaches the attendee, and after one that had no profile to check (no_profile_to_check).
      *
      * @var \NoResponse\Models\Shared\MatchState|string $matchState
      */
@@ -137,6 +137,15 @@ class Attendee
     public AttendeeRole|string|null $role = null;
 
     /**
+     * true when the latest screening reached the attendee but the list gave nothing to look up on any requested platform, such as no handle for a platform that reads supplied handles only: nobody looked for a profile. match_state stays unscreened, every platform is in coverage.not_searched, and the attendee is neither none_found nor failed and does not make the screening partial. Its lookups are on its report. Left out otherwise.
+     *
+     * @var ?bool $noProfileToCheck
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('no_profile_to_check')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $noProfileToCheck = null;
+
+    /**
      * The most severe finding's band, or null when nothing was flagged.
      *
      * @var \NoResponse\Models\Shared\HighestBand|string|null $highestBand
@@ -210,6 +219,7 @@ class Attendee
      * @param  ?string  $city
      * @param  ?array<\NoResponse\Models\Shared\Handle>  $handles
      * @param  \NoResponse\Models\Shared\AttendeeRole|string|null  $role
+     * @param  ?bool  $noProfileToCheck
      * @param  \NoResponse\Models\Shared\HighestBand|string|null  $highestBand
      * @param  \NoResponse\Models\Shared\AttendeeDecision|string|null  $decision
      * @param  ?string  $decisionNote
@@ -219,7 +229,7 @@ class Attendee
      * @param  ?string  $screenedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $eventId, string $name, MatchState|string $matchState, ScreeningCoverage $coverage, string $createdAt, string $updatedAt, ScreeningSpend $spend, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, AttendeeRole|string|null $role = null, HighestBand|string|null $highestBand = null, AttendeeDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
+    public function __construct(string $id, string $eventId, string $name, MatchState|string $matchState, ScreeningCoverage $coverage, string $createdAt, string $updatedAt, ScreeningSpend $spend, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, AttendeeRole|string|null $role = null, ?bool $noProfileToCheck = null, HighestBand|string|null $highestBand = null, AttendeeDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
     {
         $this->id = $id;
         $this->eventId = $eventId;
@@ -236,6 +246,7 @@ class Attendee
         $this->city = $city;
         $this->handles = $handles;
         $this->role = $role;
+        $this->noProfileToCheck = $noProfileToCheck;
         $this->highestBand = $highestBand;
         $this->decision = $decision;
         $this->decisionNote = $decisionNote;

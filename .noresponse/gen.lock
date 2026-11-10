@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 28997db33192a3f2aac59b4de12838ee
+  docChecksum: 24c75385da15ed91df6498c1882178a0
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 10.0.20
-  configChecksum: 5381f9addd00cb72987795874330b196
+  releaseVersion: 10.0.21
+  configChecksum: c2e4a65130138b8afeb35e1c7f8c92da
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -623,7 +623,7 @@ trackedFiles:
   docs/Models/Shared/AssuranceLevel.md:
     last_write_checksum: sha1:7e20555ddd7c123498de1c88fa33e126d43304da
   docs/Models/Shared/Attendee.md:
-    last_write_checksum: sha1:4c1eb0ab10a10f2f9bafb4572a43f76fb64b702f
+    last_write_checksum: sha1:63ec11060b60ad1b57572129d1b0db1e3583ab84
   docs/Models/Shared/AttendeeBatch.md:
     last_write_checksum: sha1:eeb927899efdea855fe92aeb0c925c30f8994733
   docs/Models/Shared/AttendeeBatchItem.md:
@@ -987,7 +987,7 @@ trackedFiles:
   docs/Models/Shared/LocationUnion.md:
     last_write_checksum: sha1:50aa75f8a347b2f156661ead67bbe79d762c7675
   docs/Models/Shared/MatchState.md:
-    last_write_checksum: sha1:03816f8a03959616bf0c5cb665e9f56f6c032cf8
+    last_write_checksum: sha1:d8aaf370ecb318a921a3fe8f33e61d71bea903b8
   docs/Models/Shared/MatchT.md:
     last_write_checksum: sha1:97af218f44c7d33c8c1a3dcd2dd09a5d5d67f7f3
   docs/Models/Shared/MatchedOn.md:
@@ -1011,7 +1011,7 @@ trackedFiles:
   docs/Models/Shared/MemberUpdateRequestEnvironment.md:
     last_write_checksum: sha1:2de0f56917513bf99b06bab0d4505886ef82ff62
   docs/Models/Shared/Metric.md:
-    last_write_checksum: sha1:f92690f114dfe8ada7425738001546bbc1e7598f
+    last_write_checksum: sha1:f083b61fc5677704d753415107df1830c41a0f3b
   docs/Models/Shared/NameCandidate.md:
     last_write_checksum: sha1:c44f3c0cdf13a2148a70d6174f6ad301a19af858
   docs/Models/Shared/NameCandidateUnion.md:
@@ -1035,7 +1035,7 @@ trackedFiles:
   docs/Models/Shared/Origin.md:
     last_write_checksum: sha1:9ea3aa377fef1f081d01a485604812e1f78865d7
   docs/Models/Shared/OtherEvent.md:
-    last_write_checksum: sha1:1ef21cc5b5c0f34628dcba9a62079137feac8909
+    last_write_checksum: sha1:0083eaaae8de3e2767001b9d7cb364eb809f5f03
   docs/Models/Shared/OtherEvents.md:
     last_write_checksum: sha1:40fadf9b86584726056630ae4ff37ce29d3f3266
   docs/Models/Shared/Outcome.md:
@@ -1217,11 +1217,11 @@ trackedFiles:
   docs/Models/Shared/ScreeningCancelRequest.md:
     last_write_checksum: sha1:66fda3147bd094c3b222f3c3f21ad64cb3a47c80
   docs/Models/Shared/ScreeningCompleted.md:
-    last_write_checksum: sha1:aeec65a3fff086c3a4ae03d6c29dc5b79fc401b5
+    last_write_checksum: sha1:e2ed5cc26b35b349ace1fca1f26667b3cd46d11f
   docs/Models/Shared/ScreeningCompletedByBand.md:
     last_write_checksum: sha1:1cd92de62edfcc6aa7734f75b6da916fc96b9ad8
   docs/Models/Shared/ScreeningCompletedEvent.md:
-    last_write_checksum: sha1:d3adab04692498adabb60e67bca253649c6da3eb
+    last_write_checksum: sha1:2bb3ae975ad889ef8649a5d4b34a835b37464b37
   docs/Models/Shared/ScreeningCompletedStatus.md:
     last_write_checksum: sha1:836a371d433d320235fa84e3fc38ba7f7088cdef
   docs/Models/Shared/ScreeningCoverage.md:
@@ -1315,7 +1315,7 @@ trackedFiles:
   docs/Models/Shared/Usage.md:
     last_write_checksum: sha1:a2a81a8e2197da85d2f347c0a3732b9c05a7a28f
   docs/Models/Shared/UsageCount.md:
-    last_write_checksum: sha1:8eb8b60d8576c6a73fd9847040e6ce9b919bd33d
+    last_write_checksum: sha1:773a64b6bbb8def180fec772754ffdf09e43b855
   docs/Models/Shared/UsageCountDepth.md:
     last_write_checksum: sha1:43ba60e64ad3b60ab6d87b767e7c19808c773204
   docs/Models/Shared/UsageCountFlow.md:
@@ -2077,7 +2077,7 @@ trackedFiles:
   src/Models/Shared/AssuranceLevel.php:
     last_write_checksum: sha1:9d3ad75a71ad0b6e1cb7ba45de8f272095d0bf3f
   src/Models/Shared/Attendee.php:
-    last_write_checksum: sha1:37115a5fe6fd4f099691d8def82c3121dd6cafbe
+    last_write_checksum: sha1:16d9548d8825816f8cc2b4736f9a796415c13a8d
   src/Models/Shared/AttendeeBatch.php:
     last_write_checksum: sha1:69c4a63344dce318d99b1fd3c701d7d253a4d7ab
   src/Models/Shared/AttendeeBatchItem.php:
@@ -2437,7 +2437,7 @@ trackedFiles:
   src/Models/Shared/Location.php:
     last_write_checksum: sha1:56ea7558e389ecaed78436a748bbcd482580192d
   src/Models/Shared/MatchState.php:
-    last_write_checksum: sha1:355dca667c73317559d5cec5fc63c647cd2b07f6
+    last_write_checksum: sha1:baed4c166ddd58f8b8cf28548b52340edbf88f0f
   src/Models/Shared/MatchT.php:
     last_write_checksum: sha1:575237f5c2063428d65afe0db8377b1d5f5fc576
   src/Models/Shared/MatchedOn.php:
@@ -2461,7 +2461,7 @@ trackedFiles:
   src/Models/Shared/MemberUpdateRequestEnvironment.php:
     last_write_checksum: sha1:2093978de34d6146941ec35ee31c865e6623e633
   src/Models/Shared/Metric.php:
-    last_write_checksum: sha1:a22ec59651b6edbc1a4679c50f5896919a32eee9
+    last_write_checksum: sha1:89a7978e094a1e5ebfa316f7a87face4eae22f58
   src/Models/Shared/NameCandidate.php:
     last_write_checksum: sha1:a12b4799117827bc507eeeff8e12261616fd6e60
   src/Models/Shared/NamespaceT.php:
@@ -2483,7 +2483,7 @@ trackedFiles:
   src/Models/Shared/Origin.php:
     last_write_checksum: sha1:4e0c354a4ce2d3967e261e1c4a6f758e2315f57b
   src/Models/Shared/OtherEvent.php:
-    last_write_checksum: sha1:7a1b6d366ccf9ad9f6b19c57bf4798cc3f5cf8de
+    last_write_checksum: sha1:0b007ebd89b26f72b2826d7a4b5b78fb576e65cf
   src/Models/Shared/OtherEvents.php:
     last_write_checksum: sha1:7671c09ced00603358a8c78c9060f51493d99d9e
   src/Models/Shared/Outcome.php:
@@ -2665,11 +2665,11 @@ trackedFiles:
   src/Models/Shared/ScreeningCancelRequest.php:
     last_write_checksum: sha1:fd26bd42068b2e85f982c1e1d2de16d6f788598e
   src/Models/Shared/ScreeningCompleted.php:
-    last_write_checksum: sha1:9964b5f2f2cc053e38c059b44ed59854896e1315
+    last_write_checksum: sha1:a4f3398d9f6ff7ae8d3d87f20c4345b267c9ad23
   src/Models/Shared/ScreeningCompletedByBand.php:
     last_write_checksum: sha1:bc88a2716143807da923ac8d555a5f2f4a0ce6e5
   src/Models/Shared/ScreeningCompletedEvent.php:
-    last_write_checksum: sha1:3a49517c5528873413150be417bef22cf737476e
+    last_write_checksum: sha1:e83a91654f8204f371bc050c09f462aced408ed3
   src/Models/Shared/ScreeningCompletedStatus.php:
     last_write_checksum: sha1:c41e28f476f6dc5532eb9ac471c1f07ca8717950
   src/Models/Shared/ScreeningCoverage.php:
@@ -2759,7 +2759,7 @@ trackedFiles:
   src/Models/Shared/Usage.php:
     last_write_checksum: sha1:2351d0b050406d41311a18f8b7602993f9bd8330
   src/Models/Shared/UsageCount.php:
-    last_write_checksum: sha1:a27cbac07f429fe9de1b22de7309e44932614c7a
+    last_write_checksum: sha1:0fed29bec366f4df62d143dfa110d9c74fd6a8f7
   src/Models/Shared/UsageCountDepth.php:
     last_write_checksum: sha1:bb4f803f6366e6fdb823586995144f7613b8ff21
   src/Models/Shared/UsageCountFlow.php:
@@ -3187,7 +3187,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:4afbf716fbdab1871a2593f16eaaeada50f95f38
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:1c20fec3c9bb08f85a935c8f21fe42cbd15ad05b
+    last_write_checksum: sha1:57ff97b7f2e9c42877df1a4578f198f2e9072233
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:
