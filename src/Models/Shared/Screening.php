@@ -31,7 +31,7 @@ class Screening
     public AuditSettingsEnvironment|string $environment;
 
     /**
-     * partial finished with some attendees not covered; attendees_failed counts them.
+     * partial finished with some attendees or platforms not covered; attendees_failed and attendees_partial count them.
      *
      * @var \NoResponse\Models\Shared\ScreeningStatus|string $status
      */
@@ -50,10 +50,10 @@ class Screening
     /**
      * $platforms
      *
-     * @var array<\NoResponse\Models\Shared\ScreeningPlatform|string> $platforms
+     * @var array<\NoResponse\Models\Shared\HandlePlatform|string> $platforms
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('platforms')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\ScreeningPlatform|string>')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\HandlePlatform|string>')]
     public array $platforms;
 
     /**
@@ -109,6 +109,14 @@ class Screening
     public int $attendeesFailed;
 
     /**
+     * Attendees screened with some requested platform not covered; their coverage names which.
+     *
+     * @var int $attendeesPartial
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('attendees_partial')]
+    public int $attendeesPartial;
+
+    /**
      * What the screening was estimated to cost when it started, in minor units of USD (cents): its attendees at its depth and platforms. Until the screening finishes, what it has not yet spent counts against the environment's screening_daily_cap.
      *
      * @var int $estimatedSpend
@@ -123,6 +131,15 @@ class Screening
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('spent')]
     public int $spent;
+
+    /**
+     * What screening cost, in US cents, in total and per implementation.
+     *
+     * @var \NoResponse\Models\Shared\ScreeningSpend $spend
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('spend')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ScreeningSpend')]
+    public ScreeningSpend $spend;
 
     /**
      *
@@ -155,7 +172,7 @@ class Screening
      * @param  \NoResponse\Models\Shared\AuditSettingsEnvironment|string  $environment
      * @param  \NoResponse\Models\Shared\ScreeningStatus|string  $status
      * @param  \NoResponse\Models\Shared\ScreeningDepth|string  $depth
-     * @param  array<\NoResponse\Models\Shared\ScreeningPlatform|string>  $platforms
+     * @param  array<\NoResponse\Models\Shared\HandlePlatform|string>  $platforms
      * @param  string  $requestedBy
      * @param  string  $createdAt
      * @param  string  $expiresAt
@@ -163,14 +180,16 @@ class Screening
      * @param  int  $attendeesDone
      * @param  int  $attendeesFlagged
      * @param  int  $attendeesFailed
+     * @param  int  $attendeesPartial
      * @param  int  $estimatedSpend
      * @param  int  $spent
+     * @param  \NoResponse\Models\Shared\ScreeningSpend  $spend
      * @param  ?string  $startedAt
      * @param  ?string  $finishedAt
      * @param  ?string  $errorCode
      * @phpstan-pure
      */
-    public function __construct(string $id, string $eventId, AuditSettingsEnvironment|string $environment, ScreeningStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $requestedBy, string $createdAt, string $expiresAt, int $attendeesTotal, int $attendeesDone, int $attendeesFlagged, int $attendeesFailed, int $estimatedSpend, int $spent, ?string $startedAt = null, ?string $finishedAt = null, ?string $errorCode = null)
+    public function __construct(string $id, string $eventId, AuditSettingsEnvironment|string $environment, ScreeningStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $requestedBy, string $createdAt, string $expiresAt, int $attendeesTotal, int $attendeesDone, int $attendeesFlagged, int $attendeesFailed, int $attendeesPartial, int $estimatedSpend, int $spent, ScreeningSpend $spend, ?string $startedAt = null, ?string $finishedAt = null, ?string $errorCode = null)
     {
         $this->id = $id;
         $this->eventId = $eventId;
@@ -185,8 +204,10 @@ class Screening
         $this->attendeesDone = $attendeesDone;
         $this->attendeesFlagged = $attendeesFlagged;
         $this->attendeesFailed = $attendeesFailed;
+        $this->attendeesPartial = $attendeesPartial;
         $this->estimatedSpend = $estimatedSpend;
         $this->spent = $spent;
+        $this->spend = $spend;
         $this->startedAt = $startedAt;
         $this->finishedAt = $finishedAt;
         $this->errorCode = $errorCode;

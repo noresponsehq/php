@@ -1,0 +1,12 @@
+# ScreeningSpendLine
+
+What one implementation cost.
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `implementation`                                                                      | *string*                                                                              | :heavy_check_mark:                                                                    | The resolver, collector or analyser that produced a record, by its catalogue name.    | synthetic                                                                             |
+| `role`                                                                                | [Shared\ScreeningSpendLineRole\|string](../../Models/Shared/ScreeningSpendLineRole.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
+| `spendMinor`                                                                          | *int*                                                                                 | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
+/** A platform a screening can cover. synthetic is the deterministic connector's own platform, for exercising the product end to end with no network. */
 enum HandlePlatform: string
 {
     case Instagram = 'instagram';
@@ -17,4 +18,5 @@ enum HandlePlatform: string
     case Reddit = 'reddit';
     case Telegram = 'telegram';
     case Linkedin = 'linkedin';
+    case Synthetic = 'synthetic';
 }

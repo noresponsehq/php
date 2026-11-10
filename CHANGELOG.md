@@ -1,5 +1,19 @@
 # Changelog
 
+## 10.0.13
+
+* `sdk->events->listAttendees()`:  `response.items[]` **Changed**
+* `sdk->events->addAttendees()`: 
+  *  `request->body->attendees[]->handles[]->platform->enum(synthetic)` **Added**
+* `sdk->events->getAttendee()`:  `response` **Changed**
+* `sdk->events->reviewAttendee()`:  `response` **Changed**
+* `sdk->events->listScreenings()`:  `response.items[]` **Changed**
+* `sdk->events->startScreening()`: 
+  *  `request->body->platforms[]->enum(synthetic)` **Added**
+  *  `response` **Changed**
+* `sdk->events->getScreening()`:  `response` **Changed**
+* `sdk->events->cancelScreening()`:  `response` **Changed**
+
 ## 10.0.12
 
 No changes detected.

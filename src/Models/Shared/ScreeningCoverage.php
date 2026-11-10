@@ -1,0 +1,77 @@
+<?php
+
+declare(strict_types=1);
+
+namespace NoResponse\Models\Shared;
+
+
+/** ScreeningCoverage - The denominator of a screening: accounts found, how many could be read, items read and the period they span, so a clean result is distinct from a person nobody could see. */
+class ScreeningCoverage
+{
+    /**
+     *
+     * @var int $accountsFound
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('accounts_found')]
+    public int $accountsFound;
+
+    /**
+     *
+     * @var int $accountsAccessible
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('accounts_accessible')]
+    public int $accountsAccessible;
+
+    /**
+     *
+     * @var int $itemsRead
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('items_read')]
+    public int $itemsRead;
+
+    /**
+     * $platforms
+     *
+     * @var array<\NoResponse\Models\Shared\ScreeningPlatformCoverage> $platforms
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('platforms')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\ScreeningPlatformCoverage>')]
+    public array $platforms;
+
+    /**
+     * The oldest item read on any platform.
+     *
+     * @var ?string $periodFrom
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('period_from')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $periodFrom = null;
+
+    /**
+     * The newest item read on any platform.
+     *
+     * @var ?string $periodTo
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('period_to')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $periodTo = null;
+
+    /**
+     * @param  int  $accountsFound
+     * @param  int  $accountsAccessible
+     * @param  int  $itemsRead
+     * @param  array<\NoResponse\Models\Shared\ScreeningPlatformCoverage>  $platforms
+     * @param  ?string  $periodFrom
+     * @param  ?string  $periodTo
+     * @phpstan-pure
+     */
+    public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?string $periodFrom = null, ?string $periodTo = null)
+    {
+        $this->accountsFound = $accountsFound;
+        $this->accountsAccessible = $accountsAccessible;
+        $this->itemsRead = $itemsRead;
+        $this->platforms = $platforms;
+        $this->periodFrom = $periodFrom;
+        $this->periodTo = $periodTo;
+    }
+}

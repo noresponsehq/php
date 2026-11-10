@@ -40,13 +40,13 @@ class Attendee
     public MatchState|string $matchState;
 
     /**
-     * What the latest screening read, per platform.
+     * The denominator of a screening: accounts found, how many could be read, items read and the period they span, so a clean result is distinct from a person nobody could see.
      *
-     * @var \NoResponse\Models\Shared\AttendeeCoverage $coverage
+     * @var \NoResponse\Models\Shared\ScreeningCoverage $coverage
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('coverage')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\AttendeeCoverage')]
-    public AttendeeCoverage $coverage;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ScreeningCoverage')]
+    public ScreeningCoverage $coverage;
 
     /**
      *
@@ -61,6 +61,15 @@ class Attendee
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('updated_at')]
     public string $updatedAt;
+
+    /**
+     * What screening cost, in US cents, in total and per implementation.
+     *
+     * @var \NoResponse\Models\Shared\ScreeningSpend $spend
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('spend')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ScreeningSpend')]
+    public ScreeningSpend $spend;
 
     /**
      * Your own id for the attendee, unique within the event. A later row with the same external id updates this attendee.
@@ -180,9 +189,10 @@ class Attendee
      * @param  string  $eventId
      * @param  string  $name
      * @param  \NoResponse\Models\Shared\MatchState|string  $matchState
-     * @param  \NoResponse\Models\Shared\AttendeeCoverage  $coverage
+     * @param  \NoResponse\Models\Shared\ScreeningCoverage  $coverage
      * @param  string  $createdAt
      * @param  string  $updatedAt
+     * @param  \NoResponse\Models\Shared\ScreeningSpend  $spend
      * @param  ?string  $externalId
      * @param  ?string  $email
      * @param  ?string  $phone
@@ -198,7 +208,7 @@ class Attendee
      * @param  ?string  $screenedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $eventId, string $name, MatchState|string $matchState, AttendeeCoverage $coverage, string $createdAt, string $updatedAt, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, HighestBand|string|null $highestBand = null, AttendeeDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
+    public function __construct(string $id, string $eventId, string $name, MatchState|string $matchState, ScreeningCoverage $coverage, string $createdAt, string $updatedAt, ScreeningSpend $spend, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, HighestBand|string|null $highestBand = null, AttendeeDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
     {
         $this->id = $id;
         $this->eventId = $eventId;
@@ -207,6 +217,7 @@ class Attendee
         $this->coverage = $coverage;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->spend = $spend;
         $this->externalId = $externalId;
         $this->email = $email;
         $this->phone = $phone;

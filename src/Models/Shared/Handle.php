@@ -9,6 +9,7 @@ namespace NoResponse\Models\Shared;
 class Handle
 {
     /**
+     * A platform a screening can cover. synthetic is the deterministic connector's own platform, for exercising the product end to end with no network.
      *
      * @var \NoResponse\Models\Shared\HandlePlatform|string $platform
      */
