@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.0.20
+
+* `sdk->events->listAttendees()`:  `response.items[]->coverage->notAnalysedByReason` **Added**
+* `sdk->events->getAttendee()`:  `response` **Changed**
+* `sdk->events->reviewAttendee()`:  `response.coverage->notAnalysedByReason` **Added**
+
 ## 10.0.19
 
 No changes detected.

@@ -106,6 +106,16 @@ class ScreeningFinding
     public ?string $quote = null;
 
     /**
+     * What the analyser saw in each image among evidence that the finding rests on. Unlike quote, an observation cannot be checked against the record: judge it against the image at the media item's permalink.
+     *
+     * @var ?array<\NoResponse\Models\Shared\ScreeningMediaObservation> $mediaObservations
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('media_observations')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\ScreeningMediaObservation>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $mediaObservations = null;
+
+    /**
      * @param  string  $id
      * @param  \NoResponse\Models\Shared\FindingCategory|string  $category
      * @param  \NoResponse\Models\Shared\FindingBand|string  $band
@@ -118,9 +128,10 @@ class ScreeningFinding
      * @param  string  $createdAt
      * @param  \NoResponse\Models\Shared\FindingBand|string|null  $cappedFrom
      * @param  ?string  $quote
+     * @param  ?array<\NoResponse\Models\Shared\ScreeningMediaObservation>  $mediaObservations
      * @phpstan-pure
      */
-    public function __construct(string $id, FindingCategory|string $category, FindingBand|string $band, float $confidence, string $rationale, array $evidence, string $analyser, string $model, int $spendMinor, string $createdAt, FindingBand|string|null $cappedFrom = null, ?string $quote = null)
+    public function __construct(string $id, FindingCategory|string $category, FindingBand|string $band, float $confidence, string $rationale, array $evidence, string $analyser, string $model, int $spendMinor, string $createdAt, FindingBand|string|null $cappedFrom = null, ?string $quote = null, ?array $mediaObservations = null)
     {
         $this->id = $id;
         $this->category = $category;
@@ -134,5 +145,6 @@ class ScreeningFinding
         $this->createdAt = $createdAt;
         $this->cappedFrom = $cappedFrom;
         $this->quote = $quote;
+        $this->mediaObservations = $mediaObservations;
     }
 }

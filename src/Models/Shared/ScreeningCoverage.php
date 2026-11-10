@@ -48,6 +48,16 @@ class ScreeningCoverage
     public ?int $itemsNotAnalysed = null;
 
     /**
+     * items_not_analysed split by reason, each reason once with at least one item.
+     *
+     * @var ?array<\NoResponse\Models\Shared\ScreeningNotAnalysedCount> $notAnalysedByReason
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('not_analysed_by_reason')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\ScreeningNotAnalysedCount>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $notAnalysedByReason = null;
+
+    /**
      * The oldest item read on any platform.
      *
      * @var ?string $periodFrom
@@ -81,18 +91,20 @@ class ScreeningCoverage
      * @param  int  $itemsRead
      * @param  array<\NoResponse\Models\Shared\ScreeningPlatformCoverage>  $platforms
      * @param  ?int  $itemsNotAnalysed
+     * @param  ?array<\NoResponse\Models\Shared\ScreeningNotAnalysedCount>  $notAnalysedByReason
      * @param  ?string  $periodFrom
      * @param  ?string  $periodTo
      * @param  array<\NoResponse\Models\Shared\HandlePlatform|string>|null  $notSearched
      * @phpstan-pure
      */
-    public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?int $itemsNotAnalysed = null, ?string $periodFrom = null, ?string $periodTo = null, ?array $notSearched = null)
+    public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?int $itemsNotAnalysed = null, ?array $notAnalysedByReason = null, ?string $periodFrom = null, ?string $periodTo = null, ?array $notSearched = null)
     {
         $this->accountsFound = $accountsFound;
         $this->accountsAccessible = $accountsAccessible;
         $this->itemsRead = $itemsRead;
         $this->platforms = $platforms;
         $this->itemsNotAnalysed = $itemsNotAnalysed;
+        $this->notAnalysedByReason = $notAnalysedByReason;
         $this->periodFrom = $periodFrom;
         $this->periodTo = $periodTo;
         $this->notSearched = $notSearched;
