@@ -97,6 +97,15 @@ class ScreeningFinding
     public FindingBand|string|null $cappedFrom = null;
 
     /**
+     * The exact words of the first evidence item that the finding rests on, as the analyser quoted them.
+     *
+     * @var ?string $quote
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('quote')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $quote = null;
+
+    /**
      * @param  string  $id
      * @param  \NoResponse\Models\Shared\FindingCategory|string  $category
      * @param  \NoResponse\Models\Shared\FindingBand|string  $band
@@ -108,9 +117,10 @@ class ScreeningFinding
      * @param  int  $spendMinor
      * @param  string  $createdAt
      * @param  \NoResponse\Models\Shared\FindingBand|string|null  $cappedFrom
+     * @param  ?string  $quote
      * @phpstan-pure
      */
-    public function __construct(string $id, FindingCategory|string $category, FindingBand|string $band, float $confidence, string $rationale, array $evidence, string $analyser, string $model, int $spendMinor, string $createdAt, FindingBand|string|null $cappedFrom = null)
+    public function __construct(string $id, FindingCategory|string $category, FindingBand|string $band, float $confidence, string $rationale, array $evidence, string $analyser, string $model, int $spendMinor, string $createdAt, FindingBand|string|null $cappedFrom = null, ?string $quote = null)
     {
         $this->id = $id;
         $this->category = $category;
@@ -123,5 +133,6 @@ class ScreeningFinding
         $this->spendMinor = $spendMinor;
         $this->createdAt = $createdAt;
         $this->cappedFrom = $cappedFrom;
+        $this->quote = $quote;
     }
 }

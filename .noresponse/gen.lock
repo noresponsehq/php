@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: ac6f3c74148e94636e41c64393058207
+  docChecksum: 1c9468b9d1465dcea37f1de113ff7a3a
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 10.0.14
-  configChecksum: ce9902dd13b6fcfa1541929afb57d71d
+  releaseVersion: 10.0.15
+  configChecksum: 486c096f67fd825bd49cda3bba3fd866
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -1219,11 +1219,11 @@ trackedFiles:
   docs/Models/Shared/ScreeningCompletedStatus.md:
     last_write_checksum: sha1:836a371d433d320235fa84e3fc38ba7f7088cdef
   docs/Models/Shared/ScreeningCoverage.md:
-    last_write_checksum: sha1:6894f4eed67b8cba8daa1c5a598b34a86e8156f2
+    last_write_checksum: sha1:c3c8f94e9e6c47fb65f29d6b484f6bda857d5fe8
   docs/Models/Shared/ScreeningDepth.md:
     last_write_checksum: sha1:6e65a8a748858bc8b3b2164bf78192cab1a69add
   docs/Models/Shared/ScreeningFinding.md:
-    last_write_checksum: sha1:d00494c3cde299c2a918de907fbe33d730bf3532
+    last_write_checksum: sha1:0e245fe2f7efa2e27e93857d6088dbfe6aef6009
   docs/Models/Shared/ScreeningList.md:
     last_write_checksum: sha1:d856dbfa530cc7dcbdae55cfb329ecb8ad177a23
   docs/Models/Shared/ScreeningMatch.md:
@@ -2649,11 +2649,11 @@ trackedFiles:
   src/Models/Shared/ScreeningCompletedStatus.php:
     last_write_checksum: sha1:c41e28f476f6dc5532eb9ac471c1f07ca8717950
   src/Models/Shared/ScreeningCoverage.php:
-    last_write_checksum: sha1:c90ef6859ff9909cf0e9828b1b5900d3d4757c88
+    last_write_checksum: sha1:9cf2177ee458f9a6810b05d637b049b2e8947ebe
   src/Models/Shared/ScreeningDepth.php:
     last_write_checksum: sha1:56fb63f5e49ec90bf31746ae79d43b62244864c7
   src/Models/Shared/ScreeningFinding.php:
-    last_write_checksum: sha1:c34380c03c521e17bf3e0c0160227bf972b99912
+    last_write_checksum: sha1:4b96c772651b3583800ee8a207f341e7c4126534
   src/Models/Shared/ScreeningList.php:
     last_write_checksum: sha1:be0a0c293269aa8a3671ffb2b76a5b7d84795c26
   src/Models/Shared/ScreeningMatch.php:
@@ -3151,7 +3151,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:4afbf716fbdab1871a2593f16eaaeada50f95f38
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:4eab66837937615bd9d95752e61fb66cd8d3b96b
+    last_write_checksum: sha1:015883de35e91fec04b3c625a86203e4b40cde5d
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:
@@ -5721,7 +5721,7 @@ examples:
           attendee_id: "att_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       responses:
         "200":
-          application/json: {"attendee": {"id": "att_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "event_id": "evn_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "external_id": "ticket-1042", "name": "Jordan Example", "email": "jordan@company-example.com", "phone": "+14155550100", "company": "Example Ltd", "city": "Melbourne", "handles": [{"platform": "youtube", "handle": "jordan_example"}], "match_state": "inaccessible", "highest_band": "low", "decision": "cleared", "decision_note": "Known to the venue team.", "decided_by": "user_2abc", "decided_at": "2026-01-01T00:00:00Z", "coverage": {"accounts_found": 728761, "accounts_accessible": 677959, "items_read": 949861, "period_from": "2026-01-01T00:00:00Z", "period_to": "2026-01-02T00:00:00Z", "platforms": [{"platform": "telegram", "status": "covered", "accounts_found": 95148, "items_read": 166238}]}, "last_screening_id": "scn_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "screened_at": "2026-01-01T00:00:00Z", "created_at": "2026-01-01T00:00:00Z", "updated_at": "2026-01-01T00:00:00Z", "spend": {"total_minor": 552148, "by_implementation": [{"implementation": "synthetic", "role": "analyser", "spend_minor": 522980}]}}, "profiles": [], "findings": [{"id": "fnd_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "category": "disruption", "band": "low", "confidence": 4826.55, "rationale": "The post reports when the principal leaves the hotel.", "evidence": ["itm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"], "analyser": "synthetic", "model": "synthetic-1", "spend_minor": 82255, "created_at": "2026-01-01T00:00:00Z"}], "posts": [{"id": "itm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "kind": "post", "text": "Great coffee this morning before the commute.", "reply_to": "https://synthetic.invalid/synthetic/jordanexample42/p0", "profile_id": "prf_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "permalink": "https://synthetic.invalid/synthetic/jordanexample42/p1", "posted_at": "2026-01-01T00:00:00Z", "screenshot_sha256": "9c56cc51b374c3ba189210d5b6d4bf57790d351c96c47c02190ecf1e430635ab", "captured_at": "2026-01-01T00:00:00Z"}], "media": [{"id": "itm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "kind": "media", "post_id": "itm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "media_type": "video", "media_url": "https://synthetic.invalid/media/jordanexample42/p1.jpg", "text": "A photo", "profile_id": "prf_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "permalink": "https://synthetic.invalid/synthetic/jordanexample42/p1", "posted_at": "2026-01-01T00:00:00Z", "screenshot_sha256": "9c56cc51b374c3ba189210d5b6d4bf57790d351c96c47c02190ecf1e430635ab", "captured_at": "2026-01-01T00:00:00Z"}], "reviews": []}
+          application/json: {"attendee": {"id": "att_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "event_id": "evn_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "external_id": "ticket-1042", "name": "Jordan Example", "email": "jordan@company-example.com", "phone": "+14155550100", "company": "Example Ltd", "city": "Melbourne", "handles": [{"platform": "youtube", "handle": "jordan_example"}], "match_state": "inaccessible", "highest_band": "low", "decision": "cleared", "decision_note": "Known to the venue team.", "decided_by": "user_2abc", "decided_at": "2026-01-01T00:00:00Z", "coverage": {"accounts_found": 728761, "accounts_accessible": 677959, "items_read": 949861, "period_from": "2026-01-01T00:00:00Z", "period_to": "2026-01-02T00:00:00Z", "platforms": [{"platform": "telegram", "status": "covered", "accounts_found": 95148, "items_read": 166238}]}, "last_screening_id": "scn_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "screened_at": "2026-01-01T00:00:00Z", "created_at": "2026-01-01T00:00:00Z", "updated_at": "2026-01-01T00:00:00Z", "spend": {"total_minor": 552148, "by_implementation": [{"implementation": "synthetic", "role": "analyser", "spend_minor": 522980}]}}, "profiles": [], "findings": [{"id": "fnd_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "category": "disruption", "band": "low", "confidence": 4826.55, "rationale": "The post reports when the principal leaves the hotel.", "quote": "Spotted Jordan Lee leaving the hotel, they always take the side exit at seven.", "evidence": ["itm_01JA2Z8K6Q4V7W9XBCDEFGHJKM"], "analyser": "synthetic", "model": "synthetic-1", "spend_minor": 82255, "created_at": "2026-01-01T00:00:00Z"}], "posts": [{"id": "itm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "kind": "post", "text": "Great coffee this morning before the commute.", "reply_to": "https://synthetic.invalid/synthetic/jordanexample42/p0", "profile_id": "prf_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "permalink": "https://synthetic.invalid/synthetic/jordanexample42/p1", "posted_at": "2026-01-01T00:00:00Z", "screenshot_sha256": "9c56cc51b374c3ba189210d5b6d4bf57790d351c96c47c02190ecf1e430635ab", "captured_at": "2026-01-01T00:00:00Z"}], "media": [{"id": "itm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "kind": "media", "post_id": "itm_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "media_type": "video", "media_url": "https://synthetic.invalid/media/jordanexample42/p1.jpg", "text": "A photo", "profile_id": "prf_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "permalink": "https://synthetic.invalid/synthetic/jordanexample42/p1", "posted_at": "2026-01-01T00:00:00Z", "screenshot_sha256": "9c56cc51b374c3ba189210d5b6d4bf57790d351c96c47c02190ecf1e430635ab", "captured_at": "2026-01-01T00:00:00Z"}], "reviews": []}
         "400":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 400, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "invalid_cursor", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "401":

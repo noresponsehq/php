@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.0.15
+
+* `sdk->events->listAttendees()`:  `response.items[]->coverage->itemsNotAnalysed` **Added**
+* `sdk->events->getAttendee()`:  `response` **Changed**
+* `sdk->events->reviewAttendee()`:  `response.coverage->itemsNotAnalysed` **Added**
+
 ## 10.0.14
 
 * `sdk->events->listAttendees()`: 

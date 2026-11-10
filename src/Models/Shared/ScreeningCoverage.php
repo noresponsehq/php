@@ -39,6 +39,15 @@ class ScreeningCoverage
     public array $platforms;
 
     /**
+     * Items read that the analyser could not analyse. Above zero, the attendee is partial: a finding may be missing from them.
+     *
+     * @var ?int $itemsNotAnalysed
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('items_not_analysed')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $itemsNotAnalysed = null;
+
+    /**
      * The oldest item read on any platform.
      *
      * @var ?string $periodFrom
@@ -61,16 +70,18 @@ class ScreeningCoverage
      * @param  int  $accountsAccessible
      * @param  int  $itemsRead
      * @param  array<\NoResponse\Models\Shared\ScreeningPlatformCoverage>  $platforms
+     * @param  ?int  $itemsNotAnalysed
      * @param  ?string  $periodFrom
      * @param  ?string  $periodTo
      * @phpstan-pure
      */
-    public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?string $periodFrom = null, ?string $periodTo = null)
+    public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?int $itemsNotAnalysed = null, ?string $periodFrom = null, ?string $periodTo = null)
     {
         $this->accountsFound = $accountsFound;
         $this->accountsAccessible = $accountsAccessible;
         $this->itemsRead = $itemsRead;
         $this->platforms = $platforms;
+        $this->itemsNotAnalysed = $itemsNotAnalysed;
         $this->periodFrom = $periodFrom;
         $this->periodTo = $periodTo;
     }
