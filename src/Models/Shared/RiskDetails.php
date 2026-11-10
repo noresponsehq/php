@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** RiskDetails - Detailed view only (response_mode=detailed, which needs the detailed scope); a standard answer leaves it out. Merged observations without provider, source, origin, raw breach record, value or score. */
+/** RiskDetails - Merged observations behind the summary, served only to a caller who may read evidence: no provider, source, origin, raw breach record or score. */
 class RiskDetails
 {
     /**

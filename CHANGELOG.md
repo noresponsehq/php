@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.0.18
+
+* `sdk->events->getAttendee()`:  `response.lookup` **Added**
+
 ## 10.0.17
 
 * `sdk->events->listAttendees()`:  `response.items[]->coverage->notSearched` **Added**
