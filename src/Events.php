@@ -709,7 +709,7 @@ class Events
     /**
      * Read an attendee's report.
      *
-     * Read an attendee's report: matched profiles, findings with their evidence and every recorded decision.
+     * Read an attendee's report: matched profiles, findings with their evidence, every recorded decision, and the other events where the same email or phone appears.
      *
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment

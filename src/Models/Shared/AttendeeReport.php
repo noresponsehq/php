@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** AttendeeReport - Everything known about one attendee. */
+/** AttendeeReport - Everything known about one attendee, and where else in the environment they appear. */
 class AttendeeReport
 {
     /**
@@ -63,15 +63,25 @@ class AttendeeReport
     public array $reviews;
 
     /**
+     * Where else in the environment the attendee appears, read live from those events: deleting one removes it here.
+     *
+     * @var \NoResponse\Models\Shared\OtherEvents $otherEvents
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('other_events')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\OtherEvents')]
+    public OtherEvents $otherEvents;
+
+    /**
      * @param  \NoResponse\Models\Shared\Attendee  $attendee
      * @param  array<\NoResponse\Models\Shared\ScreeningProfile>  $profiles
      * @param  array<\NoResponse\Models\Shared\ScreeningFinding>  $findings
      * @param  array<\NoResponse\Models\Shared\ScreeningPost>  $posts
      * @param  array<\NoResponse\Models\Shared\ScreeningMedia>  $media
      * @param  array<\NoResponse\Models\Shared\AttendeeReview>  $reviews
+     * @param  \NoResponse\Models\Shared\OtherEvents  $otherEvents
      * @phpstan-pure
      */
-    public function __construct(Attendee $attendee, array $profiles, array $findings, array $posts, array $media, array $reviews)
+    public function __construct(Attendee $attendee, array $profiles, array $findings, array $posts, array $media, array $reviews, OtherEvents $otherEvents)
     {
         $this->attendee = $attendee;
         $this->profiles = $profiles;
@@ -79,5 +89,6 @@ class AttendeeReport
         $this->posts = $posts;
         $this->media = $media;
         $this->reviews = $reviews;
+        $this->otherEvents = $otherEvents;
     }
 }
