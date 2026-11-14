@@ -15,6 +15,7 @@ Groups, lists of people, screenings and reviewer decisions.
 * [addPeople](#addpeople) - Add or update a batch of people.
 * [getPerson](#getperson) - Read a person's report.
 * [reviewPerson](#reviewperson) - Record a decision on a person.
+* [judgeRecord](#judgerecord) - Join one of a person's records to them, or reject it.
 * [listScreenings](#listscreenings) - List a group's screenings.
 * [startScreening](#startscreening) - Start a screening.
 * [getScreening](#getscreening) - Read a screening.
@@ -580,6 +581,71 @@ $result = $response->result;
 ### Response
 
 **[?Operations\ReviewPersonResponse](../../Models/Operations/ReviewPersonResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## judgeRecord
+
+Join one of a person's lookup records to them whatever its likelihood, or reject it so it stays a lead. The verdict sticks while lookups find the same record.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="judgeRecord" method="post" path="/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people/{person_id}/records" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\RecordVerdictRequest(
+    recordId: 'rec_3f9a1c22d4e5b6a73f9a1c22d4e5b6a7',
+    verdict: Shared\Verdict::Rejected,
+);
+
+$response = $sdk->groups->judgeRecord(
+    workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    environment: Shared\KeyEnvironment::Test,
+    groupId: 'grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    personId: 'per_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    body: $body
+
+);
+
+$result = $response->result;
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                              | Type                                                                                                                                                                   | Required                                                                                                                                                               | Description                                                                                                                                                            | Example                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `workspaceId`                                                                                                                                                          | *string*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                     | Your workspace id, as each key lists it in workspace_id. Another workspace, a malformed id and a test environment's id answer 404.                                     | tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                                                         |
+| `environment`                                                                                                                                                          | [Shared\KeyEnvironment\|string](../../Models/Shared/KeyEnvironment.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                     | The environment: live or test. Each has its own settings. Any other value answers 400. An API key reads and changes only its own environment's; the other answers 404. |                                                                                                                                                                        |
+| `groupId`                                                                                                                                                              | *string*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                     | N/A                                                                                                                                                                    | grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                                                         |
+| `personId`                                                                                                                                                             | *string*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                     | N/A                                                                                                                                                                    | per_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                                                         |
+| `body`                                                                                                                                                                 | [Shared\RecordVerdictRequest](../../Models/Shared/RecordVerdictRequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                     | N/A                                                                                                                                                                    |                                                                                                                                                                        |
+
+### Response
+
+**[?Operations\JudgeRecordResponse](../../Models/Operations/JudgeRecordResponse.md)**
 
 ### Errors
 
