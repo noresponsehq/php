@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.0.8
+
+* `sdk->groups->getPerson()`:  `response.posts[]` **Changed**
+
 ## 12.0.7
 
 * `sdk->groups->getPerson()`:  `response.posts[]` **Changed**

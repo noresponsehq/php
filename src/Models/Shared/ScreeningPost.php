@@ -117,6 +117,70 @@ class ScreeningPost
     public ?int $views = null;
 
     /**
+     * How many times the platform shows the post was shared or reposted.
+     *
+     * @var ?int $shares
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('shares')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $shares = null;
+
+    /**
+     * The language the platform says the post is in, as the platform codes it, such as en or pt-BR.
+     *
+     * @var ?string $language
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('language')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $language = null;
+
+    /**
+     * true when the platform marks the post as edited after it went up. Absent when it does not mark it.
+     *
+     * @var ?bool $edited
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('edited')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $edited = null;
+
+    /**
+     * true when the platform marks the post as a paid partnership or an ad. Absent when it does not mark it.
+     *
+     * @var ?bool $sponsored
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('sponsored')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $sponsored = null;
+
+    /**
+     * true when the platform labels the post as made or changed with AI. Absent when it does not label it.
+     *
+     * @var ?bool $aiGenerated
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('ai_generated')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $aiGenerated = null;
+
+    /**
+     * The app or device the platform says the post was made with.
+     *
+     * @var ?string $postedWith
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('posted_with')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $postedWith = null;
+
+    /**
+     * Everything else the platform sent about the post, under the platform's own names and as it typed them: counts, ids of linked posts and accounts, links, media details, labels and notices. The fields above are not repeated here. Nothing that describes the account the screening read with, such as whether it liked or saved the post, is ever here.
+     *
+     * @var ?array<string, mixed> $stated
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('stated')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $stated = null;
+
+    /**
      * SHA-256 of the screenshot taken of a flagged item.
      *
      * @var ?string $screenshotSha256
@@ -156,11 +220,18 @@ class ScreeningPost
      * @param  ?int  $likes
      * @param  ?int  $comments
      * @param  ?int  $views
+     * @param  ?int  $shares
+     * @param  ?string  $language
+     * @param  ?bool  $edited
+     * @param  ?bool  $sponsored
+     * @param  ?bool  $aiGenerated
+     * @param  ?string  $postedWith
+     * @param  ?array<string, mixed>  $stated
      * @param  ?string  $screenshotSha256
      * @param  ?string  $capturedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $text, string $profileId, string $permalink, string $postedAt, ?string $replyTo = null, ?string $repostOf = null, ?string $quoteOf = null, ?PostPlace $place = null, ?array $tagged = null, ?int $likes = null, ?int $comments = null, ?int $views = null, ?string $screenshotSha256 = null, ?string $capturedAt = null, string $kind = 'post')
+    public function __construct(string $id, string $text, string $profileId, string $permalink, string $postedAt, ?string $replyTo = null, ?string $repostOf = null, ?string $quoteOf = null, ?PostPlace $place = null, ?array $tagged = null, ?int $likes = null, ?int $comments = null, ?int $views = null, ?int $shares = null, ?string $language = null, ?bool $edited = null, ?bool $sponsored = null, ?bool $aiGenerated = null, ?string $postedWith = null, ?array $stated = null, ?string $screenshotSha256 = null, ?string $capturedAt = null, string $kind = 'post')
     {
         $this->id = $id;
         $this->text = $text;
@@ -175,6 +246,13 @@ class ScreeningPost
         $this->likes = $likes;
         $this->comments = $comments;
         $this->views = $views;
+        $this->shares = $shares;
+        $this->language = $language;
+        $this->edited = $edited;
+        $this->sponsored = $sponsored;
+        $this->aiGenerated = $aiGenerated;
+        $this->postedWith = $postedWith;
+        $this->stated = $stated;
         $this->screenshotSha256 = $screenshotSha256;
         $this->capturedAt = $capturedAt;
         $this->kind = $kind;
