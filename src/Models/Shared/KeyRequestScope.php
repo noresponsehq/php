@@ -24,5 +24,5 @@ enum KeyRequestScope: string
     case PolicyPublish = 'policy_publish';
     case Members = 'members';
     case MembersManage = 'members_manage';
-    case Events = 'events';
+    case Groups = 'groups';
 }

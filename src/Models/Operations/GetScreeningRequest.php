@@ -26,10 +26,10 @@ class GetScreeningRequest
 
     /**
      *
-     * @var string $eventId
+     * @var string $groupId
      */
-    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=event_id')]
-    public string $eventId;
+    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=group_id')]
+    public string $groupId;
 
     /**
      *
@@ -41,15 +41,15 @@ class GetScreeningRequest
     /**
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
-     * @param  string  $eventId
+     * @param  string  $groupId
      * @param  string  $screeningId
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $eventId, string $screeningId)
+    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $screeningId)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;
-        $this->eventId = $eventId;
+        $this->groupId = $groupId;
         $this->screeningId = $screeningId;
     }
 }

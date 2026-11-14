@@ -1,0 +1,14 @@
+# PersonReview
+
+One recorded decision.
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `id`                                                                  | *string*                                                              | :heavy_check_mark:                                                    | N/A                                                                   | arv_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                        |
+| `decision`                                                            | [Shared\PersonDecision\|string](../../Models/Shared/PersonDecision.md) | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
+| `note`                                                                | *?string*                                                             | :heavy_minus_sign:                                                    | N/A                                                                   | Known to the venue team.                                              |
+| `createdBy`                                                           | *string*                                                              | :heavy_check_mark:                                                    | N/A                                                                   | user_2abc                                                             |
+| `createdAt`                                                           | *string*                                                              | :heavy_check_mark:                                                    | N/A                                                                   | 2026-01-01T00:00:00Z                                                  |

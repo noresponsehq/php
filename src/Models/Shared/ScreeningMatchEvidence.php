@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** ScreeningMatchEvidence - One identifier that ties a profile to the attendee. */
+/** ScreeningMatchEvidence - One identifier that ties a profile to the person. */
 class ScreeningMatchEvidence
 {
     /**
-     * What matched. email, phone, supplied_handle and source_fact are hard identifiers; company, city and school are soft. supplied_handle is a handle on the attendee row; source_fact is an account a profile found by the attendee's lookups lists.
+     * What matched. email, phone, supplied_handle and source_fact are hard identifiers; company, city and school are soft. supplied_handle is a handle on the person row; source_fact is an account a profile found by the person's lookups lists.
      *
      * @var \NoResponse\Models\Shared\ScreeningMatchEvidenceKind|string $kind
      */

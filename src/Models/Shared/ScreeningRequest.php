@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** ScreeningRequest - Screens the event's attendees no screening has reached and everyone on watch or escalated. */
+/** ScreeningRequest - Screens the group's people no screening has reached and everyone on watch or escalated. */
 class ScreeningRequest
 {
     /**

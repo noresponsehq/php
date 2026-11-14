@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** ScreeningProfile - An account the screening matched to the attendee, how it was matched, and how much of it was read. */
+/** ScreeningProfile - An account the screening matched to the person, how it was matched, and how much of it was read. */
 class ScreeningProfile
 {
     /**
@@ -48,7 +48,7 @@ class ScreeningProfile
     public Access|string $access;
 
     /**
-     * How a profile was matched to the attendee: the state its evidence earns, and the evidence.
+     * How a profile was matched to the person: the state its evidence earns, and the evidence.
      *
      * @var \NoResponse\Models\Shared\ScreeningMatch $match
      */

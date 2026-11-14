@@ -26,10 +26,10 @@ class CancelScreeningRequest
 
     /**
      *
-     * @var string $eventId
+     * @var string $groupId
      */
-    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=event_id')]
-    public string $eventId;
+    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=group_id')]
+    public string $groupId;
 
     /**
      *
@@ -48,16 +48,16 @@ class CancelScreeningRequest
     /**
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
-     * @param  string  $eventId
+     * @param  string  $groupId
      * @param  string  $screeningId
      * @param  \NoResponse\Models\Shared\ScreeningCancelRequest  $body
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $eventId, string $screeningId, Shared\ScreeningCancelRequest $body)
+    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $screeningId, Shared\ScreeningCancelRequest $body)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;
-        $this->eventId = $eventId;
+        $this->groupId = $groupId;
         $this->screeningId = $screeningId;
         $this->body = $body;
     }

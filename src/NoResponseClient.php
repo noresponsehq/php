@@ -140,11 +140,11 @@ class NoResponseClient
     public WorkspaceOperations $workspaceOperations;
 
     /**
-     * Events, attendee lists, screenings and reviewer decisions.
+     * Groups, lists of people, screenings and reviewer decisions.
      *
-     * @var Events $$events
+     * @var Groups $$groups
      */
-    public Events $events;
+    public Groups $groups;
 
     /**
      * Returns a new instance of the SDK builder used to configure and create the SDK instance.
@@ -190,7 +190,7 @@ class NoResponseClient
         $this->exports = new Exports($this->sdkConfiguration);
         $this->evaluations = new Evaluations($this->sdkConfiguration);
         $this->workspaceOperations = new WorkspaceOperations($this->sdkConfiguration);
-        $this->events = new Events($this->sdkConfiguration);
+        $this->groups = new Groups($this->sdkConfiguration);
         $this->initHooks();
 
     }

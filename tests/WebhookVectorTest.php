@@ -8,10 +8,10 @@ use NoResponse\Models\Shared\AccountDeletedEvent;
 use NoResponse\Models\Shared\AccountRiskChangedEvent;
 use NoResponse\Models\Shared\Assessment;
 use NoResponse\Models\Shared\AssessmentUpdatedEvent;
-use NoResponse\Models\Shared\AttendeeDecidedEvent;
-use NoResponse\Models\Shared\AttendeeFlaggedEvent;
 use NoResponse\Models\Shared\AuditEventEvent;
 use NoResponse\Models\Shared\EndpointVerificationEvent;
+use NoResponse\Models\Shared\PersonDecidedEvent;
+use NoResponse\Models\Shared\PersonFlaggedEvent;
 use NoResponse\Models\Shared\ScreeningCompletedEvent;
 use NoResponse\Models\Shared\WebhookEndpointDisabledEvent;
 use NoResponse\Models\Shared\WorkspaceDeletedEvent;
@@ -33,8 +33,8 @@ final class WebhookVectorTest extends TestCase
         'account.risk_changed' => AccountRiskChangedEvent::class,
         'audit.event' => AuditEventEvent::class,
         'screening.completed' => ScreeningCompletedEvent::class,
-        'attendee.flagged' => AttendeeFlaggedEvent::class,
-        'attendee.decided' => AttendeeDecidedEvent::class,
+        'person.flagged' => PersonFlaggedEvent::class,
+        'person.decided' => PersonDecidedEvent::class,
     ];
 
     /** @return array{payload: string, headers: array<string, string>, key_id: string, secret_utf8: string, timestamp: string} */

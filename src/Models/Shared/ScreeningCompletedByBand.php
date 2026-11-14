@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** ScreeningCompletedByBand - Screened attendees by the band of their most severe finding. */
+/** ScreeningCompletedByBand - Screened people by the band of their most severe finding. */
 class ScreeningCompletedByBand
 {
     /**

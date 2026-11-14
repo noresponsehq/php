@@ -22,4 +22,4 @@
 | `PolicyPublish` | policy_publish  |
 | `Members`       | members         |
 | `MembersManage` | members_manage  |
-| `Events`        | events          |
+| `Groups`        | groups          |

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** Principal - A person the event protects. */
+/** Principal - A person the group protects. */
 class Principal
 {
     /**

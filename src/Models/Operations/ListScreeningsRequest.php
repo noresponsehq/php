@@ -26,10 +26,10 @@ class ListScreeningsRequest
 
     /**
      *
-     * @var string $eventId
+     * @var string $groupId
      */
-    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=event_id')]
-    public string $eventId;
+    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=group_id')]
+    public string $groupId;
 
     /**
      * Read screenings older than this one.
@@ -50,16 +50,16 @@ class ListScreeningsRequest
     /**
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
-     * @param  string  $eventId
+     * @param  string  $groupId
      * @param  ?int  $limit
      * @param  ?string  $before
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $eventId, ?string $before = null, ?int $limit = 20)
+    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, ?string $before = null, ?int $limit = 20)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;
-        $this->eventId = $eventId;
+        $this->groupId = $groupId;
         $this->before = $before;
         $this->limit = $limit;
     }

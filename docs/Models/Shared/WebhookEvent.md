@@ -77,21 +77,21 @@ Shared\AuditEventEvent $value = /* values here */
 Shared\ScreeningCompletedEvent $value = /* values here */
 ```
 
-### `Shared\AttendeeFlaggedEvent`
+### `Shared\PersonFlaggedEvent`
 
 ```php
 /**
-* @var \NoResponse\Models\Shared\AttendeeFlaggedEvent
+* @var \NoResponse\Models\Shared\PersonFlaggedEvent
 */
-Shared\AttendeeFlaggedEvent $value = /* values here */
+Shared\PersonFlaggedEvent $value = /* values here */
 ```
 
-### `Shared\AttendeeDecidedEvent`
+### `Shared\PersonDecidedEvent`
 
 ```php
 /**
-* @var \NoResponse\Models\Shared\AttendeeDecidedEvent
+* @var \NoResponse\Models\Shared\PersonDecidedEvent
 */
-Shared\AttendeeDecidedEvent $value = /* values here */
+Shared\PersonDecidedEvent $value = /* values here */
 ```
 

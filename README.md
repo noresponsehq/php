@@ -74,7 +74,7 @@ Every method returns an envelope: `result` holds the object and `headers` the re
 | --- | --- |
 | Configure this client and explore its methods | [PHP SDK guide](https://docs.noresponse.org/sdks/php) |
 | Act when an account's decision changes | [Late results](https://docs.noresponse.org/guides/late-results) |
-| Screen an event's attendees and record decisions | [Events and screenings](https://docs.noresponse.org/reference/events) |
+| Screen a group's people and record decisions | [Groups and screenings](https://docs.noresponse.org/reference/groups) |
 | Explore request and response fields | [API reference](https://docs.noresponse.org/api-reference) |
 
 <details>
@@ -232,9 +232,9 @@ use NoResponse\Models\Shared\AccountDeletedEvent;
 use NoResponse\Models\Shared\AccountRiskChangedEvent;
 use NoResponse\Models\Shared\AssessmentExpired;
 use NoResponse\Models\Shared\AssessmentUpdatedEvent;
-use NoResponse\Models\Shared\AttendeeDecidedEvent;
-use NoResponse\Models\Shared\AttendeeFlaggedEvent;
 use NoResponse\Models\Shared\EndpointVerificationEvent;
+use NoResponse\Models\Shared\PersonDecidedEvent;
+use NoResponse\Models\Shared\PersonFlaggedEvent;
 use NoResponse\Models\Shared\ScreeningCompletedEvent;
 use NoResponse\Models\Shared\WebhookEndpointDisabledEvent;
 use NoResponse\Models\Shared\WorkspaceDeletedEvent;
@@ -263,11 +263,11 @@ if ($event instanceof AssessmentUpdatedEvent && $event->test === true) {
 } elseif ($event instanceof WebhookEndpointDisabledEvent) {
     // webhook_endpoint.disabled: $event->data->endpointId failed for 72 hours; fix it and verify it again
 } elseif ($event instanceof ScreeningCompletedEvent) {
-    // screening.completed: counts by band, no footprint and partial coverage; it names no attendee
-} elseif ($event instanceof AttendeeFlaggedEvent) {
-    // attendee.flagged: the attendee's highest band and match state, never what was posted
-} elseif ($event instanceof AttendeeDecidedEvent) {
-    // attendee.decided: cleared, watch or escalated; keep the latest decidedAt per attendee
+    // screening.completed: counts by band, no footprint and partial coverage; it names no person
+} elseif ($event instanceof PersonFlaggedEvent) {
+    // person.flagged: the person's highest band and match state, never what was posted
+} elseif ($event instanceof PersonDecidedEvent) {
+    // person.decided: cleared, watch or escalated; keep the latest decidedAt per person
 } elseif ($event instanceof AccountRiskChangedEvent) {
     // account.risk_changed, the one event to act on: a flow's decision changed, at
     // $event->data->account->riskVersion. This verifier alone does not enforce it: use LateResults::handleRiskChange (below) as this endpoint's receiver.
@@ -278,7 +278,7 @@ if ($event instanceof AssessmentUpdatedEvent && $event->test === true) {
 http_response_code(204);
 ```
 
-`constructEvent` returns one of ten typed events from `NoResponse\Models\Shared`: `AssessmentUpdatedEvent` (data `Assessment` or `AssessmentExpired`), `EndpointVerificationEvent`, `AccountDeletedEvent`, `WorkspaceDeletedEvent`, `WebhookEndpointDisabledEvent`, `AccountRiskChangedEvent`, `AuditEventEvent`, `ScreeningCompletedEvent`, `AttendeeFlaggedEvent` and `AttendeeDecidedEvent`. It throws `WebhookVerificationException` for a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id, a bad signature or a body that is not a known event; `$e->errorCode` is one of its constants (`MISSING_HEADER`, `DUPLICATE_HEADER`, `INVALID_TIMESTAMP`, `UNKNOWN_KEY`, `INVALID_SIGNATURE`, `INVALID_PAYLOAD`). Deliveries are at least once: deduplicate on `$event->id`. `$event->test` is true only on an `assessment.updated` event sent by `sendTestEvent`, whose data is a fixed example assessment.
+`constructEvent` returns one of ten typed events from `NoResponse\Models\Shared`: `AssessmentUpdatedEvent` (data `Assessment` or `AssessmentExpired`), `EndpointVerificationEvent`, `AccountDeletedEvent`, `WorkspaceDeletedEvent`, `WebhookEndpointDisabledEvent`, `AccountRiskChangedEvent`, `AuditEventEvent`, `ScreeningCompletedEvent`, `PersonFlaggedEvent` and `PersonDecidedEvent`. It throws `WebhookVerificationException` for a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id, a bad signature or a body that is not a known event; `$e->errorCode` is one of its constants (`MISSING_HEADER`, `DUPLICATE_HEADER`, `INVALID_TIMESTAMP`, `UNKNOWN_KEY`, `INVALID_SIGNATURE`, `INVALID_PAYLOAD`). Deliveries are at least once: deduplicate on `$event->id`. `$event->test` is true only on an `assessment.updated` event sent by `sendTestEvent`, whose data is a fixed example assessment.
 
 ### Late results
 

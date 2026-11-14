@@ -17,10 +17,10 @@ class Screening
 
     /**
      *
-     * @var string $eventId
+     * @var string $groupId
      */
-    #[\NoResponse\Serializer\Annotation\SerializedName('event_id')]
-    public string $eventId;
+    #[\NoResponse\Serializer\Annotation\SerializedName('group_id')]
+    public string $groupId;
 
     /**
      *
@@ -31,7 +31,7 @@ class Screening
     public AuditSettingsEnvironment|string $environment;
 
     /**
-     * partial finished with some attendees or platforms not covered; attendees_failed and attendees_partial count them.
+     * partial finished with some people or platforms not covered; people_failed and people_partial count them.
      *
      * @var \NoResponse\Models\Shared\ScreeningStatus|string $status
      */
@@ -79,45 +79,45 @@ class Screening
     public string $expiresAt;
 
     /**
-     * Attendees selected when the screening started.
+     * People selected when the screening started.
      *
-     * @var int $attendeesTotal
+     * @var int $peopleTotal
      */
-    #[\NoResponse\Serializer\Annotation\SerializedName('attendees_total')]
-    public int $attendeesTotal;
+    #[\NoResponse\Serializer\Annotation\SerializedName('people_total')]
+    public int $peopleTotal;
 
     /**
-     * Attendees screened so far, failed ones included.
+     * People screened so far, failed ones included.
      *
-     * @var int $attendeesDone
+     * @var int $peopleDone
      */
-    #[\NoResponse\Serializer\Annotation\SerializedName('attendees_done')]
-    public int $attendeesDone;
-
-    /**
-     *
-     * @var int $attendeesFlagged
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('attendees_flagged')]
-    public int $attendeesFlagged;
+    #[\NoResponse\Serializer\Annotation\SerializedName('people_done')]
+    public int $peopleDone;
 
     /**
      *
-     * @var int $attendeesFailed
+     * @var int $peopleFlagged
      */
-    #[\NoResponse\Serializer\Annotation\SerializedName('attendees_failed')]
-    public int $attendeesFailed;
+    #[\NoResponse\Serializer\Annotation\SerializedName('people_flagged')]
+    public int $peopleFlagged;
 
     /**
-     * Attendees screened with some requested platform not covered; their coverage names which.
      *
-     * @var int $attendeesPartial
+     * @var int $peopleFailed
      */
-    #[\NoResponse\Serializer\Annotation\SerializedName('attendees_partial')]
-    public int $attendeesPartial;
+    #[\NoResponse\Serializer\Annotation\SerializedName('people_failed')]
+    public int $peopleFailed;
 
     /**
-     * What the screening was estimated to cost when it started, in minor units of USD (cents): its attendees at its depth and platforms. Until the screening finishes, what it has not yet spent counts against the environment's screening_daily_cap.
+     * People screened with some requested platform not covered; their coverage names which.
+     *
+     * @var int $peoplePartial
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('people_partial')]
+    public int $peoplePartial;
+
+    /**
+     * What the screening was estimated to cost when it started, in minor units of USD (cents): its people at its depth and platforms. Until the screening finishes, what it has not yet spent counts against the environment's screening_daily_cap.
      *
      * @var int $estimatedSpend
      */
@@ -125,7 +125,7 @@ class Screening
     public int $estimatedSpend;
 
     /**
-     * What the attendees it has screened recorded, in minor units of USD. Each counts toward the UTC day it was recorded on; a failed attendee records nothing.
+     * What the people it has screened recorded, in minor units of USD. Each counts toward the UTC day it was recorded on; a failed person records nothing.
      *
      * @var int $spent
      */
@@ -168,7 +168,7 @@ class Screening
 
     /**
      * @param  string  $id
-     * @param  string  $eventId
+     * @param  string  $groupId
      * @param  \NoResponse\Models\Shared\AuditSettingsEnvironment|string  $environment
      * @param  \NoResponse\Models\Shared\ScreeningStatus|string  $status
      * @param  \NoResponse\Models\Shared\ScreeningDepth|string  $depth
@@ -176,11 +176,11 @@ class Screening
      * @param  string  $requestedBy
      * @param  string  $createdAt
      * @param  string  $expiresAt
-     * @param  int  $attendeesTotal
-     * @param  int  $attendeesDone
-     * @param  int  $attendeesFlagged
-     * @param  int  $attendeesFailed
-     * @param  int  $attendeesPartial
+     * @param  int  $peopleTotal
+     * @param  int  $peopleDone
+     * @param  int  $peopleFlagged
+     * @param  int  $peopleFailed
+     * @param  int  $peoplePartial
      * @param  int  $estimatedSpend
      * @param  int  $spent
      * @param  \NoResponse\Models\Shared\ScreeningSpend  $spend
@@ -189,10 +189,10 @@ class Screening
      * @param  ?string  $errorCode
      * @phpstan-pure
      */
-    public function __construct(string $id, string $eventId, AuditSettingsEnvironment|string $environment, ScreeningStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $requestedBy, string $createdAt, string $expiresAt, int $attendeesTotal, int $attendeesDone, int $attendeesFlagged, int $attendeesFailed, int $attendeesPartial, int $estimatedSpend, int $spent, ScreeningSpend $spend, ?string $startedAt = null, ?string $finishedAt = null, ?string $errorCode = null)
+    public function __construct(string $id, string $groupId, AuditSettingsEnvironment|string $environment, ScreeningStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $requestedBy, string $createdAt, string $expiresAt, int $peopleTotal, int $peopleDone, int $peopleFlagged, int $peopleFailed, int $peoplePartial, int $estimatedSpend, int $spent, ScreeningSpend $spend, ?string $startedAt = null, ?string $finishedAt = null, ?string $errorCode = null)
     {
         $this->id = $id;
-        $this->eventId = $eventId;
+        $this->groupId = $groupId;
         $this->environment = $environment;
         $this->status = $status;
         $this->depth = $depth;
@@ -200,11 +200,11 @@ class Screening
         $this->requestedBy = $requestedBy;
         $this->createdAt = $createdAt;
         $this->expiresAt = $expiresAt;
-        $this->attendeesTotal = $attendeesTotal;
-        $this->attendeesDone = $attendeesDone;
-        $this->attendeesFlagged = $attendeesFlagged;
-        $this->attendeesFailed = $attendeesFailed;
-        $this->attendeesPartial = $attendeesPartial;
+        $this->peopleTotal = $peopleTotal;
+        $this->peopleDone = $peopleDone;
+        $this->peopleFlagged = $peopleFlagged;
+        $this->peopleFailed = $peopleFailed;
+        $this->peoplePartial = $peoplePartial;
         $this->estimatedSpend = $estimatedSpend;
         $this->spent = $spent;
         $this->spend = $spend;

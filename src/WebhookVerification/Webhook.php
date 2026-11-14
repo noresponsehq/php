@@ -28,8 +28,8 @@ final class Webhook
         'account.risk_changed' => \NoResponse\Models\Shared\AccountRiskChangedEvent::class,
         'audit.event' => \NoResponse\Models\Shared\AuditEventEvent::class,
         'screening.completed' => \NoResponse\Models\Shared\ScreeningCompletedEvent::class,
-        'attendee.flagged' => \NoResponse\Models\Shared\AttendeeFlaggedEvent::class,
-        'attendee.decided' => \NoResponse\Models\Shared\AttendeeDecidedEvent::class,
+        'person.flagged' => \NoResponse\Models\Shared\PersonFlaggedEvent::class,
+        'person.decided' => \NoResponse\Models\Shared\PersonDecidedEvent::class,
     ];
 
     /**
@@ -53,7 +53,7 @@ final class Webhook
         array $secrets,
         int $toleranceSeconds = self::DEFAULT_TOLERANCE_SECONDS,
         ?int $now = null,
-    ): \NoResponse\Models\Shared\AssessmentUpdatedEvent|\NoResponse\Models\Shared\EndpointVerificationEvent|\NoResponse\Models\Shared\AccountDeletedEvent|\NoResponse\Models\Shared\WorkspaceDeletedEvent|\NoResponse\Models\Shared\WebhookEndpointDisabledEvent|\NoResponse\Models\Shared\AccountRiskChangedEvent|\NoResponse\Models\Shared\AuditEventEvent|\NoResponse\Models\Shared\ScreeningCompletedEvent|\NoResponse\Models\Shared\AttendeeFlaggedEvent|\NoResponse\Models\Shared\AttendeeDecidedEvent {
+    ): \NoResponse\Models\Shared\AssessmentUpdatedEvent|\NoResponse\Models\Shared\EndpointVerificationEvent|\NoResponse\Models\Shared\AccountDeletedEvent|\NoResponse\Models\Shared\WorkspaceDeletedEvent|\NoResponse\Models\Shared\WebhookEndpointDisabledEvent|\NoResponse\Models\Shared\AccountRiskChangedEvent|\NoResponse\Models\Shared\AuditEventEvent|\NoResponse\Models\Shared\ScreeningCompletedEvent|\NoResponse\Models\Shared\PersonFlaggedEvent|\NoResponse\Models\Shared\PersonDecidedEvent {
         $values = self::headerValues($headers);
         $id = $values['NR-Webhook-Id'];
         $timestamp = $values['NR-Webhook-Timestamp'];
@@ -104,7 +104,7 @@ final class Webhook
         } catch (\Throwable) {
             throw new WebhookVerificationException(WebhookVerificationException::INVALID_PAYLOAD, 'the body is not a known webhook event');
         }
-        if (! $event instanceof \NoResponse\Models\Shared\AssessmentUpdatedEvent && ! $event instanceof \NoResponse\Models\Shared\EndpointVerificationEvent && ! $event instanceof \NoResponse\Models\Shared\AccountDeletedEvent && ! $event instanceof \NoResponse\Models\Shared\WorkspaceDeletedEvent && ! $event instanceof \NoResponse\Models\Shared\WebhookEndpointDisabledEvent && ! $event instanceof \NoResponse\Models\Shared\AccountRiskChangedEvent && ! $event instanceof \NoResponse\Models\Shared\AuditEventEvent && ! $event instanceof \NoResponse\Models\Shared\ScreeningCompletedEvent && ! $event instanceof \NoResponse\Models\Shared\AttendeeFlaggedEvent && ! $event instanceof \NoResponse\Models\Shared\AttendeeDecidedEvent) {
+        if (! $event instanceof \NoResponse\Models\Shared\AssessmentUpdatedEvent && ! $event instanceof \NoResponse\Models\Shared\EndpointVerificationEvent && ! $event instanceof \NoResponse\Models\Shared\AccountDeletedEvent && ! $event instanceof \NoResponse\Models\Shared\WorkspaceDeletedEvent && ! $event instanceof \NoResponse\Models\Shared\WebhookEndpointDisabledEvent && ! $event instanceof \NoResponse\Models\Shared\AccountRiskChangedEvent && ! $event instanceof \NoResponse\Models\Shared\AuditEventEvent && ! $event instanceof \NoResponse\Models\Shared\ScreeningCompletedEvent && ! $event instanceof \NoResponse\Models\Shared\PersonFlaggedEvent && ! $event instanceof \NoResponse\Models\Shared\PersonDecidedEvent) {
             throw new WebhookVerificationException(WebhookVerificationException::INVALID_PAYLOAD, 'the body is not a known webhook event');
         }
 

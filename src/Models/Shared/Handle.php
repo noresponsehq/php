@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** Handle - An account the attendee is known to hold. */
+/** Handle - An account the person is known to hold. */
 class Handle
 {
     /**

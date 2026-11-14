@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** ScreeningCompleted - A screening of an event finished. It counts only the attendees this screening set out to reach, not who they are: read the roster with GET /v1/workspaces/{workspace_id}/events/{environment}/{event_id}/attendees, filtered by band, to act on them. attendees_screened + partial_coverage = attendees_total, attendees_flagged is the sum of by_band, no_footprint counts screened attendees with no flag whose accounts were not found, and no_profile_to_check those the screening had nothing to look up for on any requested platform. A cancelled screening sends no event. */
+/** ScreeningCompleted - A screening of a group finished. It counts only the people this screening set out to reach, not who they are: read the roster with GET /v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people, filtered by band, to act on them. people_screened + partial_coverage = people_total, people_flagged is the sum of by_band, no_footprint counts screened people with no flag whose accounts were not found, and no_profile_to_check those the screening had nothing to look up for on any requested platform. A cancelled screening sends no event. */
 class ScreeningCompleted
 {
     /**
@@ -17,15 +17,15 @@ class ScreeningCompleted
     public string $screeningId;
 
     /**
-     * The event it screened.
+     * The group it screened.
      *
-     * @var string $eventId
+     * @var string $groupId
      */
-    #[\NoResponse\Serializer\Annotation\SerializedName('event_id')]
-    public string $eventId;
+    #[\NoResponse\Serializer\Annotation\SerializedName('group_id')]
+    public string $groupId;
 
     /**
-     * completed reached every attendee; partial left some not fully covered (partial_coverage); failed covered nobody.
+     * completed reached every person; partial left some not fully covered (partial_coverage); failed covered nobody.
      *
      * @var \NoResponse\Models\Shared\ScreeningCompletedStatus $status
      */
@@ -34,31 +34,31 @@ class ScreeningCompleted
     public ScreeningCompletedStatus $status;
 
     /**
-     * Every attendee the screening set out to reach: those no screening had reached and those on watch or escalated.
+     * Every person the screening set out to reach: those no screening had reached and those on watch or escalated.
      *
-     * @var int $attendeesTotal
+     * @var int $peopleTotal
      */
-    #[\NoResponse\Serializer\Annotation\SerializedName('attendees_total')]
-    public int $attendeesTotal;
+    #[\NoResponse\Serializer\Annotation\SerializedName('people_total')]
+    public int $peopleTotal;
 
     /**
-     * Attendees the screening covered, flagged or not.
+     * People the screening covered, flagged or not.
      *
-     * @var int $attendeesScreened
+     * @var int $peopleScreened
      */
-    #[\NoResponse\Serializer\Annotation\SerializedName('attendees_screened')]
-    public int $attendeesScreened;
+    #[\NoResponse\Serializer\Annotation\SerializedName('people_screened')]
+    public int $peopleScreened;
 
     /**
-     * Screened attendees with a finding: the sum of by_band.
+     * Screened people with a finding: the sum of by_band.
      *
-     * @var int $attendeesFlagged
+     * @var int $peopleFlagged
      */
-    #[\NoResponse\Serializer\Annotation\SerializedName('attendees_flagged')]
-    public int $attendeesFlagged;
+    #[\NoResponse\Serializer\Annotation\SerializedName('people_flagged')]
+    public int $peopleFlagged;
 
     /**
-     * Screened attendees by the band of their most severe finding.
+     * Screened people by the band of their most severe finding.
      *
      * @var \NoResponse\Models\Shared\ScreeningCompletedByBand $byBand
      */
@@ -67,7 +67,7 @@ class ScreeningCompleted
     public ScreeningCompletedByBand $byBand;
 
     /**
-     * Screened attendees with no finding whose accounts were not found (match_state none_found). A clean result for someone with no visible accounts is not the same as a clean result for someone whose accounts were read.
+     * Screened people with no finding whose accounts were not found (match_state none_found). A clean result for someone with no visible accounts is not the same as a clean result for someone whose accounts were read.
      *
      * @var int $noFootprint
      */
@@ -75,7 +75,7 @@ class ScreeningCompleted
     public int $noFootprint;
 
     /**
-     * Attendees the screening did not fully cover. Read each one's coverage on its attendee.
+     * People the screening did not fully cover. Read each one's coverage on its person.
      *
      * @var int $partialCoverage
      */
@@ -100,7 +100,7 @@ class ScreeningCompleted
     public ?string $errorCode = null;
 
     /**
-     * Screened attendees with no profile to check: the list gave nothing to look up on any requested platform, such as no handle, so nobody looked for a profile (no_profile_to_check on the attendee). Not in no_footprint, and not partial: nothing failed. Their lookups are on their reports.
+     * Screened people with no profile to check: the list gave nothing to look up on any requested platform, such as no handle, so nobody looked for a profile (no_profile_to_check on the person). Not in no_footprint, and not partial: nothing failed. Their lookups are on their reports.
      *
      * @var ?int $noProfileToCheck
      */
@@ -110,11 +110,11 @@ class ScreeningCompleted
 
     /**
      * @param  string  $screeningId
-     * @param  string  $eventId
+     * @param  string  $groupId
      * @param  \NoResponse\Models\Shared\ScreeningCompletedStatus  $status
-     * @param  int  $attendeesTotal
-     * @param  int  $attendeesScreened
-     * @param  int  $attendeesFlagged
+     * @param  int  $peopleTotal
+     * @param  int  $peopleScreened
+     * @param  int  $peopleFlagged
      * @param  \NoResponse\Models\Shared\ScreeningCompletedByBand  $byBand
      * @param  int  $noFootprint
      * @param  int  $partialCoverage
@@ -123,14 +123,14 @@ class ScreeningCompleted
      * @param  ?int  $noProfileToCheck
      * @phpstan-pure
      */
-    public function __construct(string $screeningId, string $eventId, ScreeningCompletedStatus $status, int $attendeesTotal, int $attendeesScreened, int $attendeesFlagged, ScreeningCompletedByBand $byBand, int $noFootprint, int $partialCoverage, string $finishedAt, ?string $errorCode = null, ?int $noProfileToCheck = null)
+    public function __construct(string $screeningId, string $groupId, ScreeningCompletedStatus $status, int $peopleTotal, int $peopleScreened, int $peopleFlagged, ScreeningCompletedByBand $byBand, int $noFootprint, int $partialCoverage, string $finishedAt, ?string $errorCode = null, ?int $noProfileToCheck = null)
     {
         $this->screeningId = $screeningId;
-        $this->eventId = $eventId;
+        $this->groupId = $groupId;
         $this->status = $status;
-        $this->attendeesTotal = $attendeesTotal;
-        $this->attendeesScreened = $attendeesScreened;
-        $this->attendeesFlagged = $attendeesFlagged;
+        $this->peopleTotal = $peopleTotal;
+        $this->peopleScreened = $peopleScreened;
+        $this->peopleFlagged = $peopleFlagged;
         $this->byBand = $byBand;
         $this->noFootprint = $noFootprint;
         $this->partialCoverage = $partialCoverage;
