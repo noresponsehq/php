@@ -9,7 +9,7 @@ namespace NoResponse\Models\Shared;
 class RecordMatch
 {
     /**
-     * The kind of searched value: email, phone, username, ip, name, or handle for a profile read of a handle.
+     * The kind of searched value: email, phone, username, ip, name, password, hash, or handle for a profile read of a handle.
      *
      * @var string $by
      */
@@ -26,13 +26,24 @@ class RecordMatch
     public ?string $field = null;
 
     /**
+     * The search a person started on a value of another record that found this one, among the person report's searches, which names the value and the record and field it came from. A record found only by such searches is a lead, whatever kind of value found it. Absent for a match of the lookups.
+     *
+     * @var ?string $search
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('search')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $search = null;
+
+    /**
      * @param  string  $by
      * @param  ?string  $field
+     * @param  ?string  $search
      * @phpstan-pure
      */
-    public function __construct(string $by, ?string $field = null)
+    public function __construct(string $by, ?string $field = null, ?string $search = null)
     {
         $this->by = $by;
         $this->field = $field;
+        $this->search = $search;
     }
 }

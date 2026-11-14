@@ -16,6 +16,8 @@ Groups, lists of people, screenings and reviewer decisions.
 * [getPerson](#getperson) - Read a person's report.
 * [reviewPerson](#reviewperson) - Record a decision on a person.
 * [judgeRecord](#judgerecord) - Join one of a person's records to them, or reject it.
+* [startSearch](#startsearch) - Search again on a value of one of a person's records.
+* [runSearch](#runsearch) - Run a counted password or hash search.
 * [listScreenings](#listscreenings) - List a group's screenings.
 * [startScreening](#startscreening) - Start a screening.
 * [getScreening](#getscreening) - Read a screening.
@@ -646,6 +648,133 @@ $result = $response->result;
 ### Response
 
 **[?Operations\JudgeRecordResponse](../../Models/Operations/JudgeRecordResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## startSearch
+
+Search again on the value of one field of one of a person's records, named by the record and field. Nothing searches again by itself. A password or hash search counts its breach rows first and runs only when you run it; read the person to see each search and what it found.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="startSearch" method="post" path="/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people/{person_id}/searches" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\SearchRequest(
+    recordId: 'rec_3f9a1c22d4e5b6a73f9a1c22d4e5b6a7',
+    field: 'username',
+    table: 'FORUM_EXAMPLE_COM_2019',
+);
+
+$response = $sdk->groups->startSearch(
+    workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    environment: Shared\KeyEnvironment::Live,
+    groupId: 'grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    personId: 'per_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    body: $body
+
+);
+
+$result = $response->result;
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                              | Type                                                                                                                                                                   | Required                                                                                                                                                               | Description                                                                                                                                                            | Example                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `workspaceId`                                                                                                                                                          | *string*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                     | Your workspace id, as each key lists it in workspace_id. Another workspace, a malformed id and a test environment's id answer 404.                                     | tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                                                         |
+| `environment`                                                                                                                                                          | [Shared\KeyEnvironment\|string](../../Models/Shared/KeyEnvironment.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                     | The environment: live or test. Each has its own settings. Any other value answers 400. An API key reads and changes only its own environment's; the other answers 404. |                                                                                                                                                                        |
+| `groupId`                                                                                                                                                              | *string*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                     | N/A                                                                                                                                                                    | grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                                                         |
+| `personId`                                                                                                                                                             | *string*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                     | N/A                                                                                                                                                                    | per_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                                                                                                         |
+| `body`                                                                                                                                                                 | [Shared\SearchRequest](../../Models/Shared/SearchRequest.md)                                                                                                           | :heavy_check_mark:                                                                                                                                                     | N/A                                                                                                                                                                    |                                                                                                                                                                        |
+
+### Response
+
+**[?Operations\StartSearchResponse](../../Models/Operations/StartSearchResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## runSearch
+
+Run a counted password or hash search once you have seen how many breach rows hold the value.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="runSearch" method="post" path="/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people/{person_id}/searches/{search_id}/run" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Operations;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$request = new Operations\RunSearchRequest(
+    workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    environment: Shared\KeyEnvironment::Live,
+    groupId: 'grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    personId: 'per_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    searchId: 'srh_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    body: new Shared\ScreeningCancelRequest(),
+);
+
+$response = $sdk->groups->runSearch(
+    request: $request
+);
+
+$result = $response->result;
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `$request`                                                                 | [Operations\RunSearchRequest](../../Models/Operations/RunSearchRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+
+### Response
+
+**[?Operations\RunSearchResponse](../../Models/Operations/RunSearchResponse.md)**
 
 ### Errors
 

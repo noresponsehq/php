@@ -82,6 +82,16 @@ class PersonReport
     public ?ScreeningLookup $lookup = null;
 
     /**
+     * The searches people started on this person's values, newest first: each names the value, and the record and field it came from. Absent when nobody searched.
+     *
+     * @var ?array<\NoResponse\Models\Shared\Search> $searches
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('searches')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Search>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $searches = null;
+
+    /**
      * @param  \NoResponse\Models\Shared\Person  $person
      * @param  array<\NoResponse\Models\Shared\ScreeningProfile>  $profiles
      * @param  array<\NoResponse\Models\Shared\ScreeningFinding>  $findings
@@ -90,9 +100,10 @@ class PersonReport
      * @param  array<\NoResponse\Models\Shared\PersonReview>  $reviews
      * @param  \NoResponse\Models\Shared\OtherGroups  $otherGroups
      * @param  ?\NoResponse\Models\Shared\ScreeningLookup  $lookup
+     * @param  ?array<\NoResponse\Models\Shared\Search>  $searches
      * @phpstan-pure
      */
-    public function __construct(Person $person, array $profiles, array $findings, array $posts, array $media, array $reviews, OtherGroups $otherGroups, ?ScreeningLookup $lookup = null)
+    public function __construct(Person $person, array $profiles, array $findings, array $posts, array $media, array $reviews, OtherGroups $otherGroups, ?ScreeningLookup $lookup = null, ?array $searches = null)
     {
         $this->person = $person;
         $this->profiles = $profiles;
@@ -102,5 +113,6 @@ class PersonReport
         $this->reviews = $reviews;
         $this->otherGroups = $otherGroups;
         $this->lookup = $lookup;
+        $this->searches = $searches;
     }
 }

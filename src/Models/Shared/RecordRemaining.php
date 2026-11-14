@@ -34,15 +34,26 @@ class RecordRemaining
     public int $rows;
 
     /**
+     * The search a person started that matched the rows. Searching the same field again with this source's table fetches them.
+     *
+     * @var ?string $search
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('search')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $search = null;
+
+    /**
      * @param  \NoResponse\Models\Shared\RecordSource  $source
      * @param  string  $by
      * @param  int  $rows
+     * @param  ?string  $search
      * @phpstan-pure
      */
-    public function __construct(RecordSource $source, string $by, int $rows)
+    public function __construct(RecordSource $source, string $by, int $rows, ?string $search = null)
     {
         $this->source = $source;
         $this->by = $by;
         $this->rows = $rows;
+        $this->search = $search;
     }
 }

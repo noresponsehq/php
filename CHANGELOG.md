@@ -1,5 +1,11 @@
 # Changelog
 
+## 12.0.5
+
+* `sdk->groups->startSearch()`: **Added**
+* `sdk->groups->runSearch()`: **Added**
+* `sdk->groups->getPerson()`:  `response` **Changed**
+
 ## 12.0.4
 
 No changes detected.
