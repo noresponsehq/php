@@ -46,7 +46,7 @@ class ScreeningLookup
     public ?RiskDetails $details = null;
 
     /**
-     * What each source that found an account answered, whole: every field under the source's own names, each answer once. Served only to a caller who may read evidence, as details are.
+     * What each source answered, whole, each answer once: every field of each account a connector found, and every column of each breach row the person's email or usernames matched, under the source's own names. Anyone who may read the person reads them: no extra permission applies, breach passwords and hashes included.
      *
      * @var ?array<\NoResponse\Models\Shared\Record> $records
      */
@@ -56,19 +56,31 @@ class ScreeningLookup
     public ?array $records = null;
 
     /**
+     * For each search and source whose matched rows records leave out, how many: a breach search returns at most 20 rows of a table and 100 in all, from its first 64 tables by name. Absent when records hold every matched row.
+     *
+     * @var ?array<\NoResponse\Models\Shared\RecordRemaining> $remaining
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('remaining')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RecordRemaining>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $remaining = null;
+
+    /**
      * @param  array<\NoResponse\Models\Shared\ScreeningLookupCheck>  $checks
      * @param  string  $lookedAt
      * @param  ?\NoResponse\Models\Shared\RiskSummary  $summary
      * @param  ?\NoResponse\Models\Shared\RiskDetails  $details
      * @param  ?array<\NoResponse\Models\Shared\Record>  $records
+     * @param  ?array<\NoResponse\Models\Shared\RecordRemaining>  $remaining
      * @phpstan-pure
      */
-    public function __construct(array $checks, string $lookedAt, ?RiskSummary $summary = null, ?RiskDetails $details = null, ?array $records = null)
+    public function __construct(array $checks, string $lookedAt, ?RiskSummary $summary = null, ?RiskDetails $details = null, ?array $records = null, ?array $remaining = null)
     {
         $this->checks = $checks;
         $this->lookedAt = $lookedAt;
         $this->summary = $summary;
         $this->details = $details;
         $this->records = $records;
+        $this->remaining = $remaining;
     }
 }

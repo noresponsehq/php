@@ -9,7 +9,7 @@ namespace NoResponse\Models\Shared;
 class RecordMatch
 {
     /**
-     * The kind of searched value: email, phone, username, name, or handle for a profile read of a handle.
+     * The kind of searched value: email, phone, username, ip, name, or handle for a profile read of a handle.
      *
      * @var string $by
      */

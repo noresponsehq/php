@@ -17,7 +17,7 @@ class RecordField
     public string $field;
 
     /**
-     * The value as the source wrote it. A count is written in decimal and a time in RFC 3339.
+     * The value as the source wrote it. A count is written in decimal and a time in RFC 3339; a breach column's value is as the leak holds it.
      *
      * @var string $original
      */
