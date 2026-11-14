@@ -137,6 +137,16 @@ class ScreeningProfile
     public ?string $periodTo = null;
 
     /**
+     * One answer from one source: where it came from, what found it and every field it holds.
+     *
+     * @var ?\NoResponse\Models\Shared\Record $record
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('record')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Record|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?Record $record = null;
+
+    /**
      * @param  string  $id
      * @param  \NoResponse\Models\Shared\HandlePlatform|string  $platform
      * @param  string  $handle
@@ -153,9 +163,10 @@ class ScreeningProfile
      * @param  ?string  $accountCreatedAt
      * @param  ?string  $periodFrom
      * @param  ?string  $periodTo
+     * @param  ?\NoResponse\Models\Shared\Record  $record
      * @phpstan-pure
      */
-    public function __construct(string $id, HandlePlatform|string $platform, string $handle, string $url, Access|string $access, ScreeningMatch $match, string $collector, int $itemsRead, string $collectedAt, ?string $displayName = null, ?string $bio = null, ?string $avatarUrl = null, ?int $followers = null, ?string $accountCreatedAt = null, ?string $periodFrom = null, ?string $periodTo = null)
+    public function __construct(string $id, HandlePlatform|string $platform, string $handle, string $url, Access|string $access, ScreeningMatch $match, string $collector, int $itemsRead, string $collectedAt, ?string $displayName = null, ?string $bio = null, ?string $avatarUrl = null, ?int $followers = null, ?string $accountCreatedAt = null, ?string $periodFrom = null, ?string $periodTo = null, ?Record $record = null)
     {
         $this->id = $id;
         $this->platform = $platform;
@@ -173,5 +184,6 @@ class ScreeningProfile
         $this->accountCreatedAt = $accountCreatedAt;
         $this->periodFrom = $periodFrom;
         $this->periodTo = $periodTo;
+        $this->record = $record;
     }
 }

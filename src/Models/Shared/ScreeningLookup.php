@@ -46,17 +46,29 @@ class ScreeningLookup
     public ?RiskDetails $details = null;
 
     /**
+     * What each source that found an account answered, whole: every field under the source's own names, each answer once. Served only to a caller who may read evidence, as details are.
+     *
+     * @var ?array<\NoResponse\Models\Shared\Record> $records
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('records')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Record>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $records = null;
+
+    /**
      * @param  array<\NoResponse\Models\Shared\ScreeningLookupCheck>  $checks
      * @param  string  $lookedAt
      * @param  ?\NoResponse\Models\Shared\RiskSummary  $summary
      * @param  ?\NoResponse\Models\Shared\RiskDetails  $details
+     * @param  ?array<\NoResponse\Models\Shared\Record>  $records
      * @phpstan-pure
      */
-    public function __construct(array $checks, string $lookedAt, ?RiskSummary $summary = null, ?RiskDetails $details = null)
+    public function __construct(array $checks, string $lookedAt, ?RiskSummary $summary = null, ?RiskDetails $details = null, ?array $records = null)
     {
         $this->checks = $checks;
         $this->lookedAt = $lookedAt;
         $this->summary = $summary;
         $this->details = $details;
+        $this->records = $records;
     }
 }
