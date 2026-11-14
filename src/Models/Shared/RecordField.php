@@ -25,25 +25,27 @@ class RecordField
     public string $original;
 
     /**
-     * What sort of value the field holds. Absent until the field's kind is known.
+     * What sort of value a field holds, which decides how it is cleaned, compared and searched again. It comes from the value itself where its shape is certain (an email, an IP, a URL, an international phone number), else from the answer stored for the source's column, else text. A value of any kind is returned.
      *
-     * @var ?string $kind
+     * @var \NoResponse\Models\Shared\RecordKind|string|null $kind
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('kind')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RecordKind|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?string $kind = null;
+    public RecordKind|string|null $kind = null;
 
     /**
-     * Which common field it is, where many sources share it, such as handle, display_name, account_id, profile_link, picture, bio, website, linked_account (named by its network), account_status, joined, last_updated, organisation, location, followers, following or posts. Absent for a field only this source returns.
+     * Which common field a value is, where many sources share it: a join date and a birth date are both dates, with the roles joined and born. A platform account's field and a breach row's column with the same meaning carry the same kind and role. A linked_account field is named by its network. Absent for a field only its source returns.
      *
-     * @var ?string $role
+     * @var \NoResponse\Models\Shared\RecordRole|string|null $role
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('role')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RecordRole|string|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?string $role = null;
+    public RecordRole|string|null $role = null;
 
     /**
-     * The cleaned value. Absent when it cannot be cleaned, or until the field's kind is known.
+     * The value cleaned to its kind's one form: an email in lower case, a phone number in international form when its country is known, a date in ISO form, a country as its two-letter code, a flag as true or false. Absent when the value cannot be cleaned as its kind; original still holds it.
      *
      * @var ?string $value
      */
@@ -52,19 +54,30 @@ class RecordField
     public ?string $value = null;
 
     /**
+     * What the value shows of itself beyond its kind: the likely algorithm of a hash, the likely coin of a crypto address or the currency of an amount.
+     *
+     * @var ?string $detail
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('detail')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $detail = null;
+
+    /**
      * @param  string  $field
      * @param  string  $original
-     * @param  ?string  $kind
-     * @param  ?string  $role
+     * @param  \NoResponse\Models\Shared\RecordKind|string|null  $kind
+     * @param  \NoResponse\Models\Shared\RecordRole|string|null  $role
      * @param  ?string  $value
+     * @param  ?string  $detail
      * @phpstan-pure
      */
-    public function __construct(string $field, string $original, ?string $kind = null, ?string $role = null, ?string $value = null)
+    public function __construct(string $field, string $original, RecordKind|string|null $kind = null, RecordRole|string|null $role = null, ?string $value = null, ?string $detail = null)
     {
         $this->field = $field;
         $this->original = $original;
         $this->kind = $kind;
         $this->role = $role;
         $this->value = $value;
+        $this->detail = $detail;
     }
 }
