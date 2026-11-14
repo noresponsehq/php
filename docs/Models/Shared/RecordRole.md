@@ -17,7 +17,9 @@ Which common field a value is, where many sources share it: a join date and a bi
 | `Born`            | born              |
 | `Bot`             | bot               |
 | `CallerCategory`  | caller_category   |
+| `Chargebacks`     | chargebacks       |
 | `CoverPicture`    | cover_picture     |
+| `Declines`        | declines          |
 | `Deleted`         | deleted           |
 | `DeletedOn`       | deleted_on        |
 | `Department`      | department        |
@@ -53,6 +55,7 @@ Which common field a value is, where many sources share it: a join date and a bi
 | `OtherIp`         | other_ip          |
 | `Paid`            | paid              |
 | `PasswordChanged` | password_changed  |
+| `PaymentMethod`   | payment_method    |
 | `Picture`         | picture           |
 | `Points`          | points            |
 | `Posts`           | posts             |
@@ -73,6 +76,7 @@ Which common field a value is, where many sources share it: a join date and a bi
 | `SiteRole`        | site_role         |
 | `SpamScore`       | spam_score        |
 | `Street`          | street            |
+| `Trades`          | trades            |
 | `Verified`        | verified          |
 | `Warnings`        | warnings          |
 | `Website`         | website           |

@@ -22,14 +22,18 @@ enum RecordRole: string
     case Banned = 'banned';
     // What the person wrote about themselves (`long_text`).
     case Bio = 'bio';
-    // The date of birth (`date`).
+    // The date of birth (`date` or `date_time`).
     case Born = 'born';
     // Whether the site marks the account as a bot (`flag`).
     case Bot = 'bot';
     // The category callers give a phone number, such as telemarketer (`label`).
     case CallerCategory = 'caller_category';
+    // How many chargebacks a shop recorded against the account, or whether it has one (`count` or `flag`).
+    case Chargebacks = 'chargebacks';
     // The banner picture of the profile (`image`).
     case CoverPicture = 'cover_picture';
+    // How many of the account's payments a shop declined (`count`).
+    case Declines = 'declines';
     // Whether the account is deleted or inactive (`flag`).
     case Deleted = 'deleted';
     // When the account was deleted (`date` or `date_time`).
@@ -100,6 +104,8 @@ enum RecordRole: string
     case Paid = 'paid';
     // When the password last changed (`date` or `date_time`).
     case PasswordChanged = 'password_changed';
+    // The payment method or card brand the account paid with (`label`).
+    case PaymentMethod = 'payment_method';
     // The profile picture (`image`).
     case Picture = 'picture';
     // Points on the site (`score`).
@@ -140,6 +146,8 @@ enum RecordRole: string
     case SpamScore = 'spam_score';
     // A street line of an address (`address`).
     case Street = 'street';
+    // How many trades a forum account completed (`count`).
+    case Trades = 'trades';
     // Whether the site verified the account (`flag`).
     case Verified = 'verified';
     // Warnings and infractions on the account (`count`).
