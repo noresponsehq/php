@@ -119,6 +119,16 @@ class ScreeningProfile
     public ?string $accountCreatedAt = null;
 
     /**
+     * Why fewer posts were read than the screening's depth asks for while the account holds more. platform_limit: the platform shows the screening no more of them. page_limit: the pages a screening reads ran out first. rate_limited or unavailable: a later page was held back or failed; the posts before it are kept and the person is partial. Absent when the account was read to its end or to the depth.
+     *
+     * @var \NoResponse\Models\Shared\PostsStopped|string|null $postsStopped
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('posts_stopped')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\PostsStopped|string|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public PostsStopped|string|null $postsStopped = null;
+
+    /**
      * The oldest item read.
      *
      * @var ?string $periodFrom
@@ -161,12 +171,13 @@ class ScreeningProfile
      * @param  ?string  $avatarUrl
      * @param  ?int  $followers
      * @param  ?string  $accountCreatedAt
+     * @param  \NoResponse\Models\Shared\PostsStopped|string|null  $postsStopped
      * @param  ?string  $periodFrom
      * @param  ?string  $periodTo
      * @param  ?\NoResponse\Models\Shared\Record  $record
      * @phpstan-pure
      */
-    public function __construct(string $id, HandlePlatform|string $platform, string $handle, string $url, Access|string $access, ScreeningMatch $match, string $collector, int $itemsRead, string $collectedAt, ?string $displayName = null, ?string $bio = null, ?string $avatarUrl = null, ?int $followers = null, ?string $accountCreatedAt = null, ?string $periodFrom = null, ?string $periodTo = null, ?Record $record = null)
+    public function __construct(string $id, HandlePlatform|string $platform, string $handle, string $url, Access|string $access, ScreeningMatch $match, string $collector, int $itemsRead, string $collectedAt, ?string $displayName = null, ?string $bio = null, ?string $avatarUrl = null, ?int $followers = null, ?string $accountCreatedAt = null, PostsStopped|string|null $postsStopped = null, ?string $periodFrom = null, ?string $periodTo = null, ?Record $record = null)
     {
         $this->id = $id;
         $this->platform = $platform;
@@ -182,6 +193,7 @@ class ScreeningProfile
         $this->avatarUrl = $avatarUrl;
         $this->followers = $followers;
         $this->accountCreatedAt = $accountCreatedAt;
+        $this->postsStopped = $postsStopped;
         $this->periodFrom = $periodFrom;
         $this->periodTo = $periodTo;
         $this->record = $record;

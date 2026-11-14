@@ -52,6 +52,24 @@ class ScreeningPost
     public ?string $replyTo = null;
 
     /**
+     * The permalink of the post this one reposts. text then holds that post's author's words, not the person's.
+     *
+     * @var ?string $repostOf
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('repost_of')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $repostOf = null;
+
+    /**
+     * The permalink of the post this one quotes. text holds the person's own words alone.
+     *
+     * @var ?string $quoteOf
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('quote_of')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $quoteOf = null;
+
+    /**
      * SHA-256 of the screenshot taken of a flagged item.
      *
      * @var ?string $screenshotSha256
@@ -84,11 +102,13 @@ class ScreeningPost
      * @param  string  $permalink
      * @param  string  $postedAt
      * @param  ?string  $replyTo
+     * @param  ?string  $repostOf
+     * @param  ?string  $quoteOf
      * @param  ?string  $screenshotSha256
      * @param  ?string  $capturedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $text, string $profileId, string $permalink, string $postedAt, ?string $replyTo = null, ?string $screenshotSha256 = null, ?string $capturedAt = null, string $kind = 'post')
+    public function __construct(string $id, string $text, string $profileId, string $permalink, string $postedAt, ?string $replyTo = null, ?string $repostOf = null, ?string $quoteOf = null, ?string $screenshotSha256 = null, ?string $capturedAt = null, string $kind = 'post')
     {
         $this->id = $id;
         $this->text = $text;
@@ -96,6 +116,8 @@ class ScreeningPost
         $this->permalink = $permalink;
         $this->postedAt = $postedAt;
         $this->replyTo = $replyTo;
+        $this->repostOf = $repostOf;
+        $this->quoteOf = $quoteOf;
         $this->screenshotSha256 = $screenshotSha256;
         $this->capturedAt = $capturedAt;
         $this->kind = $kind;
