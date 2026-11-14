@@ -63,15 +63,26 @@ class RecordField
     public ?string $detail = null;
 
     /**
+     * How distinctive a searchable value is: an email, phone, username, password, hash, person name or IP. Absent for other values, and when its rating could not be worked out, such as when a count failed.
+     *
+     * @var ?\NoResponse\Models\Shared\RecordDistinctive $distinctive
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('distinctive')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RecordDistinctive|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?RecordDistinctive $distinctive = null;
+
+    /**
      * @param  string  $field
      * @param  string  $original
      * @param  \NoResponse\Models\Shared\RecordKind|string|null  $kind
      * @param  \NoResponse\Models\Shared\RecordRole|string|null  $role
      * @param  ?string  $value
      * @param  ?string  $detail
+     * @param  ?\NoResponse\Models\Shared\RecordDistinctive  $distinctive
      * @phpstan-pure
      */
-    public function __construct(string $field, string $original, RecordKind|string|null $kind = null, RecordRole|string|null $role = null, ?string $value = null, ?string $detail = null)
+    public function __construct(string $field, string $original, RecordKind|string|null $kind = null, RecordRole|string|null $role = null, ?string $value = null, ?string $detail = null, ?RecordDistinctive $distinctive = null)
     {
         $this->field = $field;
         $this->original = $original;
@@ -79,5 +90,6 @@ class RecordField
         $this->role = $role;
         $this->value = $value;
         $this->detail = $detail;
+        $this->distinctive = $distinctive;
     }
 }
