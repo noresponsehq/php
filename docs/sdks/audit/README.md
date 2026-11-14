@@ -20,7 +20,7 @@ Read audit events within your current environment permissions. Filters apply bef
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="listAuditEvents" method="get" path="/v1/workspaces/{workspace_id}/audit_events" example="page" -->
+<!-- UsageSnippet language="php" operationID="listAuditEvents" method="get" path="/v1/workspaces/{workspace_id}/audit" example="page" -->
 ```php
 declare(strict_types=1);
 
@@ -78,7 +78,7 @@ Read audit retention for the environment. The default is 365 days. Oldest availa
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="getAuditRetention" method="get" path="/v1/workspaces/{workspace_id}/audit_settings/{environment}" -->
+<!-- UsageSnippet language="php" operationID="getAuditRetention" method="get" path="/v1/workspaces/{workspace_id}/retention/{environment}" -->
 ```php
 declare(strict_types=1);
 
@@ -134,7 +134,7 @@ Set test-environment audit retention from 1 to 365 days with audit_manage scope.
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="updateAuditRetention" method="patch" path="/v1/workspaces/{workspace_id}/audit_settings/{environment}" -->
+<!-- UsageSnippet language="php" operationID="updateAuditRetention" method="patch" path="/v1/workspaces/{workspace_id}/retention/{environment}" -->
 ```php
 declare(strict_types=1);
 
@@ -195,7 +195,7 @@ List audit subscriptions and their endpoint state and latest delivery attempt. S
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="listAuditStreams" method="get" path="/v1/workspaces/{workspace_id}/audit_streams/{environment}" -->
+<!-- UsageSnippet language="php" operationID="listAuditStreams" method="get" path="/v1/workspaces/{workspace_id}/streams/{environment}" -->
 ```php
 declare(strict_types=1);
 
@@ -251,7 +251,7 @@ Configure the action filter for one verified webhook endpoint. Requires audit_ma
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="configureAuditStream" method="post" path="/v1/workspaces/{workspace_id}/audit_streams/{environment}" -->
+<!-- UsageSnippet language="php" operationID="configureAuditStream" method="post" path="/v1/workspaces/{workspace_id}/streams/{environment}" -->
 ```php
 declare(strict_types=1);
 
@@ -315,7 +315,7 @@ Remove an audit subscription and cancel queued deliveries. Requires audit_manage
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="removeAuditStream" method="delete" path="/v1/workspaces/{workspace_id}/audit_streams/{environment}/{endpoint_id}" -->
+<!-- UsageSnippet language="php" operationID="removeAuditStream" method="delete" path="/v1/workspaces/{workspace_id}/streams/{environment}/{endpoint_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -373,7 +373,7 @@ Replay a recorded delivery for the current audit subscription. Requires audit_ma
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="replayAuditStream" method="post" path="/v1/workspaces/{workspace_id}/audit_streams/{environment}/{endpoint_id}/replay" -->
+<!-- UsageSnippet language="php" operationID="replayAuditStream" method="post" path="/v1/workspaces/{workspace_id}/streams/{environment}/{endpoint_id}/replay" -->
 ```php
 declare(strict_types=1);
 

@@ -96,7 +96,7 @@ class Audit
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/audit_streams/{environment}', Operations\ConfigureAuditStreamRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/streams/{environment}', Operations\ConfigureAuditStreamRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -268,7 +268,7 @@ class Audit
             environment: $environment,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/audit_settings/{environment}', Operations\GetAuditRetentionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/retention/{environment}', Operations\GetAuditRetentionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -430,7 +430,7 @@ class Audit
             ];
         }
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/audit_events', Operations\ListAuditEventsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/audit', Operations\ListAuditEventsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
@@ -655,7 +655,7 @@ class Audit
             environment: $environment,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/audit_streams/{environment}', Operations\ListAuditStreamsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/streams/{environment}', Operations\ListAuditStreamsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -824,7 +824,7 @@ class Audit
             endpointId: $endpointId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/audit_streams/{environment}/{endpoint_id}', Operations\RemoveAuditStreamRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/streams/{environment}/{endpoint_id}', Operations\RemoveAuditStreamRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -968,7 +968,7 @@ class Audit
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/audit_streams/{environment}/{endpoint_id}/replay', Operations\ReplayAuditStreamRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/streams/{environment}/{endpoint_id}/replay', Operations\ReplayAuditStreamRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -1142,7 +1142,7 @@ class Audit
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/audit_settings/{environment}', Operations\UpdateAuditRetentionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/retention/{environment}', Operations\UpdateAuditRetentionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');

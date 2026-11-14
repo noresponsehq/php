@@ -525,7 +525,7 @@ List private and shared saved review filters visible to you.
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="listReviewViews" method="get" path="/v1/workspaces/{workspace_id}/review_views/{environment}" -->
+<!-- UsageSnippet language="php" operationID="listReviewViews" method="get" path="/v1/workspaces/{workspace_id}/views/{environment}" -->
 ```php
 declare(strict_types=1);
 
@@ -581,7 +581,7 @@ Save a private or shared review filter.
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="createReviewView" method="post" path="/v1/workspaces/{workspace_id}/review_views/{environment}" -->
+<!-- UsageSnippet language="php" operationID="createReviewView" method="post" path="/v1/workspaces/{workspace_id}/views/{environment}" -->
 ```php
 declare(strict_types=1);
 
@@ -647,7 +647,7 @@ Update your saved review filter after checking its expected version.
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="updateReviewView" method="patch" path="/v1/workspaces/{workspace_id}/review_views/{environment}/{view_id}" -->
+<!-- UsageSnippet language="php" operationID="updateReviewView" method="patch" path="/v1/workspaces/{workspace_id}/views/{environment}/{view_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -715,7 +715,7 @@ Delete your saved review filter after checking its expected version.
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="deleteReviewView" method="delete" path="/v1/workspaces/{workspace_id}/review_views/{environment}/{view_id}" -->
+<!-- UsageSnippet language="php" operationID="deleteReviewView" method="delete" path="/v1/workspaces/{workspace_id}/views/{environment}/{view_id}" -->
 ```php
 declare(strict_types=1);
 

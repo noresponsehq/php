@@ -2206,7 +2206,7 @@ class Accounts
             cursor: $cursor,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/accounts/{account_id}/linked_accounts', Operations\ListLinkedAccountsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/accounts/{account_id}/links', Operations\ListLinkedAccountsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 

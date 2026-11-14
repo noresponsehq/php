@@ -606,7 +606,7 @@ class Lists
             changeId: $changeId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/list_changes/{environment}/{change_id}', Operations\GetListChangeRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/changes/{environment}/{change_id}', Operations\GetListChangeRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';

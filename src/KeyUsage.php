@@ -94,7 +94,7 @@ class KeyUsage
             idempotencyKey: $idempotencyKey,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/key_usage/batches');
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/keys/usage');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');

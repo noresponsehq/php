@@ -514,7 +514,7 @@ class Reviews
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/review_views/{environment}', Operations\CreateReviewViewRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/views/{environment}', Operations\CreateReviewViewRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -868,7 +868,7 @@ class Reviews
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/review_views/{environment}/{view_id}', Operations\DeleteReviewViewRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/views/{environment}/{view_id}', Operations\DeleteReviewViewRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -1937,7 +1937,7 @@ class Reviews
             environment: $environment,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/review_views/{environment}', Operations\ListReviewViewsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/views/{environment}', Operations\ListReviewViewsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2771,7 +2771,7 @@ class Reviews
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/review_views/{environment}/{view_id}', Operations\UpdateReviewViewRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/views/{environment}/{view_id}', Operations\UpdateReviewViewRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');

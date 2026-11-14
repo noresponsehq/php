@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** AuditEventList - GET /v1/workspaces/{workspace_id}/audit_events: one page of the workspace's audit log, both environments, newest first. Events are kept for as long as the workspace exists and are deleted with it. next_cursor is present only when another page exists. */
+/** AuditEventList - GET /v1/workspaces/{workspace_id}/audit: one page of the workspace's audit log, both environments, newest first. Events are kept for as long as the workspace exists and are deleted with it. next_cursor is present only when another page exists. */
 class AuditEventList
 {
     /**

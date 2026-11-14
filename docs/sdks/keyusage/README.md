@@ -14,7 +14,7 @@ Records requests made with API keys your platform issued to your accounts, one e
 
 ### Example Usage: batch
 
-<!-- UsageSnippet language="php" operationID="recordKeyUsage" method="post" path="/v1/key_usage/batches" example="batch" -->
+<!-- UsageSnippet language="php" operationID="recordKeyUsage" method="post" path="/v1/keys/usage" example="batch" -->
 ```php
 declare(strict_types=1);
 
@@ -60,7 +60,7 @@ $result = $response->result;
 ```
 ### Example Usage: recorded
 
-<!-- UsageSnippet language="php" operationID="recordKeyUsage" method="post" path="/v1/key_usage/batches" example="recorded" -->
+<!-- UsageSnippet language="php" operationID="recordKeyUsage" method="post" path="/v1/keys/usage" example="recorded" -->
 ```php
 declare(strict_types=1);
 
