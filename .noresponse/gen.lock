@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 7e9d816e3bd35ef5a3f9429f6bf017d2
+  docChecksum: 868a8da52ac1d00428b94112b77b078a
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 11.0.0
-  configChecksum: 88a468c8b2e5f779283a9ec6750e5a9e
+  releaseVersion: 11.0.1
+  configChecksum: 5a628184466315f47ed49b63aa706017
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -857,7 +857,7 @@ trackedFiles:
   docs/Models/Shared/IntegrationRotationRequest.md:
     last_write_checksum: sha1:9bfe594916b160fea469b416b01043297f5cf61d
   docs/Models/Shared/Invite.md:
-    last_write_checksum: sha1:172f45e34a8dfadd21baf1487341fb6822ca318f
+    last_write_checksum: sha1:cefcee4b6e81ac6c1712b1cf93abd9a8e278ff5a
   docs/Models/Shared/InviteDeniedAction.md:
     last_write_checksum: sha1:3972170ac62c3b313f1041110f58ffa34692dd3a
   docs/Models/Shared/InviteEnvironment.md:
@@ -2309,7 +2309,7 @@ trackedFiles:
   src/Models/Shared/IntegrationRotationRequest.php:
     last_write_checksum: sha1:7e4106ba16bfd599f79746f2523f960f37717576
   src/Models/Shared/Invite.php:
-    last_write_checksum: sha1:17c65aa62e34ba5153d7f076e7aca3dd86f822f7
+    last_write_checksum: sha1:8a1cfbf84fb70c3f77d7156ac9d069629c98a008
   src/Models/Shared/InviteDeniedAction.php:
     last_write_checksum: sha1:a069e064fe467d1373de3ae8abc871e32ae24d89
   src/Models/Shared/InviteEnvironment.php:
@@ -3187,7 +3187,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:4afbf716fbdab1871a2593f16eaaeada50f95f38
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:d23b52b02b2847e422800c82eceefe916748ea63
+    last_write_checksum: sha1:6232cd7bde9b6081a0a3adc60838758b29460c74
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:

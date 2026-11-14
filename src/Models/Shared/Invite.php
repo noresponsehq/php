@@ -34,7 +34,7 @@ class Invite
     public Role|string $role;
 
     /**
-     * The stable member id that issued this invite, or the authenticated live API key prefix for members_manage automation. Reissuing preserves the original creator; the audit event names the reissuing actor.
+     * The stable member id that issued this invite, the authenticated live API key prefix for members_manage automation, or, for an invite NoResponse issued for the workspace, NoResponse's own id (adm_ or nrc_). Reissuing preserves the original creator; the audit event names the reissuing actor.
      *
      * @var string $createdBy
      */

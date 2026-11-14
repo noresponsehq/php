@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.0.1
+
+No changes detected.
+
 ## 11.0.0
 
 * `sdk->webhookendpoints->aggregate()`:  `error.code` **Changed** (Breaking ⚠️)
