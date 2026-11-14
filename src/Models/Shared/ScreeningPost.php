@@ -70,6 +70,53 @@ class ScreeningPost
     public ?string $quoteOf = null;
 
     /**
+     * A place a post names, as the platform shows it.
+     *
+     * @var ?\NoResponse\Models\Shared\PostPlace $place
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('place')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\PostPlace|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?PostPlace $place = null;
+
+    /**
+     * The handles of the accounts the post tags, on its own platform.
+     *
+     * @var ?array<string> $tagged
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('tagged')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $tagged = null;
+
+    /**
+     * How many likes the platform shows for the post.
+     *
+     * @var ?int $likes
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('likes')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $likes = null;
+
+    /**
+     * How many comments the platform shows for the post.
+     *
+     * @var ?int $comments
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('comments')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $comments = null;
+
+    /**
+     * How many views or plays the platform shows for the post.
+     *
+     * @var ?int $views
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('views')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $views = null;
+
+    /**
      * SHA-256 of the screenshot taken of a flagged item.
      *
      * @var ?string $screenshotSha256
@@ -104,11 +151,16 @@ class ScreeningPost
      * @param  ?string  $replyTo
      * @param  ?string  $repostOf
      * @param  ?string  $quoteOf
+     * @param  ?\NoResponse\Models\Shared\PostPlace  $place
+     * @param  ?array<string>  $tagged
+     * @param  ?int  $likes
+     * @param  ?int  $comments
+     * @param  ?int  $views
      * @param  ?string  $screenshotSha256
      * @param  ?string  $capturedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $text, string $profileId, string $permalink, string $postedAt, ?string $replyTo = null, ?string $repostOf = null, ?string $quoteOf = null, ?string $screenshotSha256 = null, ?string $capturedAt = null, string $kind = 'post')
+    public function __construct(string $id, string $text, string $profileId, string $permalink, string $postedAt, ?string $replyTo = null, ?string $repostOf = null, ?string $quoteOf = null, ?PostPlace $place = null, ?array $tagged = null, ?int $likes = null, ?int $comments = null, ?int $views = null, ?string $screenshotSha256 = null, ?string $capturedAt = null, string $kind = 'post')
     {
         $this->id = $id;
         $this->text = $text;
@@ -118,6 +170,11 @@ class ScreeningPost
         $this->replyTo = $replyTo;
         $this->repostOf = $repostOf;
         $this->quoteOf = $quoteOf;
+        $this->place = $place;
+        $this->tagged = $tagged;
+        $this->likes = $likes;
+        $this->comments = $comments;
+        $this->views = $views;
         $this->screenshotSha256 = $screenshotSha256;
         $this->capturedAt = $capturedAt;
         $this->kind = $kind;

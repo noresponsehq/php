@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.0.7
+
+* `sdk->groups->getPerson()`:  `response.posts[]` **Changed**
+
 ## 12.0.6
 
 * `sdk->groups->getPerson()`:  `response.profiles[]->record->fields[]->role` **Changed**
