@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 2c620d4d0bfdcaf27144b594644e26c6
+  docChecksum: 0e37b215f8a85361d4267e0ba862aa36
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 12.0.29
-  configChecksum: 90eb09d90dc7e7ada8d563523b560143
+  releaseVersion: 13.0.0
+  configChecksum: 5cb1b2de0abb95eedb9dd837c58ff593
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -553,7 +553,7 @@ trackedFiles:
   docs/Models/Shared/Action.md:
     last_write_checksum: sha1:363d4390cec0c24738f82bf2879b2d6e40d96cd5
   docs/Models/Shared/Actor.md:
-    last_write_checksum: sha1:dbc2a114fdd803e4370fc78f526652f78ba5eadc
+    last_write_checksum: sha1:7df735c41000f3765c4221948558d9f64aedfdd4
   docs/Models/Shared/Admission.md:
     last_write_checksum: sha1:02f721d833d69fa20b64284360092bd402ccf72c
   docs/Models/Shared/AggregateBucket.md:
@@ -639,7 +639,7 @@ trackedFiles:
   docs/Models/Shared/AttributeAgreement.md:
     last_write_checksum: sha1:ccba27071052d2164a178fc916878982751761a1
   docs/Models/Shared/AuditEvent.md:
-    last_write_checksum: sha1:e7f415d6537786b31851adce542abcb90fd14bc2
+    last_write_checksum: sha1:41f07761a85090511edd3f9cf4ee89dd8c3b2570
   docs/Models/Shared/AuditEventEvent.md:
     last_write_checksum: sha1:5693af29ff51673a10974b9095356d2b0a5be15d
   docs/Models/Shared/AuditEventList.md:
@@ -1324,6 +1324,8 @@ trackedFiles:
     last_write_checksum: sha1:cdb5d1428a950f6aeb9e2e1403ace822e31abdf1
   docs/Models/Shared/SentIdentifiers.md:
     last_write_checksum: sha1:86884bbfc1c2149fb22390b6da937d567ac05dd0
+  docs/Models/Shared/ServiceActor.md:
+    last_write_checksum: sha1:b6d962ffda463efc7281423712f89b1d55e8f1b8
   docs/Models/Shared/Settings.md:
     last_write_checksum: sha1:348e7f8fc1058f75320b293cddd4b64dc018de6f
   docs/Models/Shared/SettingsFlows.md:
@@ -2145,7 +2147,7 @@ trackedFiles:
   src/Models/Shared/AttributeAgreement.php:
     last_write_checksum: sha1:66406dd6a6fff3ff59190ff9e9e9f4589383a2db
   src/Models/Shared/AuditEvent.php:
-    last_write_checksum: sha1:c20f5873b7a665b1bd7833eda429f904b450519f
+    last_write_checksum: sha1:fa9fcd4027241e1695e36a4f66dd10ab91796cb1
   src/Models/Shared/AuditEventEvent.php:
     last_write_checksum: sha1:4bace5a6eadf6b118011c16542f74ad3e126cede
   src/Models/Shared/AuditEventList.php:
@@ -2824,6 +2826,8 @@ trackedFiles:
     last_write_checksum: sha1:ee7e944a0c28b077c8cfd8be5ee187f60c7ce171
   src/Models/Shared/SentIdentifiers.php:
     last_write_checksum: sha1:b9214e44245658646f3cd9ef9ffc7a0495b1fe92
+  src/Models/Shared/ServiceActor.php:
+    last_write_checksum: sha1:09170c6cd47a6cb3f61285a06f8d9f1de6a3fb41
   src/Models/Shared/Settings.php:
     last_write_checksum: sha1:30df5a1327cd94a49d9565fb49d9335288ebf642
   src/Models/Shared/SettingsFlows.php:
@@ -3291,7 +3295,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:69452d2e2c71447b1f7687e8ca5b864aa21ff149
+    last_write_checksum: sha1:5c69383eb02e54fcecd604d07a3fba712b13484d
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:

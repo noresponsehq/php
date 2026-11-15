@@ -21,3 +21,12 @@ Shared\UserActor $value = /* values here */
 Shared\KeyActor $value = /* values here */
 ```
 
+### `Shared\ServiceActor`
+
+```php
+/**
+* @var \NoResponse\Models\Shared\ServiceActor
+*/
+Shared\ServiceActor $value = /* values here */
+```
+

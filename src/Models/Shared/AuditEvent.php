@@ -50,11 +50,11 @@ class AuditEvent
 
     /**
      *
-     * @var \NoResponse\Models\Shared\UserActor|\NoResponse\Models\Shared\KeyActor $actor
+     * @var \NoResponse\Models\Shared\UserActor|\NoResponse\Models\Shared\KeyActor|\NoResponse\Models\Shared\ServiceActor $actor
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('actor')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\UserActor|\NoResponse\Models\Shared\KeyActor')]
-    public UserActor|KeyActor $actor;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\UserActor|\NoResponse\Models\Shared\KeyActor|\NoResponse\Models\Shared\ServiceActor')]
+    public UserActor|KeyActor|ServiceActor $actor;
 
     /**
      *
@@ -105,7 +105,7 @@ class AuditEvent
      * @param  \NoResponse\Models\Shared\AuditSettingsEnvironment|string  $environment
      * @param  string  $action
      * @param  \NoResponse\Models\Shared\CustomerExportRequestFilterOutcome|string  $outcome
-     * @param  \NoResponse\Models\Shared\UserActor|\NoResponse\Models\Shared\KeyActor  $actor
+     * @param  \NoResponse\Models\Shared\UserActor|\NoResponse\Models\Shared\KeyActor|\NoResponse\Models\Shared\ServiceActor  $actor
      * @param  \NoResponse\Models\Shared\AuditEventTarget  $target
      * @param  string  $createdAt
      * @param  ?array<string, string>  $detail
@@ -113,7 +113,7 @@ class AuditEvent
      * @param  ?string  $requestId
      * @phpstan-pure
      */
-    public function __construct(string $id, string $workspaceId, AuditSettingsEnvironment|string $environment, string $action, CustomerExportRequestFilterOutcome|string $outcome, UserActor|KeyActor $actor, AuditEventTarget $target, string $createdAt, ?array $detail = null, Environment|string|null $affectedEnvironment = null, ?string $requestId = null)
+    public function __construct(string $id, string $workspaceId, AuditSettingsEnvironment|string $environment, string $action, CustomerExportRequestFilterOutcome|string $outcome, UserActor|KeyActor|ServiceActor $actor, AuditEventTarget $target, string $createdAt, ?array $detail = null, Environment|string|null $affectedEnvironment = null, ?string $requestId = null)
     {
         $this->id = $id;
         $this->workspaceId = $workspaceId;

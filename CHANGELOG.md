@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.0.0
+
+* `sdk->audit->list()`:  `response.items[]->actor->union(service)` **Added** (Breaking ⚠️)
+
 ## 12.0.29
 
 * `sdk->groups->getPerson()`:  `response.lookup->checks[]->unanswered` **Added**
