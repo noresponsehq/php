@@ -1,5 +1,19 @@
 # Changelog
 
+## 12.0.12
+
+* `sdk->groups->listPeople()`:  `response.items[]->handles[]->platform` **Changed**
+* `sdk->groups->addPeople()`: 
+  *  `request->body->people[]->handles[]->platform` **Changed**
+* `sdk->groups->getPerson()`:  `response.person->handles[]->platform` **Changed**
+* `sdk->groups->reviewPerson()`:  `response.handles[]->platform` **Changed**
+* `sdk->groups->listScreenings()`:  `response.items[]->platforms[]` **Changed**
+* `sdk->groups->startScreening()`: 
+  *  `request->body->platforms[]` **Changed**
+  *  `response.platforms[]` **Changed**
+* `sdk->groups->getScreening()`:  `response.platforms[]` **Changed**
+* `sdk->groups->cancelScreening()`:  `response.platforms[]` **Changed**
+
 ## 12.0.11
 
 * `sdk->settings->get()`:  `response.refusedSources[]` **Changed**
