@@ -58,6 +58,15 @@ class ScreeningCoverage
     public ?array $notAnalysedByReason = null;
 
     /**
+     * Videos the analyser read from their cover frame and caption alone, without their sound or later frames. They count as analysed and do not make the person partial. Left out when none.
+     *
+     * @var ?int $itemsFrameOnly
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('items_frame_only')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $itemsFrameOnly = null;
+
+    /**
      * The oldest item read on any platform.
      *
      * @var ?string $periodFrom
@@ -92,12 +101,13 @@ class ScreeningCoverage
      * @param  array<\NoResponse\Models\Shared\ScreeningPlatformCoverage>  $platforms
      * @param  ?int  $itemsNotAnalysed
      * @param  ?array<\NoResponse\Models\Shared\ScreeningNotAnalysedCount>  $notAnalysedByReason
+     * @param  ?int  $itemsFrameOnly
      * @param  ?string  $periodFrom
      * @param  ?string  $periodTo
      * @param  array<\NoResponse\Models\Shared\HandlePlatform|string>|null  $notSearched
      * @phpstan-pure
      */
-    public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?int $itemsNotAnalysed = null, ?array $notAnalysedByReason = null, ?string $periodFrom = null, ?string $periodTo = null, ?array $notSearched = null)
+    public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?int $itemsNotAnalysed = null, ?array $notAnalysedByReason = null, ?int $itemsFrameOnly = null, ?string $periodFrom = null, ?string $periodTo = null, ?array $notSearched = null)
     {
         $this->accountsFound = $accountsFound;
         $this->accountsAccessible = $accountsAccessible;
@@ -105,6 +115,7 @@ class ScreeningCoverage
         $this->platforms = $platforms;
         $this->itemsNotAnalysed = $itemsNotAnalysed;
         $this->notAnalysedByReason = $notAnalysedByReason;
+        $this->itemsFrameOnly = $itemsFrameOnly;
         $this->periodFrom = $periodFrom;
         $this->periodTo = $periodTo;
         $this->notSearched = $notSearched;

@@ -61,6 +61,24 @@ class ScreeningMedia
     public ?string $postId = null;
 
     /**
+     * For an image that is a video's cover frame, the id of that video's media item.
+     *
+     * @var ?string $coverOf
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('cover_of')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $coverOf = null;
+
+    /**
+     * true on a video the analyser read from its cover frame (the image whose cover_of names it) and its caption alone. Left out otherwise.
+     *
+     * @var ?bool $frameOnly
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('frame_only')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $frameOnly = null;
+
+    /**
      * The caption or alt text.
      *
      * @var ?string $text
@@ -103,12 +121,14 @@ class ScreeningMedia
      * @param  string  $permalink
      * @param  string  $postedAt
      * @param  ?string  $postId
+     * @param  ?string  $coverOf
+     * @param  ?bool  $frameOnly
      * @param  ?string  $text
      * @param  ?string  $screenshotSha256
      * @param  ?string  $capturedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, MediaType|string $mediaType, string $mediaUrl, string $profileId, string $permalink, string $postedAt, ?string $postId = null, ?string $text = null, ?string $screenshotSha256 = null, ?string $capturedAt = null, string $kind = 'media')
+    public function __construct(string $id, MediaType|string $mediaType, string $mediaUrl, string $profileId, string $permalink, string $postedAt, ?string $postId = null, ?string $coverOf = null, ?bool $frameOnly = null, ?string $text = null, ?string $screenshotSha256 = null, ?string $capturedAt = null, string $kind = 'media')
     {
         $this->id = $id;
         $this->mediaType = $mediaType;
@@ -117,6 +137,8 @@ class ScreeningMedia
         $this->permalink = $permalink;
         $this->postedAt = $postedAt;
         $this->postId = $postId;
+        $this->coverOf = $coverOf;
+        $this->frameOnly = $frameOnly;
         $this->text = $text;
         $this->screenshotSha256 = $screenshotSha256;
         $this->capturedAt = $capturedAt;
