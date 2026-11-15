@@ -46,19 +46,29 @@ class StartSearchRequest
     public Shared\SearchRequest $body;
 
     /**
+     * Opaque request key, 16 to 128 characters. Repeating the key and request returns the same resource in its current state while it is retained. A different request with the same key answers 409. Use a new key for a deliberate new operation. Keys are scoped to the environment and operation; person searches also scope them to the group and person.
+     *
+     * @var ?string $idempotencyKey
+     */
+    #[NoResponseMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    public ?string $idempotencyKey = null;
+
+    /**
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @param  string  $personId
      * @param  \NoResponse\Models\Shared\SearchRequest  $body
+     * @param  ?string  $idempotencyKey
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $personId, Shared\SearchRequest $body)
+    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $personId, Shared\SearchRequest $body, ?string $idempotencyKey = null)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;
         $this->groupId = $groupId;
         $this->personId = $personId;
         $this->body = $body;
+        $this->idempotencyKey = $idempotencyKey;
     }
 }

@@ -406,11 +406,12 @@ class Groups
     /**
      * Create a group to screen.
      *
-     * Create a group to screen: its name, start, venue, host, the principals it protects and the sensitive topics posts are read against. An environment holds at most 1000 groups.
+     * Create a group to screen: its name, start, venue, host, the principals it protects and the sensitive topics posts are read against. An environment holds at most 1000 groups. Send an Idempotency-Key to repeat a request safely while the group is retained. A replay returns the same group in its current state; changed input returns 409.
      *
      * @param  \NoResponse\Models\Shared\GroupRequest  $body
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
+     * @param  ?string  $idempotencyKey
      * @return \NoResponse\Models\Operations\CreateGroupResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -421,12 +422,13 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function create(Shared\GroupRequest $body, string $workspaceId, Shared\KeyEnvironment|string $environment, ?Options $options = null): Operations\CreateGroupResponse
+    public function create(Shared\GroupRequest $body, string $workspaceId, Shared\KeyEnvironment|string $environment, ?string $idempotencyKey = null, ?Options $options = null): Operations\CreateGroupResponse
     {
         $request = new Operations\CreateGroupRequest(
             workspaceId: $workspaceId,
             environment: $environment,
             body: $body,
+            idempotencyKey: $idempotencyKey,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}', Operations\CreateGroupRequest::class, $request);
@@ -437,6 +439,10 @@ class Groups
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url, $httpOptions['headers']);
@@ -2413,13 +2419,9 @@ class Groups
     /**
      * Search again on a value of one of a person's records.
      *
-     * Search again on the value of one field of one of a person's records, named by the record and field. Nothing searches again by itself. A password or hash search counts its breach rows first and runs only when you run it; read the person to see each search and what it found.
+     * Search again on the value of one field of one of a person's records, named by the record and field. Nothing searches again by itself. A password or hash search counts its breach rows first and runs only when you run it; read the person to see each search and what it found. Send an Idempotency-Key to return the same search after a lost answer, even after it completes. A different request with the same key returns 409. Use a new key for a deliberate new search.
      *
-     * @param  \NoResponse\Models\Shared\SearchRequest  $body
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
-     * @param  string  $groupId
-     * @param  string  $personId
+     * @param  \NoResponse\Models\Operations\StartSearchRequest  $request
      * @return \NoResponse\Models\Operations\StartSearchResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -2430,42 +2432,8 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function startSearch(Shared\SearchRequest $body, string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $personId, ?Options $options = null): Operations\StartSearchResponse
+    public function startSearch(Operations\StartSearchRequest $request, ?Options $options = null): Operations\StartSearchResponse
     {
-        $retryConfig = null;
-        if ($options) {
-            $retryConfig = $options->retryConfig;
-        }
-        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
-            $retryConfig = $this->sdkConfiguration->retryConfig;
-        }
-        if ($retryConfig === null) {
-            $retryConfig = new Retry\RetryConfigBackoff(
-                initialIntervalMs: 500,
-                maxIntervalMs: 8000,
-                exponent: 2,
-                maxElapsedTimeMs: 30000,
-                retryConnectionErrors: true,
-            );
-        }
-        $retryCodes = null;
-        if ($options) {
-            $retryCodes = $options->retryCodes;
-        }
-        if ($retryCodes === null) {
-            $retryCodes = [
-                '408',
-                '429',
-                '5XX',
-            ];
-        }
-        $request = new Operations\StartSearchRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
-            groupId: $groupId,
-            personId: $personId,
-            body: $body,
-        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people/{person_id}/searches', Operations\StartSearchRequest::class, $request);
         $urlOverride = null;
@@ -2475,6 +2443,10 @@ class Groups
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url, $httpOptions['headers']);
@@ -2483,7 +2455,7 @@ class Groups
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;

@@ -1,5 +1,11 @@
 # Changelog
 
+## 14.0.2
+
+* `sdk->groups->create()`:  `request.idempotencyKey` **Added**
+* `sdk->groups->startSearch()`: 
+  *  `request->idempotencyKey` **Added**
+
 ## 14.0.1
 
 No changes detected.

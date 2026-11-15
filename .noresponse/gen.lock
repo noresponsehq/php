@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: e658817554c4d8b20e9fca316314c09e
+  docChecksum: 08e84894ae3e66cc8adb3d9e2872dd4a
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 14.0.1
-  configChecksum: c498f0d7c142f5aac468a52598036bfb
+  releaseVersion: 14.0.2
+  configChecksum: ae911d261ebc0055d32b9f3f7db3c019
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -101,7 +101,7 @@ trackedFiles:
   docs/Models/Operations/CreateCustomerExportResponse.md:
     last_write_checksum: sha1:189d90bacc12c7d73caea9bacc0ba54dfb1e1cbc
   docs/Models/Operations/CreateGroupRequest.md:
-    last_write_checksum: sha1:060f5ff830a4ab206080d0270f3ce3601e8156ed
+    last_write_checksum: sha1:4ea320ab97aecdea091df2e20aaa4d0e6587f234
   docs/Models/Operations/CreateGroupResponse.md:
     last_write_checksum: sha1:7cdbb7801ded6834ffe280bfa7346845987ddec9
   docs/Models/Operations/CreateIntegrationResponse.md:
@@ -463,7 +463,7 @@ trackedFiles:
   docs/Models/Operations/StartScreeningResponse.md:
     last_write_checksum: sha1:0a904c629dd9eac8fbb385f4322de215dd3e472e
   docs/Models/Operations/StartSearchRequest.md:
-    last_write_checksum: sha1:fa6a5ab16330776d034c8212c84bd1e18f52fcfc
+    last_write_checksum: sha1:30bc718f419636413787df5a61bef9bccbdd4bee
   docs/Models/Operations/StartSearchResponse.md:
     last_write_checksum: sha1:c64fc09b981dd51b5abbfec856fb3b42a54251e4
   docs/Models/Operations/SummarizeWorkspaceOperationsRequest.md:
@@ -1439,7 +1439,7 @@ trackedFiles:
   docs/sdks/exports/README.md:
     last_write_checksum: sha1:37a74050f72915c491d9805bf893e4f957d2124b
   docs/sdks/groups/README.md:
-    last_write_checksum: sha1:3e4878d098b59921ff9639bb5151be8f10a66463
+    last_write_checksum: sha1:f59396e2d98a7b208d9f307a933223ef3d3c0a1d
   docs/sdks/integrations/README.md:
     last_write_checksum: sha1:ef8d5910b4f8fc98b998fa0b7b26bf62fbda6099
   docs/sdks/invites/README.md:
@@ -1485,7 +1485,7 @@ trackedFiles:
   src/Exports.php:
     last_write_checksum: sha1:b385cc2d8db707b7b7c1d23f7f845b6a413f151b
   src/Groups.php:
-    last_write_checksum: sha1:8917f69e8fe43d1c80d75f31dbe458c2e6e17b81
+    last_write_checksum: sha1:57255872a6c09aff223d96f22bf917f3a75ffa37
   src/Hooks/AfterErrorContext.php:
     last_write_checksum: sha1:f1bfa05a3faedf129d634b9b23fdd301357cb306
   src/Hooks/AfterErrorHook.php:
@@ -1611,7 +1611,7 @@ trackedFiles:
   src/Models/Operations/CreateCustomerExportResponse.php:
     last_write_checksum: sha1:c3fa5d018756165d082477b561c10bfc8cca667a
   src/Models/Operations/CreateGroupRequest.php:
-    last_write_checksum: sha1:4321e7b2051b815cd0ea8ed81ecbfa06e8a658d8
+    last_write_checksum: sha1:695844f7257717e49e8515de2126907eb93ca7e6
   src/Models/Operations/CreateGroupResponse.php:
     last_write_checksum: sha1:1b81bab1106d640825c367b70d0a7fb3a55539b2
   src/Models/Operations/CreateIntegrationResponse.php:
@@ -1973,7 +1973,7 @@ trackedFiles:
   src/Models/Operations/StartScreeningResponse.php:
     last_write_checksum: sha1:87f0b77ad516fc6f22384758c7f48d956559324c
   src/Models/Operations/StartSearchRequest.php:
-    last_write_checksum: sha1:ae662f9fee50c17abf8e50e1f63c6c807d4483cb
+    last_write_checksum: sha1:51bcd7c825c7bd7e11a21320dad57d8c83eb9aa4
   src/Models/Operations/StartSearchResponse.php:
     last_write_checksum: sha1:5cab7fc6e53d67dbf00be47e29a9c70940aa648e
   src/Models/Operations/SummarizeWorkspaceOperationsRequest.php:
@@ -3287,7 +3287,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:74f12005ecf874fff9a92f2c0da159576f0921f6
+    last_write_checksum: sha1:0a0993b3b1c1efd0c78f6d7ca595cc93c7f022a9
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:
@@ -5714,6 +5714,8 @@ examples:
         path:
           workspace_id: "tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
           environment: "live"
+        header:
+          Idempotency-Key: "request-01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       requestBody:
         application/json: {"name": "Annual shareholder meeting", "starts_at": "2026-01-01T00:00:00Z", "ends_at": "2026-01-02T00:00:00Z", "venue": "Example Convention Centre", "host": "Example Holdings", "principals": [{"name": "Alex Principal", "aliases": ["Alex P"]}], "topics": ["executive pay"]}
       responses:
@@ -5916,6 +5918,8 @@ examples:
           environment: "live"
           group_id: "grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
           person_id: "per_01JA2Z8K6Q4V7W9XBCDEFGHJKM"
+        header:
+          Idempotency-Key: "request-01JA2Z8K6Q4V7W9XBCDEFGHJKM"
       requestBody:
         application/json: {"record_id": "rec_3f9a1c22d4e5b6a73f9a1c22d4e5b6a7", "field": "username", "table": "FORUM_EXAMPLE_COM_2019"}
       responses:
