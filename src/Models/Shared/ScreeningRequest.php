@@ -19,15 +19,15 @@ class ScreeningRequest
     /**
      * $platforms
      *
-     * @var array<\NoResponse\Models\Shared\HandlePlatform|string> $platforms
+     * @var array<string> $platforms
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('platforms')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\HandlePlatform|string>')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>')]
     public array $platforms;
 
     /**
      * @param  \NoResponse\Models\Shared\ScreeningDepth|string  $depth
-     * @param  array<\NoResponse\Models\Shared\HandlePlatform|string>  $platforms
+     * @param  array<string>  $platforms
      * @phpstan-pure
      */
     public function __construct(ScreeningDepth|string $depth, array $platforms)

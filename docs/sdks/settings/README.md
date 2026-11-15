@@ -97,7 +97,7 @@ $body = new Shared\SettingsRequest(
 
 $response = $sdk->settings->update(
     workspaceId: 'tnt_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
-    environment: Shared\KeyEnvironment::Test,
+    environment: Shared\KeyEnvironment::Live,
     body: $body
 
 );
@@ -125,7 +125,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 $body = new Shared\SettingsRequest(
     retentionDays: 90,
     refusedSources: [
-        Shared\SourceId::Phone,
+        'phone',
     ],
     flows: new Shared\SettingsRequestFlows(
         accountCreation: new Shared\FlowChange(

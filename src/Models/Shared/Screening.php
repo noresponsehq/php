@@ -50,10 +50,10 @@ class Screening
     /**
      * $platforms
      *
-     * @var array<\NoResponse\Models\Shared\HandlePlatform|string> $platforms
+     * @var array<string> $platforms
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('platforms')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\HandlePlatform|string>')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>')]
     public array $platforms;
 
     /**
@@ -172,7 +172,7 @@ class Screening
      * @param  \NoResponse\Models\Shared\AuditSettingsEnvironment|string  $environment
      * @param  \NoResponse\Models\Shared\ScreeningStatus|string  $status
      * @param  \NoResponse\Models\Shared\ScreeningDepth|string  $depth
-     * @param  array<\NoResponse\Models\Shared\HandlePlatform|string>  $platforms
+     * @param  array<string>  $platforms
      * @param  string  $requestedBy
      * @param  string  $createdAt
      * @param  string  $expiresAt

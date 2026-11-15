@@ -52,10 +52,10 @@ class Settings
     /**
      * The sources this environment refuses, sorted; empty, the default, refuses none. An assessment leaves a refused source out: its coverage is missing (an identifier with no other source lists coverage-unavailable as unavailable) rather than not_found, and a stored result of a refused source is not reused.
      *
-     * @var array<\NoResponse\Models\Shared\SourceId|string> $refusedSources
+     * @var array<string> $refusedSources
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('refused_sources')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\SourceId|string>')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>')]
     public array $refusedSources;
 
     /**
@@ -90,7 +90,7 @@ class Settings
      * @param  int  $retentionDays
      * @param  int  $policyVersion
      * @param  \NoResponse\Models\Shared\SettingsFlows  $flows
-     * @param  array<\NoResponse\Models\Shared\SourceId|string>  $refusedSources
+     * @param  array<string>  $refusedSources
      * @param  ?string  $updatedBy
      * @param  ?string  $updatedAt
      * @param  ?int  $screeningDailyCap

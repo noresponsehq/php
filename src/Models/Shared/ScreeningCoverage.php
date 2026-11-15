@@ -87,10 +87,10 @@ class ScreeningCoverage
     /**
      * Requested platforms where the person gave the screening nothing to look up, such as no handle for a platform that reads supplied handles only. Nothing looked and nothing failed: such a platform is not in platforms, is not none_found and does not make the person partial.
      *
-     * @var array<\NoResponse\Models\Shared\HandlePlatform|string>|null $notSearched
+     * @var ?array<string> $notSearched
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('not_searched')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\HandlePlatform|string>|null')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $notSearched = null;
 
@@ -104,7 +104,7 @@ class ScreeningCoverage
      * @param  ?int  $itemsFrameOnly
      * @param  ?string  $periodFrom
      * @param  ?string  $periodTo
-     * @param  array<\NoResponse\Models\Shared\HandlePlatform|string>|null  $notSearched
+     * @param  ?array<string>  $notSearched
      * @phpstan-pure
      */
     public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?int $itemsNotAnalysed = null, ?array $notAnalysedByReason = null, ?int $itemsFrameOnly = null, ?string $periodFrom = null, ?string $periodTo = null, ?array $notSearched = null)

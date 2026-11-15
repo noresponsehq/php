@@ -16,13 +16,12 @@ class ScreeningProfile
     public string $id;
 
     /**
-     * A platform a screening can cover. github and scratch through flickr are each one read of the public profile a handle names, with no posts; chesscom also reads the profile's stats, clubs and last two months of games, for its activity and contacts, and through a signed-in session up to 100 of the player's friends, each a contact with the date the friendship began. synthetic is the deterministic connector's own platform, for exercising the product end to end with no network.
+     * A platform a screening can cover, such as instagram, x, bluesky, youtube, tiktok or github. The screening registry owns the set: a request that names a platform it does not cover answers 422. A new platform adds an id without changing this contract, so read a platform you do not know in a response as one you have not seen before, not as an error. synthetic is the deterministic connector's own platform, for exercising the product end to end with no network.
      *
-     * @var \NoResponse\Models\Shared\HandlePlatform|string $platform
+     * @var string $platform
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('platform')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HandlePlatform|string')]
-    public HandlePlatform|string $platform;
+    public string $platform;
 
     /**
      *
@@ -158,7 +157,7 @@ class ScreeningProfile
 
     /**
      * @param  string  $id
-     * @param  \NoResponse\Models\Shared\HandlePlatform|string  $platform
+     * @param  string  $platform
      * @param  string  $handle
      * @param  string  $url
      * @param  \NoResponse\Models\Shared\Access|string  $access
@@ -177,7 +176,7 @@ class ScreeningProfile
      * @param  ?\NoResponse\Models\Shared\Record  $record
      * @phpstan-pure
      */
-    public function __construct(string $id, HandlePlatform|string $platform, string $handle, string $url, Access|string $access, ScreeningMatch $match, string $collector, int $itemsRead, string $collectedAt, ?string $displayName = null, ?string $bio = null, ?string $avatarUrl = null, ?int $followers = null, ?string $accountCreatedAt = null, PostsStopped|string|null $postsStopped = null, ?string $periodFrom = null, ?string $periodTo = null, ?Record $record = null)
+    public function __construct(string $id, string $platform, string $handle, string $url, Access|string $access, ScreeningMatch $match, string $collector, int $itemsRead, string $collectedAt, ?string $displayName = null, ?string $bio = null, ?string $avatarUrl = null, ?int $followers = null, ?string $accountCreatedAt = null, PostsStopped|string|null $postsStopped = null, ?string $periodFrom = null, ?string $periodTo = null, ?Record $record = null)
     {
         $this->id = $id;
         $this->platform = $platform;

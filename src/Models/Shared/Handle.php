@@ -9,13 +9,12 @@ namespace NoResponse\Models\Shared;
 class Handle
 {
     /**
-     * A platform a screening can cover. github and scratch through flickr are each one read of the public profile a handle names, with no posts; chesscom also reads the profile's stats, clubs and last two months of games, for its activity and contacts, and through a signed-in session up to 100 of the player's friends, each a contact with the date the friendship began. synthetic is the deterministic connector's own platform, for exercising the product end to end with no network.
+     * A platform a screening can cover, such as instagram, x, bluesky, youtube, tiktok or github. The screening registry owns the set: a request that names a platform it does not cover answers 422. A new platform adds an id without changing this contract, so read a platform you do not know in a response as one you have not seen before, not as an error. synthetic is the deterministic connector's own platform, for exercising the product end to end with no network.
      *
-     * @var \NoResponse\Models\Shared\HandlePlatform|string $platform
+     * @var string $platform
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('platform')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HandlePlatform|string')]
-    public HandlePlatform|string $platform;
+    public string $platform;
 
     /**
      * The account's handle, without a leading @.
@@ -26,11 +25,11 @@ class Handle
     public string $handle;
 
     /**
-     * @param  \NoResponse\Models\Shared\HandlePlatform|string  $platform
+     * @param  string  $platform
      * @param  string  $handle
      * @phpstan-pure
      */
-    public function __construct(HandlePlatform|string $platform, string $handle)
+    public function __construct(string $platform, string $handle)
     {
         $this->platform = $platform;
         $this->handle = $handle;

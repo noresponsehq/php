@@ -19,10 +19,10 @@ class SettingsRequest
     /**
      * Replaces the refused sources; [] refuses none. A change applies to new assessments within a minute.
      *
-     * @var array<\NoResponse\Models\Shared\SourceId|string>|null $refusedSources
+     * @var ?array<string> $refusedSources
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('refused_sources')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\SourceId|string>|null')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $refusedSources = null;
 
@@ -64,7 +64,7 @@ class SettingsRequest
 
     /**
      * @param  ?int  $retentionDays
-     * @param  array<\NoResponse\Models\Shared\SourceId|string>|null  $refusedSources
+     * @param  ?array<string>  $refusedSources
      * @param  ?\NoResponse\Models\Shared\SettingsRequestFlows  $flows
      * @param  ?int  $expectedPolicyVersion
      * @param  ?string  $changeReason

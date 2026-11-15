@@ -1,5 +1,26 @@
 # Changelog
 
+## 14.0.0
+
+* `sdk->settings->get()`:  `response.refusedSources[]` **Changed** (Breaking ⚠️)
+* `sdk->settings->update()`: 
+  *  `request.body->refusedSources[]` **Changed** (Breaking ⚠️)
+  *  `response.refusedSources[]` **Changed** (Breaking ⚠️)
+* `sdk->settings->listHistory()`:  `response.items[]->settings->refusedSources[]` **Changed** (Breaking ⚠️)
+* `sdk->settings->restore()`:  `response.refusedSources[]` **Changed** (Breaking ⚠️)
+* `sdk->evaluations->publish()`:  `response.refusedSources[]` **Changed** (Breaking ⚠️)
+* `sdk->groups->listPeople()`:  `response.items[]` **Changed** (Breaking ⚠️)
+* `sdk->groups->addPeople()`: 
+  *  `request->body->people[]->handles[]->platform` **Changed** (Breaking ⚠️)
+* `sdk->groups->getPerson()`:  `response` **Changed** (Breaking ⚠️)
+* `sdk->groups->reviewPerson()`:  `response` **Changed** (Breaking ⚠️)
+* `sdk->groups->listScreenings()`:  `response.items[]->platforms[]` **Changed** (Breaking ⚠️)
+* `sdk->groups->startScreening()`: 
+  *  `request->body->platforms[]` **Changed** (Breaking ⚠️)
+  *  `response.platforms[]` **Changed** (Breaking ⚠️)
+* `sdk->groups->getScreening()`:  `response.platforms[]` **Changed** (Breaking ⚠️)
+* `sdk->groups->cancelScreening()`:  `response.platforms[]` **Changed** (Breaking ⚠️)
+
 ## 13.0.5
 
 * `sdk->groups->listPeople()`:  `response.items[]->coverage->itemsFrameOnly` **Added**
