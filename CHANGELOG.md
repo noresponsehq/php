@@ -1,5 +1,15 @@
 # Changelog
 
+## 13.0.4
+
+* `sdk->settings->get()`:  `response.refusedSources[]->enum(chesscomEmail)` **Added**
+* `sdk->settings->update()`: 
+  *  `request.body->refusedSources[]->enum(chesscomEmail)` **Added**
+  *  `response.refusedSources[]->enum(chesscomEmail)` **Added**
+* `sdk->settings->listHistory()`:  `response.items[]->settings->refusedSources[]->enum(chesscomEmail)` **Added**
+* `sdk->settings->restore()`:  `response.refusedSources[]->enum(chesscomEmail)` **Added**
+* `sdk->evaluations->publish()`:  `response.refusedSources[]->enum(chesscomEmail)` **Added**
+
 ## 13.0.3
 
 No changes detected.
