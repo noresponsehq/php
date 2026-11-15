@@ -1,6 +1,6 @@
 # SearchKind
 
-The kind of the value searched.
+The kind of the value searched. A domain search finds the leaked rows of every email address at the domain.
 
 
 ## Values
@@ -14,3 +14,4 @@ The kind of the value searched.
 | `Password`   | password     |
 | `Hash`       | hash         |
 | `Ip`         | ip           |
+| `Domain`     | domain       |
