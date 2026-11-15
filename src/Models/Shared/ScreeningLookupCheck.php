@@ -69,6 +69,16 @@ class ScreeningLookupCheck
     public FailureReason|string|null $reason = null;
 
     /**
+     * Each source that did not give a definite answer, by connector, with why: the same connector id a record's source names. A source of the lane that no connector covers is counted in sources and not named here.
+     *
+     * @var ?array<\NoResponse\Models\Shared\ScreeningLookupCheckUnansweredItem> $unanswered
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('unanswered')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\ScreeningLookupCheckUnansweredItem>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $unanswered = null;
+
+    /**
      * @param  \NoResponse\Models\Shared\IdentifierSearchKind|string  $identifier
      * @param  \NoResponse\Models\Shared\Lane|string  $lane
      * @param  \NoResponse\Models\Shared\ScreeningLookupCheckStatus|string  $status
@@ -76,9 +86,10 @@ class ScreeningLookupCheck
      * @param  int  $answered
      * @param  int  $found
      * @param  \NoResponse\Models\Shared\FailureReason|string|null  $reason
+     * @param  ?array<\NoResponse\Models\Shared\ScreeningLookupCheckUnansweredItem>  $unanswered
      * @phpstan-pure
      */
-    public function __construct(IdentifierSearchKind|string $identifier, Lane|string $lane, ScreeningLookupCheckStatus|string $status, int $sources, int $answered, int $found, FailureReason|string|null $reason = null)
+    public function __construct(IdentifierSearchKind|string $identifier, Lane|string $lane, ScreeningLookupCheckStatus|string $status, int $sources, int $answered, int $found, FailureReason|string|null $reason = null, ?array $unanswered = null)
     {
         $this->identifier = $identifier;
         $this->lane = $lane;
@@ -87,5 +98,6 @@ class ScreeningLookupCheck
         $this->answered = $answered;
         $this->found = $found;
         $this->reason = $reason;
+        $this->unanswered = $unanswered;
     }
 }

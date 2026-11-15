@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 8d6e1aa7a9bed7d9fd86cd89beea4be5
+  docChecksum: 2c620d4d0bfdcaf27144b594644e26c6
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 12.0.28
-  configChecksum: 57a2e653d3a5b3fb5f8bfae399beed8e
+  releaseVersion: 12.0.29
+  configChecksum: 90eb09d90dc7e7ada8d563523b560143
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -1275,9 +1275,11 @@ trackedFiles:
   docs/Models/Shared/ScreeningLookup.md:
     last_write_checksum: sha1:7de00e16783c328ca9ef0cb37af6abc01a6650c7
   docs/Models/Shared/ScreeningLookupCheck.md:
-    last_write_checksum: sha1:6b72b3d5192bfaba31f15aac0f98ed80cf9e7818
+    last_write_checksum: sha1:d9d442f98b283515eececd10a0dfe571ea270bda
   docs/Models/Shared/ScreeningLookupCheckStatus.md:
     last_write_checksum: sha1:9da59205afc1b8fa726129c8e797d9173b6ac593
+  docs/Models/Shared/ScreeningLookupCheckUnansweredItem.md:
+    last_write_checksum: sha1:aaa211d5fe590d7a621cd5458ca8b8833911e293
   docs/Models/Shared/ScreeningMatch.md:
     last_write_checksum: sha1:177bdf0dfa268e7da0268c01204771e062bbce3d
   docs/Models/Shared/ScreeningMatchEvidence.md:
@@ -2773,9 +2775,11 @@ trackedFiles:
   src/Models/Shared/ScreeningLookup.php:
     last_write_checksum: sha1:e777f3b3e0c580de742348b3ac6264689f557ec9
   src/Models/Shared/ScreeningLookupCheck.php:
-    last_write_checksum: sha1:9ad5418fa35b47f3fd76ba9ebb98cd476a0f452c
+    last_write_checksum: sha1:a1e4a274ddf6437cf140df58f07132b16816405e
   src/Models/Shared/ScreeningLookupCheckStatus.php:
     last_write_checksum: sha1:0df0ecbd9704e88cc24b9b2215a8e7c0b6773d33
+  src/Models/Shared/ScreeningLookupCheckUnansweredItem.php:
+    last_write_checksum: sha1:8076f97d1219967b3596c3ea8805b661bac878fe
   src/Models/Shared/ScreeningMatch.php:
     last_write_checksum: sha1:8a09ac1b55bd90f01dda221e8972b02c638eb779
   src/Models/Shared/ScreeningMatchEvidence.php:
@@ -3287,7 +3291,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:8d37e31bc0e9ca8d20a74150f89dd9f845fe14ac
+    last_write_checksum: sha1:69452d2e2c71447b1f7687e8ca5b864aa21ff149
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:

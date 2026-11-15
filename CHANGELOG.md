@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.0.29
+
+* `sdk->groups->getPerson()`:  `response.lookup->checks[]->unanswered` **Added**
+
 ## 12.0.28
 
 No changes detected.
