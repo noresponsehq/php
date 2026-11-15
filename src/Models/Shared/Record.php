@@ -9,7 +9,7 @@ namespace NoResponse\Models\Shared;
 class Record
 {
     /**
-     * Made from the source and the fields' names and original values, so the same answer found twice is one record with the same id.
+     * Made from the source and the fields' names and original values, so the same answer found twice is one record with the same id. Its fields are typed as its latest finding typed them.
      *
      * @var string $id
      */
