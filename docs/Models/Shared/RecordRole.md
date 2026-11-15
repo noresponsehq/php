@@ -18,6 +18,7 @@ Which common field a value is, where many sources share it: a join date and a bi
 | `Bot`             | bot               |
 | `CallerCategory`  | caller_category   |
 | `Chargebacks`     | chargebacks       |
+| `Contact`         | contact           |
 | `CoverPicture`    | cover_picture     |
 | `Declines`        | declines          |
 | `Deleted`         | deleted           |

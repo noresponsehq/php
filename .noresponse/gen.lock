@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: ea3c0f405f35d71901b7f54707306c6f
+  docChecksum: e76f27dcec54f452ae1c5aaf9195c801
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 12.0.23
-  configChecksum: 6348838c102456fbe4e16cb3ba95a5d8
+  releaseVersion: 12.0.24
+  configChecksum: a5ee7584e5ee1f7098aee25d8be27726
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -821,9 +821,9 @@ trackedFiles:
   docs/Models/Shared/GroupUpdate.md:
     last_write_checksum: sha1:b097917335a6ed5555313c116d83704b913c83c5
   docs/Models/Shared/Handle.md:
-    last_write_checksum: sha1:b93fb837317bdcabddea2ab0735951e04872569d
+    last_write_checksum: sha1:013f69694fbd32f9388a0e56f1757e66e3f56ac9
   docs/Models/Shared/HandlePlatform.md:
-    last_write_checksum: sha1:094e408afb760fce572cb0f839a6a675a8129e88
+    last_write_checksum: sha1:65cdd6bf049ec910d0beaabd469c2992fdde7838
   docs/Models/Shared/HighestBand.md:
     last_write_checksum: sha1:f4d321d8c70e50b9483178aff69947c60cd68b9b
   docs/Models/Shared/HookPoint.md:
@@ -1149,7 +1149,7 @@ trackedFiles:
   docs/Models/Shared/RecordRemaining.md:
     last_write_checksum: sha1:f2515ff66912924ce5145899f00528945313478e
   docs/Models/Shared/RecordRole.md:
-    last_write_checksum: sha1:1bc059ba861afffc02fa8e9ab5a4466814369458
+    last_write_checksum: sha1:f0e2222c41d86b4a1642f6783c21a61625741289
   docs/Models/Shared/RecordSource.md:
     last_write_checksum: sha1:bd499faae8927a964ae3204f4f234de0457fdd31
   docs/Models/Shared/RecordVerdict.md:
@@ -1293,13 +1293,13 @@ trackedFiles:
   docs/Models/Shared/ScreeningNotAnalysedReason.md:
     last_write_checksum: sha1:0941516095dfa3c1dc41548944bf0bd09cf17168
   docs/Models/Shared/ScreeningPlatformCoverage.md:
-    last_write_checksum: sha1:4e1026e9b30ab9e5ddbb8833df9f378d038ab8c8
+    last_write_checksum: sha1:f86d8ddbd83b0aefe137587000abe381afca5740
   docs/Models/Shared/ScreeningPlatformCoverageStatus.md:
     last_write_checksum: sha1:561263669d39e91143dd692dba51e6a21dfc014c
   docs/Models/Shared/ScreeningPost.md:
     last_write_checksum: sha1:a89408564d933e0c54115b642404f442fe0158e5
   docs/Models/Shared/ScreeningProfile.md:
-    last_write_checksum: sha1:fc7d685c7a0c7392ff469abc3cc7028d55066ed9
+    last_write_checksum: sha1:d80bc01baf2afe1ba082d1c69015baa59519d364
   docs/Models/Shared/ScreeningRequest.md:
     last_write_checksum: sha1:de3d677913ab1c5c564d6845b0b48e96be078b70
   docs/Models/Shared/ScreeningSpend.md:
@@ -1349,7 +1349,7 @@ trackedFiles:
   docs/Models/Shared/Source.md:
     last_write_checksum: sha1:518ad5967e292a005f92679f0a1223254c4f6401
   docs/Models/Shared/SourceId.md:
-    last_write_checksum: sha1:4ed89298b01a305ff9ed0ad8a036d7754dc511d1
+    last_write_checksum: sha1:66043749248866c9d4cd04d6a3864f803c0423e6
   docs/Models/Shared/Status.md:
     last_write_checksum: sha1:4f209e8bab16679157941e803a08cace2c25e2b0
   docs/Models/Shared/Thresholds.md:
@@ -2323,9 +2323,9 @@ trackedFiles:
   src/Models/Shared/GroupUpdate.php:
     last_write_checksum: sha1:2ce54285faac88eb2c5481fd1195c0285fdfaa33
   src/Models/Shared/Handle.php:
-    last_write_checksum: sha1:f68aadd2d17a171e1841efd228c84d781df9e248
+    last_write_checksum: sha1:9516f791e29c852b355621a5b8ca7f78d47eaa95
   src/Models/Shared/HandlePlatform.php:
-    last_write_checksum: sha1:72df063b1531031eebe75bc4e708bae58f687712
+    last_write_checksum: sha1:480a89b3751aa8b2c7582c45a6665c723044ff04
   src/Models/Shared/HighestBand.php:
     last_write_checksum: sha1:c643dfc16d51077dcbb6d631332cb9bdaae6e920
   src/Models/Shared/HookPoint.php:
@@ -2647,7 +2647,7 @@ trackedFiles:
   src/Models/Shared/RecordRemaining.php:
     last_write_checksum: sha1:2512f6d3f26d2ce864636148097d2f9ebbd20647
   src/Models/Shared/RecordRole.php:
-    last_write_checksum: sha1:b7468c8289b97158f6381cd548544628aef35f84
+    last_write_checksum: sha1:61d0672445d99163f8d5165b49c4d7fa424d8f61
   src/Models/Shared/RecordSource.php:
     last_write_checksum: sha1:6f791609c1e7d8d1032a9e9334db83c6e914beca
   src/Models/Shared/RecordVerdict.php:
@@ -2791,13 +2791,13 @@ trackedFiles:
   src/Models/Shared/ScreeningNotAnalysedReason.php:
     last_write_checksum: sha1:0ba1de9c00cd439f26b021d2f3a1779f710dfce8
   src/Models/Shared/ScreeningPlatformCoverage.php:
-    last_write_checksum: sha1:8796aee8bd344b993046e50ae90d98f37f6c8ec2
+    last_write_checksum: sha1:83581f0b985f990956a884a7ff6bb7c021bd14d2
   src/Models/Shared/ScreeningPlatformCoverageStatus.php:
     last_write_checksum: sha1:f1eb1fcfe5d2df86f5b13886686c7df69f7aff2c
   src/Models/Shared/ScreeningPost.php:
     last_write_checksum: sha1:6d1a66fad0973c1d69c55e1dad7a2301c27e9ed8
   src/Models/Shared/ScreeningProfile.php:
-    last_write_checksum: sha1:138305d54a6815f60a6a4ea4e1d976fab26aac87
+    last_write_checksum: sha1:4e996b6983d974a1ac08be58f86866f4459714c0
   src/Models/Shared/ScreeningRequest.php:
     last_write_checksum: sha1:5bd88397ed2fdc48c7e17dea5cf3e48f0eb8969b
   src/Models/Shared/ScreeningSpend.php:
@@ -2845,7 +2845,7 @@ trackedFiles:
   src/Models/Shared/Source.php:
     last_write_checksum: sha1:0380a1f5a60617c73af6a186c7e191d8317c178e
   src/Models/Shared/SourceId.php:
-    last_write_checksum: sha1:8d6c848e2625562a7c69e7dcbaa2f31a4a21244a
+    last_write_checksum: sha1:b4594f1d4c4d5c9b5eb28dd068c9f55d868e6550
   src/Models/Shared/Status.php:
     last_write_checksum: sha1:56c5df2f0c9f0a07ef3679024487fb8743ced537
   src/Models/Shared/Thresholds.php:
@@ -3287,7 +3287,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:b67367283deb24c637ced2aa3d6dcdc2c3528315
+    last_write_checksum: sha1:17124cf88d036a2ff426f7e98ebdebc5e4318b64
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:
@@ -6044,7 +6044,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"id": "scn_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "group_id": "grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "environment": "test", "status": "partial", "depth": "standard", "platforms": ["threads"], "requested_by": "user_2abc", "created_at": "2026-01-01T00:00:00Z", "started_at": "2026-01-01T00:00:00Z", "finished_at": "2026-01-02T00:00:00Z", "expires_at": "2026-01-02T00:00:00Z", "people_total": 438718, "people_done": 951747, "people_flagged": 942514, "people_failed": 682715, "people_partial": 283813, "estimated_spend": 375895, "spent": 990898, "spend": {"total_minor": 51134, "by_implementation": []}, "error_code": "user_cancelled"}
+          application/json: {"id": "scn_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "group_id": "grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "environment": "test", "status": "partial", "depth": "standard", "platforms": ["reddit"], "requested_by": "user_2abc", "created_at": "2026-01-01T00:00:00Z", "started_at": "2026-01-01T00:00:00Z", "finished_at": "2026-01-02T00:00:00Z", "expires_at": "2026-01-02T00:00:00Z", "people_total": 438718, "people_done": 951747, "people_flagged": 942514, "people_failed": 682715, "people_partial": 283813, "estimated_spend": 375895, "spent": 990898, "spend": {"total_minor": 51134, "by_implementation": []}, "error_code": "user_cancelled"}
         "400":
           application/problem+json: {"type": "https://docs.noresponse.org/errors/invalid_request", "title": "Invalid request", "status": 400, "detail": "identifiers: at least one of email, username or phone is required.", "instance": "/v1/assessments", "code": "invalid_request", "request_id": "9f2c4b7a1d3e4f5a8b6c0d1e2f3a4b5c", "invalid_params": [{"field": "identifiers", "reason": "at least one of email, username or phone is required", "example": "new.user@example.com"}]}
         "401":
