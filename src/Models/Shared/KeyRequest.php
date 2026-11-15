@@ -72,6 +72,16 @@ class KeyRequest
     public ?string $requestId = null;
 
     /**
+     * Explicit restrictions that override scope grants. An empty list restores the access supplied by the scopes. Rotation preserves these restrictions.
+     *
+     * @var ?array<\NoResponse\Models\Shared\KeyRequestDeniedAction> $deniedActions
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('denied_actions')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\KeyRequestDeniedAction>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $deniedActions = null;
+
+    /**
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  array<\NoResponse\Models\Shared\KeyRequestScope>  $scopes
      * @param  ?string  $name
@@ -79,9 +89,10 @@ class KeyRequest
      * @param  \NoResponse\Models\Shared\KeyKind|string|null  $kind
      * @param  ?string  $expiresAt
      * @param  ?string  $requestId
+     * @param  ?array<\NoResponse\Models\Shared\KeyRequestDeniedAction>  $deniedActions
      * @phpstan-pure
      */
-    public function __construct(KeyEnvironment|string $environment, array $scopes, ?string $name = null, ?string $purpose = null, KeyKind|string|null $kind = null, ?string $expiresAt = null, ?string $requestId = null)
+    public function __construct(KeyEnvironment|string $environment, array $scopes, ?string $name = null, ?string $purpose = null, KeyKind|string|null $kind = null, ?string $expiresAt = null, ?string $requestId = null, ?array $deniedActions = null)
     {
         $this->environment = $environment;
         $this->scopes = $scopes;
@@ -90,5 +101,6 @@ class KeyRequest
         $this->kind = $kind;
         $this->expiresAt = $expiresAt;
         $this->requestId = $requestId;
+        $this->deniedActions = $deniedActions;
     }
 }

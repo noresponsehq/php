@@ -165,6 +165,16 @@ class Key
     public ?string $lastUsedAt = null;
 
     /**
+     * Explicit restrictions that override scope grants. An empty list restores the access supplied by the scopes. Rotation preserves these restrictions.
+     *
+     * @var array<\NoResponse\Models\Shared\KeyDeniedAction|string>|null $deniedActions
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('denied_actions')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\KeyDeniedAction|string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $deniedActions = null;
+
+    /**
      * @param  string  $id
      * @param  string  $workspaceId
      * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
@@ -183,9 +193,10 @@ class Key
      * @param  ?string  $ownerUserId
      * @param  ?string  $rotatedTo
      * @param  ?string  $lastUsedAt
+     * @param  array<\NoResponse\Models\Shared\KeyDeniedAction|string>|null  $deniedActions
      * @phpstan-pure
      */
-    public function __construct(string $id, string $workspaceId, KeyEnvironment|string $environment, string $prefix, array $scopes, KeyStatus|string $status, string $createdAt, ?string $createdBy = null, ?string $expiresAt = null, ?string $revokedAt = null, ?string $revokedBy = null, ?string $key = null, ?string $name = null, ?string $purpose = null, KeyKind|string|null $kind = null, ?string $ownerUserId = null, ?string $rotatedTo = null, ?string $lastUsedAt = null)
+    public function __construct(string $id, string $workspaceId, KeyEnvironment|string $environment, string $prefix, array $scopes, KeyStatus|string $status, string $createdAt, ?string $createdBy = null, ?string $expiresAt = null, ?string $revokedAt = null, ?string $revokedBy = null, ?string $key = null, ?string $name = null, ?string $purpose = null, KeyKind|string|null $kind = null, ?string $ownerUserId = null, ?string $rotatedTo = null, ?string $lastUsedAt = null, ?array $deniedActions = null)
     {
         $this->id = $id;
         $this->workspaceId = $workspaceId;
@@ -205,5 +216,6 @@ class Key
         $this->ownerUserId = $ownerUserId;
         $this->rotatedTo = $rotatedTo;
         $this->lastUsedAt = $lastUsedAt;
+        $this->deniedActions = $deniedActions;
     }
 }

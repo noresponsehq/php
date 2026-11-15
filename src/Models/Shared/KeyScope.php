@@ -25,4 +25,8 @@ enum KeyScope: string
     case Members = 'members';
     case MembersManage = 'members_manage';
     case Groups = 'groups';
+    case People = 'people';
+    case PeopleWrite = 'people_write';
+    case Investigations = 'investigations';
+    case Decisions = 'decisions';
 }

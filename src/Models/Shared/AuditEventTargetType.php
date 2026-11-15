@@ -17,4 +17,6 @@ enum AuditEventTargetType: string
     case Integration = 'integration';
     case Billing = 'billing';
     case Review = 'review';
+    case Person = 'person';
+    case Group = 'group';
 }

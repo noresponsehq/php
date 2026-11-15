@@ -16,3 +16,5 @@ The kind of resource the change acted on.
 | `Integration`     | integration       |
 | `Billing`         | billing           |
 | `Review`          | review            |
+| `Person`          | person            |
+| `Group`           | group             |

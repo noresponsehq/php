@@ -41,7 +41,7 @@ class Search
     public SearchKind|string $kind;
 
     /**
-     * The value searched: the field's cleaned value, else as the source wrote it.
+     * The searched value. Empty in person reports when evidence.read is denied.
      *
      * @var string $value
      */

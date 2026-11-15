@@ -92,6 +92,15 @@ class PersonReport
     public ?array $searches = null;
 
     /**
+     * True when evidence.read is explicitly denied. Submitted details, coverage, job status and decisions remain available. Collected records, profiles, findings, posts, media, discovered values and free-text decision notes are withheld.
+     *
+     * @var ?bool $evidenceRestricted
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('evidence_restricted')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $evidenceRestricted = null;
+
+    /**
      * @param  \NoResponse\Models\Shared\Person  $person
      * @param  array<\NoResponse\Models\Shared\ScreeningProfile>  $profiles
      * @param  array<\NoResponse\Models\Shared\ScreeningFinding>  $findings
@@ -101,9 +110,10 @@ class PersonReport
      * @param  \NoResponse\Models\Shared\OtherGroups  $otherGroups
      * @param  ?\NoResponse\Models\Shared\ScreeningLookup  $lookup
      * @param  ?array<\NoResponse\Models\Shared\Search>  $searches
+     * @param  ?bool  $evidenceRestricted
      * @phpstan-pure
      */
-    public function __construct(Person $person, array $profiles, array $findings, array $posts, array $media, array $reviews, OtherGroups $otherGroups, ?ScreeningLookup $lookup = null, ?array $searches = null)
+    public function __construct(Person $person, array $profiles, array $findings, array $posts, array $media, array $reviews, OtherGroups $otherGroups, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null)
     {
         $this->person = $person;
         $this->profiles = $profiles;
@@ -114,5 +124,6 @@ class PersonReport
         $this->otherGroups = $otherGroups;
         $this->lookup = $lookup;
         $this->searches = $searches;
+        $this->evidenceRestricted = $evidenceRestricted;
     }
 }

@@ -3,23 +3,27 @@
 
 ## Values
 
-| Name            | Value           |
-| --------------- | --------------- |
-| `Assess`        | assess          |
-| `History`       | history         |
-| `Delete`        | delete          |
-| `Webhooks`      | webhooks        |
-| `Detailed`      | detailed        |
-| `Integrations`  | integrations    |
-| `Management`    | management      |
-| `Audit`         | audit           |
-| `Usage`         | usage           |
-| `Investigate`   | investigate     |
-| `Evidence`      | evidence        |
-| `Exports`       | exports         |
-| `AuditManage`   | audit_manage    |
-| `Settings`      | settings        |
-| `PolicyPublish` | policy_publish  |
-| `Members`       | members         |
-| `MembersManage` | members_manage  |
-| `Groups`        | groups          |
+| Name             | Value            |
+| ---------------- | ---------------- |
+| `Assess`         | assess           |
+| `History`        | history          |
+| `Delete`         | delete           |
+| `Webhooks`       | webhooks         |
+| `Detailed`       | detailed         |
+| `Integrations`   | integrations     |
+| `Management`     | management       |
+| `Audit`          | audit            |
+| `Usage`          | usage            |
+| `Investigate`    | investigate      |
+| `Evidence`       | evidence         |
+| `Exports`        | exports          |
+| `AuditManage`    | audit_manage     |
+| `Settings`       | settings         |
+| `PolicyPublish`  | policy_publish   |
+| `Members`        | members          |
+| `MembersManage`  | members_manage   |
+| `Groups`         | groups           |
+| `People`         | people           |
+| `PeopleWrite`    | people_write     |
+| `Investigations` | investigations   |
+| `Decisions`      | decisions        |

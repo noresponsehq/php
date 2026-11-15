@@ -1,5 +1,17 @@
 # Changelog
 
+## 14.0.3
+
+* `sdk->keys->updateAccess()`: **Added**
+* `sdk->groups->exportPeople()`: **Added**
+* `sdk->keys->list()`:  `response.items[]` **Changed**
+* `sdk->keys->create()`: 
+  *  `request.body` **Changed**
+  *  `response` **Changed**
+* `sdk->keys->revoke()`:  `response` **Changed**
+* `sdk->audit->list()`:  `response.items[]->target->type` **Changed**
+* `sdk->groups->getPerson()`:  `response.evidenceRestricted` **Added**
+
 ## 14.0.2
 
 * `sdk->groups->create()`:  `request.idempotencyKey` **Added**
