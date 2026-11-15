@@ -1,5 +1,15 @@
 # Changelog
 
+## 12.0.15
+
+* `sdk->settings->get()`:  `response.refusedSources[]->enum(duolingoEmail)` **Added**
+* `sdk->settings->update()`: 
+  *  `request.body->refusedSources[]->enum(duolingoEmail)` **Added**
+  *  `response.refusedSources[]->enum(duolingoEmail)` **Added**
+* `sdk->settings->listHistory()`:  `response.items[]->settings->refusedSources[]->enum(duolingoEmail)` **Added**
+* `sdk->settings->restore()`:  `response.refusedSources[]->enum(duolingoEmail)` **Added**
+* `sdk->evaluations->publish()`:  `response.refusedSources[]->enum(duolingoEmail)` **Added**
+
 ## 12.0.14
 
 No changes detected.
