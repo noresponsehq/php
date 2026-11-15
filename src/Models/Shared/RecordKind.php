@@ -12,9 +12,9 @@ enum RecordKind: string
     case Email = 'email';
     // A phone number. value: in E.164 form, such as +447700900123. A national number is cleaned only when the country of the source's site is known.
     case Phone = 'phone';
-    // A handle a person chose. value: as written. Compare it in lower case.
+    // A handle a person chose. value: as written. Compare it in lower case. A value that is only zeros, or null, nil, none, undefined or n/a, has no value.
     case Username = 'username';
-    // A platform's own id for an account. value: as written.
+    // A platform's own id for an account. value: as written. A value that is only zeros, or null, nil, none, undefined or n/a, has no value.
     case AccountId = 'account_id';
     // A web address. value: the scheme and host in lower case, the path, query and fragment as written.
     case Url = 'url';
@@ -40,7 +40,7 @@ enum RecordKind: string
     case Region = 'region';
     // A city or town. value: as written.
     case City = 'city';
-    // A street address or one line of it. value: as written.
+    // A street address or one line of it. value: as written. A value that is only zeros, or null, nil, none, undefined or n/a, has no value.
     case Address = 'address';
     // A postal code. value: in upper case with single spaces.
     case Postcode = 'postcode';
@@ -58,7 +58,7 @@ enum RecordKind: string
     case Ip = 'ip';
     // A network card address. value: in lower case with colons.
     case MacAddress = 'mac_address';
-    // An id of a phone, computer or browser. value: as written.
+    // An id of a phone, computer or browser. value: as written. A value that is only zeros, or null, nil, none, undefined or n/a, has no value.
     case DeviceId = 'device_id';
     // A browser or app signature. value: as written.
     case UserAgent = 'user_agent';
@@ -68,7 +68,7 @@ enum RecordKind: string
     case Hash = 'hash';
     // The salt for a hash. value: exactly as written.
     case Salt = 'salt';
-    // A session, reset or API token. value: as written.
+    // A session, reset or API token. value: as written. A value that is only zeros, or null, nil, none, undefined or n/a, has no value.
     case Token = 'token';
     // A security question or its answer. value: exactly as written.
     case SecurityAnswer = 'security_answer';
@@ -80,7 +80,7 @@ enum RecordKind: string
     case CryptoAddress = 'crypto_address';
     // Money, with its currency when given. value: a plain decimal. detail names the currency, such as USD.
     case Amount = 'amount';
-    // A passport, tax, national or licence number. value: as written.
+    // A passport, tax, national or licence number. value: as written. A value that is only zeros, or null, nil, none, undefined or n/a, has no value.
     case IdNumber = 'id_number';
     // A number plate or a VIN. value: in upper case with no spaces.
     case Vehicle = 'vehicle';
