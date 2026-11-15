@@ -5,8 +5,8 @@ management:
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 12.0.22
-  configChecksum: 149e5d81472fdc117f76fe2ce558052e
+  releaseVersion: 12.0.23
+  configChecksum: 6348838c102456fbe4e16cb3ba95a5d8
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -3287,7 +3287,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:6d866763cc1d3a3585d2579f03cbc827b5c5ea42
+    last_write_checksum: sha1:b67367283deb24c637ced2aa3d6dcdc2c3528315
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:

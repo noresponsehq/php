@@ -2,7 +2,7 @@
 
 # NoResponse for PHP
 
-Assess sign-ups, logins and purchases with the NoResponse Identity Intelligence API.
+Investigate everyone, everywhere, all at once. Find the accounts and leaked rows behind an email, phone, username or name, screen groups of people, and assess sign-ups with the NoResponse API. The client's `groups` calls create groups, add people, screen them and read each person's records: see the [quickstart](https://docs.noresponse.org/quickstart).
 
 PHP 8.2+ · Composer.
 
