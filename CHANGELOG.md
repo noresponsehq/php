@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.0.14
+
+No changes detected.
+
 ## 12.0.13
 
 * `sdk->settings->get()`:  `response.refusedSources[]->enum(whatsapp)` **Added**
