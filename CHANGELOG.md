@@ -1,5 +1,15 @@
 # Changelog
 
+## 12.0.17
+
+* `sdk->settings->get()`:  `response.refusedSources[]->enum(youtube)` **Added**
+* `sdk->settings->update()`: 
+  *  `request.body->refusedSources[]->enum(youtube)` **Added**
+  *  `response.refusedSources[]->enum(youtube)` **Added**
+* `sdk->settings->listHistory()`:  `response.items[]->settings->refusedSources[]->enum(youtube)` **Added**
+* `sdk->settings->restore()`:  `response.refusedSources[]->enum(youtube)` **Added**
+* `sdk->evaluations->publish()`:  `response.refusedSources[]->enum(youtube)` **Added**
+
 ## 12.0.16
 
 No changes detected.
