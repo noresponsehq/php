@@ -72,7 +72,15 @@ class Person
     public ScreeningSpend $spend;
 
     /**
-     * Your own id for the person, unique within the group. A later row with the same external id updates this person.
+     * When workspace retention removes the person and their investigation history.
+     *
+     * @var string $expiresAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('expires_at')]
+    public string $expiresAt;
+
+    /**
+     * Your reference for the person in this workspace environment.
      *
      * @var ?string $externalId
      */
@@ -212,6 +220,7 @@ class Person
      * @param  string  $createdAt
      * @param  string  $updatedAt
      * @param  \NoResponse\Models\Shared\ScreeningSpend  $spend
+     * @param  string  $expiresAt
      * @param  ?string  $externalId
      * @param  ?string  $email
      * @param  ?string  $phone
@@ -229,7 +238,7 @@ class Person
      * @param  ?string  $screenedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $groupId, string $name, MatchState|string $matchState, ScreeningCoverage $coverage, string $createdAt, string $updatedAt, ScreeningSpend $spend, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, PersonRole|string|null $role = null, ?bool $noProfileToCheck = null, HighestBand|string|null $highestBand = null, PersonDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
+    public function __construct(string $id, string $groupId, string $name, MatchState|string $matchState, ScreeningCoverage $coverage, string $createdAt, string $updatedAt, ScreeningSpend $spend, string $expiresAt, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, PersonRole|string|null $role = null, ?bool $noProfileToCheck = null, HighestBand|string|null $highestBand = null, PersonDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
     {
         $this->id = $id;
         $this->groupId = $groupId;
@@ -239,6 +248,7 @@ class Person
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->spend = $spend;
+        $this->expiresAt = $expiresAt;
         $this->externalId = $externalId;
         $this->email = $email;
         $this->phone = $phone;

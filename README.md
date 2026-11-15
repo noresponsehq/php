@@ -2,7 +2,7 @@
 
 # NoResponse for PHP
 
-Investigate everyone, everywhere, all at once. Find the accounts and leaked rows behind an email, phone, username or name, screen groups of people, and assess sign-ups with the NoResponse API. The client's `groups` calls create groups, add people, screen them and read each person's records: see the [quickstart](https://docs.noresponse.org/quickstart).
+NoResponse is an identity and people risk engine. Create a person, investigate the accounts and source records behind their identifiers, and keep investigation history. Groups organize people for events, venues and team review. Signup assessment uses the same engine.
 
 PHP 8.2+ · Composer.
 
@@ -18,7 +18,7 @@ There is no Packagist package yet. Add the GitHub repository to your `composer.j
         { "type": "vcs", "url": "https://github.com/noresponsehq/php" }
     ],
     "require": {
-        "noresponse/noresponse-php": "^2.0"
+        "noresponse/noresponse-php": "^15.0.0"
     }
 }
 ```
@@ -29,7 +29,35 @@ composer update noresponse/noresponse-php
 
 Composer reads the version tags from https://github.com/noresponsehq/php/tags.
 
-## Quick start
+## Investigate a person
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use NoResponse\Models\Shared;
+use NoResponse\NoResponseClient;
+
+$client = NoResponseClient::create((string) getenv('NORESPONSE_API_KEY'));
+$created = $client->people->create(
+    body: new Shared\WorkspacePersonRequest(externalId: 'case-person-1042', name: 'Jordan Example', email: 'jordan@example.com'),
+    idempotencyKey: 'case-1042-person-create'
+)->result;
+$job = $client->investigations->create(
+    body: new Shared\InvestigationRequest(personId: $created->person->id, depth: Shared\ScreeningDepth::Standard, platforms: ['x']),
+    idempotencyKey: 'case-1042-investigation-1'
+)->result;
+echo $job->id;
+```
+
+After `investigation.completed`, use `$client->investigations->get(investigationId: $id)->result` to read that investigation's report.
+
+The API key selects the workspace and environment. This flow needs `people_write` to create a person, `investigations` to start work, and `people` to read the report. Save the investigation id and key: retry the same work with the same key; use a new key for a deliberate new investigation. A person can belong to several groups or none. Their `expires_at` comes from workspace retention.
+
+Evidence is included by default for pre-verified customers. An explicit evidence restriction keeps submitted details, status, coverage and decision summaries, and withholds collected records, profiles, posts, media and discovered identifiers. Each investigation and group keeps its own review context.
+
+## Assess a signup
 
 ```php
 <?php

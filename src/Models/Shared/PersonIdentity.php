@@ -5,25 +5,25 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** PersonIdentity - What you know about a person. Stored encrypted under the workspace's key. */
 class PersonIdentity
 {
     /**
-     * The person's full name.
-     *
-     * @var string $name
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('name')]
-    public string $name;
-
-    /**
-     * Your own id for the person, unique within the group. A later row with the same external id updates this person.
+     * Your reference for this person within the workspace environment. Only an explicit reference or person_id can reuse an existing person.
      *
      * @var ?string $externalId
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('external_id')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $externalId = null;
+
+    /**
+     * The person's full name.
+     *
+     * @var ?string $name
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('name')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $name = null;
 
     /**
      * The person's email.
@@ -62,7 +62,7 @@ class PersonIdentity
     public ?string $city = null;
 
     /**
-     * Accounts the person is known to hold, at most 20.
+     * $handles
      *
      * @var ?array<\NoResponse\Models\Shared\Handle> $handles
      */
@@ -70,6 +70,14 @@ class PersonIdentity
     #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Handle>|null')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?array $handles = null;
+
+    /**
+     *
+     * @var ?string $personId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('person_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $personId = null;
 
     /**
      * The person's role in the group: guest (a ticket holder), crew, vendor or press. Leave it out when you do not know it: a person without one has no role, not guest. A later row naming the same person replaces it, and a change of role alone keeps the person's screening results.
@@ -82,25 +90,27 @@ class PersonIdentity
     public PersonRole|string|null $role = null;
 
     /**
-     * @param  string  $name
      * @param  ?string  $externalId
+     * @param  ?string  $name
      * @param  ?string  $email
      * @param  ?string  $phone
      * @param  ?string  $company
      * @param  ?string  $city
      * @param  ?array<\NoResponse\Models\Shared\Handle>  $handles
+     * @param  ?string  $personId
      * @param  \NoResponse\Models\Shared\PersonRole|string|null  $role
      * @phpstan-pure
      */
-    public function __construct(string $name, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, PersonRole|string|null $role = null)
+    public function __construct(?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, ?string $personId = null, PersonRole|string|null $role = null)
     {
-        $this->name = $name;
         $this->externalId = $externalId;
+        $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
         $this->company = $company;
         $this->city = $city;
         $this->handles = $handles;
+        $this->personId = $personId;
         $this->role = $role;
     }
 }

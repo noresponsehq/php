@@ -46,11 +46,9 @@ class Groups
     /**
      * Add or update a batch of people.
      *
-     * Adds 1 to 500 people, at most 512 KiB. A row naming an existing person in the group (the same external_id, else the same email, else the same phone) updates it; a changed identity is screened afresh by the next screening. Identities are stored encrypted under the workspace's key. Idempotency-Key is required: a retry with the same key and body within 24 hours answers the first result with Idempotent-Replayed: true, and the same key with another body answers 409 idempotency_key_reused. A group holds at most 20000 people. The people_write scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Adds 1 to 500 workspace people to this group, at most 512 KiB. An explicit person_id or external_id reuses the named workspace person. A reference-only row keeps submitted details; an identity supplied with that reference replaces those details. A shared email or phone only suggests matches and does not merge people. A changed identity clears current group screening summaries; prior investigation history remains available. Identities are encrypted under the workspace key. Idempotency-Key is required: the same key and body return the original import result while it is retained, with Idempotent-Replayed: true. A different body answers 409 idempotency_key_reused. A group holds at most 20000 people. The people_write scope grants this operation; groups is also accepted. Suggested matches require people-read access. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Shared\PersonBatchRequest  $body
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @param  ?string  $idempotencyKey
      * @return \NoResponse\Models\Operations\AddPeopleResponse
@@ -63,7 +61,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function addPeople(Shared\PersonBatchRequest $body, string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, ?string $idempotencyKey = null, ?Options $options = null): Operations\AddPeopleResponse
+    public function addPeople(Shared\PersonBatchRequest $body, string $groupId, ?string $idempotencyKey = null, ?Options $options = null): Operations\AddPeopleResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -93,14 +91,12 @@ class Groups
             ];
         }
         $request = new Operations\AddPeopleRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
             body: $body,
             idempotencyKey: $idempotencyKey,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people', Operations\AddPeopleRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/people', Operations\AddPeopleRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -228,11 +224,9 @@ class Groups
     /**
      * Cancel a screening.
      *
-     * Stops a queued or running screening. People it already screened keep their results. Cancelling a finished screening answers it unchanged. The body is an empty object. The investigations scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Stops a queued or running screening. People it already screened keep their results. Cancelling a finished screening answers it unchanged. The body is an empty object. The investigations scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Shared\ScreeningCancelRequest  $body
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @param  string  $screeningId
      * @return \NoResponse\Models\Operations\CancelScreeningResponse
@@ -245,7 +239,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function cancelScreening(Shared\ScreeningCancelRequest $body, string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $screeningId, ?Options $options = null): Operations\CancelScreeningResponse
+    public function cancelScreening(Shared\ScreeningCancelRequest $body, string $groupId, string $screeningId, ?Options $options = null): Operations\CancelScreeningResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -275,14 +269,12 @@ class Groups
             ];
         }
         $request = new Operations\CancelScreeningRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
             screeningId: $screeningId,
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/screenings/{screening_id}/cancel', Operations\CancelScreeningRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/screenings/{screening_id}/cancel', Operations\CancelScreeningRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -406,11 +398,9 @@ class Groups
     /**
      * Create a group to screen.
      *
-     * Creates a group with its name, start, venue, host, the principals it protects and the sensitive topics its screening reads posts against. An environment holds at most 1000 groups. Send an Idempotency-Key to retry safely: the same key and request return the same resource in its current state while it is retained, even after work completes. Reusing the key with different input answers 409 idempotency_key_reused. Use a new key for a deliberate new operation. The people_write scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Creates a group with its name, start, venue, host, the principals it protects and the sensitive topics its screening reads posts against. An environment holds at most 1000 groups. Send an Idempotency-Key to retry safely: the same key and request return the same resource in its current state while it is retained, even after work completes. Reusing the key with different input answers 409 idempotency_key_reused. Use a new key for a deliberate new operation. The people_write scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Shared\GroupRequest  $body
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  ?string  $idempotencyKey
      * @return \NoResponse\Models\Operations\CreateGroupResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
@@ -422,16 +412,14 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function create(Shared\GroupRequest $body, string $workspaceId, Shared\KeyEnvironment|string $environment, ?string $idempotencyKey = null, ?Options $options = null): Operations\CreateGroupResponse
+    public function create(Shared\GroupRequest $body, ?string $idempotencyKey = null, ?Options $options = null): Operations\CreateGroupResponse
     {
         $request = new Operations\CreateGroupRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             body: $body,
             idempotencyKey: $idempotencyKey,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}', Operations\CreateGroupRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -559,10 +547,8 @@ class Groups
     /**
      * Erase a group.
      *
-     * Erases the group with its people, their reviews and its screenings, and stops any screening still running. The delete scope is required; group read, write, investigation and review access do not grant deletion.
+     * Deletes the group, its memberships and its review context, and cancels unfinished group work. Workspace people, source evidence and completed investigations remain available. Retained investigations no longer name the deleted group. The delete scope is required; group read, write, investigation and review access do not grant deletion. The API key selects the workspace and environment.
      *
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @return \NoResponse\Models\Operations\DeleteGroupResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
@@ -574,7 +560,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function delete(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, ?Options $options = null): Operations\DeleteGroupResponse
+    public function delete(string $groupId, ?Options $options = null): Operations\DeleteGroupResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -604,12 +590,10 @@ class Groups
             ];
         }
         $request = new Operations\DeleteGroupRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}', Operations\DeleteGroupRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}', Operations\DeleteGroupRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/problem+json';
@@ -715,7 +699,7 @@ class Groups
     /**
      * Export the people in a group.
      *
-     * Returns one page for export. Each returned person is durably audited as person.exported with the actor, group, person ID and request ID. Requires both people read access and exports. Explicit evidence restrictions also hide free-text decision notes. No raw evidence enters audit logs. Follow next_after until absent for a complete export.
+     * Returns one page for export. Each returned person is durably audited as person.exported with the actor, group, person ID and request ID. Requires both people read access and exports. Explicit evidence restrictions also hide free-text decision notes. No raw evidence enters audit logs. Follow next_after until absent for a complete export. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Operations\ExportPeopleRequest  $request
      * @return \NoResponse\Models\Operations\ExportPeopleResponse
@@ -758,7 +742,7 @@ class Groups
             ];
         }
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/export', Operations\ExportPeopleRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/export', Operations\ExportPeopleRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
@@ -880,10 +864,8 @@ class Groups
     /**
      * Read a group.
      *
-     * The group and how many people it holds. The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * The group and how many people it holds. The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @return \NoResponse\Models\Operations\GetGroupResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
@@ -895,7 +877,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function get(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, ?Options $options = null): Operations\GetGroupResponse
+    public function get(string $groupId, ?Options $options = null): Operations\GetGroupResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -925,12 +907,10 @@ class Groups
             ];
         }
         $request = new Operations\GetGroupRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}', Operations\GetGroupRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}', Operations\GetGroupRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -1049,10 +1029,8 @@ class Groups
     /**
      * Read a person's report.
      *
-     * The person, the profiles the screening matched with how each was matched, its findings with their evidence, every recorded decision, and the other groups in the environment where a person with the same email or phone appears, with the decision recorded there. Profiles and findings fill in as the screening pipeline ships. The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. Each successful read is durably audited as person.viewed. Restricted responses keep submitted details, coverage, job status and decision summaries and set evidence_restricted to true.
+     * Returns submitted details, this group's latest screening evidence and contextual decisions, and the other groups that explicitly include the same workspace person. Membership requires an explicit person or customer reference. The people scope grants this operation; groups is also accepted. Each successful read is durably audited as person.viewed. Full source records, posts and media are returned by default. Explicit evidence.read denial keeps submitted details, coverage, job status and decision summaries, hides collected evidence and free-text notes, and sets evidence_restricted to true. The API key selects the workspace and environment.
      *
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @param  string  $personId
      * @return \NoResponse\Models\Operations\GetPersonResponse
@@ -1065,7 +1043,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getPerson(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $personId, ?Options $options = null): Operations\GetPersonResponse
+    public function getPerson(string $groupId, string $personId, ?Options $options = null): Operations\GetPersonResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -1095,13 +1073,11 @@ class Groups
             ];
         }
         $request = new Operations\GetPersonRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
             personId: $personId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people/{person_id}', Operations\GetPersonRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/people/{person_id}', Operations\GetPersonRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -1220,10 +1196,8 @@ class Groups
     /**
      * Read a screening.
      *
-     * The screening's status and progress. The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * The screening's status and progress. The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @param  string  $screeningId
      * @return \NoResponse\Models\Operations\GetScreeningResponse
@@ -1236,7 +1210,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getScreening(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $screeningId, ?Options $options = null): Operations\GetScreeningResponse
+    public function getScreening(string $groupId, string $screeningId, ?Options $options = null): Operations\GetScreeningResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -1266,13 +1240,11 @@ class Groups
             ];
         }
         $request = new Operations\GetScreeningRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
             screeningId: $screeningId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/screenings/{screening_id}', Operations\GetScreeningRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/screenings/{screening_id}', Operations\GetScreeningRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -1391,11 +1363,9 @@ class Groups
     /**
      * Join one of a person's records to them, or reject it.
      *
-     * Records a verdict on one of the records the person's latest lookups found: joined makes the record the person's whatever its likelihood, and rejected keeps it a lead. The verdict sticks for as long as a lookup finds the same record, and a later verdict on the same record replaces it. A record the person's latest lookup does not hold answers 404. Each verdict is audited as person.record_judged. The decisions scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Records a verdict on one of the records the person's latest lookups found: joined makes the record the person's whatever its likelihood, and rejected keeps it a lead. The verdict sticks for as long as a lookup finds the same record, and a later verdict on the same record replaces it. A record the person's latest lookup does not hold answers 404. Each verdict is audited as person.record_judged. The decisions scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Shared\RecordVerdictRequest  $body
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @param  string  $personId
      * @return \NoResponse\Models\Operations\JudgeRecordResponse
@@ -1408,7 +1378,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function judgeRecord(Shared\RecordVerdictRequest $body, string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $personId, ?Options $options = null): Operations\JudgeRecordResponse
+    public function judgeRecord(Shared\RecordVerdictRequest $body, string $groupId, string $personId, ?Options $options = null): Operations\JudgeRecordResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -1438,14 +1408,12 @@ class Groups
             ];
         }
         $request = new Operations\JudgeRecordRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
             personId: $personId,
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people/{person_id}/records', Operations\JudgeRecordRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/people/{person_id}/records', Operations\JudgeRecordRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -1569,10 +1537,8 @@ class Groups
     /**
      * List an environment's groups.
      *
-     * Groups, newest first. The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Groups, newest first. The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  ?int  $limit
      * @param  ?string  $before
      * @return \NoResponse\Models\Operations\ListGroupsResponse
@@ -1585,7 +1551,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function list(string $workspaceId, Shared\KeyEnvironment|string $environment, ?int $limit = null, ?string $before = null, ?Options $options = null): Operations\ListGroupsResponse
+    public function list(?int $limit = null, ?string $before = null, ?Options $options = null): Operations\ListGroupsResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -1615,13 +1581,11 @@ class Groups
             ];
         }
         $request = new Operations\ListGroupsRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             limit: $limit,
             before: $before,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}', Operations\ListGroupsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
@@ -1743,7 +1707,7 @@ class Groups
     /**
      * List a group's people.
      *
-     * The roster in upload order, with each person's role, match state, highest finding band and decision. Filter by band (or none), decision (or undecided) and role (or unstated). The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * The roster in upload order, with each person's role, match state, highest finding band and decision. Filter by band (or none), decision (or undecided) and role (or unstated). The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Operations\ListPeopleRequest  $request
      * @return \NoResponse\Models\Operations\ListPeopleResponse
@@ -1786,7 +1750,7 @@ class Groups
             ];
         }
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people', Operations\ListPeopleRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/people', Operations\ListPeopleRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
@@ -1908,10 +1872,8 @@ class Groups
     /**
      * List a group's screenings.
      *
-     * Screenings, newest first. The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Screenings, newest first. The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @param  ?int  $limit
      * @param  ?string  $before
@@ -1925,7 +1887,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function listScreenings(string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, ?int $limit = null, ?string $before = null, ?Options $options = null): Operations\ListScreeningsResponse
+    public function listScreenings(string $groupId, ?int $limit = null, ?string $before = null, ?Options $options = null): Operations\ListScreeningsResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -1955,14 +1917,12 @@ class Groups
             ];
         }
         $request = new Operations\ListScreeningsRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
             limit: $limit,
             before: $before,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/screenings', Operations\ListScreeningsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/screenings', Operations\ListScreeningsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
@@ -2082,13 +2042,165 @@ class Groups
     }
 
     /**
+     * Remove a person from a group
+     *
+     * Removes this membership and its group review history. Keeps the workspace person, source evidence and completed investigations. Needs delete access. The API key selects the workspace and environment.
+     *
+     * @param  string  $groupId
+     * @param  string  $personId
+     * @return \NoResponse\Models\Operations\RemoveGroupPersonResponse
+     * @throws \NoResponse\Models\Errors\BadRequestException
+     * @throws \NoResponse\Models\Errors\AuthenticationException
+     * @throws \NoResponse\Models\Errors\PermissionDeniedException
+     * @throws \NoResponse\Models\Errors\NotFoundException
+     * @throws \NoResponse\Models\Errors\ConflictException
+     * @throws \NoResponse\Models\Errors\RateLimitException
+     * @throws \NoResponse\Models\Errors\APIStatusException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function removePerson(string $groupId, string $personId, ?Options $options = null): Operations\RemoveGroupPersonResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        }
+        if ($retryConfig === null) {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 8000,
+                exponent: 2,
+                maxElapsedTimeMs: 30000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '408',
+                '429',
+                '5XX',
+            ];
+        }
+        $request = new Operations\RemoveGroupPersonRequest(
+            groupId: $groupId,
+            personId: $personId,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/people/{person_id}', Operations\RemoveGroupPersonRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $httpOptions['headers']['Accept'] = 'application/problem+json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url, $httpOptions['headers']);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'removeGroupPerson', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
+            $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+            return new Operations\RemoveGroupPersonResponse();
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\BadRequestError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\AuthenticationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['403'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\PermissionDeniedError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['404'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\NotFoundError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['409'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\ConflictError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['429'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/problem+json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\NoResponse\Models\Errors\RateLimitError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \NoResponse\Models\Errors\APIStatusException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \NoResponse\Models\Errors\APIStatusException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \NoResponse\Models\Errors\APIStatusException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \NoResponse\Models\Errors\APIStatusException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
      * Record a decision on a person.
      *
-     * Marks the person cleared, watch or escalated with a note. Decisions are kept in order; the latest is the person's. The next screening refreshes everyone on watch or escalated. The decisions scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Marks the person cleared, watch or escalated with a note. Decisions are kept in order; the latest is the person's. The next screening refreshes everyone on watch or escalated. The decisions scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Shared\PersonReviewRequest  $body
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @param  string  $personId
      * @return \NoResponse\Models\Operations\ReviewPersonResponse
@@ -2101,17 +2213,15 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function reviewPerson(Shared\PersonReviewRequest $body, string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, string $personId, ?Options $options = null): Operations\ReviewPersonResponse
+    public function reviewPerson(Shared\PersonReviewRequest $body, string $groupId, string $personId, ?Options $options = null): Operations\ReviewPersonResponse
     {
         $request = new Operations\ReviewPersonRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
             personId: $personId,
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people/{person_id}/review', Operations\ReviewPersonRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/people/{person_id}/review', Operations\ReviewPersonRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -2235,9 +2345,12 @@ class Groups
     /**
      * Run a counted password or hash search.
      *
-     * Runs a password or hash search once a person has seen its count. A search still counting answers 409 group_conflict; one already queued, running or finished answers as it is. The body is an empty object. Its estimate counts against the environment's screening_daily_cap. Each run is audited as person.search_run. The investigations scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Runs a password or hash search once a person has seen its count. A search still counting answers 409 group_conflict; one already queued, running or finished answers as it is. The body is an empty object. Its estimate counts against the environment's screening_daily_cap. Each run is audited as person.search_run. The investigations scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
-     * @param  \NoResponse\Models\Operations\RunSearchRequest  $request
+     * @param  \NoResponse\Models\Shared\ScreeningCancelRequest  $body
+     * @param  string  $groupId
+     * @param  string  $personId
+     * @param  string  $searchId
      * @return \NoResponse\Models\Operations\RunSearchResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -2248,7 +2361,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function runSearch(Operations\RunSearchRequest $request, ?Options $options = null): Operations\RunSearchResponse
+    public function runSearch(Shared\ScreeningCancelRequest $body, string $groupId, string $personId, string $searchId, ?Options $options = null): Operations\RunSearchResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -2277,8 +2390,14 @@ class Groups
                 '5XX',
             ];
         }
+        $request = new Operations\RunSearchRequest(
+            groupId: $groupId,
+            personId: $personId,
+            searchId: $searchId,
+            body: $body,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people/{person_id}/searches/{search_id}/run', Operations\RunSearchRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/people/{person_id}/searches/{search_id}/run', Operations\RunSearchRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -2402,11 +2521,9 @@ class Groups
     /**
      * Start a screening.
      *
-     * Queues a screening of every person no screening has reached and everyone on watch or escalated. One screening of a group runs at a time; it finishes completed, partial (some people not covered, counted in people_failed) or failed, and fails with error_code expired after 24 hours. Idempotency-Key is required and binds the body for the screening's life. The 202 body carries estimated_spend, what the selected people would cost at the depth and platforms. A screening whose estimate exceeds the environment's screening_daily_cap, less the day's recorded spend and what open screenings may still spend, answers 409 screening_cap_exceeded and queues nothing. The test environment screens with a deterministic simulator that contacts no source. A platform that no connector serves in the environment answers 409 screening_unavailable. The investigations scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Queues a screening of every person no screening has reached and everyone on watch or escalated. One screening of a group runs at a time; it finishes completed, partial (some people not covered, counted in people_failed) or failed, and fails with error_code expired after 24 hours. Idempotency-Key is required and binds the body for the screening's life. The 202 body carries estimated_spend, what the selected people would cost at the depth and platforms. A screening whose estimate exceeds the environment's screening_daily_cap, less the day's recorded spend and what open screenings may still spend, answers 409 screening_cap_exceeded and queues nothing. The test environment screens with a deterministic simulator that contacts no source. A platform that no connector serves in the environment answers 409 screening_unavailable. The investigations scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Shared\ScreeningRequest  $body
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @param  ?string  $idempotencyKey
      * @return \NoResponse\Models\Operations\StartScreeningResponse
@@ -2419,7 +2536,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function startScreening(Shared\ScreeningRequest $body, string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, ?string $idempotencyKey = null, ?Options $options = null): Operations\StartScreeningResponse
+    public function startScreening(Shared\ScreeningRequest $body, string $groupId, ?string $idempotencyKey = null, ?Options $options = null): Operations\StartScreeningResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -2449,14 +2566,12 @@ class Groups
             ];
         }
         $request = new Operations\StartScreeningRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
             body: $body,
             idempotencyKey: $idempotencyKey,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/screenings', Operations\StartScreeningRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/screenings', Operations\StartScreeningRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -2584,9 +2699,12 @@ class Groups
     /**
      * Search again on a value of one of a person's records.
      *
-     * Starts a new search on the value of one field of one of the person's records: a lookup's, a profile's or one an earlier search found. Name the record and the field; the value itself is not sent. The field's kind must be email, phone, username, person_name, password, hash, ip or domain. A domain search finds the breach rows of every email address at the domain, which must be a registrable domain or a host under one; any other domain answers 400. Nothing ever searches again by itself: a search starts only when a person asks. The search runs the breach search and the account and phone lookups that take the value's kind, under the environment's source controls, and finishes seconds later. A password or hash search counts first: it stops at counted with rows, how many breach rows hold the value, and runs only when a person runs it. Name a table, as a lookup remaining entry names it, to fetch the rows an earlier search left out, up to 100. What the search finds joins the person's lookup records as leads, each match naming the search; the person report lists the searches, each with the value and the record and field it came from, and its records are scored like the rest. Without an Idempotency-Key, starting the same open search returns it. Its estimate counts against the environment's screening_daily_cap, and one the cap cannot hold answers 409 screening_cap_exceeded. A record or field the person does not hold answers 404. Each search is audited as person.search_started. Send an Idempotency-Key to retry safely: the same key and request return the same resource in its current state while it is retained, even after work completes. Reusing the key with different input answers 409 idempotency_key_reused. Use a new key for a deliberate new operation. The investigations scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Starts a new search on the value of one field of one of the person's records: a lookup's, a profile's or one an earlier search found. Name the record and the field; the value itself is not sent. The field's kind must be email, phone, username, person_name, password, hash, ip or domain. A domain search finds the breach rows of every email address at the domain, which must be a registrable domain or a host under one; any other domain answers 400. Nothing ever searches again by itself: a search starts only when a person asks. The search runs the breach search and the account and phone lookups that take the value's kind, under the environment's source controls, and finishes seconds later. A password or hash search counts first: it stops at counted with rows, how many breach rows hold the value, and runs only when a person runs it. Name a table, as a lookup remaining entry names it, to fetch the rows an earlier search left out, up to 100. What the search finds joins the person's lookup records as leads, each match naming the search; the person report lists the searches, each with the value and the record and field it came from, and its records are scored like the rest. Without an Idempotency-Key, starting the same open search returns it. Its estimate counts against the environment's screening_daily_cap, and one the cap cannot hold answers 409 screening_cap_exceeded. A record or field the person does not hold answers 404. Each search is audited as person.search_started. Send an Idempotency-Key to retry safely: the same key and request return the same resource in its current state while it is retained, even after work completes. Reusing the key with different input answers 409 idempotency_key_reused. Use a new key for a deliberate new operation. The investigations scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
-     * @param  \NoResponse\Models\Operations\StartSearchRequest  $request
+     * @param  \NoResponse\Models\Shared\SearchRequest  $body
+     * @param  string  $groupId
+     * @param  string  $personId
+     * @param  ?string  $idempotencyKey
      * @return \NoResponse\Models\Operations\StartSearchResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -2597,10 +2715,16 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function startSearch(Operations\StartSearchRequest $request, ?Options $options = null): Operations\StartSearchResponse
+    public function startSearch(Shared\SearchRequest $body, string $groupId, string $personId, ?string $idempotencyKey = null, ?Options $options = null): Operations\StartSearchResponse
     {
+        $request = new Operations\StartSearchRequest(
+            groupId: $groupId,
+            personId: $personId,
+            body: $body,
+            idempotencyKey: $idempotencyKey,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people/{person_id}/searches', Operations\StartSearchRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/people/{person_id}/searches', Operations\StartSearchRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');
@@ -2728,11 +2852,9 @@ class Groups
     /**
      * Change a group.
      *
-     * Changes the fields the body names. With expected_version, the change applies only to that version (409 group_conflict otherwise). The people_write scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations.
+     * Changes the fields the body names. With expected_version, the change applies only to that version (409 group_conflict otherwise). The people_write scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Shared\GroupUpdate  $body
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  string  $groupId
      * @return \NoResponse\Models\Operations\UpdateGroupResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
@@ -2744,7 +2866,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function update(Shared\GroupUpdate $body, string $workspaceId, Shared\KeyEnvironment|string $environment, string $groupId, ?Options $options = null): Operations\UpdateGroupResponse
+    public function update(Shared\GroupUpdate $body, string $groupId, ?Options $options = null): Operations\UpdateGroupResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -2774,13 +2896,11 @@ class Groups
             ];
         }
         $request = new Operations\UpdateGroupRequest(
-            workspaceId: $workspaceId,
-            environment: $environment,
             groupId: $groupId,
             body: $body,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/workspaces/{workspace_id}/groups/{environment}/{group_id}', Operations\UpdateGroupRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}', Operations\UpdateGroupRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'body', 'json');

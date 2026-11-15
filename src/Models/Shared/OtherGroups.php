@@ -9,7 +9,7 @@ namespace NoResponse\Models\Shared;
 class OtherGroups
 {
     /**
-     * How many people of other groups match, of which items lists the 20 most recent.
+     * How many other groups include this person, of which items lists the 20 most recent.
      *
      * @var int $total
      */
@@ -17,7 +17,7 @@ class OtherGroups
     public int $total;
 
     /**
-     * The 20 people of the most recent other groups, newest group first.
+     * This person's memberships in the 20 most recent other groups, newest group first.
      *
      * @var array<\NoResponse\Models\Shared\OtherGroup> $items
      */

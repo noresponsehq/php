@@ -9,22 +9,6 @@ use NoResponse\Utils\NoResponseMetadata;
 class CreateGroupRequest
 {
     /**
-     * Your workspace id, as each key lists it in workspace_id. Another workspace, a malformed id and a test environment's id answer 404.
-     *
-     * @var string $workspaceId
-     */
-    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=workspace_id')]
-    public string $workspaceId;
-
-    /**
-     * The environment: live or test. Each has its own settings. Any other value answers 400. An API key reads and changes only its own environment's; the other answers 404.
-     *
-     * @var \NoResponse\Models\Shared\KeyEnvironment|string $environment
-     */
-    #[NoResponseMetadata('pathParam:style=simple,explode=false,name=environment')]
-    public Shared\KeyEnvironment|string $environment;
-
-    /**
      *
      * @var \NoResponse\Models\Shared\GroupRequest $body
      */
@@ -40,16 +24,12 @@ class CreateGroupRequest
     public ?string $idempotencyKey = null;
 
     /**
-     * @param  string  $workspaceId
-     * @param  \NoResponse\Models\Shared\KeyEnvironment|string  $environment
      * @param  \NoResponse\Models\Shared\GroupRequest  $body
      * @param  ?string  $idempotencyKey
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, Shared\KeyEnvironment|string $environment, Shared\GroupRequest $body, ?string $idempotencyKey = null)
+    public function __construct(Shared\GroupRequest $body, ?string $idempotencyKey = null)
     {
-        $this->workspaceId = $workspaceId;
-        $this->environment = $environment;
         $this->body = $body;
         $this->idempotencyKey = $idempotencyKey;
     }

@@ -82,14 +82,6 @@ class Group
     public int $version;
 
     /**
-     * When raw collected items and unmatched candidate profiles are purged: 30 days after the group ends.
-     *
-     * @var string $purgeAfter
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('purge_after')]
-    public string $purgeAfter;
-
-    /**
      * The member or key label that created the group.
      *
      * @var string $createdBy
@@ -139,7 +131,6 @@ class Group
      * @param  array<string>  $topics
      * @param  int  $people
      * @param  int  $version
-     * @param  string  $purgeAfter
      * @param  string  $createdBy
      * @param  string  $createdAt
      * @param  string  $updatedAt
@@ -147,7 +138,7 @@ class Group
      * @param  ?string  $host
      * @phpstan-pure
      */
-    public function __construct(string $id, AuditSettingsEnvironment|string $environment, string $name, string $startsAt, string $endsAt, array $principals, array $topics, int $people, int $version, string $purgeAfter, string $createdBy, string $createdAt, string $updatedAt, ?string $venue = null, ?string $host = null)
+    public function __construct(string $id, AuditSettingsEnvironment|string $environment, string $name, string $startsAt, string $endsAt, array $principals, array $topics, int $people, int $version, string $createdBy, string $createdAt, string $updatedAt, ?string $venue = null, ?string $host = null)
     {
         $this->id = $id;
         $this->environment = $environment;
@@ -158,7 +149,6 @@ class Group
         $this->topics = $topics;
         $this->people = $people;
         $this->version = $version;
-        $this->purgeAfter = $purgeAfter;
         $this->createdBy = $createdBy;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;

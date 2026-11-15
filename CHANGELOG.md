@@ -1,5 +1,180 @@
 # Changelog
 
+## 15.0.0
+
+* `sdk->groups->list()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `response.items[]->purgeAfter` **Removed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->create()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `response.purgeAfter` **Removed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->get()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `response.purgeAfter` **Removed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->delete()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->update()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `response.purgeAfter` **Removed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->exportPeople()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `response.items[]->expiresAt` **Added**
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->cancelScreening()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->getScreening()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->startScreening()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->listScreenings()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->runSearch()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->startSearch()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->judgeRecord()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->reviewPerson()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `response.expiresAt` **Added**
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->getPerson()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `response` **Changed** (Breaking ⚠️)
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->addPeople()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `response.items[]->suggestedMatches` **Added**
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->groups->listPeople()`: 
+  *  `request` **Changed** (Breaking ⚠️)
+  *  `response.items[]->expiresAt` **Added**
+  *  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->audit->listStreams()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->invites->resend()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->assessments->query()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->assessments->aggregate()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->assessments->search()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->assessments->retrieveVersion()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->assessments->bindAccount()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->listChanged()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->get()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->delete()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->listAssessments()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->listLinked()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->listEnforcements()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->recordEnforcement()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->listOutcomes()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->recordOutcome()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->retrieveDecision()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->listCredentials()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->associateCredential()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->retireCredential()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->export()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->listDecisions()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->accounts->search()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->keyusage->record()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->keys->rotate()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->keys->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->keys->create()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->keys->revoke()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->keys->updateAccess()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->integrations->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->integrations->create()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->integrations->delete()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->integrations->rotate()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->webhookendpoints->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->webhookendpoints->create()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->webhookendpoints->delete()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->webhookendpoints->rotateSigningKey()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->webhookendpoints->sendTestEvent()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->webhookendpoints->listDeliveries()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->webhookendpoints->replayDelivery()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->webhookendpoints->aggregate()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->members->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->members->remove()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->members->update()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->audit->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->audit->getRetention()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->audit->updateRetention()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->assessments->delete()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->audit->configureStream()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->audit->removeStream()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->audit->replayStream()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->usage->get()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->invites->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->invites->create()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->invites->revoke()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->assessments->recordOutcome()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->settings->get()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->settings->update()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->settings->listHistory()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->settings->restore()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->settings->preview()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->requests->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->requests->aggregate()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->lists->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->lists->create()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->lists->delete()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->lists->preview()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->lists->change()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->lists->getChange()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->create()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->get()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->update()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->resolve()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->listComments()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->comment()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->listResolutions()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->listViews()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->createView()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->deleteView()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->updateView()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->export()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->listSubjects()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->addSubject()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->deleteSubject()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->reviews->query()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->erasures->get()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->exports->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->exports->create()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->exports->get()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->exports->cancel()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->exports->retry()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->exports->downloadChunk()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->evaluations->list()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->evaluations->create()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->assessments->get()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->assessments->create()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->investigations->cancel()`: **Added**
+* `sdk->investigations->review()`: **Added**
+* `sdk->investigations->get()`: **Added**
+* `sdk->investigations->create()`: **Added**
+* `sdk->investigations->list()`: **Added**
+* `sdk->people->delete()`: **Added**
+* `sdk->people->get()`: **Added**
+* `sdk->people->create()`: **Added**
+* `sdk->people->list()`: **Added**
+* `sdk->groups->removePerson()`: **Added**
+* `sdk->evaluations->get()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->evaluations->getResult()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->evaluations->cancel()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->evaluations->publish()`:  `error.code->enum(personReferenceConflict)` **Added**
+* `sdk->workspaceoperations->summarize()`:  `error.code->enum(personReferenceConflict)` **Added**
+
 ## 14.0.4
 
 No changes detected.

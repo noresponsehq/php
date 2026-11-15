@@ -30,14 +30,14 @@ final class RecordsTest extends TestCase
     {
         $body = (string) file_get_contents(__DIR__.'/fixtures/valid/person-report-records.json');
         $person = json_decode($body, true, flags: JSON_THROW_ON_ERROR)['person'];
-        $workspace = 'tnt_01JC8Y0A2B4C6D8E0F2G4H6J8K';
+
         $history = [];
         $stack = HandlerStack::create(fn ($request) => \GuzzleHttp\Promise\Create::promiseFor(new Response(200, ['Content-Type' => 'application/json'], $body)));
         $stack->push(Middleware::history($history));
         $client = NoResponseClient::builder()->setClient(new Client(['handler' => $stack, 'http_errors' => false]))
             ->setSecurity('nrk_test_records_fixture')->setServerUrl('https://api.example.test')->build();
-        $report = $client->groups->getPerson($workspace, Shared\KeyEnvironment::Test, $person['group_id'], $person['id'])->result;
-        self::assertSame("/v1/workspaces/$workspace/groups/test/{$person['group_id']}/people/{$person['id']}", $history[0]['request']->getUri()->getPath());
+        $report = $client->groups->getPerson($person['group_id'], $person['id'])->result;
+        self::assertSame("/v1/groups/{$person['group_id']}/people/{$person['id']}", $history[0]['request']->getUri()->getPath());
 
         [$account, $row] = $report->lookup->records;
         self::assertInstanceOf(Shared\Record::class, $account);

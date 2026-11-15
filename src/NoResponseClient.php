@@ -7,9 +7,9 @@ namespace NoResponse;
 
 
 /**
- * NoResponseClient - NoResponse API: Server-side risk assessment of account creation, login and purchase: a recommendation, polling and signed webhooks.
+ * NoResponseClient - NoResponse API: Workspace people, source-grounded investigations, group screening and signup assessment recommendations.
  *
- * Assess an account creation, login or purchase and get back the account's one current risk, poll a pending assessment, page through an account's history, record what you later learned, report usage of the API keys you issue to your accounts, rotate your API key, manage your webhook endpoints, and register hosted endpoints that answer your WorkOS, Auth0 or Supabase sign-up and sign-in hooks. Every response carries X-Request-ID; every error is an RFC 9457 problem document. Keep the API key on your server.
+ * NoResponse is an identity and people risk engine. Retain workspace people, investigate their identifiers, read complete source evidence and preserve investigation history. Groups organize people for screening and context-specific decisions. Account creation, login and purchase assessments use the same engine. People-read access includes evidence by default; explicit evidence restrictions retain submitted details, job status, coverage and decision summaries. Keep the API key on your server.
  */
 class NoResponseClient
 {
@@ -147,6 +147,20 @@ class NoResponseClient
     public Groups $groups;
 
     /**
+     * Workspace people, submitted identity, source evidence and expiry.
+     *
+     * @var People $$people
+     */
+    public People $people;
+
+    /**
+     * Person investigation jobs, retained results and contextual decisions.
+     *
+     * @var Investigations $$investigations
+     */
+    public Investigations $investigations;
+
+    /**
      * Returns a new instance of the SDK builder used to configure and create the SDK instance.
      *
      * @return NoResponseClientBuilder
@@ -191,6 +205,8 @@ class NoResponseClient
         $this->evaluations = new Evaluations($this->sdkConfiguration);
         $this->workspaceOperations = new WorkspaceOperations($this->sdkConfiguration);
         $this->groups = new Groups($this->sdkConfiguration);
+        $this->people = new People($this->sdkConfiguration);
+        $this->investigations = new Investigations($this->sdkConfiguration);
         $this->initHooks();
 
     }

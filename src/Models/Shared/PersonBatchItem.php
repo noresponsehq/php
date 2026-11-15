@@ -32,15 +32,27 @@ class PersonBatchItem
     public PersonBatchItemOutcome|string $outcome;
 
     /**
+     * $suggestedMatches
+     *
+     * @var ?array<\NoResponse\Models\Shared\PersonMatch> $suggestedMatches
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('suggested_matches')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\PersonMatch>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $suggestedMatches = null;
+
+    /**
      * @param  int  $index
      * @param  string  $id
      * @param  \NoResponse\Models\Shared\PersonBatchItemOutcome|string  $outcome
+     * @param  ?array<\NoResponse\Models\Shared\PersonMatch>  $suggestedMatches
      * @phpstan-pure
      */
-    public function __construct(int $index, string $id, PersonBatchItemOutcome|string $outcome)
+    public function __construct(int $index, string $id, PersonBatchItemOutcome|string $outcome, ?array $suggestedMatches = null)
     {
         $this->index = $index;
         $this->id = $id;
         $this->outcome = $outcome;
+        $this->suggestedMatches = $suggestedMatches;
     }
 }

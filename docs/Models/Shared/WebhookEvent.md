@@ -95,3 +95,12 @@ Shared\PersonFlaggedEvent $value = /* values here */
 Shared\PersonDecidedEvent $value = /* values here */
 ```
 
+### `Shared\InvestigationCompletedEvent`
+
+```php
+/**
+* @var \NoResponse\Models\Shared\InvestigationCompletedEvent
+*/
+Shared\InvestigationCompletedEvent $value = /* values here */
+```
+

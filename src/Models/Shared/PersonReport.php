@@ -18,7 +18,7 @@ class PersonReport
     public Person $person;
 
     /**
-     * The accounts the latest screening matched, with how each was matched.
+     * The accounts this result matched, with how each was matched.
      *
      * @var array<\NoResponse\Models\Shared\ScreeningProfile> $profiles
      */
@@ -27,7 +27,7 @@ class PersonReport
     public array $profiles;
 
     /**
-     * What the latest screening flagged, most severe first, each citing its evidence.
+     * What this result flagged, most severe first, each citing its evidence.
      *
      * @var array<\NoResponse\Models\Shared\ScreeningFinding> $findings
      */
@@ -36,7 +36,7 @@ class PersonReport
     public array $findings;
 
     /**
-     * The posts the findings cite.
+     * All posts retained for this result, including posts that no finding cites.
      *
      * @var array<\NoResponse\Models\Shared\ScreeningPost> $posts
      */
@@ -45,7 +45,7 @@ class PersonReport
     public array $posts;
 
     /**
-     * The images and videos the findings cite.
+     * All images and videos retained for this result, including media that no finding cites.
      *
      * @var array<\NoResponse\Models\Shared\ScreeningMedia> $media
      */

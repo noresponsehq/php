@@ -38,12 +38,12 @@ class OtherGroup
     public string $personId;
 
     /**
-     * Which identifiers match, in this order. external_id appears only beside email or phone: the same external id alone is not a match, since ticket numbers may be reused across groups.
+     * The same workspace person explicitly belongs to this group. Membership requires an explicit person or customer reference.
      *
-     * @var array<\NoResponse\Models\Shared\MatchedOn|string> $matchedOn
+     * @var array<\NoResponse\Models\Shared\OtherGroupMatchedOn|string> $matchedOn
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('matched_on')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\MatchedOn|string>')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\OtherGroupMatchedOn|string>')]
     public array $matchedOn;
 
     /**
@@ -105,7 +105,7 @@ class OtherGroup
      * @param  string  $groupName
      * @param  string  $groupStartsAt
      * @param  string  $personId
-     * @param  array<\NoResponse\Models\Shared\MatchedOn|string>  $matchedOn
+     * @param  array<\NoResponse\Models\Shared\OtherGroupMatchedOn|string>  $matchedOn
      * @param  \NoResponse\Models\Shared\MatchState|string  $matchState
      * @param  ?bool  $noProfileToCheck
      * @param  \NoResponse\Models\Shared\HighestBand|string|null  $highestBand

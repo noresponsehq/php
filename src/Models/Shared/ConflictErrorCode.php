@@ -38,4 +38,5 @@ enum ConflictErrorCode: string
     case GroupLimitReached = 'group_limit_reached';
     case ScreeningCapExceeded = 'screening_cap_exceeded';
     case ScreeningUnavailable = 'screening_unavailable';
+    case PersonReferenceConflict = 'person_reference_conflict';
 }

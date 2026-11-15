@@ -37,3 +37,4 @@ Machine codes an HTTP 409 answer can carry.
 | `GroupLimitReached`            | group_limit_reached            |
 | `ScreeningCapExceeded`         | screening_cap_exceeded         |
 | `ScreeningUnavailable`         | screening_unavailable          |
+| `PersonReferenceConflict`      | person_reference_conflict      |
