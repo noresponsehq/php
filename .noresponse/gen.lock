@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 2c4761b89cbde555f655bd41f270010c
+  docChecksum: ebb67c98d67287eaddaf8474ba88a1ee
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 14.0.3
-  configChecksum: 618889f9f5c875f9622a38a1d62b6dc6
+  releaseVersion: 14.0.4
+  configChecksum: 6fa6884101f7dcc9bd1b5f18570b2124
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -1155,9 +1155,9 @@ trackedFiles:
   docs/Models/Shared/RecordDistinctive.md:
     last_write_checksum: sha1:fb0cc4ce790b2161eda303d86db1880c2a19fd05
   docs/Models/Shared/RecordField.md:
-    last_write_checksum: sha1:e3eb34240d9c5e9c0bc20596af2538ccc82f63b7
+    last_write_checksum: sha1:50e0f4420c88e18dc82ddc33066700a838355b5d
   docs/Models/Shared/RecordKind.md:
-    last_write_checksum: sha1:0767dcb3b1e00841bf8172460bc03852f1f5268e
+    last_write_checksum: sha1:df2dcc87878f6616c456f03e671890f7eb61752e
   docs/Models/Shared/RecordMatch.md:
     last_write_checksum: sha1:dac5bdfdb5eb4a72e67ab097df45e152aeb0156e
   docs/Models/Shared/RecordRemaining.md:
@@ -2669,15 +2669,15 @@ trackedFiles:
   src/Models/Shared/RecordDistinctive.php:
     last_write_checksum: sha1:b3ea7884c50a5886ee7c49530acff41956979a1e
   src/Models/Shared/RecordField.php:
-    last_write_checksum: sha1:02c5734d8c246c39b7f922db83edf2bac4f57fc9
+    last_write_checksum: sha1:0097ae41a78e04037288504a0fd837424cb07966
   src/Models/Shared/RecordKind.php:
-    last_write_checksum: sha1:9345ae3ad0859324329fb431929790a0659fc497
+    last_write_checksum: sha1:c19b044dcc81323e66b1f74cdef60c7f98dea81c
   src/Models/Shared/RecordMatch.php:
     last_write_checksum: sha1:e461385281ef030340b371fd4502a1bb3989f0c7
   src/Models/Shared/RecordRemaining.php:
     last_write_checksum: sha1:2512f6d3f26d2ce864636148097d2f9ebbd20647
   src/Models/Shared/RecordRole.php:
-    last_write_checksum: sha1:8362f33684e97c2dd7b210bd726ae597563e44db
+    last_write_checksum: sha1:8a2b6469d4166858e5a29a6721836a5601fbcbb6
   src/Models/Shared/RecordSource.php:
     last_write_checksum: sha1:87928cd5bf03dca3595bf4ab57cf037e1173a2ed
   src/Models/Shared/RecordVerdict.php:
@@ -3319,7 +3319,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:c1f8f61e61fe25b918679c65b0597ce865fd2fb5
+    last_write_checksum: sha1:69753f4bb24f485da71716462451c4fa989b647b
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:

@@ -30,7 +30,7 @@ enum RecordRole: string
     case CallerCategory = 'caller_category';
     // How many chargebacks a shop recorded against the account, or whether it has one (`count` or `flag`).
     case Chargebacks = 'chargebacks';
-    // Another account on the same platform the account deals with, such as an opponent it plays most, a friend or a follower (`username`). Fields beside it under the same name say how, how often, when last and since when. They also give the contact's own name and location where the platform shows them. It names another person, never the account's owner.
+    // Another person the account deals with, such as an opponent it plays most, a friend, a follower or a calendar event's organiser (`username`, `email`, `phone` or `person_name`). Fields beside it under the same name say how, how often, when last and since when. They also give the contact's own name and location where the platform shows them. It names another person, never the account's owner, so its value is not one of the person's own names, emails, phones or usernames.
     case Contact = 'contact';
     // The banner picture of the profile (`image`).
     case CoverPicture = 'cover_picture';
