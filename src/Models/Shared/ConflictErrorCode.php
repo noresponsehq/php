@@ -30,6 +30,7 @@ enum ConflictErrorCode: string
     case EvaluationConflict = 'evaluation_conflict';
     case EvaluationNoProposal = 'evaluation_no_proposal';
     case EvaluationLimitReached = 'evaluation_limit_reached';
+    case EvaluationUnavailable = 'evaluation_unavailable';
     case AlreadyMember = 'already_member';
     case MemberLimitReached = 'member_limit_reached';
     case OwnerInvitePending = 'owner_invite_pending';
