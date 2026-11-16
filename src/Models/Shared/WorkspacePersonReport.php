@@ -165,6 +165,15 @@ class WorkspacePersonReport
     public ?Investigation $evidenceInvestigation;
 
     /**
+     * An investigator's profile of this person, written from the evidence of a settled investigation. Null until an investigation completes or partially completes, and null when evidence.read is denied.
+     *
+     * @var ?\NoResponse\Models\Shared\WrittenProfile $writtenProfile
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('written_profile')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WrittenProfile|null')]
+    public ?WrittenProfile $writtenProfile;
+
+    /**
      * @param  string  $id
      * @param  string  $createdAt
      * @param  string  $updatedAt
@@ -183,9 +192,10 @@ class WorkspacePersonReport
      * @param  ?\NoResponse\Models\Shared\ScreeningLookup  $lookup
      * @param  ?bool  $evidenceRestricted
      * @param  ?\NoResponse\Models\Shared\Investigation  $evidenceInvestigation
+     * @param  ?\NoResponse\Models\Shared\WrittenProfile  $writtenProfile
      * @phpstan-pure
      */
-    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null)
+    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
@@ -205,5 +215,6 @@ class WorkspacePersonReport
         $this->lookup = $lookup;
         $this->evidenceRestricted = $evidenceRestricted;
         $this->evidenceInvestigation = $evidenceInvestigation;
+        $this->writtenProfile = $writtenProfile;
     }
 }

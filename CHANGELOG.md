@@ -1,5 +1,9 @@
 # Changelog
 
+## 16.0.1
+
+* `sdk->people->get()`:  `response.writtenProfile` **Added**
+
 ## 16.0.0
 
 * `sdk->groups->list()`:  `response.items[]` **Changed** (Breaking ⚠️)
