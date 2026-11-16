@@ -147,6 +147,16 @@ class WorkspacePersonReport
     public ?ScreeningLookup $lookup = null;
 
     /**
+     * Every search on this person's values, newest first, whether a person started it or enrichment did: each names the value, the record and field it came from, and the search that found that record. Absent when nothing was searched.
+     *
+     * @var ?array<\NoResponse\Models\Shared\Search> $searches
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('searches')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\Search>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $searches = null;
+
+    /**
      * True when evidence.read is explicitly denied. Submitted details, coverage, job status and decisions remain available. Collected records, profiles, findings, posts, media, discovered values and free-text decision notes are withheld.
      *
      * @var ?bool $evidenceRestricted
@@ -190,12 +200,13 @@ class WorkspacePersonReport
      * @param  ?string  $city
      * @param  ?array<\NoResponse\Models\Shared\Handle>  $handles
      * @param  ?\NoResponse\Models\Shared\ScreeningLookup  $lookup
+     * @param  ?array<\NoResponse\Models\Shared\Search>  $searches
      * @param  ?bool  $evidenceRestricted
      * @param  ?\NoResponse\Models\Shared\Investigation  $evidenceInvestigation
      * @param  ?\NoResponse\Models\Shared\WrittenProfile  $writtenProfile
      * @phpstan-pure
      */
-    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
+    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
@@ -213,6 +224,7 @@ class WorkspacePersonReport
         $this->city = $city;
         $this->handles = $handles;
         $this->lookup = $lookup;
+        $this->searches = $searches;
         $this->evidenceRestricted = $evidenceRestricted;
         $this->evidenceInvestigation = $evidenceInvestigation;
         $this->writtenProfile = $writtenProfile;

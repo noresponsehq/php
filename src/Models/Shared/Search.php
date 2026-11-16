@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** Search - One search a person started on a value of one of a person's records. Nothing searches again by itself. */
+/** Search - One search on a value of one of a person's records, started by a person or by enrichment. */
 class Search
 {
     /**
@@ -98,7 +98,7 @@ class Search
     public int $spent;
 
     /**
-     * Who started the search.
+     * Who started the search: the member or key, or enrichment when the engine started it on a value an earlier result showed.
      *
      * @var string $requestedBy
      */
@@ -141,6 +141,24 @@ class Search
     public ErrorCode|string|null $errorCode = null;
 
     /**
+     * The search that found the record this value came from. Absent when the record came from the person's investigation.
+     *
+     * @var ?string $parentSearchId
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('parent_search_id')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $parentSearchId = null;
+
+    /**
+     * How many searches lie between the person's investigation and this one, this one included: 1 for a value of a record the investigation found, 2 for a value of a record a depth-1 search found, and so on.
+     *
+     * @var ?int $depth
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('depth')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $depth = null;
+
+    /**
      *
      * @var ?string $finishedAt
      */
@@ -165,10 +183,12 @@ class Search
      * @param  ?string  $table
      * @param  ?int  $rows
      * @param  \NoResponse\Models\Shared\ErrorCode|string|null  $errorCode
+     * @param  ?string  $parentSearchId
+     * @param  ?int  $depth
      * @param  ?string  $finishedAt
      * @phpstan-pure
      */
-    public function __construct(string $searchId, string $recordId, string $field, SearchKind|string $kind, string $value, SearchStatus|string $status, int $sources, int $answered, int $found, int $estimatedSpend, int $spent, string $requestedBy, string $createdAt, ?string $table = null, ?int $rows = null, ErrorCode|string|null $errorCode = null, ?string $finishedAt = null)
+    public function __construct(string $searchId, string $recordId, string $field, SearchKind|string $kind, string $value, SearchStatus|string $status, int $sources, int $answered, int $found, int $estimatedSpend, int $spent, string $requestedBy, string $createdAt, ?string $table = null, ?int $rows = null, ErrorCode|string|null $errorCode = null, ?string $parentSearchId = null, ?int $depth = null, ?string $finishedAt = null)
     {
         $this->searchId = $searchId;
         $this->recordId = $recordId;
@@ -186,6 +206,8 @@ class Search
         $this->table = $table;
         $this->rows = $rows;
         $this->errorCode = $errorCode;
+        $this->parentSearchId = $parentSearchId;
+        $this->depth = $depth;
         $this->finishedAt = $finishedAt;
     }
 }
