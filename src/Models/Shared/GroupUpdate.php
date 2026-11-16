@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** GroupUpdate - Changes the fields it names; at least one besides expected_version. */
+/** GroupUpdate - Updates a group. Dates describe an optional event and do not control person retention. */
 class GroupUpdate
 {
     /**
@@ -16,24 +16,6 @@ class GroupUpdate
     #[\NoResponse\Serializer\Annotation\SerializedName('name')]
     #[\NoResponse\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
-
-    /**
-     * When the group starts.
-     *
-     * @var ?string $startsAt
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('starts_at')]
-    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?string $startsAt = null;
-
-    /**
-     * When the group ends, at or after its start; the start when omitted.
-     *
-     * @var ?string $endsAt
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('ends_at')]
-    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?string $endsAt = null;
 
     /**
      * Where the group is held.
@@ -83,25 +65,45 @@ class GroupUpdate
     public ?int $expectedVersion = null;
 
     /**
+     * Optional event start; null for an ongoing group. Omit to keep the current value; send null to clear it.
+     *
+     * @var ?string $startsAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('starts_at')]
+    public ?string $startsAt;
+
+    /**
+     * Optional event end; requires starts_at and must be at or after it. Null when no end is set. Omit to keep the current value; send null to clear it.
+     *
+     * @var ?string $endsAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('ends_at')]
+    public ?string $endsAt;
+
+    /**
      * @param  ?string  $name
-     * @param  ?string  $startsAt
-     * @param  ?string  $endsAt
      * @param  ?string  $venue
      * @param  ?string  $host
      * @param  ?array<\NoResponse\Models\Shared\Principal>  $principals
      * @param  ?array<string>  $topics
      * @param  ?int  $expectedVersion
+     * @param  string|null|\NoResponse\Utils\Absent  $startsAt
+     * @param  string|null|\NoResponse\Utils\Absent  $endsAt
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?string $startsAt = null, ?string $endsAt = null, ?string $venue = null, ?string $host = null, ?array $principals = null, ?array $topics = null, ?int $expectedVersion = null)
+    public function __construct(?string $name = null, ?string $venue = null, ?string $host = null, ?array $principals = null, ?array $topics = null, ?int $expectedVersion = null, string|null|\NoResponse\Utils\Absent $startsAt = \NoResponse\Utils\Absent::Value, string|null|\NoResponse\Utils\Absent $endsAt = \NoResponse\Utils\Absent::Value)
     {
         $this->name = $name;
-        $this->startsAt = $startsAt;
-        $this->endsAt = $endsAt;
         $this->venue = $venue;
         $this->host = $host;
         $this->principals = $principals;
         $this->topics = $topics;
         $this->expectedVersion = $expectedVersion;
+        if ($startsAt !== \NoResponse\Utils\Absent::Value) {
+            $this->startsAt = $startsAt;
+        }
+        if ($endsAt !== \NoResponse\Utils\Absent::Value) {
+            $this->endsAt = $endsAt;
+        }
     }
 }

@@ -23,13 +23,6 @@ class OtherGroup
     public string $groupName;
 
     /**
-     *
-     * @var string $groupStartsAt
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('group_starts_at')]
-    public string $groupStartsAt;
-
-    /**
      * The person on that group's list.
      *
      * @var string $personId
@@ -54,6 +47,14 @@ class OtherGroup
     #[\NoResponse\Serializer\Annotation\SerializedName('match_state')]
     #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\MatchState|string')]
     public MatchState|string $matchState;
+
+    /**
+     * The other group's optional event start; null for an ongoing group.
+     *
+     * @var ?string $groupStartsAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('group_starts_at')]
+    public ?string $groupStartsAt;
 
     /**
      * true when that person's latest screening had no profile to check (see the person's no_profile_to_check). Left out otherwise.
@@ -103,10 +104,10 @@ class OtherGroup
     /**
      * @param  string  $groupId
      * @param  string  $groupName
-     * @param  string  $groupStartsAt
      * @param  string  $personId
      * @param  array<\NoResponse\Models\Shared\OtherGroupMatchedOn|string>  $matchedOn
      * @param  \NoResponse\Models\Shared\MatchState|string  $matchState
+     * @param  ?string  $groupStartsAt
      * @param  ?bool  $noProfileToCheck
      * @param  \NoResponse\Models\Shared\HighestBand|string|null  $highestBand
      * @param  \NoResponse\Models\Shared\PersonDecision|string|null  $decision
@@ -114,14 +115,14 @@ class OtherGroup
      * @param  ?string  $decidedAt
      * @phpstan-pure
      */
-    public function __construct(string $groupId, string $groupName, string $groupStartsAt, string $personId, array $matchedOn, MatchState|string $matchState, ?bool $noProfileToCheck = null, HighestBand|string|null $highestBand = null, PersonDecision|string|null $decision = null, ?string $decidedBy = null, ?string $decidedAt = null)
+    public function __construct(string $groupId, string $groupName, string $personId, array $matchedOn, MatchState|string $matchState, ?string $groupStartsAt = null, ?bool $noProfileToCheck = null, HighestBand|string|null $highestBand = null, PersonDecision|string|null $decision = null, ?string $decidedBy = null, ?string $decidedAt = null)
     {
         $this->groupId = $groupId;
         $this->groupName = $groupName;
-        $this->groupStartsAt = $groupStartsAt;
         $this->personId = $personId;
         $this->matchedOn = $matchedOn;
         $this->matchState = $matchState;
+        $this->groupStartsAt = $groupStartsAt;
         $this->noProfileToCheck = $noProfileToCheck;
         $this->highestBand = $highestBand;
         $this->decision = $decision;

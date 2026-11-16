@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** Group - A group and its screening context. */
+/** Group - A workspace group for a building, organization or event. Dates are optional and do not control person retention. */
 class Group
 {
     /**
@@ -30,22 +30,6 @@ class Group
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('name')]
     public string $name;
-
-    /**
-     * When the group starts.
-     *
-     * @var string $startsAt
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('starts_at')]
-    public string $startsAt;
-
-    /**
-     * When the group ends, at or after its start; the start when omitted.
-     *
-     * @var string $endsAt
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('ends_at')]
-    public string $endsAt;
 
     /**
      * The people the group protects.
@@ -104,6 +88,22 @@ class Group
     public string $updatedAt;
 
     /**
+     * Optional event start; null for an ongoing group.
+     *
+     * @var ?string $startsAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('starts_at')]
+    public ?string $startsAt;
+
+    /**
+     * Optional event end; requires starts_at and must be at or after it. Null when no end is set.
+     *
+     * @var ?string $endsAt
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('ends_at')]
+    public ?string $endsAt;
+
+    /**
      * Where the group is held.
      *
      * @var ?string $venue
@@ -125,8 +125,6 @@ class Group
      * @param  string  $id
      * @param  \NoResponse\Models\Shared\AuditSettingsEnvironment|string  $environment
      * @param  string  $name
-     * @param  string  $startsAt
-     * @param  string  $endsAt
      * @param  array<\NoResponse\Models\Shared\Principal>  $principals
      * @param  array<string>  $topics
      * @param  int  $people
@@ -134,17 +132,17 @@ class Group
      * @param  string  $createdBy
      * @param  string  $createdAt
      * @param  string  $updatedAt
+     * @param  ?string  $startsAt
+     * @param  ?string  $endsAt
      * @param  ?string  $venue
      * @param  ?string  $host
      * @phpstan-pure
      */
-    public function __construct(string $id, AuditSettingsEnvironment|string $environment, string $name, string $startsAt, string $endsAt, array $principals, array $topics, int $people, int $version, string $createdBy, string $createdAt, string $updatedAt, ?string $venue = null, ?string $host = null)
+    public function __construct(string $id, AuditSettingsEnvironment|string $environment, string $name, array $principals, array $topics, int $people, int $version, string $createdBy, string $createdAt, string $updatedAt, ?string $startsAt = null, ?string $endsAt = null, ?string $venue = null, ?string $host = null)
     {
         $this->id = $id;
         $this->environment = $environment;
         $this->name = $name;
-        $this->startsAt = $startsAt;
-        $this->endsAt = $endsAt;
         $this->principals = $principals;
         $this->topics = $topics;
         $this->people = $people;
@@ -152,6 +150,8 @@ class Group
         $this->createdBy = $createdBy;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->startsAt = $startsAt;
+        $this->endsAt = $endsAt;
         $this->venue = $venue;
         $this->host = $host;
     }

@@ -9,3 +9,5 @@
 /src/Auth.php
 /src/IssuedCredential.php
 /src/LateResults/
+
+/src/Utils/Absent.php

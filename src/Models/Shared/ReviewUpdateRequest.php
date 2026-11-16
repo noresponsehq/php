@@ -37,21 +37,22 @@ class ReviewUpdateRequest
      * @var ?string $assignee
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('assignee')]
-    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?string $assignee = null;
+    public ?string $assignee;
 
     /**
      * @param  int  $expectedVersion
      * @param  ?\NoResponse\Models\Shared\ReviewUpdateRequestStatus  $status
      * @param  \NoResponse\Models\Shared\Priority|string|null  $priority
-     * @param  ?string  $assignee
+     * @param  string|null|\NoResponse\Utils\Absent  $assignee
      * @phpstan-pure
      */
-    public function __construct(int $expectedVersion, ?ReviewUpdateRequestStatus $status = null, Priority|string|null $priority = null, ?string $assignee = null)
+    public function __construct(int $expectedVersion, ?ReviewUpdateRequestStatus $status = null, Priority|string|null $priority = null, string|null|\NoResponse\Utils\Absent $assignee = \NoResponse\Utils\Absent::Value)
     {
         $this->expectedVersion = $expectedVersion;
         $this->status = $status;
         $this->priority = $priority;
-        $this->assignee = $assignee;
+        if ($assignee !== \NoResponse\Utils\Absent::Value) {
+            $this->assignee = $assignee;
+        }
     }
 }

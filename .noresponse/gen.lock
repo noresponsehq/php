@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: a150b43fac756dc0c547ca0b1935ddc4
+  docChecksum: fa95c9421ca35f99cf9ae839006d31ed
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 15.0.1
-  configChecksum: 12fa2a78d7ba2a44b1eafb8e43373e05
+  releaseVersion: 16.0.0
+  configChecksum: 858faeac6ca432bcd3d45227a9a25a5c
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -861,13 +861,13 @@ trackedFiles:
   docs/Models/Shared/FromT.md:
     last_write_checksum: sha1:88a11c25866a9afdc47f9960a07f27f0482a5b84
   docs/Models/Shared/Group.md:
-    last_write_checksum: sha1:85356e14c9a2f1bf372750236fd05d253ae1aab3
+    last_write_checksum: sha1:1aa019167e7cfa83137c5275e5b406fe16229a72
   docs/Models/Shared/GroupList.md:
     last_write_checksum: sha1:dca5bfa4960f7e8a4eb5a0ec3f743bccfbfe2247
   docs/Models/Shared/GroupRequest.md:
-    last_write_checksum: sha1:f73a76c83a5db34260bb892cdad45f8b8733664e
+    last_write_checksum: sha1:01593ef4caebcf2cef233a851b9e5e518d791501
   docs/Models/Shared/GroupUpdate.md:
-    last_write_checksum: sha1:b097917335a6ed5555313c116d83704b913c83c5
+    last_write_checksum: sha1:2167ed53352b8e9d5d813e5c777ed2fb98a1a94e
   docs/Models/Shared/Handle.md:
     last_write_checksum: sha1:1f4358739c58511a611785973cc0bd3de13552b1
   docs/Models/Shared/HighestBand.md:
@@ -1083,7 +1083,7 @@ trackedFiles:
   docs/Models/Shared/Origin.md:
     last_write_checksum: sha1:9ea3aa377fef1f081d01a485604812e1f78865d7
   docs/Models/Shared/OtherGroup.md:
-    last_write_checksum: sha1:a9ae8d595aec9d0851cb5c2d62afc7feeb5a9a8a
+    last_write_checksum: sha1:55c248b203a8ce672768ed797577cac9158e78a8
   docs/Models/Shared/OtherGroupMatchedOn.md:
     last_write_checksum: sha1:6a395f9cb7ad263be7de988b8ab3545d8113e9f5
   docs/Models/Shared/OtherGroups.md:
@@ -2455,13 +2455,13 @@ trackedFiles:
   src/Models/Shared/FromT.php:
     last_write_checksum: sha1:3ec2334fe2172ac2b8d99d5b74f88600ebb3bb7c
   src/Models/Shared/Group.php:
-    last_write_checksum: sha1:d0d4fd0bc68f8a8693f12b5b29b1ea5f1cef02f1
+    last_write_checksum: sha1:1809bdde74be7a4be837899aace758d8e8b0001c
   src/Models/Shared/GroupList.php:
     last_write_checksum: sha1:4c0970a7bd1a2d4644c116b7b201d056308d052f
   src/Models/Shared/GroupRequest.php:
-    last_write_checksum: sha1:0a1d3f4e996f5ed23de600365e18ec392c77531e
+    last_write_checksum: sha1:05f9f565dc1786220d96951acbe5ac6bc8c5cb7a
   src/Models/Shared/GroupUpdate.php:
-    last_write_checksum: sha1:2ce54285faac88eb2c5481fd1195c0285fdfaa33
+    last_write_checksum: sha1:4883369a26d76f0833bc32412963c110c048308a
   src/Models/Shared/Handle.php:
     last_write_checksum: sha1:3427839d168400afee0bdc648cd2b00f2edda3ae
   src/Models/Shared/HighestBand.php:
@@ -2673,7 +2673,7 @@ trackedFiles:
   src/Models/Shared/Origin.php:
     last_write_checksum: sha1:4e0c354a4ce2d3967e261e1c4a6f758e2315f57b
   src/Models/Shared/OtherGroup.php:
-    last_write_checksum: sha1:ce79cef77f6c240403994b4b86576f1448e48b98
+    last_write_checksum: sha1:07a8e381fe23a25558ad80844d5aec0a22fe33ab
   src/Models/Shared/OtherGroupMatchedOn.php:
     last_write_checksum: sha1:b73209da14ffb3cd567ca964694eadf709f6caa3
   src/Models/Shared/OtherGroups.php:
@@ -2869,7 +2869,7 @@ trackedFiles:
   src/Models/Shared/ReviewSubjectRequest.php:
     last_write_checksum: sha1:90836a4aa5075ec9dafee054a0a21862e285d7d1
   src/Models/Shared/ReviewUpdateRequest.php:
-    last_write_checksum: sha1:1dcbecdd61ab8c8c60287dec182fd7a1ea70cc78
+    last_write_checksum: sha1:a1dfd73aafc4a96b4122322ee18f537eef706f39
   src/Models/Shared/ReviewUpdateRequestStatus.php:
     last_write_checksum: sha1:10890cfb395854869f7e5ce6434fa7152610bdd6
   src/Models/Shared/ReviewView.php:
@@ -3467,7 +3467,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:515d81e7aac3037c7ce6a944819a2831d0f0e21c
+    last_write_checksum: sha1:8cbc46e974767bfdfb189f5fecc5b33c6001d435
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:
