@@ -1,5 +1,12 @@
 # Changelog
 
+## 16.0.12
+
+* `sdk->groups->startScreening()`: 
+  *  `request.body->platforms` **Changed**
+* `sdk->investigations->create()`: 
+  *  `request.body->platforms` **Changed**
+
 ## 16.0.11
 
 No changes detected.

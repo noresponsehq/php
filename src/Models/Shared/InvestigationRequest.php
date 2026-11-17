@@ -17,20 +17,21 @@ class InvestigationRequest
     public ScreeningDepth|string $depth;
 
     /**
-     * $platforms
-     *
-     * @var array<string> $platforms
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('platforms')]
-    #[\NoResponse\Serializer\Annotation\Type('array<string>')]
-    public array $platforms;
-
-    /**
      *
      * @var string $personId
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('person_id')]
     public string $personId;
+
+    /**
+     * The platforms to search. Leave it out for a full search: every platform a connector serves in the environment when the investigation starts, which the investigation then lists.
+     *
+     * @var ?array<string> $platforms
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('platforms')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $platforms = null;
 
     /**
      * A change to enrichment. A field left out keeps the value in force; max_spend or deadline null removes the bound.
@@ -44,16 +45,16 @@ class InvestigationRequest
 
     /**
      * @param  \NoResponse\Models\Shared\ScreeningDepth|string  $depth
-     * @param  array<string>  $platforms
      * @param  string  $personId
+     * @param  ?array<string>  $platforms
      * @param  ?\NoResponse\Models\Shared\EnrichmentChange  $enrichment
      * @phpstan-pure
      */
-    public function __construct(ScreeningDepth|string $depth, array $platforms, string $personId, ?EnrichmentChange $enrichment = null)
+    public function __construct(ScreeningDepth|string $depth, string $personId, ?array $platforms = null, ?EnrichmentChange $enrichment = null)
     {
         $this->depth = $depth;
-        $this->platforms = $platforms;
         $this->personId = $personId;
+        $this->platforms = $platforms;
         $this->enrichment = $enrichment;
     }
 }

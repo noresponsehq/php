@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 6d0e4b0863f8bae6c976985063e6e515
+  docChecksum: fb3f97ce77346d7995cd68871aa408d5
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 16.0.11
-  configChecksum: 1611becbf589e4f45e09255040c95369
+  releaseVersion: 16.0.12
+  configChecksum: f029e56b4c3d1d6fd1ec2f1957666f34
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -953,7 +953,7 @@ trackedFiles:
   docs/Models/Shared/InvestigationReport.md:
     last_write_checksum: sha1:7b9d12712351391042908e25c01682410d4dbe2d
   docs/Models/Shared/InvestigationRequest.md:
-    last_write_checksum: sha1:b71749e85d4a950c454d43999569211126aec44c
+    last_write_checksum: sha1:3577f5761ea64d5afcd4c201044e8ebfaf39a507
   docs/Models/Shared/InvestigationStatus.md:
     last_write_checksum: sha1:c8068a7f6f1b9f660452fc2549c142d68acbe1d8
   docs/Models/Shared/InvestigationsList.md:
@@ -1411,7 +1411,7 @@ trackedFiles:
   docs/Models/Shared/ScreeningProfile.md:
     last_write_checksum: sha1:57dab9bf5df2a00ee9fa93444535af7b127b8434
   docs/Models/Shared/ScreeningRequest.md:
-    last_write_checksum: sha1:39dfa0a87a56f23f45d30b0a2ee95e98659ab21d
+    last_write_checksum: sha1:3b96de1f4fde57ab655cf90cd348b2fbeddf0e62
   docs/Models/Shared/ScreeningSpend.md:
     last_write_checksum: sha1:6a9e61b8502e83dece16df2b1d4c8bc33bf03973
   docs/Models/Shared/ScreeningSpendLine.md:
@@ -2593,7 +2593,7 @@ trackedFiles:
   src/Models/Shared/InvestigationReport.php:
     last_write_checksum: sha1:ebcb91ee7da75d2aab31c8cc915eeb44e7786fc3
   src/Models/Shared/InvestigationRequest.php:
-    last_write_checksum: sha1:82ed24e1df344819891f8ebbb1c1d84972a182dc
+    last_write_checksum: sha1:681e4cb770ecc008eff024ba4832f70cfc4b8dde
   src/Models/Shared/InvestigationStatus.php:
     last_write_checksum: sha1:b209e30407bab1196cc07cb4546115ad62546d25
   src/Models/Shared/InvestigationsList.php:
@@ -3047,7 +3047,7 @@ trackedFiles:
   src/Models/Shared/ScreeningProfile.php:
     last_write_checksum: sha1:0ddb0b9a6ea1c89c3de3d4f982c9c692ac8911f4
   src/Models/Shared/ScreeningRequest.php:
-    last_write_checksum: sha1:602d12836a3e3cabbcf71ceb5d1ae01042a5dea9
+    last_write_checksum: sha1:d623c5887eb2d4011c2d1967fd24af5fbd30169b
   src/Models/Shared/ScreeningSpend.php:
     last_write_checksum: sha1:12d380f45580f27dceb81e7cee8401aa1e428df7
   src/Models/Shared/ScreeningSpendLine.php:
@@ -3559,7 +3559,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:b2cf3b5d8cb43598845927d5a5ddab639875068c
+    last_write_checksum: sha1:a894afa5556c05df57a5c0b3edd08546e3328d5f
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:

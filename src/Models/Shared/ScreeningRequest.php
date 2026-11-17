@@ -17,20 +17,21 @@ class ScreeningRequest
     public ScreeningDepth|string $depth;
 
     /**
-     * $platforms
+     * The platforms to search. Leave it out for a full search: every platform a connector serves in the environment when the screening starts, which the screening then lists.
      *
-     * @var array<string> $platforms
+     * @var ?array<string> $platforms
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('platforms')]
-    #[\NoResponse\Serializer\Annotation\Type('array<string>')]
-    public array $platforms;
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $platforms = null;
 
     /**
      * @param  \NoResponse\Models\Shared\ScreeningDepth|string  $depth
-     * @param  array<string>  $platforms
+     * @param  ?array<string>  $platforms
      * @phpstan-pure
      */
-    public function __construct(ScreeningDepth|string $depth, array $platforms)
+    public function __construct(ScreeningDepth|string $depth, ?array $platforms = null)
     {
         $this->depth = $depth;
         $this->platforms = $platforms;
