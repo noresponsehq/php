@@ -1,5 +1,11 @@
 # Changelog
 
+## 16.0.7
+
+* `sdk->groups->getPerson()`:  `response.profiles[]->record->fields[]->distinctive` **Changed**
+* `sdk->people->get()`:  `response.profiles[]->record->fields[]->distinctive` **Changed**
+* `sdk->investigations->get()`:  `response.profiles[]->record->fields[]->distinctive` **Changed**
+
 ## 16.0.6
 
 * `sdk->people->judgeRecord()`: **Added**
