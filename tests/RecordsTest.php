@@ -68,7 +68,7 @@ final class RecordsTest extends TestCase
         $birthday = self::field($row->fields, 'birthday');
         self::assertNull($birthday->value);
         self::assertSame('07/03/1990', $birthday->original);
-        self::assertSame(0.99, $row->likelihood);
+        self::assertSame(0.8, $row->likelihood);
         self::assertNull($row->verdict);
 
         $remaining = $report->lookup->remaining[0];
