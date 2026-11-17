@@ -1,5 +1,12 @@
 # Changelog
 
+## 16.0.9
+
+* `sdk->people->startSearch()`: **Added**
+* `sdk->people->runSearch()`: **Added**
+* `sdk->groups->getPerson()`:  `response.suggestedSearches` **Added**
+* `sdk->people->get()`:  `response.suggestedSearches` **Added**
+
 ## 16.0.8
 
 No changes detected.

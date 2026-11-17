@@ -1,0 +1,9 @@
+# StartWorkspacePersonSearchResponse
+
+
+## Fields
+
+| Field                                          | Type                                           | Required                                       | Description                                    |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| `headers`                                      | array<string, array<*string*>>                 | :heavy_check_mark:                             | N/A                                            |
+| `result`                                       | [Shared\Search](../../Models/Shared/Search.md) | :heavy_check_mark:                             | N/A                                            |

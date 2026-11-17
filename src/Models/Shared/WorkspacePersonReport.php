@@ -74,6 +74,15 @@ class WorkspacePersonReport
     public array $media;
 
     /**
+     * The searches enrichment would start on this person, likeliest record first, under the environment's enrichment setting for a person's own investigation. In off mode the list is empty. In suggest mode enrichment starts none of them by itself; in automatic mode it starts them as its limits allow. Empty when evidence.read is denied.
+     *
+     * @var array<\NoResponse\Models\Shared\SuggestedSearch> $suggestedSearches
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('suggested_searches')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\SuggestedSearch>')]
+    public array $suggestedSearches;
+
+    /**
      * Your reference for this person within the workspace environment. Only an explicit reference or person_id can reuse an existing person.
      *
      * @var ?string $externalId
@@ -192,6 +201,7 @@ class WorkspacePersonReport
      * @param  array<\NoResponse\Models\Shared\ScreeningFinding>  $findings
      * @param  array<\NoResponse\Models\Shared\ScreeningPost>  $posts
      * @param  array<\NoResponse\Models\Shared\ScreeningMedia>  $media
+     * @param  array<\NoResponse\Models\Shared\SuggestedSearch>  $suggestedSearches
      * @param  ?string  $externalId
      * @param  ?string  $name
      * @param  ?string  $email
@@ -206,7 +216,7 @@ class WorkspacePersonReport
      * @param  ?\NoResponse\Models\Shared\WrittenProfile  $writtenProfile
      * @phpstan-pure
      */
-    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
+    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
@@ -216,6 +226,7 @@ class WorkspacePersonReport
         $this->findings = $findings;
         $this->posts = $posts;
         $this->media = $media;
+        $this->suggestedSearches = $suggestedSearches;
         $this->externalId = $externalId;
         $this->name = $name;
         $this->email = $email;
