@@ -16,7 +16,7 @@ Workspace people, submitted identity, source evidence and expiry.
 
 ## list
 
-Lists retained people in the key workspace and environment, including people in no group. Each returned person records a person.viewed audit event. Expired people are excluded before background deletion.
+Lists retained people in the key workspace and environment, including people in no group. Each returned person records a person.viewed audit event. Expired people are excluded before background deletion. email and phone narrow the list to people holding that exact address or number, so a client can open the person it already has instead of adding a duplicate.
 
 ### Example Usage
 
@@ -46,10 +46,12 @@ $result = $response->result;
 
 ### Parameters
 
-| Parameter                             | Type                                  | Required                              | Description                           |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| `limit`                               | *?int*                                | :heavy_minus_sign:                    | N/A                                   |
-| `after`                               | *?string*                             | :heavy_minus_sign:                    | Pass next_cursor from the prior page. |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `limit`                                                                                      | *?int*                                                                                       | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| `after`                                                                                      | *?string*                                                                                    | :heavy_minus_sign:                                                                           | Pass next_cursor from the prior page.                                                        |
+| `email`                                                                                      | *?string*                                                                                    | :heavy_minus_sign:                                                                           | Return only people whose email is this address, compared without case or surrounding spaces. |
+| `phone`                                                                                      | *?string*                                                                                    | :heavy_minus_sign:                                                                           | Return only people whose phone is this number, compared without surrounding spaces.          |
 
 ### Response
 

@@ -136,6 +136,15 @@ class WorkspacePersonReport
     public ?string $city = null;
 
     /**
+     * A username the person uses, with no platform. A search looks it up on every platform that finds accounts by username.
+     *
+     * @var ?string $username
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('username')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $username = null;
+
+    /**
      * Accounts the person is known to hold, at most 20.
      *
      * @var ?array<\NoResponse\Models\Shared\Handle> $handles
@@ -208,6 +217,7 @@ class WorkspacePersonReport
      * @param  ?string  $phone
      * @param  ?string  $company
      * @param  ?string  $city
+     * @param  ?string  $username
      * @param  ?array<\NoResponse\Models\Shared\Handle>  $handles
      * @param  ?\NoResponse\Models\Shared\ScreeningLookup  $lookup
      * @param  ?array<\NoResponse\Models\Shared\Search>  $searches
@@ -216,7 +226,7 @@ class WorkspacePersonReport
      * @param  ?\NoResponse\Models\Shared\WrittenProfile  $writtenProfile
      * @phpstan-pure
      */
-    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
+    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
@@ -233,6 +243,7 @@ class WorkspacePersonReport
         $this->phone = $phone;
         $this->company = $company;
         $this->city = $city;
+        $this->username = $username;
         $this->handles = $handles;
         $this->lookup = $lookup;
         $this->searches = $searches;

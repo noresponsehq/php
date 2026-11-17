@@ -16,6 +16,22 @@ class ListWorkspacePeopleRequest
     public ?string $after = null;
 
     /**
+     * Return only people whose email is this address, compared without case or surrounding spaces.
+     *
+     * @var ?string $email
+     */
+    #[NoResponseMetadata('queryParam:style=form,explode=true,name=email')]
+    public ?string $email = null;
+
+    /**
+     * Return only people whose phone is this number, compared without surrounding spaces.
+     *
+     * @var ?string $phone
+     */
+    #[NoResponseMetadata('queryParam:style=form,explode=true,name=phone')]
+    public ?string $phone = null;
+
+    /**
      *
      * @var ?int $limit
      */
@@ -25,11 +41,15 @@ class ListWorkspacePeopleRequest
     /**
      * @param  ?int  $limit
      * @param  ?string  $after
+     * @param  ?string  $email
+     * @param  ?string  $phone
      * @phpstan-pure
      */
-    public function __construct(?string $after = null, ?int $limit = 100)
+    public function __construct(?string $after = null, ?string $email = null, ?string $phone = null, ?int $limit = 100)
     {
         $this->after = $after;
+        $this->email = $email;
+        $this->phone = $phone;
         $this->limit = $limit;
     }
 }

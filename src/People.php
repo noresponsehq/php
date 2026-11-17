@@ -684,10 +684,12 @@ class People
     /**
      * List workspace people.
      *
-     * Lists retained people in the key workspace and environment, including people in no group. Each returned person records a person.viewed audit event. Expired people are excluded before background deletion.
+     * Lists retained people in the key workspace and environment, including people in no group. Each returned person records a person.viewed audit event. Expired people are excluded before background deletion. email and phone narrow the list to people holding that exact address or number, so a client can open the person it already has instead of adding a duplicate.
      *
      * @param  ?int  $limit
      * @param  ?string  $after
+     * @param  ?string  $email
+     * @param  ?string  $phone
      * @return \NoResponse\Models\Operations\ListWorkspacePeopleResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -698,7 +700,7 @@ class People
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function list(?int $limit = null, ?string $after = null, ?Options $options = null): Operations\ListWorkspacePeopleResponse
+    public function list(?int $limit = null, ?string $after = null, ?string $email = null, ?string $phone = null, ?Options $options = null): Operations\ListWorkspacePeopleResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -730,6 +732,8 @@ class People
         $request = new Operations\ListWorkspacePeopleRequest(
             limit: $limit,
             after: $after,
+            email: $email,
+            phone: $phone,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/people');

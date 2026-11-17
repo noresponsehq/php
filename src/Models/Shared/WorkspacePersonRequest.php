@@ -62,6 +62,15 @@ class WorkspacePersonRequest
     public ?string $city = null;
 
     /**
+     * A username the person uses, with no platform. A search looks it up on every platform that finds accounts by username.
+     *
+     * @var ?string $username
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('username')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $username = null;
+
+    /**
      * $handles
      *
      * @var ?array<\NoResponse\Models\Shared\Handle> $handles
@@ -86,11 +95,12 @@ class WorkspacePersonRequest
      * @param  ?string  $phone
      * @param  ?string  $company
      * @param  ?string  $city
+     * @param  ?string  $username
      * @param  ?array<\NoResponse\Models\Shared\Handle>  $handles
      * @param  ?string  $personId
      * @phpstan-pure
      */
-    public function __construct(?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, ?string $personId = null)
+    public function __construct(?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?string $personId = null)
     {
         $this->externalId = $externalId;
         $this->name = $name;
@@ -98,6 +108,7 @@ class WorkspacePersonRequest
         $this->phone = $phone;
         $this->company = $company;
         $this->city = $city;
+        $this->username = $username;
         $this->handles = $handles;
         $this->personId = $personId;
     }

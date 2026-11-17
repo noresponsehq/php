@@ -90,6 +90,15 @@ class WorkspacePerson
     public ?string $city = null;
 
     /**
+     * A username the person uses, with no platform. A search looks it up on every platform that finds accounts by username.
+     *
+     * @var ?string $username
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('username')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $username = null;
+
+    /**
      * Accounts the person is known to hold, at most 20.
      *
      * @var ?array<\NoResponse\Models\Shared\Handle> $handles
@@ -110,10 +119,11 @@ class WorkspacePerson
      * @param  ?string  $phone
      * @param  ?string  $company
      * @param  ?string  $city
+     * @param  ?string  $username
      * @param  ?array<\NoResponse\Models\Shared\Handle>  $handles
      * @phpstan-pure
      */
-    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null)
+    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
@@ -125,6 +135,7 @@ class WorkspacePerson
         $this->phone = $phone;
         $this->company = $company;
         $this->city = $city;
+        $this->username = $username;
         $this->handles = $handles;
     }
 }
