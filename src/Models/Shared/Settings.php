@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** Settings - One environment's settings: how long its assessments are kept, and for each flow the risk thresholds that decide it and the depth a request that names none is served at, the sources it refuses, and the daily cap on screening spend. Live and test each have their own. A flow without thresholds of its own uses account_creation's (inherits_account_creation). Every change is recorded in the audit log as settings.updated, with who made it. */
+/** Settings - One environment's settings: how long its assessments are kept, and for each flow the risk thresholds that decide it and the depth a request that names none is served at, the sources it refuses, the daily cap on screening spend, and how enrichment searches what an investigation finds. Live and test each have their own. A flow without thresholds of its own uses account_creation's (inherits_account_creation). Every change is recorded in the audit log as settings.updated, with who made it. */
 class Settings
 {
     /**
@@ -59,6 +59,15 @@ class Settings
     public array $refusedSources;
 
     /**
+     * How enrichment searches the values a standalone investigation of a workspace person finds (POST /v1/investigations); group screening only suggests. Defaults: mode automatic, min_likelihood 0.5, kinds username, max_spend null and deadline null. An investigation request may override each field for that investigation. A change applies to the next search enrichment starts, investigations already run included. Enrichment also keeps to limits of its own: each value once per person (once more if that search failed), at most 5 searches from one search's records, 20 per person and 6 searches deep.
+     *
+     * @var \NoResponse\Models\Shared\Enrichment $enrichment
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('enrichment')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Enrichment')]
+    public Enrichment $enrichment;
+
+    /**
      * Who last changed the policy: the member's external user id for a change made through the console, the prefix (nrk_<environment>_<key id>) of the management key that made it, or NoResponse. Absent while the defaults apply.
      *
      * @var ?string $updatedBy
@@ -91,12 +100,13 @@ class Settings
      * @param  int  $policyVersion
      * @param  \NoResponse\Models\Shared\SettingsFlows  $flows
      * @param  array<string>  $refusedSources
+     * @param  \NoResponse\Models\Shared\Enrichment  $enrichment
      * @param  ?string  $updatedBy
      * @param  ?string  $updatedAt
      * @param  ?int  $screeningDailyCap
      * @phpstan-pure
      */
-    public function __construct(string $workspaceId, KeyEnvironment|string $environment, int $retentionDays, int $policyVersion, SettingsFlows $flows, array $refusedSources, ?string $updatedBy = null, ?string $updatedAt = null, ?int $screeningDailyCap = null)
+    public function __construct(string $workspaceId, KeyEnvironment|string $environment, int $retentionDays, int $policyVersion, SettingsFlows $flows, array $refusedSources, Enrichment $enrichment, ?string $updatedBy = null, ?string $updatedAt = null, ?int $screeningDailyCap = null)
     {
         $this->workspaceId = $workspaceId;
         $this->environment = $environment;
@@ -104,6 +114,7 @@ class Settings
         $this->policyVersion = $policyVersion;
         $this->flows = $flows;
         $this->refusedSources = $refusedSources;
+        $this->enrichment = $enrichment;
         $this->updatedBy = $updatedBy;
         $this->updatedAt = $updatedAt;
         $this->screeningDailyCap = $screeningDailyCap;

@@ -27,6 +27,16 @@ class SettingsRequest
     public ?array $refusedSources = null;
 
     /**
+     * A change to enrichment. A field left out keeps the value in force; max_spend or deadline null removes the bound.
+     *
+     * @var ?\NoResponse\Models\Shared\EnrichmentChange $enrichment
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('enrichment')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\EnrichmentChange|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?EnrichmentChange $enrichment = null;
+
+    /**
      * Use account_creation or its deprecated alias signup, not both.
      *
      * @var ?\NoResponse\Models\Shared\SettingsRequestFlows $flows
@@ -65,16 +75,18 @@ class SettingsRequest
     /**
      * @param  ?int  $retentionDays
      * @param  ?array<string>  $refusedSources
+     * @param  ?\NoResponse\Models\Shared\EnrichmentChange  $enrichment
      * @param  ?\NoResponse\Models\Shared\SettingsRequestFlows  $flows
      * @param  ?int  $expectedPolicyVersion
      * @param  ?string  $changeReason
      * @param  ?int  $screeningDailyCap
      * @phpstan-pure
      */
-    public function __construct(?int $retentionDays = null, ?array $refusedSources = null, ?SettingsRequestFlows $flows = null, ?int $expectedPolicyVersion = null, ?string $changeReason = null, ?int $screeningDailyCap = null)
+    public function __construct(?int $retentionDays = null, ?array $refusedSources = null, ?EnrichmentChange $enrichment = null, ?SettingsRequestFlows $flows = null, ?int $expectedPolicyVersion = null, ?string $changeReason = null, ?int $screeningDailyCap = null)
     {
         $this->retentionDays = $retentionDays;
         $this->refusedSources = $refusedSources;
+        $this->enrichment = $enrichment;
         $this->flows = $flows;
         $this->expectedPolicyVersion = $expectedPolicyVersion;
         $this->changeReason = $changeReason;

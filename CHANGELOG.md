@@ -1,5 +1,17 @@
 # Changelog
 
+## 16.0.5
+
+* `sdk->settings->get()`:  `response.enrichment` **Added**
+* `sdk->settings->update()`: 
+  *  `request.body->enrichment` **Added**
+  *  `response.enrichment` **Added**
+* `sdk->settings->listHistory()`:  `response.items[]->settings->enrichment` **Added**
+* `sdk->settings->restore()`:  `response.enrichment` **Added**
+* `sdk->evaluations->publish()`:  `response.enrichment` **Added**
+* `sdk->investigations->create()`: 
+  *  `request.body->enrichment` **Added**
+
 ## 16.0.4
 
 No changes detected.
