@@ -1,5 +1,11 @@
 # Changelog
 
+## 16.0.19
+
+* `sdk->groups->getPerson()`:  `response.profiles[]->record->fields[]->noise` **Added**
+* `sdk->people->get()`:  `response.profiles[]->record->fields[]->noise` **Added**
+* `sdk->investigations->get()`:  `response.profiles[]->record->fields[]->noise` **Added**
+
 ## 16.0.18
 
 * `sdk->groups->listPeople()`:  `response.items[]->coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**

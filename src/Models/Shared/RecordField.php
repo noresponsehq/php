@@ -73,6 +73,15 @@ class RecordField
     public ?RecordDistinctive $distinctive = null;
 
     /**
+     * True when the value tells an investigator nothing on its own: a setting flag, a zero count, a bare number or a value with no letter or digit, in a field with no role. A field with a role is not noise. Investigation views hide noise by default; the field is still returned in full.
+     *
+     * @var ?bool $noise
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('noise')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?bool $noise = null;
+
+    /**
      * @param  string  $field
      * @param  string  $original
      * @param  \NoResponse\Models\Shared\RecordKind|string|null  $kind
@@ -80,9 +89,10 @@ class RecordField
      * @param  ?string  $value
      * @param  ?string  $detail
      * @param  ?\NoResponse\Models\Shared\RecordDistinctive  $distinctive
+     * @param  ?bool  $noise
      * @phpstan-pure
      */
-    public function __construct(string $field, string $original, RecordKind|string|null $kind = null, RecordRole|string|null $role = null, ?string $value = null, ?string $detail = null, ?RecordDistinctive $distinctive = null)
+    public function __construct(string $field, string $original, RecordKind|string|null $kind = null, RecordRole|string|null $role = null, ?string $value = null, ?string $detail = null, ?RecordDistinctive $distinctive = null, ?bool $noise = null)
     {
         $this->field = $field;
         $this->original = $original;
@@ -91,5 +101,6 @@ class RecordField
         $this->value = $value;
         $this->detail = $detail;
         $this->distinctive = $distinctive;
+        $this->noise = $noise;
     }
 }
