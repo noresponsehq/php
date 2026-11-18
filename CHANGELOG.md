@@ -1,5 +1,9 @@
 # Changelog
 
+## 16.0.14
+
+No changes detected.
+
 ## 16.0.13
 
 * `sdk->people->list()`: 

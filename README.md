@@ -18,7 +18,7 @@ There is no Packagist package yet. Add the GitHub repository to your `composer.j
         { "type": "vcs", "url": "https://github.com/noresponsehq/php" }
     ],
     "require": {
-        "noresponse/noresponse-php": "^16.0.13"
+        "noresponse/noresponse-php": "^16.0.14"
     }
 }
 ```
