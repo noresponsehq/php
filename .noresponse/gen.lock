@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 29413a56c61f538fbce66427cacff7a2
+  docChecksum: 4733a9036f1f276f530e13f21d8ccdba
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 16.0.14
-  configChecksum: bff69133aa36c416c3fb219c5895991f
+  releaseVersion: 16.0.15
+  configChecksum: 01661c3f28994462df55a0757b80e537
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -1391,9 +1391,9 @@ trackedFiles:
   docs/Models/Shared/ScreeningMatch.md:
     last_write_checksum: sha1:177bdf0dfa268e7da0268c01204771e062bbce3d
   docs/Models/Shared/ScreeningMatchEvidence.md:
-    last_write_checksum: sha1:aeaddd476e91682daf0aa8625a5c9289b180e2c4
+    last_write_checksum: sha1:a49759841cc3b66eb8f7c641ff708edb48a34bcd
   docs/Models/Shared/ScreeningMatchEvidenceKind.md:
-    last_write_checksum: sha1:3d5668e4a608483e4d37bb67f2f433b8bc683054
+    last_write_checksum: sha1:56d9857d80a4693acb8a2e02b1757d16eb5b2545
   docs/Models/Shared/ScreeningMedia.md:
     last_write_checksum: sha1:9e804ac8de24c4294337d41fec601614d4c2481f
   docs/Models/Shared/ScreeningMediaObservation.md:
@@ -3027,9 +3027,9 @@ trackedFiles:
   src/Models/Shared/ScreeningMatch.php:
     last_write_checksum: sha1:8a09ac1b55bd90f01dda221e8972b02c638eb779
   src/Models/Shared/ScreeningMatchEvidence.php:
-    last_write_checksum: sha1:544d400b82076939a1220b2d919d5b4f992b6916
+    last_write_checksum: sha1:5a6462478499094e10bbcffa58687a7d95e1ad4b
   src/Models/Shared/ScreeningMatchEvidenceKind.php:
-    last_write_checksum: sha1:b80eda3384a656c4415186f7d7d59ce190d29817
+    last_write_checksum: sha1:62222e6fc6404940f815670c11ea5b7a2dc616b7
   src/Models/Shared/ScreeningMedia.php:
     last_write_checksum: sha1:2b7546b3a5dffa0803645d97b5eb4a2e8ed620f4
   src/Models/Shared/ScreeningMediaObservation.php:
@@ -3559,7 +3559,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:57a8fd0ae3ed5e17592cb75ea7e7a85089a5a231
+    last_write_checksum: sha1:46dc5882ae4da1cf72a893a7b467ac66cb4f40b6
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:

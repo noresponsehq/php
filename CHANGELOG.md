@@ -1,5 +1,11 @@
 # Changelog
 
+## 16.0.15
+
+* `sdk->groups->getPerson()`:  `response.profiles[]->match->evidence[]->kind->enum(suppliedUsername)` **Added**
+* `sdk->people->get()`:  `response.profiles[]->match->evidence[]->kind->enum(suppliedUsername)` **Added**
+* `sdk->investigations->get()`:  `response.profiles[]->match->evidence[]->kind->enum(suppliedUsername)` **Added**
+
 ## 16.0.14
 
 No changes detected.
