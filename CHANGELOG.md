@@ -1,5 +1,18 @@
 # Changelog
 
+## 16.0.18
+
+* `sdk->groups->listPeople()`:  `response.items[]->coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+* `sdk->groups->getPerson()`:  `response.person->coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+* `sdk->groups->reviewPerson()`:  `response.coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+* `sdk->groups->exportPeople()`:  `response.items[]->coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+* `sdk->people->get()`:  `response.evidenceInvestigation->coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+* `sdk->investigations->list()`:  `response.items[]->coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+* `sdk->investigations->create()`:  `response.coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+* `sdk->investigations->get()`:  `response.investigation->coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+* `sdk->investigations->review()`:  `response.coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+* `sdk->investigations->cancel()`:  `response.coverage->notAnalysedByReason[]->reason->enum(analysisOff)` **Added**
+
 ## 16.0.17
 
 No changes detected.
