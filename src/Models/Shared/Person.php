@@ -154,15 +154,6 @@ class Person
     public ?bool $noProfileToCheck = null;
 
     /**
-     * The most severe finding's band, or null when nothing was flagged.
-     *
-     * @var \NoResponse\Models\Shared\HighestBand|string|null $highestBand
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('highest_band')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HighestBand|string|null')]
-    public HighestBand|string|null $highestBand;
-
-    /**
      * The latest reviewer decision, or null before any.
      *
      * @var \NoResponse\Models\Shared\PersonDecision|string|null $decision
@@ -229,7 +220,6 @@ class Person
      * @param  ?array<\NoResponse\Models\Shared\Handle>  $handles
      * @param  \NoResponse\Models\Shared\PersonRole|string|null  $role
      * @param  ?bool  $noProfileToCheck
-     * @param  \NoResponse\Models\Shared\HighestBand|string|null  $highestBand
      * @param  \NoResponse\Models\Shared\PersonDecision|string|null  $decision
      * @param  ?string  $decisionNote
      * @param  ?string  $decidedBy
@@ -238,7 +228,7 @@ class Person
      * @param  ?string  $screenedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, string $groupId, string $name, MatchState|string $matchState, ScreeningCoverage $coverage, string $createdAt, string $updatedAt, ScreeningSpend $spend, string $expiresAt, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, PersonRole|string|null $role = null, ?bool $noProfileToCheck = null, HighestBand|string|null $highestBand = null, PersonDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
+    public function __construct(string $id, string $groupId, string $name, MatchState|string $matchState, ScreeningCoverage $coverage, string $createdAt, string $updatedAt, ScreeningSpend $spend, string $expiresAt, ?string $externalId = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?array $handles = null, PersonRole|string|null $role = null, ?bool $noProfileToCheck = null, PersonDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $lastScreeningId = null, ?string $screenedAt = null)
     {
         $this->id = $id;
         $this->groupId = $groupId;
@@ -257,7 +247,6 @@ class Person
         $this->handles = $handles;
         $this->role = $role;
         $this->noProfileToCheck = $noProfileToCheck;
-        $this->highestBand = $highestBand;
         $this->decision = $decision;
         $this->decisionNote = $decisionNote;
         $this->decidedBy = $decidedBy;

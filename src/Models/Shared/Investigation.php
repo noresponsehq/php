@@ -86,15 +86,6 @@ class Investigation
     public string $deadlineAt;
 
     /**
-     * The most severe finding's band, or null when nothing was flagged.
-     *
-     * @var \NoResponse\Models\Shared\HighestBand|string|null $highestBand
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('highest_band')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HighestBand|string|null')]
-    public HighestBand|string|null $highestBand;
-
-    /**
      * The latest reviewer decision, or null before any.
      *
      * @var \NoResponse\Models\Shared\PersonDecision|string|null $decision
@@ -177,7 +168,6 @@ class Investigation
      * @param  string  $createdAt
      * @param  string  $expiresAt
      * @param  string  $deadlineAt
-     * @param  \NoResponse\Models\Shared\HighestBand|string|null  $highestBand
      * @param  \NoResponse\Models\Shared\PersonDecision|string|null  $decision
      * @param  ?string  $decisionNote
      * @param  ?string  $decidedBy
@@ -189,7 +179,7 @@ class Investigation
      * @param  ?string  $finishedAt
      * @phpstan-pure
      */
-    public function __construct(ScreeningCoverage $coverage, ScreeningSpend $spend, string $id, string $personId, InvestigationStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $createdAt, string $expiresAt, string $deadlineAt, HighestBand|string|null $highestBand = null, PersonDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $groupId = null, MatchState|string|null $matchState = null, ?string $errorCode = null, ?string $startedAt = null, ?string $finishedAt = null)
+    public function __construct(ScreeningCoverage $coverage, ScreeningSpend $spend, string $id, string $personId, InvestigationStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $createdAt, string $expiresAt, string $deadlineAt, PersonDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $groupId = null, MatchState|string|null $matchState = null, ?string $errorCode = null, ?string $startedAt = null, ?string $finishedAt = null)
     {
         $this->coverage = $coverage;
         $this->spend = $spend;
@@ -201,7 +191,6 @@ class Investigation
         $this->createdAt = $createdAt;
         $this->expiresAt = $expiresAt;
         $this->deadlineAt = $deadlineAt;
-        $this->highestBand = $highestBand;
         $this->decision = $decision;
         $this->decisionNote = $decisionNote;
         $this->decidedBy = $decidedBy;

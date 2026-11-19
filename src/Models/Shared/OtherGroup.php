@@ -66,15 +66,6 @@ class OtherGroup
     public ?bool $noProfileToCheck = null;
 
     /**
-     * That person's most severe band in that group, or null.
-     *
-     * @var \NoResponse\Models\Shared\HighestBand|string|null $highestBand
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('highest_band')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\HighestBand|string|null')]
-    public HighestBand|string|null $highestBand;
-
-    /**
      * The latest reviewer decision in that group, or null before any.
      *
      * @var \NoResponse\Models\Shared\PersonDecision|string|null $decision
@@ -109,13 +100,12 @@ class OtherGroup
      * @param  \NoResponse\Models\Shared\MatchState|string  $matchState
      * @param  ?string  $groupStartsAt
      * @param  ?bool  $noProfileToCheck
-     * @param  \NoResponse\Models\Shared\HighestBand|string|null  $highestBand
      * @param  \NoResponse\Models\Shared\PersonDecision|string|null  $decision
      * @param  ?string  $decidedBy
      * @param  ?string  $decidedAt
      * @phpstan-pure
      */
-    public function __construct(string $groupId, string $groupName, string $personId, array $matchedOn, MatchState|string $matchState, ?string $groupStartsAt = null, ?bool $noProfileToCheck = null, HighestBand|string|null $highestBand = null, PersonDecision|string|null $decision = null, ?string $decidedBy = null, ?string $decidedAt = null)
+    public function __construct(string $groupId, string $groupName, string $personId, array $matchedOn, MatchState|string $matchState, ?string $groupStartsAt = null, ?bool $noProfileToCheck = null, PersonDecision|string|null $decision = null, ?string $decidedBy = null, ?string $decidedAt = null)
     {
         $this->groupId = $groupId;
         $this->groupName = $groupName;
@@ -124,7 +114,6 @@ class OtherGroup
         $this->matchState = $matchState;
         $this->groupStartsAt = $groupStartsAt;
         $this->noProfileToCheck = $noProfileToCheck;
-        $this->highestBand = $highestBand;
         $this->decision = $decision;
         $this->decidedBy = $decidedBy;
         $this->decidedAt = $decidedAt;

@@ -18,7 +18,7 @@ There is no Packagist package yet. Add the GitHub repository to your `composer.j
         { "type": "vcs", "url": "https://github.com/noresponsehq/php" }
     ],
     "require": {
-        "noresponse/noresponse-php": "^18.0.3"
+        "noresponse/noresponse-php": "^19.0.0"
     }
 }
 ```
@@ -262,7 +262,6 @@ use NoResponse\Models\Shared\AssessmentExpired;
 use NoResponse\Models\Shared\AssessmentUpdatedEvent;
 use NoResponse\Models\Shared\EndpointVerificationEvent;
 use NoResponse\Models\Shared\PersonDecidedEvent;
-use NoResponse\Models\Shared\PersonFlaggedEvent;
 use NoResponse\Models\Shared\ScreeningCompletedEvent;
 use NoResponse\Models\Shared\WebhookEndpointDisabledEvent;
 use NoResponse\Models\Shared\WorkspaceDeletedEvent;
@@ -291,9 +290,7 @@ if ($event instanceof AssessmentUpdatedEvent && $event->test === true) {
 } elseif ($event instanceof WebhookEndpointDisabledEvent) {
     // webhook_endpoint.disabled: $event->data->endpointId failed for 72 hours; fix it and verify it again
 } elseif ($event instanceof ScreeningCompletedEvent) {
-    // screening.completed: counts by band, no footprint and partial coverage; it names no person
-} elseif ($event instanceof PersonFlaggedEvent) {
-    // person.flagged: the person's highest band and match state, never what was posted
+    // screening.completed: counts of people screened, no footprint and partial coverage; it names no person
 } elseif ($event instanceof PersonDecidedEvent) {
     // person.decided: cleared, watch or escalated; keep the latest decidedAt per person
 } elseif ($event instanceof AccountRiskChangedEvent) {
@@ -306,7 +303,7 @@ if ($event instanceof AssessmentUpdatedEvent && $event->test === true) {
 http_response_code(204);
 ```
 
-`constructEvent` returns one of ten typed events from `NoResponse\Models\Shared`: `AssessmentUpdatedEvent` (data `Assessment` or `AssessmentExpired`), `EndpointVerificationEvent`, `AccountDeletedEvent`, `WorkspaceDeletedEvent`, `WebhookEndpointDisabledEvent`, `AccountRiskChangedEvent`, `AuditEventEvent`, `ScreeningCompletedEvent`, `PersonFlaggedEvent` and `PersonDecidedEvent`. It throws `WebhookVerificationException` for a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id, a bad signature or a body that is not a known event; `$e->errorCode` is one of its constants (`MISSING_HEADER`, `DUPLICATE_HEADER`, `INVALID_TIMESTAMP`, `UNKNOWN_KEY`, `INVALID_SIGNATURE`, `INVALID_PAYLOAD`). Deliveries are at least once: deduplicate on `$event->id`. `$event->test` is true only on an `assessment.updated` event sent by `sendTestEvent`, whose data is a fixed example assessment.
+`constructEvent` returns one of nine typed events from `NoResponse\Models\Shared`: `AssessmentUpdatedEvent` (data `Assessment` or `AssessmentExpired`), `EndpointVerificationEvent`, `AccountDeletedEvent`, `WorkspaceDeletedEvent`, `WebhookEndpointDisabledEvent`, `AccountRiskChangedEvent`, `AuditEventEvent`, `ScreeningCompletedEvent` and `PersonDecidedEvent`. It throws `WebhookVerificationException` for a missing or repeated header, a delivery older than 300 seconds (`toleranceSeconds:` changes it), an unknown key id, a bad signature or a body that is not a known event; `$e->errorCode` is one of its constants (`MISSING_HEADER`, `DUPLICATE_HEADER`, `INVALID_TIMESTAMP`, `UNKNOWN_KEY`, `INVALID_SIGNATURE`, `INVALID_PAYLOAD`). Deliveries are at least once: deduplicate on `$event->id`. `$event->test` is true only on an `assessment.updated` event sent by `sendTestEvent`, whose data is a fixed example assessment.
 
 ### Late results
 

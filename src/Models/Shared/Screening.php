@@ -96,13 +96,6 @@ class Screening
 
     /**
      *
-     * @var int $peopleFlagged
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('people_flagged')]
-    public int $peopleFlagged;
-
-    /**
-     *
      * @var int $peopleFailed
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('people_failed')]
@@ -178,7 +171,6 @@ class Screening
      * @param  string  $expiresAt
      * @param  int  $peopleTotal
      * @param  int  $peopleDone
-     * @param  int  $peopleFlagged
      * @param  int  $peopleFailed
      * @param  int  $peoplePartial
      * @param  int  $estimatedSpend
@@ -189,7 +181,7 @@ class Screening
      * @param  ?string  $errorCode
      * @phpstan-pure
      */
-    public function __construct(string $id, string $groupId, AuditSettingsEnvironment|string $environment, ScreeningStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $requestedBy, string $createdAt, string $expiresAt, int $peopleTotal, int $peopleDone, int $peopleFlagged, int $peopleFailed, int $peoplePartial, int $estimatedSpend, int $spent, ScreeningSpend $spend, ?string $startedAt = null, ?string $finishedAt = null, ?string $errorCode = null)
+    public function __construct(string $id, string $groupId, AuditSettingsEnvironment|string $environment, ScreeningStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $requestedBy, string $createdAt, string $expiresAt, int $peopleTotal, int $peopleDone, int $peopleFailed, int $peoplePartial, int $estimatedSpend, int $spent, ScreeningSpend $spend, ?string $startedAt = null, ?string $finishedAt = null, ?string $errorCode = null)
     {
         $this->id = $id;
         $this->groupId = $groupId;
@@ -202,7 +194,6 @@ class Screening
         $this->expiresAt = $expiresAt;
         $this->peopleTotal = $peopleTotal;
         $this->peopleDone = $peopleDone;
-        $this->peopleFlagged = $peopleFlagged;
         $this->peopleFailed = $peopleFailed;
         $this->peoplePartial = $peoplePartial;
         $this->estimatedSpend = $estimatedSpend;

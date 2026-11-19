@@ -1,5 +1,27 @@
 # Changelog
 
+## 19.0.0
+
+* `sdk->groups->listPeople()`: 
+  *  `request->band` **Removed** (Breaking ⚠️)
+  *  `response.items[]` **Changed** (Breaking ⚠️)
+* `sdk->groups->getPerson()`:  `response` **Changed** (Breaking ⚠️)
+* `sdk->groups->reviewPerson()`:  `response` **Changed** (Breaking ⚠️)
+* `sdk->groups->listScreenings()`:  `response.items[]->peopleFlagged` **Removed** (Breaking ⚠️)
+* `sdk->groups->startScreening()`:  `response.peopleFlagged` **Removed** (Breaking ⚠️)
+* `sdk->groups->getScreening()`:  `response.peopleFlagged` **Removed** (Breaking ⚠️)
+* `sdk->groups->cancelScreening()`:  `response.peopleFlagged` **Removed** (Breaking ⚠️)
+* `sdk->groups->exportPeople()`: 
+  *  `request->band` **Removed** (Breaking ⚠️)
+  *  `response.items[]` **Changed** (Breaking ⚠️)
+* `sdk->people->get()`:  `response` **Changed** (Breaking ⚠️)
+* `sdk->people->reviewChange()`:  `response.kind->enum(findingAdded)` **Removed** (Breaking ⚠️)
+* `sdk->investigations->list()`:  `response.items[]` **Changed** (Breaking ⚠️)
+* `sdk->investigations->create()`:  `response` **Changed** (Breaking ⚠️)
+* `sdk->investigations->get()`:  `response` **Changed** (Breaking ⚠️)
+* `sdk->investigations->review()`:  `response` **Changed** (Breaking ⚠️)
+* `sdk->investigations->cancel()`:  `response` **Changed** (Breaking ⚠️)
+
 ## 18.0.3
 
 * `sdk->settings->get()`:  `response.enrichment->kinds[]->enum(personName)` **Added**

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** ScreeningCompleted - A screening of a group finished. It counts only the people this screening set out to reach, not who they are: read the roster with GET /v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people, filtered by band, to act on them. people_screened + partial_coverage = people_total, people_flagged is the sum of by_band, no_footprint counts screened people with no flag whose accounts were not found, and no_profile_to_check those the screening had nothing to look up for on any requested platform. A cancelled screening sends no event. */
+/** ScreeningCompleted - A screening of a group finished. It counts only the people this screening set out to reach, not who they are: read the roster with GET /v1/workspaces/{workspace_id}/groups/{environment}/{group_id}/people to act on them. people_screened + partial_coverage = people_total, no_footprint counts screened people whose accounts were not found, and no_profile_to_check those the screening had nothing to look up for on any requested platform. A cancelled screening sends no event. */
 class ScreeningCompleted
 {
     /**
@@ -42,7 +42,7 @@ class ScreeningCompleted
     public int $peopleTotal;
 
     /**
-     * People the screening covered, flagged or not.
+     * People the screening covered.
      *
      * @var int $peopleScreened
      */
@@ -50,24 +50,7 @@ class ScreeningCompleted
     public int $peopleScreened;
 
     /**
-     * Screened people with a finding: the sum of by_band.
-     *
-     * @var int $peopleFlagged
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('people_flagged')]
-    public int $peopleFlagged;
-
-    /**
-     * Screened people by the band of their most severe finding.
-     *
-     * @var \NoResponse\Models\Shared\ScreeningCompletedByBand $byBand
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('by_band')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ScreeningCompletedByBand')]
-    public ScreeningCompletedByBand $byBand;
-
-    /**
-     * Screened people with no finding whose accounts were not found (match_state none_found). A clean result for someone with no visible accounts is not the same as a clean result for someone whose accounts were read.
+     * Screened people whose accounts were not found (match_state none_found). A clean result for someone with no visible accounts is not the same as a clean result for someone whose accounts were read.
      *
      * @var int $noFootprint
      */
@@ -114,8 +97,6 @@ class ScreeningCompleted
      * @param  \NoResponse\Models\Shared\ScreeningCompletedStatus  $status
      * @param  int  $peopleTotal
      * @param  int  $peopleScreened
-     * @param  int  $peopleFlagged
-     * @param  \NoResponse\Models\Shared\ScreeningCompletedByBand  $byBand
      * @param  int  $noFootprint
      * @param  int  $partialCoverage
      * @param  string  $finishedAt
@@ -123,15 +104,13 @@ class ScreeningCompleted
      * @param  ?int  $noProfileToCheck
      * @phpstan-pure
      */
-    public function __construct(string $screeningId, string $groupId, ScreeningCompletedStatus $status, int $peopleTotal, int $peopleScreened, int $peopleFlagged, ScreeningCompletedByBand $byBand, int $noFootprint, int $partialCoverage, string $finishedAt, ?string $errorCode = null, ?int $noProfileToCheck = null)
+    public function __construct(string $screeningId, string $groupId, ScreeningCompletedStatus $status, int $peopleTotal, int $peopleScreened, int $noFootprint, int $partialCoverage, string $finishedAt, ?string $errorCode = null, ?int $noProfileToCheck = null)
     {
         $this->screeningId = $screeningId;
         $this->groupId = $groupId;
         $this->status = $status;
         $this->peopleTotal = $peopleTotal;
         $this->peopleScreened = $peopleScreened;
-        $this->peopleFlagged = $peopleFlagged;
-        $this->byBand = $byBand;
         $this->noFootprint = $noFootprint;
         $this->partialCoverage = $partialCoverage;
         $this->finishedAt = $finishedAt;

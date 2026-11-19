@@ -56,16 +56,7 @@ class WorkspacePersonReport
     public array $profiles;
 
     /**
-     * What this result flagged, most severe first, each citing its evidence.
-     *
-     * @var array<\NoResponse\Models\Shared\ScreeningFinding> $findings
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('findings')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\ScreeningFinding>')]
-    public array $findings;
-
-    /**
-     * All posts retained for this result, including posts that no finding cites.
+     * All posts retained for this result.
      *
      * @var array<\NoResponse\Models\Shared\ScreeningPost> $posts
      */
@@ -74,7 +65,7 @@ class WorkspacePersonReport
     public array $posts;
 
     /**
-     * All images and videos retained for this result, including media that no finding cites.
+     * All images and videos retained for this result.
      *
      * @var array<\NoResponse\Models\Shared\ScreeningMedia> $media
      */
@@ -182,7 +173,7 @@ class WorkspacePersonReport
     public ?array $handles = null;
 
     /**
-     * What the signup check's lookups found for a person: account presence for the email, phone and usernames (the person's handles), the phone lookup, the email domain's registration and the breach search. Context and coverage for the reviewer, not a finding: nothing here sets a band or a match state.
+     * What the signup check's lookups found for a person: account presence for the email, phone and usernames (the person's handles), the phone lookup, the email domain's registration and the breach search. Nothing here sets a match state.
      *
      * @var ?\NoResponse\Models\Shared\ScreeningLookup $lookup
      */
@@ -202,7 +193,7 @@ class WorkspacePersonReport
     public ?array $searches = null;
 
     /**
-     * True when evidence.read is explicitly denied. Submitted details, coverage, job status and decisions remain available. Collected records, profiles, findings, posts, media, discovered values and free-text decision notes are withheld.
+     * True when evidence.read is explicitly denied. Submitted details, coverage, job status and decisions remain available. Collected records, profiles, posts, media, discovered values and free-text decision notes are withheld.
      *
      * @var ?bool $evidenceRestricted
      */
@@ -220,22 +211,12 @@ class WorkspacePersonReport
     public ?Investigation $evidenceInvestigation;
 
     /**
-     * An investigator's profile of this person, written from the evidence of a settled investigation. Null until an investigation completes or partially completes, and null when evidence.read is denied.
-     *
-     * @var ?\NoResponse\Models\Shared\WrittenProfile $writtenProfile
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('written_profile')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\WrittenProfile|null')]
-    public ?WrittenProfile $writtenProfile;
-
-    /**
      * @param  string  $id
      * @param  string  $createdAt
      * @param  string  $updatedAt
      * @param  string  $expiresAt
      * @param  array<\NoResponse\Models\Shared\PersonGroup>  $groups
      * @param  array<\NoResponse\Models\Shared\ScreeningProfile>  $profiles
-     * @param  array<\NoResponse\Models\Shared\ScreeningFinding>  $findings
      * @param  array<\NoResponse\Models\Shared\ScreeningPost>  $posts
      * @param  array<\NoResponse\Models\Shared\ScreeningMedia>  $media
      * @param  array<\NoResponse\Models\Shared\SuggestedSearch>  $suggestedSearches
@@ -253,10 +234,9 @@ class WorkspacePersonReport
      * @param  ?array<\NoResponse\Models\Shared\Search>  $searches
      * @param  ?bool  $evidenceRestricted
      * @param  ?\NoResponse\Models\Shared\Investigation  $evidenceInvestigation
-     * @param  ?\NoResponse\Models\Shared\WrittenProfile  $writtenProfile
      * @phpstan-pure
      */
-    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $groups, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, array $changes, PersonSchedule $schedule, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
+    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $groups, array $profiles, array $posts, array $media, array $suggestedSearches, array $changes, PersonSchedule $schedule, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
@@ -264,7 +244,6 @@ class WorkspacePersonReport
         $this->expiresAt = $expiresAt;
         $this->groups = $groups;
         $this->profiles = $profiles;
-        $this->findings = $findings;
         $this->posts = $posts;
         $this->media = $media;
         $this->suggestedSearches = $suggestedSearches;
@@ -282,6 +261,5 @@ class WorkspacePersonReport
         $this->searches = $searches;
         $this->evidenceRestricted = $evidenceRestricted;
         $this->evidenceInvestigation = $evidenceInvestigation;
-        $this->writtenProfile = $writtenProfile;
     }
 }

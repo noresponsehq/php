@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
-/** ScreeningLookup - What the signup check's lookups found for a person: account presence for the email, phone and usernames (the person's handles), the phone lookup, the email domain's registration and the breach search. Context and coverage for the reviewer, not a finding: nothing here sets a band or a match state. */
+/** ScreeningLookup - What the signup check's lookups found for a person: account presence for the email, phone and usernames (the person's handles), the phone lookup, the email domain's registration and the breach search. Nothing here sets a match state. */
 class ScreeningLookup
 {
     /**

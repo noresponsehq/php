@@ -46,7 +46,7 @@ class Groups
     /**
      * Add or update a batch of people.
      *
-     * Adds 1 to 500 workspace people to this group, at most 512 KiB. An explicit person_id or external_id reuses the named workspace person. A reference-only row keeps submitted details; an identity supplied with that reference replaces those details. A shared email or phone only suggests matches and does not merge people. Each person's match, band and coverage in the group come from their latest investigation; a changed identity sets aside investigations started before the change, and prior investigation history remains available. Identities are encrypted under the workspace key. Idempotency-Key is required: the same key and body return the original import result with Idempotent-Replayed: true while its people remain retained. An expired or deleted imported person answers 404; expired or deleted match suggestions are omitted. A different body answers 409 idempotency_key_reused. A group holds at most 20000 people. The people_write scope grants this operation; groups is also accepted. Suggested matches require people-read access. The API key selects the workspace and environment.
+     * Adds 1 to 500 workspace people to this group, at most 512 KiB. An explicit person_id or external_id reuses the named workspace person. A reference-only row keeps submitted details; an identity supplied with that reference replaces those details. A shared email or phone only suggests matches and does not merge people. Each person's match and coverage in the group come from their latest investigation; a changed identity sets aside investigations started before the change, and prior investigation history remains available. Identities are encrypted under the workspace key. Idempotency-Key is required: the same key and body return the original import result with Idempotent-Replayed: true while its people remain retained. An expired or deleted imported person answers 404; expired or deleted match suggestions are omitted. A different body answers 409 idempotency_key_reused. A group holds at most 20000 people. The people_write scope grants this operation; groups is also accepted. Suggested matches require people-read access. The API key selects the workspace and environment.
      *
      * @param  \NoResponse\Models\Shared\PersonBatchRequest  $body
      * @param  string  $groupId
@@ -701,7 +701,11 @@ class Groups
      *
      * Returns one page for export. Each returned person is durably audited as person.exported with the actor, group, person ID and request ID. Requires both people read access and exports. Explicit evidence restrictions also hide free-text decision notes. No raw evidence enters audit logs. Follow next_after until absent for a complete export. The API key selects the workspace and environment.
      *
-     * @param  \NoResponse\Models\Operations\ExportPeopleRequest  $request
+     * @param  string  $groupId
+     * @param  ?int  $limit
+     * @param  ?string  $after
+     * @param  ?\NoResponse\Models\Shared\ListPeopleDecision  $decision
+     * @param  ?\NoResponse\Models\Shared\ListPeopleRole  $role
      * @return \NoResponse\Models\Operations\ExportPeopleResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -712,7 +716,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function exportPeople(Operations\ExportPeopleRequest $request, ?Options $options = null): Operations\ExportPeopleResponse
+    public function exportPeople(string $groupId, ?int $limit = null, ?string $after = null, ?Shared\ListPeopleDecision $decision = null, ?Shared\ListPeopleRole $role = null, ?Options $options = null): Operations\ExportPeopleResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -741,6 +745,13 @@ class Groups
                 '5XX',
             ];
         }
+        $request = new Operations\ExportPeopleRequest(
+            groupId: $groupId,
+            limit: $limit,
+            after: $after,
+            decision: $decision,
+            role: $role,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/export', Operations\ExportPeopleRequest::class, $request);
         $urlOverride = null;
@@ -1707,9 +1718,13 @@ class Groups
     /**
      * List a group's people.
      *
-     * The roster in upload order, with each person's role, match state, highest finding band and decision. Filter by band (or none), decision (or undecided) and role (or unstated). The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
+     * The roster in upload order, with each person's role, match state and decision. Filter by decision (or undecided) and role (or unstated). The people scope grants this operation. Explicit evidence.read restrictions override default evidence access. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
      *
-     * @param  \NoResponse\Models\Operations\ListPeopleRequest  $request
+     * @param  string  $groupId
+     * @param  ?int  $limit
+     * @param  ?string  $after
+     * @param  ?\NoResponse\Models\Shared\ListPeopleDecision  $decision
+     * @param  ?\NoResponse\Models\Shared\ListPeopleRole  $role
      * @return \NoResponse\Models\Operations\ListPeopleResponse
      * @throws \NoResponse\Models\Errors\BadRequestException
      * @throws \NoResponse\Models\Errors\AuthenticationException
@@ -1720,7 +1735,7 @@ class Groups
      * @throws \NoResponse\Models\Errors\APIStatusException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function listPeople(Operations\ListPeopleRequest $request, ?Options $options = null): Operations\ListPeopleResponse
+    public function listPeople(string $groupId, ?int $limit = null, ?string $after = null, ?Shared\ListPeopleDecision $decision = null, ?Shared\ListPeopleRole $role = null, ?Options $options = null): Operations\ListPeopleResponse
     {
         $retryConfig = null;
         if ($options) {
@@ -1749,6 +1764,13 @@ class Groups
                 '5XX',
             ];
         }
+        $request = new Operations\ListPeopleRequest(
+            groupId: $groupId,
+            limit: $limit,
+            after: $after,
+            decision: $decision,
+            role: $role,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/groups/{group_id}/people', Operations\ListPeopleRequest::class, $request);
         $urlOverride = null;

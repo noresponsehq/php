@@ -18,7 +18,7 @@ class ScreeningMatchEvidence
     public ScreeningMatchEvidenceKind|string $kind;
 
     /**
-     * The resolver, collector or analyser that produced a record, by its catalogue name.
+     * The resolver or collector that produced a record, by its catalogue name.
      *
      * @var string $resolver
      */

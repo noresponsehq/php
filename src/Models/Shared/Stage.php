@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NoResponse\Models\Shared;
 
 
+/** ai_typing and analysis appear only on searches recorded before the engine stopped analysing results. */
 enum Stage: string
 {
     case Lookup = 'lookup';

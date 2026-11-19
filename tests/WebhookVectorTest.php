@@ -11,7 +11,6 @@ use NoResponse\Models\Shared\AssessmentUpdatedEvent;
 use NoResponse\Models\Shared\AuditEventEvent;
 use NoResponse\Models\Shared\EndpointVerificationEvent;
 use NoResponse\Models\Shared\PersonDecidedEvent;
-use NoResponse\Models\Shared\PersonFlaggedEvent;
 use NoResponse\Models\Shared\ScreeningCompletedEvent;
 use NoResponse\Models\Shared\InvestigationCompletedEvent;
 use NoResponse\Models\Shared\WebhookEndpointDisabledEvent;
@@ -35,7 +34,6 @@ final class WebhookVectorTest extends TestCase
         'audit.event' => AuditEventEvent::class,
         'screening.completed' => ScreeningCompletedEvent::class,
         'investigation.completed' => InvestigationCompletedEvent::class,
-        'person.flagged' => PersonFlaggedEvent::class,
         'person.decided' => PersonDecidedEvent::class,
     ];
 

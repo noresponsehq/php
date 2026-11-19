@@ -77,15 +77,6 @@ Shared\AuditEventEvent $value = /* values here */
 Shared\ScreeningCompletedEvent $value = /* values here */
 ```
 
-### `Shared\PersonFlaggedEvent`
-
-```php
-/**
-* @var \NoResponse\Models\Shared\PersonFlaggedEvent
-*/
-Shared\PersonFlaggedEvent $value = /* values here */
-```
-
 ### `Shared\PersonDecidedEvent`
 
 ```php

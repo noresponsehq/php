@@ -8,6 +8,7 @@ namespace NoResponse\Models\Shared;
 class StageTime
 {
     /**
+     * ai_typing and analysis appear only on searches recorded before the engine stopped analysing results.
      *
      * @var \NoResponse\Models\Shared\Stage|string $stage
      */
