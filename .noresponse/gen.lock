@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 1d1a16be4c225659b05b5b945ee711b0
+  docChecksum: bc486827b35efc1ace6851739895fe01
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 19.0.1
-  configChecksum: f3801fa52fcdb856811e808fe10c3beb
+  releaseVersion: 20.0.0
+  configChecksum: 30e045c10f032c7332ffbe278f275c93
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -951,7 +951,7 @@ trackedFiles:
   docs/Models/Shared/InvestigationReport.md:
     last_write_checksum: sha1:c3dde0278523e73e38523f3e16e2af3c372e825a
   docs/Models/Shared/InvestigationRequest.md:
-    last_write_checksum: sha1:70272c66338f6ee8d143ff36f745cfe5efe323be
+    last_write_checksum: sha1:d12dfb57a5bc7724637daff21db75f63f5c3f426
   docs/Models/Shared/InvestigationStatus.md:
     last_write_checksum: sha1:c8068a7f6f1b9f660452fc2549c142d68acbe1d8
   docs/Models/Shared/InvestigationsList.md:
@@ -1161,7 +1161,7 @@ trackedFiles:
   docs/Models/Shared/PersonRole.md:
     last_write_checksum: sha1:4bb73198341505a0b6ee869554a9db9226c368e9
   docs/Models/Shared/PersonSchedule.md:
-    last_write_checksum: sha1:a250948bd451ebe61d4fe86d40ba23a94ab41bc6
+    last_write_checksum: sha1:ff0f56dc8bcdefc507562174ef95b4c4945192ad
   docs/Models/Shared/PersonScheduleRequest.md:
     last_write_checksum: sha1:e8fc07d82285a078ce10b1826cfc6996184f78e8
   docs/Models/Shared/PhoneEnrichment.md:
@@ -1409,7 +1409,7 @@ trackedFiles:
   docs/Models/Shared/ScreeningProfile.md:
     last_write_checksum: sha1:55a72bc6dbc40452d91ca4da500fc19412898988
   docs/Models/Shared/ScreeningRequest.md:
-    last_write_checksum: sha1:32edd5c3f6a56e007fc8d86548925a99641d50d8
+    last_write_checksum: sha1:af58bb1519b0e8859bf1cd3494b31da0b544d70d
   docs/Models/Shared/ScreeningSpend.md:
     last_write_checksum: sha1:6a9e61b8502e83dece16df2b1d4c8bc33bf03973
   docs/Models/Shared/ScreeningSpendLine.md:
@@ -1551,7 +1551,7 @@ trackedFiles:
   docs/Models/Shared/WorkspacePerson.md:
     last_write_checksum: sha1:d55c12b0e9dbc2400c38e90354f6164ecede818c
   docs/Models/Shared/WorkspacePersonReport.md:
-    last_write_checksum: sha1:f77b3e07abff79ef9bbcf28c7b75fa53ecf8d327
+    last_write_checksum: sha1:6928dd0b01f5be933f1b9d26d677c9fda198e123
   docs/Models/Shared/WorkspacePersonRequest.md:
     last_write_checksum: sha1:6ab79ba585f122118fc85431b149f4048144b279
   docs/Models/Shared/WorkspacePersonResult.md:
@@ -2589,7 +2589,7 @@ trackedFiles:
   src/Models/Shared/InvestigationReport.php:
     last_write_checksum: sha1:e4ca8cc2ca88e13153effaafa25960166cd0f181
   src/Models/Shared/InvestigationRequest.php:
-    last_write_checksum: sha1:3ca0080f548c2f8b6a873eab6109ac756ba6a0a7
+    last_write_checksum: sha1:bf8da0fb67a6999ff6a872eb9180af20adf2339c
   src/Models/Shared/InvestigationStatus.php:
     last_write_checksum: sha1:b209e30407bab1196cc07cb4546115ad62546d25
   src/Models/Shared/InvestigationsList.php:
@@ -2795,7 +2795,7 @@ trackedFiles:
   src/Models/Shared/PersonRole.php:
     last_write_checksum: sha1:b3126b9bd74bafc2b5cf617aa34bf3d098bbce2c
   src/Models/Shared/PersonSchedule.php:
-    last_write_checksum: sha1:498c1b92b21fb86f2e9e21bde2fee833cbe22f2e
+    last_write_checksum: sha1:46ed0d6c9939caa19a8bcef1fb81ee26c6930ad1
   src/Models/Shared/PersonScheduleRequest.php:
     last_write_checksum: sha1:0776f4b5b7e16d0142b3258bebf7474e1b10538f
   src/Models/Shared/PhoneEnrichment.php:
@@ -3043,7 +3043,7 @@ trackedFiles:
   src/Models/Shared/ScreeningProfile.php:
     last_write_checksum: sha1:86c4c95aec650a856769c673b758f47098bd181b
   src/Models/Shared/ScreeningRequest.php:
-    last_write_checksum: sha1:6a88daf594f2264a38483d7c3ed04cb11308841b
+    last_write_checksum: sha1:db4b4f087fb36d3f78a1b23e012ce944c917bd35
   src/Models/Shared/ScreeningSpend.php:
     last_write_checksum: sha1:12d380f45580f27dceb81e7cee8401aa1e428df7
   src/Models/Shared/ScreeningSpendLine.php:
@@ -3177,7 +3177,7 @@ trackedFiles:
   src/Models/Shared/WorkspacePerson.php:
     last_write_checksum: sha1:8d5e60220e41db263b0a6d14b8fb195948c770bb
   src/Models/Shared/WorkspacePersonReport.php:
-    last_write_checksum: sha1:515dc2cc8d30dee7061629440f63c482d09c5797
+    last_write_checksum: sha1:58fa94d78c167d8308683a1913f5c56191e9dd38
   src/Models/Shared/WorkspacePersonRequest.php:
     last_write_checksum: sha1:49a9c60cd3886197fcafb1a23562e73a386e77b7
   src/Models/Shared/WorkspacePersonResult.php:
@@ -3555,7 +3555,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:dc8ac9d3f902cf2445de2dc9f84aacd64b596f73
+    last_write_checksum: sha1:1b8b89a83dd9fe8c51d7c9fd7349dacc5ad3048a
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:

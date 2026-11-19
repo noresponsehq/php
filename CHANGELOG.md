@@ -1,5 +1,12 @@
 # Changelog
 
+## 20.0.0
+
+* `sdk->groups->startScreening()`: 
+  *  `request.body->platforms` **Removed** (Breaking ⚠️)
+* `sdk->investigations->create()`: 
+  *  `request.body->platforms` **Removed** (Breaking ⚠️)
+
 ## 19.0.1
 
 No changes detected.

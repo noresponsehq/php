@@ -18,7 +18,7 @@ There is no Packagist package yet. Add the GitHub repository to your `composer.j
         { "type": "vcs", "url": "https://github.com/noresponsehq/php" }
     ],
     "require": {
-        "noresponse/noresponse-php": "^19.0.1"
+        "noresponse/noresponse-php": "^20.0.0"
     }
 }
 ```
@@ -45,7 +45,7 @@ $created = $client->people->create(
     idempotencyKey: 'case-1042-person-create'
 )->result;
 $job = $client->investigations->create(
-    body: new Shared\InvestigationRequest(personId: $created->person->id, depth: Shared\ScreeningDepth::Standard, platforms: ['x']),
+    body: new Shared\InvestigationRequest(personId: $created->person->id, depth: Shared\ScreeningDepth::Standard),
     idempotencyKey: 'case-1042-investigation-1'
 )->result;
 echo $job->id;
