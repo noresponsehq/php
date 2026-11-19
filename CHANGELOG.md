@@ -1,5 +1,9 @@
 # Changelog
 
+## 19.0.1
+
+No changes detected.
+
 ## 19.0.0
 
 * `sdk->groups->listPeople()`: 

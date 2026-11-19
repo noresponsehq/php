@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 0b19713c03b42cfbe76db60e48c2f8f9
+  docChecksum: 1d1a16be4c225659b05b5b945ee711b0
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 19.0.0
-  configChecksum: db72b0b6e960cac43157130f356ea18d
+  releaseVersion: 19.0.1
+  configChecksum: f3801fa52fcdb856811e808fe10c3beb
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -1569,7 +1569,7 @@ trackedFiles:
   docs/sdks/exports/README.md:
     last_write_checksum: sha1:37a74050f72915c491d9805bf893e4f957d2124b
   docs/sdks/groups/README.md:
-    last_write_checksum: sha1:e294a040c4102a4b8661e5c23c2b107031b81b8b
+    last_write_checksum: sha1:574b55d136a62d44d3b063a929f5c7a6f7c5d956
   docs/sdks/integrations/README.md:
     last_write_checksum: sha1:ef8d5910b4f8fc98b998fa0b7b26bf62fbda6099
   docs/sdks/investigations/README.md:
@@ -1619,7 +1619,7 @@ trackedFiles:
   src/Exports.php:
     last_write_checksum: sha1:b385cc2d8db707b7b7c1d23f7f845b6a413f151b
   src/Groups.php:
-    last_write_checksum: sha1:9834898758059314fa3c94b04f8a90855833f0e1
+    last_write_checksum: sha1:e1616171a252cfd072b8fab7c3f2013fc57178fb
   src/Hooks/AfterErrorContext.php:
     last_write_checksum: sha1:f1bfa05a3faedf129d634b9b23fdd301357cb306
   src/Hooks/AfterErrorHook.php:
@@ -3555,7 +3555,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:3ae7b5fe7c69740ab14d1a87e7586c668ca4bc36
+    last_write_checksum: sha1:dc8ac9d3f902cf2445de2dc9f84aacd64b596f73
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:
