@@ -3,9 +3,7 @@
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `Serving`              | serving                |
-| `Outbox`               | outbox                 |
-| `Cache`                | cache                  |
-| `DownstreamProjection` | downstream_projection  |
+| Name      | Value     |
+| --------- | --------- |
+| `Serving` | serving   |
+| `Outbox`  | outbox    |

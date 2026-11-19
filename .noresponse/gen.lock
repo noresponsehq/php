@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: eeb86bec3d6394dae8dc6cac7ba128e0
+  docChecksum: b97bbfdc8f489cf221e6aaab5ca5520e
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 16.0.19
-  configChecksum: fb429076950396321846ee769671ceb2
+  releaseVersion: 17.0.0
+  configChecksum: 946d62701dc6abbc3334e894ff7c04c0
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -847,7 +847,7 @@ trackedFiles:
   docs/Models/Shared/ErasureReceiptTarget.md:
     last_write_checksum: sha1:c3f2a7045fd77d49ee89a4cf09c3b98390f0c55c
   docs/Models/Shared/ErasureReceiptTargetName.md:
-    last_write_checksum: sha1:cfde91c41b68a5b522c11f3dcda9aefd12334f68
+    last_write_checksum: sha1:6e0d90e0caaef83a2d2bd415d7a4a15493c6cce8
   docs/Models/Shared/ErasureReceiptTargetStatus.md:
     last_write_checksum: sha1:4776ab5bcea131f4ffecb712487d9acce5ce2b28
   docs/Models/Shared/ErrorCode.md:
@@ -2487,7 +2487,7 @@ trackedFiles:
   src/Models/Shared/ErasureReceiptTarget.php:
     last_write_checksum: sha1:773cea47fe62f7b4808bb1fc319adfb97da1b0f0
   src/Models/Shared/ErasureReceiptTargetName.php:
-    last_write_checksum: sha1:07517124ba5234ddc2e3c3badf4a5f290f7792de
+    last_write_checksum: sha1:e95a88c9b67b2419b7c9cede5db64794f467ce73
   src/Models/Shared/ErasureReceiptTargetStatus.php:
     last_write_checksum: sha1:3cbf273acc3540cd417736beaa6ee1f4b0a1cfdc
   src/Models/Shared/ErrorCode.php:
@@ -3559,7 +3559,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:897b8a50c957b7c87228d18253c0a713b23d48f9
+    last_write_checksum: sha1:2b845f5f3c5e7c62956f49e8e0b80f66378203d1
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:
@@ -5694,7 +5694,7 @@ examples:
           erasure_id: "<id>"
       responses:
         "200":
-          application/json: {"id": "0123456789abcdef0123456789abcdef", "kind": "account", "status": "propagating", "assessments_deleted": 2, "requested_at": "2026-10-14T09:00:00.412Z", "targets": [{"name": "serving", "status": "completed", "completed_at": "2026-10-14T09:00:00.412Z"}, {"name": "outbox", "status": "completed", "completed_at": "2026-10-14T09:00:00.412Z"}, {"name": "cache", "status": "pending"}, {"name": "downstream_projection", "status": "pending"}], "backup_policy": "Backup and point-in-time recovery copies expire under the configured backup retention policy. Serving-system completion does not certify deletion from backups."}
+          application/json: {"id": "0123456789abcdef0123456789abcdef", "kind": "account", "status": "completed", "assessments_deleted": 2, "requested_at": "2026-10-14T09:00:00.412Z", "completed_at": "2026-10-14T09:00:00.412Z", "targets": [{"name": "serving", "status": "completed", "completed_at": "2026-10-14T09:00:00.412Z"}, {"name": "outbox", "status": "completed", "completed_at": "2026-10-14T09:00:00.412Z"}], "backup_policy": "Backup and point-in-time recovery copies expire under the configured backup retention policy. Serving-system completion does not certify deletion from backups."}
   createCustomerExport:
     noresponse-default-create-customer-export:
       parameters:
