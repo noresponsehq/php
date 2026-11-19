@@ -100,6 +100,26 @@ class Record
     public Verdict|string|null $verdict = null;
 
     /**
+     * Why the record has its likelihood, as the items that make it up: what found it and each value it agrees or clashes with, each with its weight in bits. The bits add up to the likelihood before rounding: likelihood = 1 / (1 + 2^-sum). Only the strongest agreement of each kind counts, and a place counts once however many of its city, region, country and address agree. Present on a person's lookup records that have any such item.
+     *
+     * @var ?array<\NoResponse\Models\Shared\RecordEvidence> $evidence
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('evidence')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RecordEvidence>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $evidence = null;
+
+    /**
+     * How the record connects to what the investigator gave: given first, then the ids of the joined records it reached the person through, nearest last. Each step follows what found the record before the strongest agreement. A record with no link to the person has no path.
+     *
+     * @var ?array<string> $path
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('path')]
+    #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $path = null;
+
+    /**
      * @param  string  $id
      * @param  \NoResponse\Models\Shared\RecordSource  $source
      * @param  array<\NoResponse\Models\Shared\RecordMatch>  $matched
@@ -110,9 +130,11 @@ class Record
      * @param  ?array<string>  $clashed
      * @param  ?bool  $joined
      * @param  \NoResponse\Models\Shared\Verdict|string|null  $verdict
+     * @param  ?array<\NoResponse\Models\Shared\RecordEvidence>  $evidence
+     * @param  ?array<string>  $path
      * @phpstan-pure
      */
-    public function __construct(string $id, RecordSource $source, array $matched, array $fields, string $observedAt, ?float $likelihood = null, ?array $agreed = null, ?array $clashed = null, ?bool $joined = null, Verdict|string|null $verdict = null)
+    public function __construct(string $id, RecordSource $source, array $matched, array $fields, string $observedAt, ?float $likelihood = null, ?array $agreed = null, ?array $clashed = null, ?bool $joined = null, Verdict|string|null $verdict = null, ?array $evidence = null, ?array $path = null)
     {
         $this->id = $id;
         $this->source = $source;
@@ -124,5 +146,7 @@ class Record
         $this->clashed = $clashed;
         $this->joined = $joined;
         $this->verdict = $verdict;
+        $this->evidence = $evidence;
+        $this->path = $path;
     }
 }
