@@ -38,6 +38,15 @@ class WorkspacePersonReport
     public string $expiresAt;
 
     /**
+     * Every group this person belongs to in this environment, most recently added first, with their role in each. A person can belong to any number of groups; removing them from a group or deleting the group removes it here.
+     *
+     * @var array<\NoResponse\Models\Shared\PersonGroup> $groups
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('groups')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\PersonGroup>')]
+    public array $groups;
+
+    /**
      * The accounts this result matched, with how each was matched.
      *
      * @var array<\NoResponse\Models\Shared\ScreeningProfile> $profiles
@@ -215,6 +224,7 @@ class WorkspacePersonReport
      * @param  string  $createdAt
      * @param  string  $updatedAt
      * @param  string  $expiresAt
+     * @param  array<\NoResponse\Models\Shared\PersonGroup>  $groups
      * @param  array<\NoResponse\Models\Shared\ScreeningProfile>  $profiles
      * @param  array<\NoResponse\Models\Shared\ScreeningFinding>  $findings
      * @param  array<\NoResponse\Models\Shared\ScreeningPost>  $posts
@@ -236,12 +246,13 @@ class WorkspacePersonReport
      * @param  ?\NoResponse\Models\Shared\WrittenProfile  $writtenProfile
      * @phpstan-pure
      */
-    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, array $changes, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
+    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $groups, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, array $changes, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->expiresAt = $expiresAt;
+        $this->groups = $groups;
         $this->profiles = $profiles;
         $this->findings = $findings;
         $this->posts = $posts;
