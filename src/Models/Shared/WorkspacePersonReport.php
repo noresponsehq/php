@@ -101,6 +101,15 @@ class WorkspacePersonReport
     public array $changes;
 
     /**
+     * The person's rerun schedule. Each due run starts a full investigation of the person, as POST /v1/investigations with no platforms does, and its changes are stored as changes. The schedule lives in the database and the worker runs it, so it survives restarts and releases; each due run starts exactly one investigation.
+     *
+     * @var \NoResponse\Models\Shared\PersonSchedule $schedule
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('schedule')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\PersonSchedule')]
+    public PersonSchedule $schedule;
+
+    /**
      * Your reference for this person within the workspace environment. Only an explicit reference or person_id can reuse an existing person.
      *
      * @var ?string $externalId
@@ -231,6 +240,7 @@ class WorkspacePersonReport
      * @param  array<\NoResponse\Models\Shared\ScreeningMedia>  $media
      * @param  array<\NoResponse\Models\Shared\SuggestedSearch>  $suggestedSearches
      * @param  array<\NoResponse\Models\Shared\PersonChange>  $changes
+     * @param  \NoResponse\Models\Shared\PersonSchedule  $schedule
      * @param  ?string  $externalId
      * @param  ?string  $name
      * @param  ?string  $email
@@ -246,7 +256,7 @@ class WorkspacePersonReport
      * @param  ?\NoResponse\Models\Shared\WrittenProfile  $writtenProfile
      * @phpstan-pure
      */
-    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $groups, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, array $changes, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
+    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $groups, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, array $changes, PersonSchedule $schedule, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
@@ -259,6 +269,7 @@ class WorkspacePersonReport
         $this->media = $media;
         $this->suggestedSearches = $suggestedSearches;
         $this->changes = $changes;
+        $this->schedule = $schedule;
         $this->externalId = $externalId;
         $this->name = $name;
         $this->email = $email;
