@@ -1,5 +1,20 @@
 # Changelog
 
+## 18.0.3
+
+* `sdk->settings->get()`:  `response.enrichment->kinds[]->enum(personName)` **Added**
+* `sdk->settings->update()`: 
+  *  `request.body->enrichment->kinds[]->enum(personName)` **Added**
+  *  `response.enrichment->kinds[]->enum(personName)` **Added**
+* `sdk->settings->listHistory()`:  `response.items[]->settings->enrichment->kinds[]->enum(personName)` **Added**
+* `sdk->settings->restore()`:  `response.enrichment->kinds[]->enum(personName)` **Added**
+* `sdk->evaluations->publish()`:  `response.enrichment->kinds[]->enum(personName)` **Added**
+* `sdk->groups->getPerson()`:  `response.lookup->checks[]->identifier->enum(name)` **Added**
+* `sdk->people->get()`:  `response.lookup->checks[]->identifier->enum(name)` **Added**
+* `sdk->investigations->create()`: 
+  *  `request.body->enrichment->kinds[]->enum(personName)` **Added**
+* `sdk->investigations->get()`:  `response.lookup->checks[]->identifier->enum(name)` **Added**
+
 ## 18.0.2
 
 * `sdk->people->schedule()`: **Added**

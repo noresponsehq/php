@@ -10,4 +10,5 @@ enum EnrichmentKind: string
     case Username = 'username';
     case Email = 'email';
     case Phone = 'phone';
+    case PersonName = 'person_name';
 }

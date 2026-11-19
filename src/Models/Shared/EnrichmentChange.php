@@ -28,7 +28,7 @@ class EnrichmentChange
     public ?float $minLikelihood = null;
 
     /**
-     * The kinds of value enrichment searches: distinctive usernames, and email addresses and phone numbers, which belong to one person each.
+     * The kinds of value enrichment searches: distinctive usernames, email addresses and phone numbers, which belong to one person each, and distinctive person names, searched in the breach data.
      *
      * @var ?array<\NoResponse\Models\Shared\EnrichmentChangeKind> $kinds
      */

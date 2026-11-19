@@ -10,11 +10,11 @@ class ScreeningLookupCheck
 {
     /**
      *
-     * @var \NoResponse\Models\Shared\IdentifierSearchKind|string $identifier
+     * @var \NoResponse\Models\Shared\Identifier|string $identifier
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('identifier')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\IdentifierSearchKind|string')]
-    public IdentifierSearchKind|string $identifier;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Identifier|string')]
+    public Identifier|string $identifier;
 
     /**
      * An evidence lane: accounts (account presence for email and username), phone, breach, domain (the email domain's registration) and ip.
@@ -79,7 +79,7 @@ class ScreeningLookupCheck
     public ?array $unanswered = null;
 
     /**
-     * @param  \NoResponse\Models\Shared\IdentifierSearchKind|string  $identifier
+     * @param  \NoResponse\Models\Shared\Identifier|string  $identifier
      * @param  \NoResponse\Models\Shared\Lane|string  $lane
      * @param  \NoResponse\Models\Shared\ScreeningLookupCheckStatus|string  $status
      * @param  int  $sources
@@ -89,7 +89,7 @@ class ScreeningLookupCheck
      * @param  ?array<\NoResponse\Models\Shared\ScreeningLookupCheckUnansweredItem>  $unanswered
      * @phpstan-pure
      */
-    public function __construct(IdentifierSearchKind|string $identifier, Lane|string $lane, ScreeningLookupCheckStatus|string $status, int $sources, int $answered, int $found, FailureReason|string|null $reason = null, ?array $unanswered = null)
+    public function __construct(Identifier|string $identifier, Lane|string $lane, ScreeningLookupCheckStatus|string $status, int $sources, int $answered, int $found, FailureReason|string|null $reason = null, ?array $unanswered = null)
     {
         $this->identifier = $identifier;
         $this->lane = $lane;
