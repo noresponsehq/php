@@ -1,5 +1,9 @@
 # Changelog
 
+## 17.0.3
+
+No changes detected.
+
 ## 17.0.2
 
 * `sdk->groups->listPeople()`:  `response.items[]->coverage` **Changed**
