@@ -1,5 +1,18 @@
 # Changelog
 
+## 17.0.2
+
+* `sdk->groups->listPeople()`:  `response.items[]->coverage` **Changed**
+* `sdk->groups->getPerson()`:  `response.person->coverage` **Changed**
+* `sdk->groups->reviewPerson()`:  `response.coverage` **Changed**
+* `sdk->groups->exportPeople()`:  `response.items[]->coverage` **Changed**
+* `sdk->people->get()`:  `response.evidenceInvestigation->coverage` **Changed**
+* `sdk->investigations->list()`:  `response.items[]->coverage` **Changed**
+* `sdk->investigations->create()`:  `response.coverage` **Changed**
+* `sdk->investigations->get()`:  `response.investigation->coverage` **Changed**
+* `sdk->investigations->review()`:  `response.coverage` **Changed**
+* `sdk->investigations->cancel()`:  `response.coverage` **Changed**
+
 ## 17.0.1
 
 No changes detected.

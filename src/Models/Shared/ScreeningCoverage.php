@@ -95,6 +95,26 @@ class ScreeningCoverage
     public ?array $notSearched = null;
 
     /**
+     * How many sources this search asked and how many answered, across the lookup stage (sources asked whether an account exists for an identifier) and the platform stage (profiles read on each platform). A source that answered may have found nothing; one that did not answer failed or ran out of time.
+     *
+     * @var ?\NoResponse\Models\Shared\ScreeningCoverageSources $sources
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('sources')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ScreeningCoverageSources|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?ScreeningCoverageSources $sources = null;
+
+    /**
+     * How long this search's latest attempt took, stage by stage. started_at minus the investigation's creation is the time spent queued or retrying.
+     *
+     * @var ?\NoResponse\Models\Shared\ScreeningCoverageTiming $timing
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('timing')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\ScreeningCoverageTiming|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?ScreeningCoverageTiming $timing = null;
+
+    /**
      * @param  int  $accountsFound
      * @param  int  $accountsAccessible
      * @param  int  $itemsRead
@@ -105,9 +125,11 @@ class ScreeningCoverage
      * @param  ?string  $periodFrom
      * @param  ?string  $periodTo
      * @param  ?array<string>  $notSearched
+     * @param  ?\NoResponse\Models\Shared\ScreeningCoverageSources  $sources
+     * @param  ?\NoResponse\Models\Shared\ScreeningCoverageTiming  $timing
      * @phpstan-pure
      */
-    public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?int $itemsNotAnalysed = null, ?array $notAnalysedByReason = null, ?int $itemsFrameOnly = null, ?string $periodFrom = null, ?string $periodTo = null, ?array $notSearched = null)
+    public function __construct(int $accountsFound, int $accountsAccessible, int $itemsRead, array $platforms, ?int $itemsNotAnalysed = null, ?array $notAnalysedByReason = null, ?int $itemsFrameOnly = null, ?string $periodFrom = null, ?string $periodTo = null, ?array $notSearched = null, ?ScreeningCoverageSources $sources = null, ?ScreeningCoverageTiming $timing = null)
     {
         $this->accountsFound = $accountsFound;
         $this->accountsAccessible = $accountsAccessible;
@@ -119,5 +141,7 @@ class ScreeningCoverage
         $this->periodFrom = $periodFrom;
         $this->periodTo = $periodTo;
         $this->notSearched = $notSearched;
+        $this->sources = $sources;
+        $this->timing = $timing;
     }
 }
