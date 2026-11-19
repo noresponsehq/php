@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 25e09d08cdf4daf1e48201ecfbb9c5f5
+  docChecksum: 7dd3eec275d8ab91ea9ec7d1f1e30f86
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 17.0.5
-  configChecksum: fd0444494107c8860ceab68b3e0aa72d
+  releaseVersion: 17.0.6
+  configChecksum: f285a0d27fc03800b4c9e8b4800ad5c8
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -1419,7 +1419,7 @@ trackedFiles:
   docs/Models/Shared/ScreeningNotAnalysedReason.md:
     last_write_checksum: sha1:384c69fededc93ad7a6307b77e565af91ca21add
   docs/Models/Shared/ScreeningPlatformCoverage.md:
-    last_write_checksum: sha1:20bea97f8715fd289a384db4bcda8dcc1f2d4dd2
+    last_write_checksum: sha1:b2e12997a5078eac78dbe78c519fcbf4489589d2
   docs/Models/Shared/ScreeningPlatformCoverageStatus.md:
     last_write_checksum: sha1:561263669d39e91143dd692dba51e6a21dfc014c
   docs/Models/Shared/ScreeningPost.md:
@@ -3079,7 +3079,7 @@ trackedFiles:
   src/Models/Shared/ScreeningNotAnalysedReason.php:
     last_write_checksum: sha1:e6e9bb6714513d48171978126da54bbb9b4888fd
   src/Models/Shared/ScreeningPlatformCoverage.php:
-    last_write_checksum: sha1:e350f09ebdad890b474d67272904d6a5277bf74c
+    last_write_checksum: sha1:31f7b349d3b64e5363c6ef49beba36cae2ea35bd
   src/Models/Shared/ScreeningPlatformCoverageStatus.php:
     last_write_checksum: sha1:f1eb1fcfe5d2df86f5b13886686c7df69f7aff2c
   src/Models/Shared/ScreeningPost.php:
@@ -3607,7 +3607,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:576b44fc517457d20f14219cca01d25a94a47506
+    last_write_checksum: sha1:b33e9ea7dbf3937ce978e1a49b0fb00f1cdb4bc3
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:

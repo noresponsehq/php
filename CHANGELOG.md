@@ -1,5 +1,9 @@
 # Changelog
 
+## 17.0.6
+
+No changes detected.
+
 ## 17.0.5
 
 * `sdk->groups->getPerson()`:  `response.lookup->answers` **Added**

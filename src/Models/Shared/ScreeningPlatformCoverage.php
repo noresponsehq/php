@@ -26,6 +26,7 @@ class ScreeningPlatformCoverage
     public ScreeningPlatformCoverageStatus|string $status;
 
     /**
+     * Accounts found on the platform: at most 5, the best candidates the search kept.
      *
      * @var int $accountsFound
      */
