@@ -1,5 +1,11 @@
 # Changelog
 
+## 18.0.0
+
+* `sdk->groups->getPerson()`:  `response.lookup` **Changed** (Breaking ⚠️)
+* `sdk->people->get()`:  `response.lookup` **Changed** (Breaking ⚠️)
+* `sdk->investigations->get()`:  `response.lookup` **Changed** (Breaking ⚠️)
+
 ## 17.0.9
 
 * `sdk->people->get()`:  `response.groups` **Added**

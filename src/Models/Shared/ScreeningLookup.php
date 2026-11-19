@@ -36,26 +36,6 @@ class ScreeningLookup
     public ?array $answers = null;
 
     /**
-     * A few typed facts per identifier: an assessment's risk.summary, and a screened person's lookup summary. Every fact is optional: absent means the evidence did not answer and makes no claim, while false or 0 is a definite answer.
-     *
-     * @var ?\NoResponse\Models\Shared\RiskSummary $summary
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('summary')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskSummary|null')]
-    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?RiskSummary $summary = null;
-
-    /**
-     * Merged observations behind the summary, served only to a caller who may read evidence: no provider, source, origin, raw breach record or score.
-     *
-     * @var ?\NoResponse\Models\Shared\RiskDetails $details
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('details')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskDetails|null')]
-    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?RiskDetails $details = null;
-
-    /**
      * What each source answered, whole, each answer once: every field of each account a connector found, and every column of each breach row the person's email or usernames matched, under the source's own names, and what each search a person started found, each match naming its search. Anyone who may read the person reads them: no extra permission applies, breach passwords and hashes included.
      *
      * @var ?array<\NoResponse\Models\Shared\Record> $records
@@ -79,19 +59,15 @@ class ScreeningLookup
      * @param  array<\NoResponse\Models\Shared\ScreeningLookupCheck>  $checks
      * @param  string  $lookedAt
      * @param  ?array<\NoResponse\Models\Shared\ScreeningLookupAnswer>  $answers
-     * @param  ?\NoResponse\Models\Shared\RiskSummary  $summary
-     * @param  ?\NoResponse\Models\Shared\RiskDetails  $details
      * @param  ?array<\NoResponse\Models\Shared\Record>  $records
      * @param  ?array<\NoResponse\Models\Shared\RecordRemaining>  $remaining
      * @phpstan-pure
      */
-    public function __construct(array $checks, string $lookedAt, ?array $answers = null, ?RiskSummary $summary = null, ?RiskDetails $details = null, ?array $records = null, ?array $remaining = null)
+    public function __construct(array $checks, string $lookedAt, ?array $answers = null, ?array $records = null, ?array $remaining = null)
     {
         $this->checks = $checks;
         $this->lookedAt = $lookedAt;
         $this->answers = $answers;
-        $this->summary = $summary;
-        $this->details = $details;
         $this->records = $records;
         $this->remaining = $remaining;
     }
