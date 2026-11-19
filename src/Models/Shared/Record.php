@@ -120,6 +120,15 @@ class Record
     public ?array $path = null;
 
     /**
+     * For a record that is not the person's, the other person it belongs with: records that share this number share strong values, such as an email or a full name with a phone, and score as one person against each other. Absent on the person's own records and on a record that matches nobody else. A value that more than 20 strangers hold groups nobody.
+     *
+     * @var ?int $otherPerson
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('other_person')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?int $otherPerson = null;
+
+    /**
      * @param  string  $id
      * @param  \NoResponse\Models\Shared\RecordSource  $source
      * @param  array<\NoResponse\Models\Shared\RecordMatch>  $matched
@@ -132,9 +141,10 @@ class Record
      * @param  \NoResponse\Models\Shared\Verdict|string|null  $verdict
      * @param  ?array<\NoResponse\Models\Shared\RecordEvidence>  $evidence
      * @param  ?array<string>  $path
+     * @param  ?int  $otherPerson
      * @phpstan-pure
      */
-    public function __construct(string $id, RecordSource $source, array $matched, array $fields, string $observedAt, ?float $likelihood = null, ?array $agreed = null, ?array $clashed = null, ?bool $joined = null, Verdict|string|null $verdict = null, ?array $evidence = null, ?array $path = null)
+    public function __construct(string $id, RecordSource $source, array $matched, array $fields, string $observedAt, ?float $likelihood = null, ?array $agreed = null, ?array $clashed = null, ?bool $joined = null, Verdict|string|null $verdict = null, ?array $evidence = null, ?array $path = null, ?int $otherPerson = null)
     {
         $this->id = $id;
         $this->source = $source;
@@ -148,5 +158,6 @@ class Record
         $this->verdict = $verdict;
         $this->evidence = $evidence;
         $this->path = $path;
+        $this->otherPerson = $otherPerson;
     }
 }

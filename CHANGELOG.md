@@ -1,5 +1,11 @@
 # Changelog
 
+## 20.0.1
+
+* `sdk->groups->getPerson()`:  `response` **Changed**
+* `sdk->people->get()`:  `response` **Changed**
+* `sdk->investigations->get()`:  `response` **Changed**
+
 ## 20.0.0
 
 * `sdk->groups->startScreening()`: 

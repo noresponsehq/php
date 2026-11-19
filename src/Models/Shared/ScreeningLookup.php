@@ -56,19 +56,31 @@ class ScreeningLookup
     public ?array $remaining = null;
 
     /**
+     * Identifiers you gave that lead to different people. Absent when they agree.
+     *
+     * @var ?array<\NoResponse\Models\Shared\RecordConflict> $conflicts
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('conflicts')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\RecordConflict>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $conflicts = null;
+
+    /**
      * @param  array<\NoResponse\Models\Shared\ScreeningLookupCheck>  $checks
      * @param  string  $lookedAt
      * @param  ?array<\NoResponse\Models\Shared\ScreeningLookupAnswer>  $answers
      * @param  ?array<\NoResponse\Models\Shared\Record>  $records
      * @param  ?array<\NoResponse\Models\Shared\RecordRemaining>  $remaining
+     * @param  ?array<\NoResponse\Models\Shared\RecordConflict>  $conflicts
      * @phpstan-pure
      */
-    public function __construct(array $checks, string $lookedAt, ?array $answers = null, ?array $records = null, ?array $remaining = null)
+    public function __construct(array $checks, string $lookedAt, ?array $answers = null, ?array $records = null, ?array $remaining = null, ?array $conflicts = null)
     {
         $this->checks = $checks;
         $this->lookedAt = $lookedAt;
         $this->answers = $answers;
         $this->records = $records;
         $this->remaining = $remaining;
+        $this->conflicts = $conflicts;
     }
 }
