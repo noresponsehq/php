@@ -26,6 +26,16 @@ class ScreeningLookup
     public string $lookedAt;
 
     /**
+     * Each source asked, with what it answered and when. answered_at is absent while the source has not answered.
+     *
+     * @var ?array<\NoResponse\Models\Shared\ScreeningLookupAnswer> $answers
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('answers')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\ScreeningLookupAnswer>|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?array $answers = null;
+
+    /**
      * A few typed facts per identifier: an assessment's risk.summary, and a screened person's lookup summary. Every fact is optional: absent means the evidence did not answer and makes no claim, while false or 0 is a definite answer.
      *
      * @var ?\NoResponse\Models\Shared\RiskSummary $summary
@@ -68,16 +78,18 @@ class ScreeningLookup
     /**
      * @param  array<\NoResponse\Models\Shared\ScreeningLookupCheck>  $checks
      * @param  string  $lookedAt
+     * @param  ?array<\NoResponse\Models\Shared\ScreeningLookupAnswer>  $answers
      * @param  ?\NoResponse\Models\Shared\RiskSummary  $summary
      * @param  ?\NoResponse\Models\Shared\RiskDetails  $details
      * @param  ?array<\NoResponse\Models\Shared\Record>  $records
      * @param  ?array<\NoResponse\Models\Shared\RecordRemaining>  $remaining
      * @phpstan-pure
      */
-    public function __construct(array $checks, string $lookedAt, ?RiskSummary $summary = null, ?RiskDetails $details = null, ?array $records = null, ?array $remaining = null)
+    public function __construct(array $checks, string $lookedAt, ?array $answers = null, ?RiskSummary $summary = null, ?RiskDetails $details = null, ?array $records = null, ?array $remaining = null)
     {
         $this->checks = $checks;
         $this->lookedAt = $lookedAt;
+        $this->answers = $answers;
         $this->summary = $summary;
         $this->details = $details;
         $this->records = $records;

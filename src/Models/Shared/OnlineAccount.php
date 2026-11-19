@@ -26,11 +26,11 @@ class OnlineAccount
 
     /**
      *
-     * @var \NoResponse\Models\Shared\Identifier|string $identifier
+     * @var \NoResponse\Models\Shared\RiskDetailsEventIdentifier|string $identifier
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('identifier')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Identifier|string')]
-    public Identifier|string $identifier;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskDetailsEventIdentifier|string')]
+    public RiskDetailsEventIdentifier|string $identifier;
 
     /**
      * Per-signal outcome. A source that timed out, was blocked or errored reports blocked, unavailable or inconclusive with a reason and is listed in incomplete_sources; not_found is a definite absence.
@@ -110,7 +110,7 @@ class OnlineAccount
     /**
      * @param  string  $name
      * @param  string  $domain
-     * @param  \NoResponse\Models\Shared\Identifier|string  $identifier
+     * @param  \NoResponse\Models\Shared\RiskDetailsEventIdentifier|string  $identifier
      * @param  \NoResponse\Models\Shared\SignalOutcome|string  $outcome
      * @param  \NoResponse\Models\Shared\FailureReason|string|null  $reason
      * @param  array<\NoResponse\Models\Shared\SignIn|string>|null  $signIn
@@ -121,7 +121,7 @@ class OnlineAccount
      * @param  ?string  $firstNamePrefix
      * @phpstan-pure
      */
-    public function __construct(string $name, string $domain, Identifier|string $identifier, SignalOutcome|string $outcome, FailureReason|string|null $reason = null, ?array $signIn = null, ?bool $emailVerified = null, ?bool $blocked = null, AccountType|string|null $accountType = null, ?bool $hasAvatar = null, ?string $firstNamePrefix = null)
+    public function __construct(string $name, string $domain, RiskDetailsEventIdentifier|string $identifier, SignalOutcome|string $outcome, FailureReason|string|null $reason = null, ?array $signIn = null, ?bool $emailVerified = null, ?bool $blocked = null, AccountType|string|null $accountType = null, ?bool $hasAvatar = null, ?string $firstNamePrefix = null)
     {
         $this->name = $name;
         $this->domain = $domain;

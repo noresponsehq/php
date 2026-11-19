@@ -8,5 +8,7 @@ namespace NoResponse\Models\Shared;
 enum Identifier: string
 {
     case Email = 'email';
+    case Phone = 'phone';
     case Username = 'username';
+    case Name = 'name';
 }

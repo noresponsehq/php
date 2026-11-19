@@ -47,11 +47,11 @@ class RiskDetailsEvent
 
     /**
      *
-     * @var \NoResponse\Models\Shared\Identifier|string $identifier
+     * @var \NoResponse\Models\Shared\RiskDetailsEventIdentifier|string $identifier
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('identifier')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\Identifier|string')]
-    public Identifier|string $identifier;
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\RiskDetailsEventIdentifier|string')]
+    public RiskDetailsEventIdentifier|string $identifier;
 
     /**
      *
@@ -67,11 +67,11 @@ class RiskDetailsEvent
      * @param  string  $site
      * @param  string  $category
      * @param  \NoResponse\Models\Shared\FootprintFamily|string  $family
-     * @param  \NoResponse\Models\Shared\Identifier|string  $identifier
+     * @param  \NoResponse\Models\Shared\RiskDetailsEventIdentifier|string  $identifier
      * @param  ?int  $month
      * @phpstan-pure
      */
-    public function __construct(int $year, RiskDetailsEventKind|string $kind, string $site, string $category, FootprintFamily|string $family, Identifier|string $identifier, ?int $month = null)
+    public function __construct(int $year, RiskDetailsEventKind|string $kind, string $site, string $category, FootprintFamily|string $family, RiskDetailsEventIdentifier|string $identifier, ?int $month = null)
     {
         $this->year = $year;
         $this->kind = $kind;
