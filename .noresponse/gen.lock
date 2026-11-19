@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: b97bbfdc8f489cf221e6aaab5ca5520e
+  docChecksum: c0ad56d77bfa89b56020c3323d220133
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 17.0.0
-  configChecksum: 946d62701dc6abbc3334e894ff7c04c0
+  releaseVersion: 17.0.1
+  configChecksum: b7439ebbaa62b90bbc4c7599a5109f91
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -3559,7 +3559,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:2b845f5f3c5e7c62956f49e8e0b80f66378203d1
+    last_write_checksum: sha1:da681f043a407e4bfa2c8469d5b218a280faf45a
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:
