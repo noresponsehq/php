@@ -1,5 +1,10 @@
 # Changelog
 
+## 17.0.4
+
+* `sdk->people->reviewChange()`: **Added**
+* `sdk->people->get()`:  `response.changes` **Added**
+
 ## 17.0.3
 
 No changes detected.

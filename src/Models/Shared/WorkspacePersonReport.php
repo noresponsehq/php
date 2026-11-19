@@ -83,6 +83,15 @@ class WorkspacePersonReport
     public array $suggestedSearches;
 
     /**
+     * What changed between each settled investigation of this person and the one before it, unreviewed first, then most significant, then newest. The first investigation records no changes. When evidence.read is denied, before and after are withheld.
+     *
+     * @var array<\NoResponse\Models\Shared\PersonChange> $changes
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('changes')]
+    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\PersonChange>')]
+    public array $changes;
+
+    /**
      * Your reference for this person within the workspace environment. Only an explicit reference or person_id can reuse an existing person.
      *
      * @var ?string $externalId
@@ -211,6 +220,7 @@ class WorkspacePersonReport
      * @param  array<\NoResponse\Models\Shared\ScreeningPost>  $posts
      * @param  array<\NoResponse\Models\Shared\ScreeningMedia>  $media
      * @param  array<\NoResponse\Models\Shared\SuggestedSearch>  $suggestedSearches
+     * @param  array<\NoResponse\Models\Shared\PersonChange>  $changes
      * @param  ?string  $externalId
      * @param  ?string  $name
      * @param  ?string  $email
@@ -226,7 +236,7 @@ class WorkspacePersonReport
      * @param  ?\NoResponse\Models\Shared\WrittenProfile  $writtenProfile
      * @phpstan-pure
      */
-    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
+    public function __construct(string $id, string $createdAt, string $updatedAt, string $expiresAt, array $profiles, array $findings, array $posts, array $media, array $suggestedSearches, array $changes, ?string $externalId = null, ?string $name = null, ?string $email = null, ?string $phone = null, ?string $company = null, ?string $city = null, ?string $username = null, ?array $handles = null, ?ScreeningLookup $lookup = null, ?array $searches = null, ?bool $evidenceRestricted = null, ?Investigation $evidenceInvestigation = null, ?WrittenProfile $writtenProfile = null)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
@@ -237,6 +247,7 @@ class WorkspacePersonReport
         $this->posts = $posts;
         $this->media = $media;
         $this->suggestedSearches = $suggestedSearches;
+        $this->changes = $changes;
         $this->externalId = $externalId;
         $this->name = $name;
         $this->email = $email;

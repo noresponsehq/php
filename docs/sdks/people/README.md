@@ -13,6 +13,7 @@ Workspace people, submitted identity, source evidence and expiry.
 * [judgeRecord](#judgerecord) - Join one of a workspace person's records to them, or reject it.
 * [startSearch](#startsearch) - Search again on a value of one of a workspace person's records.
 * [runSearch](#runsearch) - Run a counted password or hash search on a workspace person.
+* [reviewChange](#reviewchange) - Mark a change on a workspace person reviewed.
 
 ## list
 
@@ -398,6 +399,64 @@ $result = $response->result;
 ### Response
 
 **[?Operations\RunWorkspacePersonSearchResponse](../../Models/Operations/RunWorkspacePersonSearchResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\BadRequestError       | 400                          | application/problem+json     |
+| Errors\AuthenticationError   | 401                          | application/problem+json     |
+| Errors\PermissionDeniedError | 403                          | application/problem+json     |
+| Errors\NotFoundError         | 404                          | application/problem+json     |
+| Errors\ConflictError         | 409                          | application/problem+json     |
+| Errors\RateLimitError        | 429                          | application/problem+json     |
+| Errors\APIStatusException    | 4XX, 5XX                     | \*/\*                        |
+
+## reviewChange
+
+Marks one change between a person's investigations reviewed, so it sorts below the unreviewed ones. Reviewing again keeps the first reviewer and time. Reviewing a change is not a decision on the person. The body is an empty object. Each review is audited as person.change_reviewed. The decisions scope grants this operation. Explicit evidence.read restrictions withhold before and after. The groups scope is also accepted for existing integrations. The API key selects the workspace and environment.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="reviewWorkspacePersonChange" method="post" path="/v1/people/{person_id}/changes/{change_id}/review" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use NoResponse;
+use NoResponse\Models\Shared;
+
+$sdk = NoResponse\NoResponseClient::builder()
+    ->setSecurity(
+        getenv('NORESPONSE_API_KEY') ?: ''
+    )
+    ->build();
+
+$body = new Shared\ScreeningCancelRequest();
+
+$response = $sdk->people->reviewChange(
+    personId: 'per_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    changeId: 'chg_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
+    body: $body
+
+);
+
+$result = $response->result;
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `personId`                                                                     | *string*                                                                       | :heavy_check_mark:                                                             | N/A                                                                            | per_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                 |
+| `changeId`                                                                     | *string*                                                                       | :heavy_check_mark:                                                             | N/A                                                                            | chg_01JA2Z8K6Q4V7W9XBCDEFGHJKM                                                 |
+| `body`                                                                         | [Shared\ScreeningCancelRequest](../../Models/Shared/ScreeningCancelRequest.md) | :heavy_check_mark:                                                             | N/A                                                                            |                                                                                |
+
+### Response
+
+**[?Operations\ReviewWorkspacePersonChangeResponse](../../Models/Operations/ReviewWorkspacePersonChangeResponse.md)**
 
 ### Errors
 
