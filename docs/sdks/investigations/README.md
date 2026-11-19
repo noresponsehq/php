@@ -89,9 +89,6 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\InvestigationRequest(
     depth: Shared\ScreeningDepth::Standard,
-    platforms: [
-        'x',
-    ],
     personId: 'per_01JA2Z8K6Q4V7W9XBCDEFGHJKM',
 );
 

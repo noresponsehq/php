@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: c7ef59f2-1e4c-46f9-bd51-cae39f3c591d
 management:
-  docChecksum: 7dd3eec275d8ab91ea9ec7d1f1e30f86
+  docChecksum: 9fe12ee2250a5bce737a25f0efff57ed
   docVersion: "1"
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 17.0.6
-  configChecksum: f285a0d27fc03800b4c9e8b4800ad5c8
+  releaseVersion: 17.0.7
+  configChecksum: 4a1166a49e9319689a297a9e8f733631
 features:
   php:
     constsAndDefaults: 0.2.2
@@ -957,7 +957,7 @@ trackedFiles:
   docs/Models/Shared/InvestigationReport.md:
     last_write_checksum: sha1:7b9d12712351391042908e25c01682410d4dbe2d
   docs/Models/Shared/InvestigationRequest.md:
-    last_write_checksum: sha1:3577f5761ea64d5afcd4c201044e8ebfaf39a507
+    last_write_checksum: sha1:70272c66338f6ee8d143ff36f745cfe5efe323be
   docs/Models/Shared/InvestigationStatus.md:
     last_write_checksum: sha1:c8068a7f6f1b9f660452fc2549c142d68acbe1d8
   docs/Models/Shared/InvestigationsList.md:
@@ -1427,7 +1427,7 @@ trackedFiles:
   docs/Models/Shared/ScreeningProfile.md:
     last_write_checksum: sha1:57dab9bf5df2a00ee9fa93444535af7b127b8434
   docs/Models/Shared/ScreeningRequest.md:
-    last_write_checksum: sha1:309e4b0137f601f2abf5fa8dfb36dba839652f4b
+    last_write_checksum: sha1:32edd5c3f6a56e007fc8d86548925a99641d50d8
   docs/Models/Shared/ScreeningSpend.md:
     last_write_checksum: sha1:6a9e61b8502e83dece16df2b1d4c8bc33bf03973
   docs/Models/Shared/ScreeningSpendLine.md:
@@ -1595,11 +1595,11 @@ trackedFiles:
   docs/sdks/exports/README.md:
     last_write_checksum: sha1:37a74050f72915c491d9805bf893e4f957d2124b
   docs/sdks/groups/README.md:
-    last_write_checksum: sha1:fd547f11cb10c859c6ff74c53020d4b1983f240e
+    last_write_checksum: sha1:062eb64b58d78f170abf8154c9f60af24fa192ff
   docs/sdks/integrations/README.md:
     last_write_checksum: sha1:ef8d5910b4f8fc98b998fa0b7b26bf62fbda6099
   docs/sdks/investigations/README.md:
-    last_write_checksum: sha1:83116e0615c5b2e51ac60009ad56aef29f92eb06
+    last_write_checksum: sha1:db5b4ed1e2db2ee3de419e847efdd02771b4b9a6
   docs/sdks/invites/README.md:
     last_write_checksum: sha1:bda1a465bc3118d41375373d290b63b7c174d716
   docs/sdks/keys/README.md:
@@ -2621,7 +2621,7 @@ trackedFiles:
   src/Models/Shared/InvestigationReport.php:
     last_write_checksum: sha1:ebcb91ee7da75d2aab31c8cc915eeb44e7786fc3
   src/Models/Shared/InvestigationRequest.php:
-    last_write_checksum: sha1:681e4cb770ecc008eff024ba4832f70cfc4b8dde
+    last_write_checksum: sha1:3ca0080f548c2f8b6a873eab6109ac756ba6a0a7
   src/Models/Shared/InvestigationStatus.php:
     last_write_checksum: sha1:b209e30407bab1196cc07cb4546115ad62546d25
   src/Models/Shared/InvestigationsList.php:
@@ -3087,7 +3087,7 @@ trackedFiles:
   src/Models/Shared/ScreeningProfile.php:
     last_write_checksum: sha1:0ddb0b9a6ea1c89c3de3d4f982c9c692ac8911f4
   src/Models/Shared/ScreeningRequest.php:
-    last_write_checksum: sha1:68c0a655f57e46041de235b36727c0208d168155
+    last_write_checksum: sha1:6a88daf594f2264a38483d7c3ed04cb11308841b
   src/Models/Shared/ScreeningSpend.php:
     last_write_checksum: sha1:12d380f45580f27dceb81e7cee8401aa1e428df7
   src/Models/Shared/ScreeningSpendLine.php:
@@ -3607,7 +3607,7 @@ trackedFiles:
   src/Reviews.php:
     last_write_checksum: sha1:6326f8fee03a9ed741d6725fff8666090352ce99
   src/SDKConfiguration.php:
-    last_write_checksum: sha1:b33e9ea7dbf3937ce978e1a49b0fb00f1cdb4bc3
+    last_write_checksum: sha1:94125710a2103963f451af327d7fe980216a930a
   src/Settings.php:
     last_write_checksum: sha1:354da8ff6f27d784f7d1c0c30ef1447d91f75787
   src/Usage.php:
@@ -6329,7 +6329,7 @@ examples:
         header:
           Idempotency-Key: "account-acct_7f3a9c"
       requestBody:
-        application/json: {"depth": "standard", "platforms": ["bluesky"]}
+        application/json: {"depth": "standard"}
       responses:
         "202":
           application/json: {"id": "scn_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "group_id": "grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "environment": "live", "status": "running", "depth": "standard", "platforms": ["bluesky"], "requested_by": "user_2abc", "created_at": "2026-01-01T00:00:00Z", "started_at": "2026-01-01T00:00:00Z", "finished_at": "2026-01-02T00:00:00Z", "expires_at": "2026-01-02T00:00:00Z", "people_total": 592267, "people_done": 173751, "people_flagged": 250584, "people_failed": 772063, "people_partial": 825999, "estimated_spend": 343791, "spent": 379997, "spend": {"total_minor": 816908, "by_implementation": [{"implementation": "synthetic", "role": "collector", "spend_minor": 861627}]}, "error_code": "user_cancelled"}
@@ -6609,7 +6609,7 @@ examples:
         header:
           Idempotency-Key: "investigation-case-1042-first"
       requestBody:
-        application/json: {"depth": "standard", "platforms": ["x"], "person_id": "per_01JA2Z8K6Q4V7W9XBCDEFGHJKM"}
+        application/json: {"depth": "standard", "person_id": "per_01JA2Z8K6Q4V7W9XBCDEFGHJKM"}
       responses:
         "202":
           application/json: {"highest_band": null, "coverage": {"accounts_found": 353004, "accounts_accessible": 190010, "items_read": 392044, "period_from": "2026-01-01T00:00:00Z", "period_to": "2026-01-02T00:00:00Z", "platforms": [{"platform": "bluesky", "status": "inaccessible", "accounts_found": 63025, "items_read": 718618}], "not_searched": ["instagram"], "timing": {"started_at": "2026-01-01T00:00:00Z", "total_ms": 335147, "stages": [{"stage": "late_lookup", "ms": 496778}]}}, "spend": {"total_minor": 810936, "by_implementation": []}, "decision": "cleared", "decision_note": "Source records reviewed.", "decided_by": "user_investigator", "decided_at": "2026-01-01T00:00:00Z", "id": "inv_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "person_id": "per_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "group_id": "grp_01JA2Z8K6Q4V7W9XBCDEFGHJKM", "status": "partial", "depth": "standard", "platforms": ["x"], "match_state": "confirmed", "error_code": "expired", "created_at": "2026-01-01T00:00:00Z", "started_at": "2026-01-01T00:00:00Z", "finished_at": "2026-01-01T00:00:00Z", "expires_at": "2026-02-01T00:00:00Z", "deadline_at": "2026-01-01T00:00:00Z"}

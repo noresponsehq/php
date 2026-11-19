@@ -876,9 +876,6 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\ScreeningRequest(
     depth: Shared\ScreeningDepth::Standard,
-    platforms: [
-        'bluesky',
-    ],
 );
 
 $response = $sdk->groups->startScreening(

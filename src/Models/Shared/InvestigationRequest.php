@@ -24,9 +24,10 @@ class InvestigationRequest
     public string $personId;
 
     /**
-     * The platforms to search. Leave it out for a full search: every platform a connector serves in the environment when the investigation starts, which the investigation then lists.
+     * Deprecated: leave it out. Without it the investigation is a full search: every platform a connector serves in the environment when the investigation starts, which the investigation then lists, each searched only with the identifiers its connector takes. A list sent here still limits the investigation until a later contract release removes the field.
      *
      * @var ?array<string> $platforms
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\NoResponse\Serializer\Annotation\SerializedName('platforms')]
     #[\NoResponse\Serializer\Annotation\Type('array<string>|null')]
