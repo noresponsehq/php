@@ -86,39 +86,6 @@ class Investigation
     public string $deadlineAt;
 
     /**
-     * The latest reviewer decision, or null before any.
-     *
-     * @var \NoResponse\Models\Shared\PersonDecision|string|null $decision
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('decision')]
-    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\PersonDecision|string|null')]
-    public PersonDecision|string|null $decision;
-
-    /**
-     *
-     * @var ?string $decisionNote
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('decision_note')]
-    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?string $decisionNote = null;
-
-    /**
-     *
-     * @var ?string $decidedBy
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('decided_by')]
-    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?string $decidedBy = null;
-
-    /**
-     *
-     * @var ?string $decidedAt
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('decided_at')]
-    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
-    public ?string $decidedAt = null;
-
-    /**
      *
      * @var ?string $groupId
      */
@@ -168,10 +135,6 @@ class Investigation
      * @param  string  $createdAt
      * @param  string  $expiresAt
      * @param  string  $deadlineAt
-     * @param  \NoResponse\Models\Shared\PersonDecision|string|null  $decision
-     * @param  ?string  $decisionNote
-     * @param  ?string  $decidedBy
-     * @param  ?string  $decidedAt
      * @param  ?string  $groupId
      * @param  \NoResponse\Models\Shared\MatchState|string|null  $matchState
      * @param  ?string  $errorCode
@@ -179,7 +142,7 @@ class Investigation
      * @param  ?string  $finishedAt
      * @phpstan-pure
      */
-    public function __construct(ScreeningCoverage $coverage, ScreeningSpend $spend, string $id, string $personId, InvestigationStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $createdAt, string $expiresAt, string $deadlineAt, PersonDecision|string|null $decision = null, ?string $decisionNote = null, ?string $decidedBy = null, ?string $decidedAt = null, ?string $groupId = null, MatchState|string|null $matchState = null, ?string $errorCode = null, ?string $startedAt = null, ?string $finishedAt = null)
+    public function __construct(ScreeningCoverage $coverage, ScreeningSpend $spend, string $id, string $personId, InvestigationStatus|string $status, ScreeningDepth|string $depth, array $platforms, string $createdAt, string $expiresAt, string $deadlineAt, ?string $groupId = null, MatchState|string|null $matchState = null, ?string $errorCode = null, ?string $startedAt = null, ?string $finishedAt = null)
     {
         $this->coverage = $coverage;
         $this->spend = $spend;
@@ -191,10 +154,6 @@ class Investigation
         $this->createdAt = $createdAt;
         $this->expiresAt = $expiresAt;
         $this->deadlineAt = $deadlineAt;
-        $this->decision = $decision;
-        $this->decisionNote = $decisionNote;
-        $this->decidedBy = $decidedBy;
-        $this->decidedAt = $decidedAt;
         $this->groupId = $groupId;
         $this->matchState = $matchState;
         $this->errorCode = $errorCode;

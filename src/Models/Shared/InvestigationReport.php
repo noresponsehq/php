@@ -36,15 +36,6 @@ class InvestigationReport
     public array $media;
 
     /**
-     * Every recorded decision, oldest first.
-     *
-     * @var array<\NoResponse\Models\Shared\PersonReview> $reviews
-     */
-    #[\NoResponse\Serializer\Annotation\SerializedName('reviews')]
-    #[\NoResponse\Serializer\Annotation\Type('array<\NoResponse\Models\Shared\PersonReview>')]
-    public array $reviews;
-
-    /**
      *
      * @var \NoResponse\Models\Shared\WorkspacePerson $person
      */
@@ -71,7 +62,7 @@ class InvestigationReport
     public ?ScreeningLookup $lookup = null;
 
     /**
-     * True when evidence.read is explicitly denied. Submitted details, coverage, job status and decisions remain available. Collected records, profiles, posts, media, discovered values and free-text decision notes are withheld.
+     * True when evidence.read is explicitly denied. Submitted details, coverage and job status remain available. Collected records, profiles, posts, media and discovered values are withheld.
      *
      * @var ?bool $evidenceRestricted
      */
@@ -83,19 +74,17 @@ class InvestigationReport
      * @param  array<\NoResponse\Models\Shared\ScreeningProfile>  $profiles
      * @param  array<\NoResponse\Models\Shared\ScreeningPost>  $posts
      * @param  array<\NoResponse\Models\Shared\ScreeningMedia>  $media
-     * @param  array<\NoResponse\Models\Shared\PersonReview>  $reviews
      * @param  \NoResponse\Models\Shared\WorkspacePerson  $person
      * @param  \NoResponse\Models\Shared\Investigation  $investigation
      * @param  ?\NoResponse\Models\Shared\ScreeningLookup  $lookup
      * @param  ?bool  $evidenceRestricted
      * @phpstan-pure
      */
-    public function __construct(array $profiles, array $posts, array $media, array $reviews, WorkspacePerson $person, Investigation $investigation, ?ScreeningLookup $lookup = null, ?bool $evidenceRestricted = null)
+    public function __construct(array $profiles, array $posts, array $media, WorkspacePerson $person, Investigation $investigation, ?ScreeningLookup $lookup = null, ?bool $evidenceRestricted = null)
     {
         $this->profiles = $profiles;
         $this->posts = $posts;
         $this->media = $media;
-        $this->reviews = $reviews;
         $this->person = $person;
         $this->investigation = $investigation;
         $this->lookup = $lookup;
