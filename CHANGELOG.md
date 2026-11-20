@@ -1,5 +1,9 @@
 # Changelog
 
+## 20.0.5
+
+No changes detected.
+
 ## 20.0.4
 
 * `sdk->groups->list()`:  `response.items[]` **Changed**
