@@ -17,6 +17,25 @@ class GroupRequest
     public string $name;
 
     /**
+     * What the group's people share: an event, an organisation, a place or another attribute.
+     *
+     * @var \NoResponse\Models\Shared\GroupType|string|null $type
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('type')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\GroupType|string|null')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public GroupType|string|null $type = null;
+
+    /**
+     * The attribute its people share, such as the employer's or the place's name.
+     *
+     * @var ?string $attribute
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('attribute')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $attribute = null;
+
+    /**
      * Where the group is held.
      *
      * @var ?string $venue
@@ -72,6 +91,8 @@ class GroupRequest
 
     /**
      * @param  string  $name
+     * @param  \NoResponse\Models\Shared\GroupType|string|null  $type
+     * @param  ?string  $attribute
      * @param  ?string  $venue
      * @param  ?string  $host
      * @param  ?array<\NoResponse\Models\Shared\Principal>  $principals
@@ -80,9 +101,11 @@ class GroupRequest
      * @param  string|null|\NoResponse\Utils\Absent  $endsAt
      * @phpstan-pure
      */
-    public function __construct(string $name, ?string $venue = null, ?string $host = null, ?array $principals = null, ?array $topics = null, string|null|\NoResponse\Utils\Absent $startsAt = \NoResponse\Utils\Absent::Value, string|null|\NoResponse\Utils\Absent $endsAt = \NoResponse\Utils\Absent::Value)
+    public function __construct(string $name, GroupType|string|null $type = null, ?string $attribute = null, ?string $venue = null, ?string $host = null, ?array $principals = null, ?array $topics = null, string|null|\NoResponse\Utils\Absent $startsAt = \NoResponse\Utils\Absent::Value, string|null|\NoResponse\Utils\Absent $endsAt = \NoResponse\Utils\Absent::Value)
     {
         $this->name = $name;
+        $this->type = $type;
+        $this->attribute = $attribute;
         $this->venue = $venue;
         $this->host = $host;
         $this->principals = $principals;

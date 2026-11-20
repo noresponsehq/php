@@ -22,7 +22,7 @@ final class GroupDatesTest extends TestCase
         self::assertSame(['starts_at' => null, 'ends_at' => null], json_decode($serializer->serialize($body, 'json'), true));
         $body->startsAt = '2026-12-03T09:00:00Z';
         self::assertSame('2026-12-03T09:00:00Z', json_decode($serializer->serialize($body, 'json'), true)['starts_at']);
-        $group = $serializer->deserialize('{"id":"grp_example","environment":"test","name":"Harbour building","starts_at":null,"ends_at":null,"principals":[],"topics":[],"people":0,"version":1,"created_by":"test","created_at":"2026-11-15T10:00:00Z","updated_at":"2026-11-15T10:00:00Z"}', Group::class, 'json');
+        $group = $serializer->deserialize('{"id":"grp_example","environment":"test","name":"Harbour building","type":"event","attribute":"","starts_at":null,"ends_at":null,"principals":[],"topics":[],"people":0,"version":1,"created_by":"test","created_at":"2026-11-15T10:00:00Z","updated_at":"2026-11-15T10:00:00Z"}', Group::class, 'json');
         self::assertNull($group->startsAt);
         self::assertNull($group->endsAt);
         $other = $serializer->deserialize('{"group_id":"grp_building","group_name":"Harbour building","group_starts_at":null,"person_id":"per_example","matched_on":["person_id"],"match_state":"unscreened","decision":null}', \NoResponse\Models\Shared\OtherGroup::class, 'json');

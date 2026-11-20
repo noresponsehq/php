@@ -32,6 +32,23 @@ class Group
     public string $name;
 
     /**
+     * What the group's people share: an event, an organisation, a place or another attribute.
+     *
+     * @var \NoResponse\Models\Shared\GroupType|string $type
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('type')]
+    #[\NoResponse\Serializer\Annotation\Type('\NoResponse\Models\Shared\GroupType|string')]
+    public GroupType|string $type;
+
+    /**
+     * The attribute its people share. Empty when none was given.
+     *
+     * @var string $attribute
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('attribute')]
+    public string $attribute;
+
+    /**
      * The people the group protects.
      *
      * @var array<\NoResponse\Models\Shared\Principal> $principals
@@ -125,6 +142,8 @@ class Group
      * @param  string  $id
      * @param  \NoResponse\Models\Shared\AuditSettingsEnvironment|string  $environment
      * @param  string  $name
+     * @param  \NoResponse\Models\Shared\GroupType|string  $type
+     * @param  string  $attribute
      * @param  array<\NoResponse\Models\Shared\Principal>  $principals
      * @param  array<string>  $topics
      * @param  int  $people
@@ -138,11 +157,13 @@ class Group
      * @param  ?string  $host
      * @phpstan-pure
      */
-    public function __construct(string $id, AuditSettingsEnvironment|string $environment, string $name, array $principals, array $topics, int $people, int $version, string $createdBy, string $createdAt, string $updatedAt, ?string $startsAt = null, ?string $endsAt = null, ?string $venue = null, ?string $host = null)
+    public function __construct(string $id, AuditSettingsEnvironment|string $environment, string $name, GroupType|string $type, string $attribute, array $principals, array $topics, int $people, int $version, string $createdBy, string $createdAt, string $updatedAt, ?string $startsAt = null, ?string $endsAt = null, ?string $venue = null, ?string $host = null)
     {
         $this->id = $id;
         $this->environment = $environment;
         $this->name = $name;
+        $this->type = $type;
+        $this->attribute = $attribute;
         $this->principals = $principals;
         $this->topics = $topics;
         $this->people = $people;

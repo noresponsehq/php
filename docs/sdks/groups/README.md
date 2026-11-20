@@ -101,6 +101,8 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\GroupRequest(
     name: 'Annual shareholder meeting',
+    type: Shared\GroupType::Organisation,
+    attribute: 'Example Fund',
     startsAt: '2026-01-01T00:00:00Z',
     endsAt: '2026-01-02T00:00:00Z',
     venue: 'Example Convention Centre',
@@ -226,6 +228,7 @@ $sdk = NoResponse\NoResponseClient::builder()
 
 $body = new Shared\GroupUpdate(
     name: 'Annual shareholder meeting',
+    attribute: 'Example Fund',
     startsAt: '2026-01-01T00:00:00Z',
     endsAt: '2026-01-02T00:00:00Z',
     venue: 'Example Convention Centre',

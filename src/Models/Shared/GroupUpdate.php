@@ -18,6 +18,15 @@ class GroupUpdate
     public ?string $name = null;
 
     /**
+     * The attribute its people share. Omit to keep the current value.
+     *
+     * @var ?string $attribute
+     */
+    #[\NoResponse\Serializer\Annotation\SerializedName('attribute')]
+    #[\NoResponse\Serializer\Annotation\SkipWhenNull]
+    public ?string $attribute = null;
+
+    /**
      * Where the group is held.
      *
      * @var ?string $venue
@@ -82,6 +91,7 @@ class GroupUpdate
 
     /**
      * @param  ?string  $name
+     * @param  ?string  $attribute
      * @param  ?string  $venue
      * @param  ?string  $host
      * @param  ?array<\NoResponse\Models\Shared\Principal>  $principals
@@ -91,9 +101,10 @@ class GroupUpdate
      * @param  string|null|\NoResponse\Utils\Absent  $endsAt
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?string $venue = null, ?string $host = null, ?array $principals = null, ?array $topics = null, ?int $expectedVersion = null, string|null|\NoResponse\Utils\Absent $startsAt = \NoResponse\Utils\Absent::Value, string|null|\NoResponse\Utils\Absent $endsAt = \NoResponse\Utils\Absent::Value)
+    public function __construct(?string $name = null, ?string $attribute = null, ?string $venue = null, ?string $host = null, ?array $principals = null, ?array $topics = null, ?int $expectedVersion = null, string|null|\NoResponse\Utils\Absent $startsAt = \NoResponse\Utils\Absent::Value, string|null|\NoResponse\Utils\Absent $endsAt = \NoResponse\Utils\Absent::Value)
     {
         $this->name = $name;
+        $this->attribute = $attribute;
         $this->venue = $venue;
         $this->host = $host;
         $this->principals = $principals;
